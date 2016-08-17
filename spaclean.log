@@ -1,98 +1,312 @@
-Run by AMM on 19 Jul 2016 19:28:37
-Number of distinct spatypes seen 403
+----------------------------------------------------------------------------------------------------------------------------------
+      name:  <unnamed>
+       log:  E:\users\amy.mason\staph_carriage\Programs\spaclean.log
+  log type:  text
+ opened on:  17 Aug 2016, 11:44:00
 
-     +----------------------------------------+
-     | spatype   CC            CCname   count |
-     |----------------------------------------|
-  1. |    t012    1        spa-CC 012     549 |
-  2. |    t084    3        spa-CC 084     326 |
-  3. |    t021    1        spa-CC 012     325 |
-  4. |    t002    8        spa-CC 002     258 |
-  5. |    t032    2        spa-CC 005     220 |
-     |----------------------------------------|
-  6. |    t127   54        no founder     217 |
-  7. |    t230   28        spa-CC 230     192 |
-  8. |    t360    3        spa-CC 084     158 |
-  9. |    t571   11        spa-CC 571     150 |
- 10. |    t005    2        spa-CC 005     146 |
-     |----------------------------------------|
- 11. |    t091   22        spa-CC 091     145 |
- 12. |    t346    3        spa-CC 084     145 |
- 13. |    t008   14    spa-CC 008/207     131 |
- 14. |    t089   27        spa-CC 089     127 |
- 15. |    t216   12        spa-CC 216     125 |
-     |----------------------------------------|
- 16. |    t015    4        spa-CC 015     108 |
-     +----------------------------------------+
-129 distinct standalone spatypes found in 1281 samples
+. 
+. noi di "Run by AMM on $S_DATE $S_TIME"
+Run by AMM on 17 Aug 2016 11:44:00
 
-     +---------------------------------+
-     | spatype     CC   CCname   count |
-     |---------------------------------|
- 28. |    t530    #21               64 |
- 32. |    t045     #1               61 |
- 37. |    t209     #6               56 |
- 38. |    t364    #13               50 |
- 41. |    t213     #7               47 |
-     |---------------------------------|
- 58. |    t505    #20               37 |
- 62. |   t6390    #79               32 |
- 64. |   t6811    #88               31 |
-     +---------------------------------+
-63 distinct spatypes in CC with no founder, found in 1014 samples
+. 
+. 
+. 
+. 
+. 
+. 
+. 
+. use "E:\users\amy.mason\staph_carriage\Datasets\CC", clear
 
-     +------------------------------------+
-     | spatype   CC        CCname   count |
-     |------------------------------------|
-  6. |    t127   54    no founder     217 |
- 24. |    t189   50    no founder      75 |
- 33. |   t6792   33    no founder      59 |
- 39. |    t160   47    no founder      50 |
- 43. |   t2643   43    no founder      47 |
-     |------------------------------------|
- 51. |   t2074   25    no founder      41 |
- 59. |    t954   37    no founder      37 |
-     +------------------------------------+
-5 distinct spatypes excluded, found in 80 samples
+. 
+. * data printout of spatypes
+
+. 
+. sort spatype CC 
+
+. 
+. noi by spatype: assert CC[_n]==CC[1]
+
+. 
+. gen count=1
+
+. 
+. 
+. 
+. collapse (sum) count, by(spatype CC CCname)
+
+. 
+. summ count
+
+    Variable |        Obs        Mean    Std. Dev.       Min        Max
+-------------+---------------------------------------------------------
+       count |        338           1           0          1          1
+
+. 
+. noi di "Number of distinct spatypes seen " r(N)
+Number of distinct spatypes seen 338
+
+. 
+. gsort -count 
+
+. 
+. noi list spatype CC* count if count >100
+
+. 
+. 
+. 
+. summ count if strpos(CC, "#")
+
+    Variable |        Obs        Mean    Std. Dev.       Min        Max
+-------------+---------------------------------------------------------
+       count |         32           1           0          1          1
+
+. 
+. noi display r(N) " distinct standalone spatypes found in " r(sum) " samples"
+32 distinct standalone spatypes found in 32 samples
+
+. 
+. noi list spatype CC* count if count >30 & strpos(CC, "#")
+
+. 
+. 
+. 
+. summ count if strpos(CCname, "no")
+
+    Variable |        Obs        Mean    Std. Dev.       Min        Max
+-------------+---------------------------------------------------------
+       count |         12           1           0          1          1
+
+. 
+. noi display r(N) " distinct spatypes in CC with no founder, found in " r(sum) " samples"
+12 distinct spatypes in CC with no founder, found in 12 samples
+
+. 
+. noi list spatype CC* count if count> 30 & strpos(CCname, "no")
+
+. 
+. 
+. 
+. summ count if strpos(CC, "Ex")
+
+    Variable |        Obs        Mean    Std. Dev.       Min        Max
+-------------+---------------------------------------------------------
+       count |         24           1           0          1          1
+
+. 
+. noi display r(N) " distinct spatypes excluded, found in " r(sum) " samples"
+24 distinct spatypes excluded, found in 24 samples
+
+. 
+. noi list spatype CC* count if  strpos(CC, "Ex")
 
      +-------------------------------------+
      | spatype         CC   CCname   count |
      |-------------------------------------|
- 47. |    t605   Excluded               45 |
- 83. |    t528   Excluded               24 |
-232. |   t3369   Excluded                6 |
-247. |    t693   Excluded                4 |
-335. |    t362   Excluded                1 |
+ 15. |    t026   Excluded                1 |
+ 35. |   t1023   Excluded                1 |
+ 38. |   t1040   Excluded                1 |
+ 70. |   t1445   Excluded                1 |
+ 78. |   t1509   Excluded                1 |
+     |-------------------------------------|
+ 82. |   t1544   Excluded                1 |
+127. |    t227   Excluded                1 |
+132. |   t2365   Excluded                1 |
+138. |   t2726   Excluded                1 |
+164. |   t3345   Excluded                1 |
+     |-------------------------------------|
+166. |   t3369   Excluded                1 |
+183. |    t386   Excluded                1 |
+185. |    t398   Excluded                1 |
+201. |   t4776   Excluded                1 |
+210. |    t528   Excluded                1 |
+     |-------------------------------------|
+213. |    t543   Excluded                1 |
+216. |    t559   Excluded                1 |
+226. |    t605   Excluded                1 |
+237. |    t643   Excluded                1 |
+280. |    t693   Excluded                1 |
+     |-------------------------------------|
+298. |    t748   Excluded                1 |
+302. |    t779   Excluded                1 |
+315. |    t870   Excluded                1 |
+318. |   t8811   Excluded                1 |
      +-------------------------------------+
-Number of distinct CC seen (including standalones, excluding excluded) 191
 
-     +--------------------------+
-     | CC        CCname   count |
-     |--------------------------|
-  1. |  1    spa-CC 012    1676 |
-  2. |  3    spa-CC 084     880 |
-  3. |  2    spa-CC 005     781 |
-  4. |  8    spa-CC 002     290 |
-  5. | 28    spa-CC 230     247 |
-     |--------------------------|
-  6. |  6    spa-CC 078     231 |
-  7. | 54    no founder     228 |
-  8. | 12    spa-CC 216     201 |
-     +--------------------------+
-Number of distinct CC seen (excluding standalones and excluded) 31
-
-     +---------------------+
-     |      CCname   count |
-     |---------------------|
-  1. |  no founder    1014 |
-  2. |  spa-CC 002     290 |
-  4. |  spa-CC 005     781 |
-  6. |  spa-CC 012    1676 |
-  9. |  spa-CC 078     231 |
-     |---------------------|
- 10. |  spa-CC 084     880 |
- 21. |  spa-CC 216     201 |
- 24. |  spa-CC 230     247 |
-     +---------------------+
 . 
-. run antibiotics.do
+. 
+. 
+. collapse (sum) count, by(CC CCname)
+
+. 
+. summ count if CC!="Excluded"
+
+    Variable |        Obs        Mean    Std. Dev.       Min        Max
+-------------+---------------------------------------------------------
+       count |         59    5.322034    9.615793          1         53
+
+. 
+. noi di "Number of distinct CC seen (including standalones, excluding excluded) " r(N)
+Number of distinct CC seen (including standalones, excluding excluded) 59
+
+. 
+. gsort -count 
+
+. 
+. noi list CC* count if count >200
+
+. 
+. 
+. 
+. collapse (sum) count, by (CCname)
+
+. 
+. drop if CCname==""
+(1 observation deleted)
+
+. 
+. summ count
+
+    Variable |        Obs        Mean    Std. Dev.       Min        Max
+-------------+---------------------------------------------------------
+       count |         22    12.81818    12.92335          3         53
+
+. 
+. noi di "Number of distinct CC seen (excluding standalones and excluded) " r(N)
+Number of distinct CC seen (excluding standalones and excluded) 22
+
+. 
+. noi list CC* count if count >200
+
+. 
+. 
+. 
+. * save matching of spatypes <-> CC
+
+. 
+. use "E:\users\amy.mason\staph_carriage\Datasets\CC", clear
+
+. 
+. drop taxa
+variable taxa not found
+r(111);
+
+. 
+. duplicates drop
+
+Duplicates in terms of all variables
+
+(0 observations are duplicates)
+
+. 
+. save "E:\users\amy.mason\staph_carriage\Datasets\CCnames", replace
+file E:\users\amy.mason\staph_carriage\Datasets\CCnames.dta saved
+
+. 
+. 
+. 
+. *distances of spatypes
+
+. 
+. 
+. 
+. use "E:\users\amy.mason\staph_carriage\Datasets\BURP", clear
+
+. 
+. 
+. 
+. * extract sample names
+
+. 
+. gen sample1= strpos( species1, "t")
+
+. 
+. assert sample1!=0 & sample1!=.
+
+. 
+. gen sub1= substr( species1, sample1,.)
+
+. 
+. drop sample1
+
+. 
+. gen sample1= strpos(sub1, " ")
+
+. 
+. gen subsub1 = sub1 if sample1==0
+(56,953 missing values generated)
+
+. 
+. replace subsub1= substr(sub1,1, sample1-1) if sample1!=0
+variable subsub1 was str1 now str6
+(56,953 real changes made)
+
+. 
+. drop sample1
+
+. 
+. gen sample1= strpos(subsub1, " ")
+
+. 
+. assert sample1==0
+
+. 
+. drop sample1 sub1 species1
+
+. 
+. rename subsub1 spatype1
+
+. 
+. 
+. 
+. gen sample2= strpos( species2, "t")
+
+. 
+. assert sample2!=0 & sample2!=.
+
+. 
+. gen sub2= substr( species2, sample2,.)
+
+. 
+. drop sample2
+
+. 
+. gen sample2= strpos(sub2, " ")
+
+. 
+. gen subsub2 = sub2 if sample2==0
+(56,953 missing values generated)
+
+. 
+. replace subsub2= substr(sub2,1, sample2-1) if sample2!=0
+variable subsub2 was str1 now str6
+(56,953 real changes made)
+
+. 
+. drop sample2
+
+. 
+. gen sample2= strpos(subsub2, " ")
+
+. 
+. assert sample2==0
+
+. 
+. drop sample2 sub2 species2
+
+. 
+. rename subsub2 spatype2
+
+. 
+. drop v4
+
+. 
+. save "E:\users\amy.mason\staph_carriage\Datasets\spa_BURP", replace
+file E:\users\amy.mason\staph_carriage\Datasets\spa_BURP.dta saved
+
+. 
+. *
+
+. 
+. cd "E:\users\amy.mason\staph_carriage\Programs"
+E:\users\amy.mason\staph_carriage\Programs
+

@@ -80,7 +80,7 @@ gen sample2= strpos(subsub2, " ")
 assert sample2==0
 drop sample2 sub2 species2
 rename subsub2 spatype2
-
-
+drop v4
+save "E:\users\amy.mason\staph_carriage\Datasets\spa_BURP", replace
 *
 cd "E:\users\amy.mason\staph_carriage\Programs"

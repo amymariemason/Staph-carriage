@@ -132,8 +132,9 @@ save "E:\users\amy.mason\staph_carriage\Datasets\Skin", replace
 
 *cc-groups 
 noi di _n(5) _dup(80) "=" _n "Clonal colonies" _n _dup(80) "=" 
-import delimited E:\users\amy.mason\staph_carriage\Inputs\Spa-typing_burp_03.03.2016.csv, delimiter(";:", collapse) varnames(1) clear 
+import delimited E:\users\amy.mason\staph_carriage\Inputs\Spa-typing_burp_16.08.2016.csv, delimiter(";:", collapse) varnames(1) clear 
 drop v5
+drop taxa
 rename v4 CCname
 rename spacc CC
  noi di "DROP STRAIGHT DUPLICATES" 
@@ -142,8 +143,9 @@ compress
 save  "E:\users\amy.mason\staph_carriage\Datasets\CC", replace
 
 * spa burp distance 
+
 noi di _n(5) _dup(80) "=" _n "Burp distances" _n _dup(80) "=" 
-import delimited E:\users\amy.mason\staph_carriage\Inputs\cost.txt, delimiter(",", collapse) varnames(1) stripquote(yes) clear 
+import delimited E:\users\amy.mason\staph_carriage\Inputs\cost_noexclusions_16_08.txt, delimiter(",", collapse) varnames(1) stripquote(yes) clear 
  noi di "DROP STRAIGHT DUPLICATES" 
 noi bysort *: drop if _n>1
 compress
