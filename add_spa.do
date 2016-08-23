@@ -59,11 +59,7 @@ replace masterdist=0 if spatype1==spatype2
 replace masterdist=1000 if spatype1=="" & spatype2!=""
 replace masterdist=1000 if spatype2=="" & spatype1!=""
 
-**********************************************************
-**** TEMP UNTIL COST  MATRIX UPDATED****
-drop if masterdist ==. 
-
-**********************************************************
+assert masterdist!=.
 keep patid timepoint masterdist current start spa*
 sort patid timepoint current start
 
@@ -135,12 +131,7 @@ gen masterdist = min(dist1, dist)
 replace masterdist=0 if spatype1==spatype2
 replace masterdist=1000 if spatype1=="" & spatype2!=""
 replace masterdist=1000 if spatype2=="" & spatype1!=""
-
-**********************************************************
-**** TEMP UNTIL COST  MATRIX UPDATED****
-drop if masterdist ==. 
-
-**********************************************************
+assert masterdist!=.
 keep patid timepoint masterdist current start 
 sort patid timepoint current start
 

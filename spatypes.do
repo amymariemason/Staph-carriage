@@ -46,7 +46,6 @@ noi list CC* count if count >200
 
 * save matching of spatypes <-> CC
 use "E:\users\amy.mason\staph_carriage\Datasets\CC", clear
-drop taxa
 duplicates drop
 save "E:\users\amy.mason\staph_carriage\Datasets\CCnames", replace
 

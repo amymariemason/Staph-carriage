@@ -1,3 +1,7 @@
+************
+* exploration of how to cope with excluded spa types in distances.
+****************
+
 noi di _n(5) _dup(80) "=" _n "Burp distances" _n _dup(80) "=" 
 import delimited E:\users\amy.mason\staph_carriage\Inputs\costlist.txt, delimiter(",", collapse) varnames(1) stripquote(yes) clear 
  noi di "DROP STRAIGHT DUPLICATES" 
@@ -76,3 +80,26 @@ drop sample2 sub2 species2
 rename subsub2 spatype2
 drop v4
 save  "E:\users\amy.mason\staph_carriage\Datasets\BURP4", replace
+
+
+* compare to non-excluded distance
+rename dist distEX
+
+merge m:1 spatype1 spatype2 using "E:\users\amy.mason\staph_carriage\Datasets\BURP3", update
+drop if _merge==2
+assert inlist(_merge,1,3)
+
+ assert dist==distEX if dist!=.
+
+rename _merge _merge1
+rename dist dist1
+rename spatype1 spatype_temp
+rename spatype2 spatype1
+rename spatype_temp spatype2
+
+merge m:1 spatype1 spatype2 using "E:\users\amy.mason\staph_carriage\Datasets\BURP3", update
+drop if _merge==2
+assert inlist(_merge,1,3)
+
+
+ assert dist==distEX if dist!=.
