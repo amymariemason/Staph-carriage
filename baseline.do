@@ -55,7 +55,7 @@ noi di "residence"
 noi tab Residence
 gen residence_group = "own home/None of the above" if strpos(Residence,"9")
 replace residence_group = "shared home" if strpos(Reside, "6") | strpos(Resid, "7") | strpos(Resid, "8")
-
+replace residence_group = "No response" if residence_group==""
 noi tab residence_ Reside, m
 * current employment at baseline
 
@@ -124,7 +124,7 @@ replace outpatient = "No" if OPEver=="Not known"
 
 
 
-keep outpatient_summ inpatient_summ patid residence_group LiveAlone Sex age DateOfBirth Ethnic_group CurrentlyEmployed HealthcareRelatedEmployed SportsActivity LookAfter DIED REMOVEDCONSENT FollowUpNeg VascularAccess Catheter
+keep outpatient_summ inpatient_summ patid residence_group LiveAlone Sex age DateOfBirth Ethnic_group CurrentlyEmployed HealthcareRelatedEmployed SportsActivity LookAfter DIED REMOVEDCONSENT FollowUpNeg VascularAccess Catheter inpatient outpatient
 
 save temp, replace
 
@@ -176,83 +176,87 @@ use "E:\users\amy.mason\staph_carriage\Datasets\minimal.dta", clear
 keep if timepoint==0
 merge 1:m patid using "E:\users\amy.mason\staph_carriage\Datasets\GP_org", update
  drop if _merge==2
- assert inlist(_merge,1,3)
- noi di "missing GP data"
- noi list patid if _merge==1
- * why do these 4 people not have anyGP information
- * suggestion: drop them from any study using GP data
- gen GPmissing = 1 if _merge==1
- drop _merge
- 
+ assert inlist(_merge,3)
+drop _merge
+
+
  merge 1:1 patid using temp, update
 assert _merge==3
 drop _merge
 * district nurse
 
 noi di "district nurse"
-noi tab  DistrictNurseCare if GPmissing!=1, m
+noi tab  DistrictNurseCare, m
 * assume if not known -> answer is no, as it should be in records.
 * Ruth said: "Missing values assumed as no, as risk factors likely to be recorded in patient records."
 gen DistrictNurse_days =  BestDate - DistrictNurseCareDate 
 noi tabstat DistrictNurse_days, c(s) s(n median iqr min p25 p75 max)
 gen DistrictNurse_summ = "Within 30 days" if DistrictNurse_days<=30
 replace DistrictNurse_summ = "> 30 days ago" if DistrictNurse_days> 30 & DistrictNurse_days!=.
-replace DistrictNurse_summ = "No" if DistrictNurse_days==. & GPmissing!=1
-noi tab DistrictNurse_summ
+replace DistrictNurse_summ = "No" if DistrictNurse_days==.
+replace DistrictNurse_summ = "No" if DistrictNurse_days==. 
+noi tab DistrictNurse_summ, m
 gen districtnurse = DistrictNurseCare
 replace districtnurse = "No" if districtnurse=="Not known"
+noi tab districtnurse , m
 
 * inpatient
 noi di "inpatient - adding outside of ORH appointments"
-noi tab InPatientNonORH inpatient_summ if GPmissing!=1, m
+noi tab InPatientNonORH inpatient_summ , m
 gen inpatient_days2 =  BestDate - InPatientNonORHDate
 assert inpatient_days2>=0
 noi tabstat inpatient_days2, c(s) s(n median iqr min p25 p75 max)
-noi replace inpatient_summ = "Within 30 days" if inpatient_days2<=30  & GPmissing!=1
-noi replace inpatient_summ = "> 30 days ago" if inpatient_days2> 30 &inpatient_days2!=. & inpatient_summ=="No"  & GPmissing!=1
-noi tab inpatient_summ
-
+noi replace inpatient_summ = "Within 30 days" if inpatient_days2<=30  
+noi replace inpatient_summ = "> 30 days ago" if inpatient_days2> 30 &inpatient_days2!=. & inpatient_summ=="No" 
+replace inpatient = "Yes" if inlist(inpatient_summ, "Within 30 days" , "> 30 days ago")
+noi tab inpatient_summ, m
+noi tab inpatient, m
 
 * skin infection in past month
 noi di "skin infection in past month" 
-noi tab V12Skininfectioninpastmonth if GPmissing!=1, m
+
 *all negative - (even if go to full set)???
-gen skininfection = V12Skininfectioninpastmonth if GPmissing!=1
+gen skininfection = V12Skininfectioninpastmonth 
+noi tab skininfection,  m
+
 
 * outpatient
 noi di "outpatient - adding outside of ORH appointments"
-noi tab OutPatientNonORH outpatient_summ if GPmissing!=1, m
+noi tab OutPatientNonORH outpatient_summ , m
 gen outpatient_days2 =  BestDate - OutPatientNonORHDate
 assert outpatient_days2>=0
 noi tabstat outpatient_days2, c(s) s(n median iqr min p25 p75 max)
-replace outpatient_summ = "Within 30 days" if outpatient_days2<=30 & GPmissing!=1
-replace outpatient_summ = "> 30 days ago" if outpatient_days2> 30 &outpatient_days2!=. & outpatient_summ=="No" &   GPmissing!=1
-noi tab outpatient_summ
-
+replace outpatient_summ = "Within 30 days" if outpatient_days2<=30 
+replace outpatient_summ = "> 30 days ago" if outpatient_days2> 30 &outpatient_days2!=. & outpatient_summ=="No" 
+replace outpatient = "Yes" if inlist(outpatient_summ, "Within 30 days" , "> 30 days ago")
+noi tab outpatient_summ , m
+noi tab outpatient , m
 
 *surgery
 noi di "surgery"
-noi tab  UndergoneSurgery if GPmissing!=1, m
+noi tab  UndergoneSurgery , m
 gen surgery_days =  BestDate - UndergoneSurgeryDate
 noi tabstat surgery_days , c(s) s(n median iqr min p25 p75 max)
 gen surgery_summ = "Within 30 days" if surgery_days <=30
 replace surgery_summ = "> 30 days ago" if surgery_days > 30 & surgery_days!=.
-replace surgery_summ = "No" if surgery_days==. & GPmissing!=1
-noi tab surgery_summ, m
+replace surgery_summ = "No" if surgery_days==.
+noi tab surgery_summ  , m
 gen surgery = UndergoneSurgery
 replace surgery = "No" if UndergoneSurgery=="Not known"
+noi tab surgery  , m
 
 * GP appointments
 noi di "GP appointments"
-noi tab  GPAppointment if GPmissing!=1, m
+noi tab  GPAppointment , m
 gen GP_days =  BestDate - GPAppointmentDate
 noi tabstat GP_days , c(s) s(n median iqr min p25 p75 max)
 gen GP_summ = "Within 30 days" if GP_days <=30
 noi replace GP_summ = "> 30 days ago" if GP_days > 30 & GP_days!=.
-noi replace GP_summ = "No" if GP_days==. & GPmissing!=1
-noi tab GP_summ, m
+noi replace GP_summ = "No" if GP_days==.
+noi tab GP_summ , m
 gen GP = GPAppointment
 replace GP = "No" if GPAppointment=="Not known"
+noi tab GP , m
 
 * merge back into larger set
 
@@ -417,6 +421,9 @@ noi tab skin
 keep patid skin
 merge 1:1 patid using "E:\users\amy.mason\staph_carriage\Datasets\baseline_data", update
 assert inlist(_merge, 2,3)
+replace skin = "Did Not Report" if skin==""
+noi dis "has had skin treatment within 30 days of recruitment"
+noi tab skin
 drop _merge
 
 save "E:\users\amy.mason\staph_carriage\Datasets\baseline_data", replace
@@ -504,6 +511,10 @@ keep patid LTI
 merge 1:1 patid using "E:\users\amy.mason\staph_carriage\Datasets\baseline_data",  update
 assert _merge==3
 drop _merge
+
+drop BestDate timepoint
+
+keep patid Sex age Ethnic_group residence_group CurrentlyEm HealthcareR SportsActivity LookAfter VascularAccess Catheter inpatient inpatient_summ outpatient outpatient_summ LiveAlone Follow household_group districtnurse DistrictNurse_summ skininfection surgery surgery_summ GP GP_sum skin LTI
 
 save "E:\users\amy.mason\staph_carriage\Datasets\baseline_data", replace
 

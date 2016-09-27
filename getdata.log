@@ -1,4 +1,4 @@
-Run by AMM on 17 Aug 2016 11:36:24
+Run by AMM on 26 Aug 2016 16:14:28
 
 
 
@@ -125,9 +125,16 @@ DROP STRAIGHT DUPLICATES
 . set more on
 
 . 
-. set li 130
+. 
+. 
+. * clean data
 
 . 
+. set more off
+
 . 
+. cd "E:\users\amy.mason\staph_carriage\Programs"
+E:\users\amy.mason\staph_carriage\Programs
+
 . 
-. cap log close
+. run Clean_maindata.do

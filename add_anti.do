@@ -4,7 +4,7 @@
 set li 130
 
 cap log close
-log using add_anti.log, replace
+log using addanti.log, replace
 noi di "Run by AMM on $S_DATE $S_TIME"
 
 ************** integrate with cleaned swab data
@@ -29,7 +29,7 @@ gen antistaph=1
 summ patid
 noi di r(N) " antibiotic days in all participants"
 
-append using "E:\users\amy.mason\staph_carriage\Datasets\clean_data.dta"
+append using "E:\users\amy.mason\staph_carriage\Datasets\clean_data2.dta"
 keep patid timepoint BestDate antistaph
 replace antistaph=0 if antistaph==.
 format BestDate %td
@@ -53,7 +53,7 @@ rename BestDate1 LastAntiDate
 sort patid timepoint
 by patid: replace LastAntiDate = Last[_n-1] if Last==.
 
-/* add days since first swab for antibiotics/further swabs */
+* add days since first swab for antibiotics/further swabs *
 
 gsort patid timepoint 
 by patid: gen day_no = BestDate-BestDate[1]
@@ -89,4 +89,18 @@ merge 1:1 patid timepoint using "E:\users\amy.mason\staph_carriage\Datasets\clea
 assert _merge==3
 drop _merge
 
+
+
+noi di "add baseline data"
+
+merge m:1 patid using "E:\users\amy.mason\staph_carriage\Datasets\baseline_data", update
+assert _merge==3
+drop _merge
+
+
+
 save "E:\users\amy.mason\staph_carriage\Datasets\clean_data3.dta", replace
+
+
+
+
