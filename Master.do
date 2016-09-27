@@ -19,6 +19,8 @@ set more off
 run getdata.do
 set more on
 
+
+cd "E:\users\amy.mason\staph_carriage\Programs"
 * clean data
 set more off
 cd "E:\users\amy.mason\staph_carriage\Programs"
@@ -29,16 +31,21 @@ run spatypes.do
 run antibiotics.do
 set more on
 
+
+cd "E:\users\amy.mason\staph_carriage\Programs"
 * combine data
 
-** then add spatypes to clean_data and calc burpsdifferences (see R file)
+** then add spatypes to clean_data and calc burp cost
 run add_spa.do
-** add antibiotics to calc for anti in last 6 months, anti between spa types
+** add antibiotics to calc for anti in last 6 months, anti between spa types; also baseline data
 run add_anti.do
-** add baseline data
+*** create a record for each patid-spatype so can talk about loss of each spa-type
+run anti_types.do
 
 * analyse data
 ** gain
+
+
 ** loss
 
 * graphs

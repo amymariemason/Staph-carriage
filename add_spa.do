@@ -23,6 +23,7 @@ use temp, clear
 split spatype, p(/)
 drop spatype
 reshape long spatype, i(patid timepoint) j(current)
+drop if spatype=="" & current!=1
 
 split initialspa, p(/)
 split secondspa, p(/)
@@ -33,9 +34,16 @@ rename secondspa3 initialspa8
 rename secondspa4 initialspa9
 rename secondspa5 initialspa10
 reshape long initialspa, i(patid timepoint current) j(start)
+drop if initialspa=="" & start!=1
+sort patid timepoint current initial start
+by patid timepoint current initial: gen tag =1 if _n>1
+* drop duplicates
+drop if tag==1
+
 
 rename spatype spatype1
-rename initial spatype2
+gen spatype2= initial
+gen currentspa = spatype1
 
 merge m:1 spatype1 spatype2 using "E:\users\amy.mason\staph_carriage\Datasets\spa_BURP", update
 drop if _merge==2
@@ -55,13 +63,16 @@ assert dist==. if dist1!=.
 assert dist1==. if dist!=.
 
 gen masterdist = min(dist1, dist)
-replace masterdist=0 if spatype1==spatype2
-replace masterdist=1000 if spatype1=="" & spatype2!=""
-replace masterdist=1000 if spatype2=="" & spatype1!=""
+drop dist* _merge*
+replace masterdist=0 if spatype1==spatype2 & spatype1!=""
 
-assert masterdist!=.
-keep patid timepoint masterdist current start spa*
+keep patid timepoint masterdist current start initial currentspa
 sort patid timepoint current start
+
+replace masterdist=1000 if initial=="" & currentspa!=""
+
+assert masterdist!=. if currentspa!=""
+assert masterdist==. if currentspa==""
 
 * first find minimum distance between each current spatype and the initial set 
 by patid timepoint current: egen minCOST = min(masterdist)
@@ -96,6 +107,7 @@ use temp, clear
 split spatype, p(/)
 drop spatype
 reshape long spatype, i(patid timepoint) j(current)
+drop if spatype=="" & current!=1
 
 split onebehindspa, p(/)
 split twobehingsspa, p(/)
@@ -106,9 +118,16 @@ rename twobehingsspa3 onebehindspa8
 rename twobehingsspa4 onebehindspa9
 rename twobehingsspa5 onebehindspa10
 reshape long onebehindspa, i(patid timepoint current) j(start)
+drop if onebehindspa=="" & start!=1
 
-rename spatype spatype1
-rename onebehind spatype2
+sort patid timepoint current onebehind start
+by patid timepoint current onebehind: gen tag =1 if _n>1
+* drop duplicates
+drop if tag==1
+
+rename spatype currentspa
+gen spatype1= one
+gen spatype2 = currentspa
 
 merge m:1 spatype1 spatype2 using "E:\users\amy.mason\staph_carriage\Datasets\spa_BURP", update
 drop if _merge==2
@@ -128,12 +147,16 @@ assert dist==. if dist1!=.
 assert dist1==. if dist!=.
 
 gen masterdist = min(dist1, dist)
-replace masterdist=0 if spatype1==spatype2
-replace masterdist=1000 if spatype1=="" & spatype2!=""
-replace masterdist=1000 if spatype2=="" & spatype1!=""
-assert masterdist!=.
-keep patid timepoint masterdist current start 
+drop dist* _merge*
+replace masterdist=0 if spatype1==spatype2 & spatype1!=""
+
+keep patid timepoint masterdist current start onebehind currentspa
 sort patid timepoint current start
+
+replace masterdist=1000 if onebehind=="" & currentspa!=""
+
+assert masterdist!=. if currentspa!=""
+assert masterdist==. if currentspa==""
 
 * first find minimum distance between each current spatype and the initial set 
 by patid timepoint current: egen minCOST = min(masterdist)
@@ -152,5 +175,12 @@ drop _merge
 merge 1:1 patid timepoint using "E:\users\amy.mason\staph_carriage\Datasets\clean_data.dta", update
 assert _merge==3
 drop _merge
+
+gen newspa_init = (maxCOST_init>=2&maxCOST_init!=.)
+tab newspa_init, m
+gen newspa_prev = (maxCOST_prev>=2&maxCOST_prev!=.)
+tab newspa_prev, m
+
+drop max* SwabID  Sent Received DateTaken org_timepoint StudyGroup DateOfBirth Sex year  days_since_first ideal_days accuracy max_accuracy count
 
 save "E:\users\amy.mason\staph_carriage\Datasets\clean_data2.dta", replace

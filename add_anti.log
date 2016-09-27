@@ -1,390 +1,1361 @@
-Run by AMM on 17 Aug 2016 13:19:11
+----------------------------------------------------------------------------------------------------------------------------------
+      name:  <unnamed>
+       log:  E:\users\amy.mason\staph_carriage\Programs\add_anti.log
+  log type:  text
+ opened on:  24 Aug 2016, 17:18:10
+
+. 
+. noi di "Run by AMM on $S_DATE $S_TIME"
+Run by AMM on 24 Aug 2016 17:18:10
+
+. 
+. 
+. 
+. ************** integrate with cleaned swab data
+
+. 
+. 
+. 
+. 
+. 
+. use "E:\users\amy.mason\staph_carriage\Datasets\antistaph_antibiotics_nooverlap", clear
+
+. 
+. noi di "Integrate with swab data"
 Integrate with swab data
+
+. 
+. 
+. 
+. gen diff = DateEnded-DateStarted +1
+
+. 
+. assert diff>=0
+
+. 
+. expand diff
+(8,298 observations created)
+
+. 
+. sort patid DateStarted True
+
+. 
+. by patid DateStarted True: gen newDate = DateStarted +_n -1
+
+. 
+. format newDate %td
+
+. 
+. 
+. 
+. keep patid newDate 
+
+. 
+. duplicates drop
+
+Duplicates in terms of all variables
+
+(333 observations deleted)
+
+. 
+. 
+. 
+. rename newDate BestDate
+
+. 
+. gen antistaph=1
+
+. 
+. 
+. 
+. summ patid
+
+    Variable |        Obs        Mean    Std. Dev.       Min        Max
+-------------+---------------------------------------------------------
+       patid |      8,268    859.0031    558.3681          1       2120
+
+. 
+. noi di r(N) " antibiotic days in all participants"
 8268 antibiotic days in all participants
+
+. 
+. 
+. 
+. append using "E:\users\amy.mason\staph_carriage\Datasets\clean_data.dta"
+
+. 
+. keep patid timepoint BestDate antistaph
+
+. 
+. replace antistaph=0 if antistaph==.
+(9,039 real changes made)
+
+. 
+. format BestDate %td
+
+. 
+. 
+. 
+. gsort patid -BestDate
+
+. 
+. by patid: replace timepoint = timepoint[_n-1] if timepoint==.
+(8226 real changes made)
+
+. 
+. 
+. 
+. * set of antibiotic results with missing timepoint: these are all the dates extending past the last swab. 
+
+. 
+. * just drop, don't need results past last swab on record
+
+. 
+. drop if timepoint==.
+(42 observations deleted)
+
+. 
+. 
+. 
+. * keep only the latest antibiotic taking before each swab
+
+. 
+. gsort patid timepoint -antistaph
+
+. 
+. by patid timepoint: drop if _n>1 & antistaph==1
+(7,869 observations deleted)
+
+. 
+. 
+. 
+. * reshape to ease comparing dates
+
+. 
+. reshape wide BestDate, i(patid timepoint) j(antistaph)
+(note: j = 0 1)
+
+Data                               long   ->   wide
+-----------------------------------------------------------------------------
+Number of obs.                     9396   ->    9039
+Number of variables                   4   ->       4
+j variable (2 values)         antistaph   ->   (dropped)
+xij variables:
+                               BestDate   ->   BestDate0 BestDate1
+-----------------------------------------------------------------------------
+
+. 
+. rename BestDate0 BestDate
+
+. 
+. rename BestDate1 LastAntiDate
+
+. 
+. 
+. 
+. sort patid timepoint
+
+. 
+. by patid: replace LastAntiDate = Last[_n-1] if Last==.
+(1476 real changes made)
+
+. 
+. 
+. 
+. /* add days since first swab for antibiotics/further swabs */
+/ is not a valid command name
+r(199);
+
+. 
+. 
+. 
+. gsort patid timepoint 
+
+. 
+. by patid: gen day_no = BestDate-BestDate[1]
+
+. 
+. 
+. 
+. 
+. 
+. * add days since antibiotic last taken 
+
+. 
+. gen days_since_anti = BestDate - LastAntiDate
+(7,206 missing values generated)
+
+. 
+. gsort patid timepoint
+
+. 
+. by patid: gen last_anti_day = LastAnti-BestDate[1]
+(7,206 missing values generated)
+
+. 
+. label variable last_anti_day "last antibiotics taken by patient"
+
+. 
+. 
+. 
+. ************ add markers 
+
+. 
+. * since last swab indicator
+
+. 
+. noi di "swabs with antibiotics taken between previous swab and current one"
 swabs with antibiotics taken between previous swab and current one
+
+. 
+. gen prev_anti= (LastAntiDate>BestDate[_n-1] & LastAntiDate!=.)
+
+. 
+. label variable prev_anti "staph antibiotics taken since last swob"
+
+. 
+. noi tab prev_anti
 
       staph |
 antibiotics |
 taken since |
   last swob |      Freq.     Percent        Cum.
 ------------+-----------------------------------
-          0 |      8,731       96.59       96.59
-          1 |        308        3.41      100.00
+          0 |      8,728       96.56       96.56
+          1 |        311        3.44      100.00
 ------------+-----------------------------------
       Total |      9,039      100.00
+
+. 
+. 
+. 
+. * 6 month indicator 
+
+. 
+. noi display "swabs with antibiotics taken in previous 6 months"
 swabs with antibiotics taken in previous 6 months
+
+. 
+. gen prev_anti_6mon =0
+
+. 
+. replace prev_anti_6mon =1 if days_since<180 
+(685 real changes made)
+
+. 
+. label variable prev_anti_6mon "staph antibiotics taken last six months"
+
+. 
+. noi tab prev_anti_6mon
 
       staph |
 antibiotics |
  taken last |
  six months |      Freq.     Percent        Cum.
 ------------+-----------------------------------
-          0 |      8,353       92.41       92.41
-          1 |        686        7.59      100.00
+          0 |      8,354       92.42       92.42
+          1 |        685        7.58      100.00
 ------------+-----------------------------------
       Total |      9,039      100.00
-. 
-. ** add baseline data
-
-. 
-. use "E:\users\amy.mason\staph_carriage\Datasets\clean_data.dta", clear
 
 . 
 . 
 . 
-. keep patid timepoint spatype
-
-. 
-. order patid timepoint spatype
-
-. 
-. replace spatype= subinstr(spatype, "contaminated", "",.)
-(1 real change made)
-
-. 
-. bysort patid timepoint: assert _n==1
-
-. 
-. by patid: gen initialspa = spatype[1]
-(3,405 missing values generated)
-
-. 
-. by patid: gen secondspa = spatype[2]
-(4,085 missing values generated)
-
-. 
-. save temp, replace
-file temp.dta saved
+. * tidy up working variables
 
 . 
 . 
 . 
-. use temp, clear
-
-. 
-. split spatype, p(/)
-variables created as string: 
-spatype1  spatype2  spatype3  spatype4  spatype5
-
-. 
-. drop spatype
-
-. 
-. reshape long spatype, i(patid timepoint) j(current)
-(note: j = 1 2 3 4 5)
-
-Data                               wide   ->   long
------------------------------------------------------------------------------
-Number of obs.                     9039   ->   45195
-Number of variables                   9   ->       6
-j variable (5 values)                     ->   current
-xij variables:
-         spatype1 spatype2 ... spatype5   ->   spatype
------------------------------------------------------------------------------
+. keep patid timepoint prev_anti prev_anti_6mon
 
 . 
 . 
 . 
-. split initialspa, p(/)
-variables created as string: 
-initialspa1  initialspa2  initialspa3  initialspa4  initialspa5
-
-. 
-. split secondspa, p(/)
-variables created as string: 
-secondspa1  secondspa2  secondspa3  secondspa4  secondspa5
-
-. 
-. drop initialspa secondspa
-
-. 
-. rename secondspa1 initialspa6
-
-. 
-. rename secondspa2 initialspa7
-
-. 
-. rename secondspa3 initialspa8
-
-. 
-. rename secondspa4 initialspa9
-
-. 
-. rename secondspa5 initialspa10
-
-. 
-. reshape long initialspa, i(patid timepoint current) j(start)
-(note: j = 1 2 3 4 5 6 7 8 9 10)
-
-Data                               wide   ->   long
------------------------------------------------------------------------------
-Number of obs.                    45195   ->  451950
-Number of variables                  14   ->       6
-j variable (10 values)                    ->   start
-xij variables:
-initialspa1 initialspa2 ... initialspa10  ->   initialspa
------------------------------------------------------------------------------
+. save  "E:\users\amy.mason\staph_carriage\Datasets\AntiStaph_markers", replace
+file E:\users\amy.mason\staph_carriage\Datasets\AntiStaph_markers.dta saved
 
 . 
 . 
 . 
-. rename spatype spatype1
-
-. 
-. rename initial spatype2
-
-. 
-. merge m:1 spatype1 spatype2 using "E:\users\amy.mason\staph_carriage\Datasets\spa_BURP", update
-(note: variable spatype2 was str5, now str6 to accommodate using data's values)
+. merge 1:1 patid timepoint using "E:\users\amy.mason\staph_carriage\Datasets\clean_data2.dta", update
 
     Result                           # of obs.
     -----------------------------------------
-    not matched                       507,690
-        from master                   450,923  (_merge==1)
-        from using                     56,767  (_merge==2)
+    not matched                             0
 
-    matched                             1,027
-        not updated                     1,027  (_merge==3)
+    matched                             9,039
+        not updated                     9,039  (_merge==3)
         missing updated                     0  (_merge==4)
         nonmissing conflict                 0  (_merge==5)
     -----------------------------------------
 
 . 
-. drop if _merge==2
-(56,767 observations deleted)
+. assert _merge==3
 
 . 
-. assert inlist(_merge,1,3)
-
-. 
-. 
-. 
-. rename _merge _merge1
-
-. 
-. rename dist dist1
-
-. 
-. rename spatype1 spatype_temp
-
-. 
-. rename spatype2 spatype1
-
-. 
-. rename spatype_temp spatype2
+. drop _merge
 
 . 
 . 
 . 
-. merge m:1 spatype1 spatype2 using "E:\users\amy.mason\staph_carriage\Datasets\spa_BURP", update
+. save "E:\users\amy.mason\staph_carriage\Datasets\clean_data3.dta", replace
+file E:\users\amy.mason\staph_carriage\Datasets\clean_data3.dta saved
+
+. 
+. 
+. 
+. noi di "add baseline data"
+add baseline data
+
+. 
+. 
+. 
+. merge m:1 patid using "E:\users\amy.mason\staph_carriage\Datasets\baseline_data", update
 
     Result                           # of obs.
     -----------------------------------------
-    not matched                       507,398
-        from master                   450,669  (_merge==1)
-        from using                     56,729  (_merge==2)
+    not matched                             0
 
-    matched                             1,281
-        not updated                     1,281  (_merge==3)
+    matched                             9,039
+        not updated                     9,039  (_merge==3)
         missing updated                     0  (_merge==4)
         nonmissing conflict                 0  (_merge==5)
     -----------------------------------------
 
-. 
-. drop if _merge==2
-(56,729 observations deleted)
+. assert _merge==3
 
 . 
-. assert inlist(_merge,1,3)
+. drop _merge
 
-. 
-. 
-. 
-. assert dist==. if dist1!=.
+. save "E:\users\amy.mason\staph_carriage\Datasets\clean_data3.dta", replace
+file E:\users\amy.mason\staph_carriage\Datasets\clean_data3.dta saved
 
-. 
-. assert dist1==. if dist!=.
+. tab GPmissing
 
-. 
-. 
-. 
-. gen masterdist = min(dist1, dist)
-(449,642 missing values generated)
-
-. 
-. replace masterdist=0 if spatype1==spatype2
-(365,150 real changes made)
-
-. sort patid timepoint
-
-. order patid timepoint spa* master
-
-. * first find minimum distance between each current spatype and the initial set 
-
-. 
-. by patid timepoint current: egen minCOST = min(masterdist)
-not sorted
-r(5);
-
-. sort patid timepoint current start
-
-. keep patid timepoint masterdist current start spa*
-
-. 
-. sort patid timepoint current start
-
-. 
-. use "E:\users\amy.mason\staph_carriage\Datasets\clean_data.dta", clear
-
-. 
-. 
-. 
-. keep patid timepoint spatype
-
-. 
-. order patid timepoint spatype
-
-. 
-. replace spatype= subinstr(spatype, "contaminated", "",.)
-(1 real change made)
-
-. 
-. bysort patid timepoint: assert _n==1
-
-. 
-. by patid: gen initialspa = spatype[1]
-(3,405 missing values generated)
-
-. 
-. by patid: gen secondspa = spatype[2]
-(4,085 missing values generated)
-
-. 
-. save temp, replace
-file temp.dta saved
-
-. 
-. 
-. 
-. use temp, clear
-
-. 
-. use temp, clear
-
-. 
-. split spatype, p(/)
-variables created as string: 
-spatype1  spatype2  spatype3  spatype4  spatype5
-
-. 
-. drop spatype
-
-. 
-. reshape long spatype, i(patid timepoint) j(current)
-(note: j = 1 2 3 4 5)
-
-Data                               wide   ->   long
------------------------------------------------------------------------------
-Number of obs.                     9039   ->   45195
-Number of variables                   9   ->       6
-j variable (5 values)                     ->   current
-xij variables:
-         spatype1 spatype2 ... spatype5   ->   spatype
------------------------------------------------------------------------------
-
-. drop if spatype=="" & current!=1
-(35,941 observations deleted)
-
-. 
-. split initialspa, p(/)
-variables created as string: 
-initialspa1  initialspa2  initialspa3  initialspa4  initialspa5
-
-. 
-. split secondspa, p(/)
-variables created as string: 
-secondspa1  secondspa2  secondspa3  secondspa4  secondspa5
-
-. 
-. drop initialspa secondspa
-
-. 
-. rename secondspa1 initialspa6
-
-. 
-. rename secondspa2 initialspa7
-
-. 
-. rename secondspa3 initialspa8
-
-. 
-. rename secondspa4 initialspa9
-
-. 
-. rename secondspa5 initialspa10
-
-. reshape long initialspa, i(patid timepoint current) j(start)
-(note: j = 1 2 3 4 5 6 7 8 9 10)
-
-Data                               wide   ->   long
------------------------------------------------------------------------------
-Number of obs.                     9254   ->   92540
-Number of variables                  14   ->       6
-j variable (10 values)                    ->   start
-xij variables:
-initialspa1 initialspa2 ... initialspa10  ->   initialspa
------------------------------------------------------------------------------
-
-. drop if initialspa=="" & start!=1
-(77,266 observations deleted)
-
-. tab start
-
-      start |      Freq.     Percent        Cum.
+  GPmissing |      Freq.     Percent        Cum.
 ------------+-----------------------------------
-          1 |      9,254       60.59       60.59
-          2 |        397        2.60       63.19
-          3 |         45        0.29       63.48
-          4 |         21        0.14       63.62
-          5 |         21        0.14       63.76
-          6 |      5,150       33.72       97.47
-          7 |        301        1.97       99.44
-          8 |         41        0.27       99.71
-          9 |         22        0.14       99.86
-         10 |         22        0.14      100.00
+          1 |         50      100.00      100.00
 ------------+-----------------------------------
-      Total |     15,274      100.00
+      Total |         50      100.00
 
-. list if start ==10
+. 
+. 
+. 
+. use "E:\users\amy.mason\staph_carriage\Datasets\raw_input.dta", clear
 
-       +---------------------------------------------------------+
-       | patid   timepo~t   current   start   spatype   initia~a |
-       |---------------------------------------------------------|
-12396. |  1366          0         1      10      t084       t730 |
-12402. |  1366          2         1      10      t493       t730 |
-12408. |  1366          2         2      10      t089       t730 |
-12414. |  1366          2         3      10      t084       t730 |
-12420. |  1366          2         4      10      t267       t730 |
-       |---------------------------------------------------------|
-12426. |  1366          2         5      10      t730       t730 |
-12432. |  1366          4         1      10      t084       t730 |
-12438. |  1366          4         2      10      t089       t730 |
-12444. |  1366          6         1      10      t084       t730 |
-12450. |  1366          6         2      10      t089       t730 |
-       |---------------------------------------------------------|
-12456. |  1366          8         1      10      t084       t730 |
-12462. |  1366          8         2      10      t089       t730 |
-12468. |  1366         10         1      10      t089       t730 |
-12474. |  1366         12         1      10      t089       t730 |
-12480. |  1366         12         2      10      t084       t730 |
-       |---------------------------------------------------------|
-12486. |  1366         14         1      10      t089       t730 |
-12492. |  1366         14         2      10      t084       t730 |
-12498. |  1366         16         1      10      t089       t730 |
-12504. |  1366         18         1      10      t084       t730 |
-12510. |  1366         20         1      10      t084       t730 |
-       |---------------------------------------------------------|
-12516. |  1366         22         1      10      t084       t730 |
-12522. |  1366         24         1      10      t084       t730 |
-       +---------------------------------------------------------+
+. keep patid
 
+. merge 1:1 patid using E:\users\sarahw\small\miller\riskfactors_baseline
+variable patid does not uniquely identify observations in the master data
+r(459);
+
+. duplicates drop
+
+Duplicates in terms of all variables
+
+(12,390 observations deleted)
+
+. merge 1:1 patid using E:\users\sarahw\small\miller\riskfactors_baseline, upd
+> ate
+
+    Result                           # of obs.
+    -----------------------------------------
+    not matched                           806
+        from master                       806  (_merge==1)
+        from using                          0  (_merge==2)
+
+    matched                               571
+        not updated                       571  (_merge==3)
+        missing updated                     0  (_merge==4)
+        nonmissing conflict                 0  (_merge==5)
+    -----------------------------------------
+
+. use "E:\users\amy.mason\staph_carriage\Datasets\raw_input.dta", clear
+
+. list if _merge==1
+_merge not found
+r(111);
+
+. duplicates drop
+
+Duplicates in terms of all variables
+
+(0 observations are duplicates)
+
+. keep patid
+
+. merge 1:1 patid using E:\users\sarahw\small\miller\riskfactors_baseline, upd
+> ate
+variable patid does not uniquely identify observations in the master data
+r(459);
+
+. duplicates drop
+
+Duplicates in terms of all variables
+
+(12,390 observations deleted)
+
+. merge 1:1 patid using E:\users\sarahw\small\miller\riskfactors_baseline, upd
+> ate
+
+    Result                           # of obs.
+    -----------------------------------------
+    not matched                           806
+        from master                       806  (_merge==1)
+        from using                          0  (_merge==2)
+
+    matched                               571
+        not updated                       571  (_merge==3)
+        missing updated                     0  (_merge==4)
+        nonmissing conflict                 0  (_merge==5)
+    -----------------------------------------
+
+. tab if _merge==1
+varlist required
+r(100);
+
+. tab patid if _merge==1
+
+Participant |
+         ID |      Freq.     Percent        Cum.
+------------+-----------------------------------
+          2 |          1        0.12        0.12
+          3 |          1        0.12        0.25
+          5 |          1        0.12        0.37
+          6 |          1        0.12        0.50
+          7 |          1        0.12        0.62
+          8 |          1        0.12        0.74
+         11 |          1        0.12        0.87
+         12 |          1        0.12        0.99
+         13 |          1        0.12        1.12
+         15 |          1        0.12        1.24
+         17 |          1        0.12        1.36
+         18 |          1        0.12        1.49
+         19 |          1        0.12        1.61
+         23 |          1        0.12        1.74
+         24 |          1        0.12        1.86
+         26 |          1        0.12        1.99
+         27 |          1        0.12        2.11
+         28 |          1        0.12        2.23
+         29 |          1        0.12        2.36
+         30 |          1        0.12        2.48
+         32 |          1        0.12        2.61
+         33 |          1        0.12        2.73
+         34 |          1        0.12        2.85
+         35 |          1        0.12        2.98
+         36 |          1        0.12        3.10
+         39 |          1        0.12        3.23
+         41 |          1        0.12        3.35
+         43 |          1        0.12        3.47
+         46 |          1        0.12        3.60
+         47 |          1        0.12        3.72
+         48 |          1        0.12        3.85
+         49 |          1        0.12        3.97
+         52 |          1        0.12        4.09
+         54 |          1        0.12        4.22
+         55 |          1        0.12        4.34
+         56 |          1        0.12        4.47
+         57 |          1        0.12        4.59
+         58 |          1        0.12        4.71
+         61 |          1        0.12        4.84
+         62 |          1        0.12        4.96
+         63 |          1        0.12        5.09
+         64 |          1        0.12        5.21
+         65 |          1        0.12        5.33
+         66 |          1        0.12        5.46
+         67 |          1        0.12        5.58
+         69 |          1        0.12        5.71
+         70 |          1        0.12        5.83
+         71 |          1        0.12        5.96
+         72 |          1        0.12        6.08
+         73 |          1        0.12        6.20
+         74 |          1        0.12        6.33
+         76 |          1        0.12        6.45
+         77 |          1        0.12        6.58
+         78 |          1        0.12        6.70
+         80 |          1        0.12        6.82
+         81 |          1        0.12        6.95
+         82 |          1        0.12        7.07
+         83 |          1        0.12        7.20
+         84 |          1        0.12        7.32
+         85 |          1        0.12        7.44
+         86 |          1        0.12        7.57
+         87 |          1        0.12        7.69
+         88 |          1        0.12        7.82
+         89 |          1        0.12        7.94
+         91 |          1        0.12        8.06
+         92 |          1        0.12        8.19
+         93 |          1        0.12        8.31
+         94 |          1        0.12        8.44
+         95 |          1        0.12        8.56
+         96 |          1        0.12        8.68
+         98 |          1        0.12        8.81
+         99 |          1        0.12        8.93
+        100 |          1        0.12        9.06
+        101 |          1        0.12        9.18
+        103 |          1        0.12        9.31
+        104 |          1        0.12        9.43
+        105 |          1        0.12        9.55
+        106 |          1        0.12        9.68
+        109 |          1        0.12        9.80
+        111 |          1        0.12        9.93
+        112 |          1        0.12       10.05
+        113 |          1        0.12       10.17
+        114 |          1        0.12       10.30
+        115 |          1        0.12       10.42
+        116 |          1        0.12       10.55
+        117 |          1        0.12       10.67
+        118 |          1        0.12       10.79
+        119 |          1        0.12       10.92
+        120 |          1        0.12       11.04
+        121 |          1        0.12       11.17
+        122 |          1        0.12       11.29
+        125 |          1        0.12       11.41
+        129 |          1        0.12       11.54
+        130 |          1        0.12       11.66
+        134 |          1        0.12       11.79
+        135 |          1        0.12       11.91
+        136 |          1        0.12       12.03
+        139 |          1        0.12       12.16
+        140 |          1        0.12       12.28
+        142 |          1        0.12       12.41
+        143 |          1        0.12       12.53
+        145 |          1        0.12       12.66
+        146 |          1        0.12       12.78
+        147 |          1        0.12       12.90
+        148 |          1        0.12       13.03
+        153 |          1        0.12       13.15
+        154 |          1        0.12       13.28
+        155 |          1        0.12       13.40
+        158 |          1        0.12       13.52
+        159 |          1        0.12       13.65
+        161 |          1        0.12       13.77
+        163 |          1        0.12       13.90
+        165 |          1        0.12       14.02
+        166 |          1        0.12       14.14
+        167 |          1        0.12       14.27
+        168 |          1        0.12       14.39
+        169 |          1        0.12       14.52
+        170 |          1        0.12       14.64
+        171 |          1        0.12       14.76
+        172 |          1        0.12       14.89
+        173 |          1        0.12       15.01
+        175 |          1        0.12       15.14
+        176 |          1        0.12       15.26
+        178 |          1        0.12       15.38
+        179 |          1        0.12       15.51
+        180 |          1        0.12       15.63
+        181 |          1        0.12       15.76
+        182 |          1        0.12       15.88
+        183 |          1        0.12       16.00
+        184 |          1        0.12       16.13
+        186 |          1        0.12       16.25
+        187 |          1        0.12       16.38
+        188 |          1        0.12       16.50
+        191 |          1        0.12       16.63
+        192 |          1        0.12       16.75
+        194 |          1        0.12       16.87
+        195 |          1        0.12       17.00
+        196 |          1        0.12       17.12
+        197 |          1        0.12       17.25
+        198 |          1        0.12       17.37
+        199 |          1        0.12       17.49
+        200 |          1        0.12       17.62
+        201 |          1        0.12       17.74
+        303 |          1        0.12       17.87
+        306 |          1        0.12       17.99
+        307 |          1        0.12       18.11
+        308 |          1        0.12       18.24
+        312 |          1        0.12       18.36
+        313 |          1        0.12       18.49
+        314 |          1        0.12       18.61
+        315 |          1        0.12       18.73
+        316 |          1        0.12       18.86
+        318 |          1        0.12       18.98
+        320 |          1        0.12       19.11
+        321 |          1        0.12       19.23
+        322 |          1        0.12       19.35
+        323 |          1        0.12       19.48
+        324 |          1        0.12       19.60
+        325 |          1        0.12       19.73
+        326 |          1        0.12       19.85
+        327 |          1        0.12       19.98
+        328 |          1        0.12       20.10
+        329 |          1        0.12       20.22
+        330 |          1        0.12       20.35
+        335 |          1        0.12       20.47
+        336 |          1        0.12       20.60
+        337 |          1        0.12       20.72
+        338 |          1        0.12       20.84
+        339 |          1        0.12       20.97
+        340 |          1        0.12       21.09
+        341 |          1        0.12       21.22
+        342 |          1        0.12       21.34
+        344 |          1        0.12       21.46
+        345 |          1        0.12       21.59
+        346 |          1        0.12       21.71
+        347 |          1        0.12       21.84
+        349 |          1        0.12       21.96
+        350 |          1        0.12       22.08
+        351 |          1        0.12       22.21
+        352 |          1        0.12       22.33
+        353 |          1        0.12       22.46
+        355 |          1        0.12       22.58
+        356 |          1        0.12       22.70
+        357 |          1        0.12       22.83
+        358 |          1        0.12       22.95
+        360 |          1        0.12       23.08
+        361 |          1        0.12       23.20
+        362 |          1        0.12       23.33
+        364 |          1        0.12       23.45
+        365 |          1        0.12       23.57
+        367 |          1        0.12       23.70
+        368 |          1        0.12       23.82
+        371 |          1        0.12       23.95
+        372 |          1        0.12       24.07
+        373 |          1        0.12       24.19
+        376 |          1        0.12       24.32
+        377 |          1        0.12       24.44
+        378 |          1        0.12       24.57
+        379 |          1        0.12       24.69
+        381 |          1        0.12       24.81
+        382 |          1        0.12       24.94
+        383 |          1        0.12       25.06
+        385 |          1        0.12       25.19
+        387 |          1        0.12       25.31
+        388 |          1        0.12       25.43
+        389 |          1        0.12       25.56
+        390 |          1        0.12       25.68
+        391 |          1        0.12       25.81
+        393 |          1        0.12       25.93
+        394 |          1        0.12       26.05
+        395 |          1        0.12       26.18
+        397 |          1        0.12       26.30
+        398 |          1        0.12       26.43
+        399 |          1        0.12       26.55
+        400 |          1        0.12       26.67
+        401 |          1        0.12       26.80
+        402 |          1        0.12       26.92
+        403 |          1        0.12       27.05
+        404 |          1        0.12       27.17
+        405 |          1        0.12       27.30
+        406 |          1        0.12       27.42
+        408 |          1        0.12       27.54
+        409 |          1        0.12       27.67
+        410 |          1        0.12       27.79
+        411 |          1        0.12       27.92
+        413 |          1        0.12       28.04
+        414 |          1        0.12       28.16
+        415 |          1        0.12       28.29
+        417 |          1        0.12       28.41
+        419 |          1        0.12       28.54
+        421 |          1        0.12       28.66
+        422 |          1        0.12       28.78
+        423 |          1        0.12       28.91
+        425 |          1        0.12       29.03
+        427 |          1        0.12       29.16
+        428 |          1        0.12       29.28
+        429 |          1        0.12       29.40
+        430 |          1        0.12       29.53
+        431 |          1        0.12       29.65
+        434 |          1        0.12       29.78
+        436 |          1        0.12       29.90
+        438 |          1        0.12       30.02
+        439 |          1        0.12       30.15
+        440 |          1        0.12       30.27
+        441 |          1        0.12       30.40
+        442 |          1        0.12       30.52
+        443 |          1        0.12       30.65
+        444 |          1        0.12       30.77
+        447 |          1        0.12       30.89
+        449 |          1        0.12       31.02
+        452 |          1        0.12       31.14
+        453 |          1        0.12       31.27
+        455 |          1        0.12       31.39
+        456 |          1        0.12       31.51
+        458 |          1        0.12       31.64
+        460 |          1        0.12       31.76
+        461 |          1        0.12       31.89
+        462 |          1        0.12       32.01
+        463 |          1        0.12       32.13
+        465 |          1        0.12       32.26
+        466 |          1        0.12       32.38
+        467 |          1        0.12       32.51
+        468 |          1        0.12       32.63
+        469 |          1        0.12       32.75
+        470 |          1        0.12       32.88
+        474 |          1        0.12       33.00
+        475 |          1        0.12       33.13
+        476 |          1        0.12       33.25
+        477 |          1        0.12       33.37
+        478 |          1        0.12       33.50
+        480 |          1        0.12       33.62
+        483 |          1        0.12       33.75
+        485 |          1        0.12       33.87
+        487 |          1        0.12       34.00
+        488 |          1        0.12       34.12
+        489 |          1        0.12       34.24
+        490 |          1        0.12       34.37
+        491 |          1        0.12       34.49
+        492 |          1        0.12       34.62
+        494 |          1        0.12       34.74
+        495 |          1        0.12       34.86
+        496 |          1        0.12       34.99
+        497 |          1        0.12       35.11
+        498 |          1        0.12       35.24
+        500 |          1        0.12       35.36
+        501 |          1        0.12       35.48
+        603 |          1        0.12       35.61
+        604 |          1        0.12       35.73
+        605 |          1        0.12       35.86
+        606 |          1        0.12       35.98
+        607 |          1        0.12       36.10
+        610 |          1        0.12       36.23
+        612 |          1        0.12       36.35
+        613 |          1        0.12       36.48
+        617 |          1        0.12       36.60
+        618 |          1        0.12       36.72
+        619 |          1        0.12       36.85
+        621 |          1        0.12       36.97
+        622 |          1        0.12       37.10
+        623 |          1        0.12       37.22
+        624 |          1        0.12       37.34
+        625 |          1        0.12       37.47
+        627 |          1        0.12       37.59
+        629 |          1        0.12       37.72
+        630 |          1        0.12       37.84
+        632 |          1        0.12       37.97
+        634 |          1        0.12       38.09
+        635 |          1        0.12       38.21
+        636 |          1        0.12       38.34
+        640 |          1        0.12       38.46
+        641 |          1        0.12       38.59
+        642 |          1        0.12       38.71
+        643 |          1        0.12       38.83
+        644 |          1        0.12       38.96
+        645 |          1        0.12       39.08
+        646 |          1        0.12       39.21
+        648 |          1        0.12       39.33
+        649 |          1        0.12       39.45
+        650 |          1        0.12       39.58
+        651 |          1        0.12       39.70
+        652 |          1        0.12       39.83
+        653 |          1        0.12       39.95
+        655 |          1        0.12       40.07
+        658 |          1        0.12       40.20
+        659 |          1        0.12       40.32
+        660 |          1        0.12       40.45
+        661 |          1        0.12       40.57
+        662 |          1        0.12       40.69
+        663 |          1        0.12       40.82
+        664 |          1        0.12       40.94
+        666 |          1        0.12       41.07
+        668 |          1        0.12       41.19
+        669 |          1        0.12       41.32
+        672 |          1        0.12       41.44
+        673 |          1        0.12       41.56
+        674 |          1        0.12       41.69
+        675 |          1        0.12       41.81
+        676 |          1        0.12       41.94
+        677 |          1        0.12       42.06
+        679 |          1        0.12       42.18
+        680 |          1        0.12       42.31
+        681 |          1        0.12       42.43
+        683 |          1        0.12       42.56
+        684 |          1        0.12       42.68
+        687 |          1        0.12       42.80
+        689 |          1        0.12       42.93
+        691 |          1        0.12       43.05
+        694 |          1        0.12       43.18
+        695 |          1        0.12       43.30
+        696 |          1        0.12       43.42
+        697 |          1        0.12       43.55
+        699 |          1        0.12       43.67
+        700 |          1        0.12       43.80
+        703 |          1        0.12       43.92
+        707 |          1        0.12       44.04
+        708 |          1        0.12       44.17
+        710 |          1        0.12       44.29
+        711 |          1        0.12       44.42
+        712 |          1        0.12       44.54
+        713 |          1        0.12       44.67
+        714 |          1        0.12       44.79
+        718 |          1        0.12       44.91
+        719 |          1        0.12       45.04
+        720 |          1        0.12       45.16
+        721 |          1        0.12       45.29
+        723 |          1        0.12       45.41
+        724 |          1        0.12       45.53
+        725 |          1        0.12       45.66
+        726 |          1        0.12       45.78
+        727 |          1        0.12       45.91
+        728 |          1        0.12       46.03
+        730 |          1        0.12       46.15
+        731 |          1        0.12       46.28
+        733 |          1        0.12       46.40
+        734 |          1        0.12       46.53
+        735 |          1        0.12       46.65
+        736 |          1        0.12       46.77
+        737 |          1        0.12       46.90
+        738 |          1        0.12       47.02
+        740 |          1        0.12       47.15
+        741 |          1        0.12       47.27
+        742 |          1        0.12       47.39
+        743 |          1        0.12       47.52
+        744 |          1        0.12       47.64
+        745 |          1        0.12       47.77
+        747 |          1        0.12       47.89
+        748 |          1        0.12       48.01
+        750 |          1        0.12       48.14
+        751 |          1        0.12       48.26
+        752 |          1        0.12       48.39
+        753 |          1        0.12       48.51
+        755 |          1        0.12       48.64
+        756 |          1        0.12       48.76
+        757 |          1        0.12       48.88
+        758 |          1        0.12       49.01
+        759 |          1        0.12       49.13
+        760 |          1        0.12       49.26
+        762 |          1        0.12       49.38
+        765 |          1        0.12       49.50
+        766 |          1        0.12       49.63
+        771 |          1        0.12       49.75
+        772 |          1        0.12       49.88
+        773 |          1        0.12       50.00
+        775 |          1        0.12       50.12
+        778 |          1        0.12       50.25
+        779 |          1        0.12       50.37
+        780 |          1        0.12       50.50
+        781 |          1        0.12       50.62
+        783 |          1        0.12       50.74
+        784 |          1        0.12       50.87
+        785 |          1        0.12       50.99
+        787 |          1        0.12       51.12
+        788 |          1        0.12       51.24
+        790 |          1        0.12       51.36
+        791 |          1        0.12       51.49
+        792 |          1        0.12       51.61
+        793 |          1        0.12       51.74
+        794 |          1        0.12       51.86
+        795 |          1        0.12       51.99
+        796 |          1        0.12       52.11
+        797 |          1        0.12       52.23
+        799 |          1        0.12       52.36
+        800 |          1        0.12       52.48
+        801 |          1        0.12       52.61
+        904 |          1        0.12       52.73
+        905 |          1        0.12       52.85
+        908 |          1        0.12       52.98
+        909 |          1        0.12       53.10
+        910 |          1        0.12       53.23
+        912 |          1        0.12       53.35
+        913 |          1        0.12       53.47
+        914 |          1        0.12       53.60
+        916 |          1        0.12       53.72
+        917 |          1        0.12       53.85
+        919 |          1        0.12       53.97
+        921 |          1        0.12       54.09
+        923 |          1        0.12       54.22
+        924 |          1        0.12       54.34
+        925 |          1        0.12       54.47
+        927 |          1        0.12       54.59
+        928 |          1        0.12       54.71
+        929 |          1        0.12       54.84
+        934 |          1        0.12       54.96
+        935 |          1        0.12       55.09
+        937 |          1        0.12       55.21
+        938 |          1        0.12       55.33
+        939 |          1        0.12       55.46
+        940 |          1        0.12       55.58
+        941 |          1        0.12       55.71
+        942 |          1        0.12       55.83
+        943 |          1        0.12       55.96
+        944 |          1        0.12       56.08
+        945 |          1        0.12       56.20
+        947 |          1        0.12       56.33
+        949 |          1        0.12       56.45
+        950 |          1        0.12       56.58
+        955 |          1        0.12       56.70
+        956 |          1        0.12       56.82
+        957 |          1        0.12       56.95
+        958 |          1        0.12       57.07
+        959 |          1        0.12       57.20
+        960 |          1        0.12       57.32
+        962 |          1        0.12       57.44
+        963 |          1        0.12       57.57
+        964 |          1        0.12       57.69
+        966 |          1        0.12       57.82
+        968 |          1        0.12       57.94
+        969 |          1        0.12       58.06
+        970 |          1        0.12       58.19
+        973 |          1        0.12       58.31
+        975 |          1        0.12       58.44
+        977 |          1        0.12       58.56
+        978 |          1        0.12       58.68
+        979 |          1        0.12       58.81
+        980 |          1        0.12       58.93
+        981 |          1        0.12       59.06
+        986 |          1        0.12       59.18
+        990 |          1        0.12       59.31
+        991 |          1        0.12       59.43
+        994 |          1        0.12       59.55
+        995 |          1        0.12       59.68
+        996 |          1        0.12       59.80
+        998 |          1        0.12       59.93
+        999 |          1        0.12       60.05
+       1001 |          1        0.12       60.17
+       1002 |          1        0.12       60.30
+       1004 |          1        0.12       60.42
+       1006 |          1        0.12       60.55
+       1007 |          1        0.12       60.67
+       1008 |          1        0.12       60.79
+       1009 |          1        0.12       60.92
+       1010 |          1        0.12       61.04
+       1011 |          1        0.12       61.17
+       1013 |          1        0.12       61.29
+       1014 |          1        0.12       61.41
+       1015 |          1        0.12       61.54
+       1017 |          1        0.12       61.66
+       1018 |          1        0.12       61.79
+       1019 |          1        0.12       61.91
+       1020 |          1        0.12       62.03
+       1021 |          1        0.12       62.16
+       1022 |          1        0.12       62.28
+       1023 |          1        0.12       62.41
+       1025 |          1        0.12       62.53
+       1026 |          1        0.12       62.66
+       1027 |          1        0.12       62.78
+       1028 |          1        0.12       62.90
+       1029 |          1        0.12       63.03
+       1031 |          1        0.12       63.15
+       1032 |          1        0.12       63.28
+       1034 |          1        0.12       63.40
+       1035 |          1        0.12       63.52
+       1036 |          1        0.12       63.65
+       1039 |          1        0.12       63.77
+       1040 |          1        0.12       63.90
+       1042 |          1        0.12       64.02
+       1043 |          1        0.12       64.14
+       1044 |          1        0.12       64.27
+       1046 |          1        0.12       64.39
+       1048 |          1        0.12       64.52
+       1050 |          1        0.12       64.64
+       1051 |          1        0.12       64.76
+       1054 |          1        0.12       64.89
+       1055 |          1        0.12       65.01
+       1056 |          1        0.12       65.14
+       1057 |          1        0.12       65.26
+       1058 |          1        0.12       65.38
+       1059 |          1        0.12       65.51
+       1060 |          1        0.12       65.63
+       1061 |          1        0.12       65.76
+       1062 |          1        0.12       65.88
+       1068 |          1        0.12       66.00
+       1069 |          1        0.12       66.13
+       1070 |          1        0.12       66.25
+       1071 |          1        0.12       66.38
+       1075 |          1        0.12       66.50
+       1077 |          1        0.12       66.63
+       1080 |          1        0.12       66.75
+       1081 |          1        0.12       66.87
+       1087 |          1        0.12       67.00
+       1088 |          1        0.12       67.12
+       1089 |          1        0.12       67.25
+       1090 |          1        0.12       67.37
+       1093 |          1        0.12       67.49
+       1094 |          1        0.12       67.62
+       1096 |          1        0.12       67.74
+       1097 |          1        0.12       67.87
+       1098 |          1        0.12       67.99
+       1099 |          1        0.12       68.11
+       1101 |          1        0.12       68.24
+       1102 |          1        0.12       68.36
+       1201 |          1        0.12       68.49
+       1205 |          1        0.12       68.61
+       1206 |          1        0.12       68.73
+       1210 |          1        0.12       68.86
+       1401 |          1        0.12       68.98
+       3001 |          1        0.12       69.11
+       3002 |          1        0.12       69.23
+       3003 |          1        0.12       69.35
+       3004 |          1        0.12       69.48
+       3005 |          1        0.12       69.60
+       3006 |          1        0.12       69.73
+       3007 |          1        0.12       69.85
+       3008 |          1        0.12       69.98
+       3009 |          1        0.12       70.10
+       3010 |          1        0.12       70.22
+       3011 |          1        0.12       70.35
+       3012 |          1        0.12       70.47
+       3013 |          1        0.12       70.60
+       3014 |          1        0.12       70.72
+       3015 |          1        0.12       70.84
+       3016 |          1        0.12       70.97
+       3017 |          1        0.12       71.09
+       3018 |          1        0.12       71.22
+       3019 |          1        0.12       71.34
+       3020 |          1        0.12       71.46
+       3021 |          1        0.12       71.59
+       3022 |          1        0.12       71.71
+       3023 |          1        0.12       71.84
+       3024 |          1        0.12       71.96
+       3025 |          1        0.12       72.08
+       3026 |          1        0.12       72.21
+       3027 |          1        0.12       72.33
+       3028 |          1        0.12       72.46
+       3029 |          1        0.12       72.58
+       3030 |          1        0.12       72.70
+       3031 |          1        0.12       72.83
+       3032 |          1        0.12       72.95
+       3033 |          1        0.12       73.08
+       3034 |          1        0.12       73.20
+       3035 |          1        0.12       73.33
+       3036 |          1        0.12       73.45
+       3037 |          1        0.12       73.57
+       3038 |          1        0.12       73.70
+       3039 |          1        0.12       73.82
+       3040 |          1        0.12       73.95
+       3041 |          1        0.12       74.07
+       3042 |          1        0.12       74.19
+       3043 |          1        0.12       74.32
+       3044 |          1        0.12       74.44
+       3045 |          1        0.12       74.57
+       3046 |          1        0.12       74.69
+       3047 |          1        0.12       74.81
+       3048 |          1        0.12       74.94
+       3049 |          1        0.12       75.06
+       3050 |          1        0.12       75.19
+       3051 |          1        0.12       75.31
+       3052 |          1        0.12       75.43
+       3053 |          1        0.12       75.56
+       3054 |          1        0.12       75.68
+       3055 |          1        0.12       75.81
+       3056 |          1        0.12       75.93
+       3057 |          1        0.12       76.05
+       3058 |          1        0.12       76.18
+       3059 |          1        0.12       76.30
+       3060 |          1        0.12       76.43
+       3061 |          1        0.12       76.55
+       3062 |          1        0.12       76.67
+       3063 |          1        0.12       76.80
+       3064 |          1        0.12       76.92
+       3065 |          1        0.12       77.05
+       3066 |          1        0.12       77.17
+       3067 |          1        0.12       77.30
+       3068 |          1        0.12       77.42
+       3069 |          1        0.12       77.54
+       3070 |          1        0.12       77.67
+       3071 |          1        0.12       77.79
+       3072 |          1        0.12       77.92
+       3073 |          1        0.12       78.04
+       3074 |          1        0.12       78.16
+       3075 |          1        0.12       78.29
+       3076 |          1        0.12       78.41
+       3077 |          1        0.12       78.54
+       3078 |          1        0.12       78.66
+       3079 |          1        0.12       78.78
+       3080 |          1        0.12       78.91
+       3081 |          1        0.12       79.03
+       3082 |          1        0.12       79.16
+       3083 |          1        0.12       79.28
+       3084 |          1        0.12       79.40
+       3085 |          1        0.12       79.53
+       3086 |          1        0.12       79.65
+       3087 |          1        0.12       79.78
+       3088 |          1        0.12       79.90
+       3089 |          1        0.12       80.02
+       3090 |          1        0.12       80.15
+       3091 |          1        0.12       80.27
+       3092 |          1        0.12       80.40
+       3093 |          1        0.12       80.52
+       3094 |          1        0.12       80.65
+       3095 |          1        0.12       80.77
+       3096 |          1        0.12       80.89
+       3097 |          1        0.12       81.02
+       3098 |          1        0.12       81.14
+       3099 |          1        0.12       81.27
+       3100 |          1        0.12       81.39
+       3101 |          1        0.12       81.51
+       3102 |          1        0.12       81.64
+       3103 |          1        0.12       81.76
+       3104 |          1        0.12       81.89
+       3105 |          1        0.12       82.01
+       3106 |          1        0.12       82.13
+       3107 |          1        0.12       82.26
+       3108 |          1        0.12       82.38
+       3109 |          1        0.12       82.51
+       3110 |          1        0.12       82.63
+       3111 |          1        0.12       82.75
+       3112 |          1        0.12       82.88
+       3113 |          1        0.12       83.00
+       3114 |          1        0.12       83.13
+       3115 |          1        0.12       83.25
+       3116 |          1        0.12       83.37
+       3117 |          1        0.12       83.50
+       3118 |          1        0.12       83.62
+       3119 |          1        0.12       83.75
+       3120 |          1        0.12       83.87
+       5001 |          1        0.12       84.00
+       5002 |          1        0.12       84.12
+       5003 |          1        0.12       84.24
+       5004 |          1        0.12       84.37
+       5005 |          1        0.12       84.49
+       5006 |          1        0.12       84.62
+       5007 |          1        0.12       84.74
+       5008 |          1        0.12       84.86
+       5009 |          1        0.12       84.99
+       5010 |          1        0.12       85.11
+       5011 |          1        0.12       85.24
+       5012 |          1        0.12       85.36
+       5013 |          1        0.12       85.48
+       5014 |          1        0.12       85.61
+       5015 |          1        0.12       85.73
+       5016 |          1        0.12       85.86
+       5017 |          1        0.12       85.98
+       5018 |          1        0.12       86.10
+       5019 |          1        0.12       86.23
+       5020 |          1        0.12       86.35
+       5021 |          1        0.12       86.48
+       5022 |          1        0.12       86.60
+       5023 |          1        0.12       86.72
+       5024 |          1        0.12       86.85
+       5025 |          1        0.12       86.97
+       5026 |          1        0.12       87.10
+       5027 |          1        0.12       87.22
+       5028 |          1        0.12       87.34
+       5029 |          1        0.12       87.47
+       5030 |          1        0.12       87.59
+       5031 |          1        0.12       87.72
+       5032 |          1        0.12       87.84
+       5033 |          1        0.12       87.97
+       5034 |          1        0.12       88.09
+       5035 |          1        0.12       88.21
+       5036 |          1        0.12       88.34
+       5037 |          1        0.12       88.46
+       5038 |          1        0.12       88.59
+       5039 |          1        0.12       88.71
+       5040 |          1        0.12       88.83
+       5041 |          1        0.12       88.96
+       5042 |          1        0.12       89.08
+       5043 |          1        0.12       89.21
+       5044 |          1        0.12       89.33
+       5045 |          1        0.12       89.45
+       5046 |          1        0.12       89.58
+       5047 |          1        0.12       89.70
+       5048 |          1        0.12       89.83
+       5049 |          1        0.12       89.95
+       5050 |          1        0.12       90.07
+       5051 |          1        0.12       90.20
+       5052 |          1        0.12       90.32
+       5053 |          1        0.12       90.45
+       5054 |          1        0.12       90.57
+       5055 |          1        0.12       90.69
+       5056 |          1        0.12       90.82
+       5057 |          1        0.12       90.94
+       5058 |          1        0.12       91.07
+       5059 |          1        0.12       91.19
+       5060 |          1        0.12       91.32
+       5061 |          1        0.12       91.44
+       5062 |          1        0.12       91.56
+       5063 |          1        0.12       91.69
+       5064 |          1        0.12       91.81
+       5065 |          1        0.12       91.94
+       5066 |          1        0.12       92.06
+       5067 |          1        0.12       92.18
+       5068 |          1        0.12       92.31
+       5069 |          1        0.12       92.43
+       5070 |          1        0.12       92.56
+       5071 |          1        0.12       92.68
+       5072 |          1        0.12       92.80
+       5073 |          1        0.12       92.93
+       5074 |          1        0.12       93.05
+       5075 |          1        0.12       93.18
+       5076 |          1        0.12       93.30
+       5077 |          1        0.12       93.42
+       5078 |          1        0.12       93.55
+       5079 |          1        0.12       93.67
+       5080 |          1        0.12       93.80
+       5081 |          1        0.12       93.92
+       5082 |          1        0.12       94.04
+       5083 |          1        0.12       94.17
+       5084 |          1        0.12       94.29
+       5085 |          1        0.12       94.42
+       5086 |          1        0.12       94.54
+       5087 |          1        0.12       94.67
+       5088 |          1        0.12       94.79
+       5089 |          1        0.12       94.91
+       5090 |          1        0.12       95.04
+       5091 |          1        0.12       95.16
+       5092 |          1        0.12       95.29
+       5093 |          1        0.12       95.41
+       5094 |          1        0.12       95.53
+       5095 |          1        0.12       95.66
+       5096 |          1        0.12       95.78
+       5097 |          1        0.12       95.91
+       5098 |          1        0.12       96.03
+       5099 |          1        0.12       96.15
+       5100 |          1        0.12       96.28
+       5101 |          1        0.12       96.40
+       5102 |          1        0.12       96.53
+       6001 |          1        0.12       96.65
+       6002 |          1        0.12       96.77
+       6003 |          1        0.12       96.90
+       6004 |          1        0.12       97.02
+       6005 |          1        0.12       97.15
+       6006 |          1        0.12       97.27
+       6007 |          1        0.12       97.39
+       6008 |          1        0.12       97.52
+       6009 |          1        0.12       97.64
+       6010 |          1        0.12       97.77
+       6011 |          1        0.12       97.89
+       6012 |          1        0.12       98.01
+       6013 |          1        0.12       98.14
+       6014 |          1        0.12       98.26
+       6015 |          1        0.12       98.39
+       6016 |          1        0.12       98.51
+       6017 |          1        0.12       98.64
+       6018 |          1        0.12       98.76
+       6019 |          1        0.12       98.88
+       6020 |          1        0.12       99.01
+       6021 |          1        0.12       99.13
+       6022 |          1        0.12       99.26
+       6023 |          1        0.12       99.38
+       6024 |          1        0.12       99.50
+       6026 |          1        0.12       99.63
+       6027 |          1        0.12       99.75
+       6028 |          1        0.12       99.88
+       6029 |          1        0.12      100.00
+------------+-----------------------------------
+      Total |        806      100.00
+
+. save "E:\users\amy.mason\staph_carriage\Datasets\clean_data2.dta", replace
+file E:\users\amy.mason\staph_carriage\Datasets\clean_data2.dta saved
+
+. keep patid
+
+. duplicates drop
+
+Duplicates in terms of all variables
+
+(0 observations are duplicates)
+
+. merge 1:1 patid using E:\users\sarahw\small\miller\riskfactors_baseline, upd
+> ate
+(label studen already defined)
+(label cat already defined)
+(label opeve already defined)
+(label ipeve already defined)
+(label gpapp already defined)
+(label pracnu already defined)
+(label disnu already defined)
+(label lt already defined)
+(label chem already defined)
+(label rendial already defined)
+(label sur already defined)
+(label steroi already defined)
+(label antib already defined)
+(label prevMRS already defined)
+(label prevMSS already defined)
+(label skinbrea already defined)
+(label vas already defined)
+(label nohccon already defined)
+(label nomember already defined)
+(label mal already defined)
+(label ethni already defined)
+(label ethnicFewCat already defined)
+(label iscurrem already defined)
+(label hcrelem already defined)
+(label spor already defined)
+(label lookdi already defined)
+(label nomembersca already defined)
+
+    Result                           # of obs.
+    -----------------------------------------
+    not matched                           806
+        from master                       806  (_merge==1)
+        from using                          0  (_merge==2)
+
+    matched                               571
+        not updated                       571  (_merge==3)
+        missing updated                     0  (_merge==4)
+        nonmissing conflict                 0  (_merge==5)
+    -----------------------------------------
+
+. keep patid _merge
+
+. rename _merge ruth
+
+. use "E:\users\amy.mason\staph_carriage\Datasets\raw_input.dta", clear
+
+. keep patid
+
+. duplicates drop
+
+Duplicates in terms of all variables
+
+(12,390 observations deleted)
+
+. save "E:\users\amy.mason\staph_carriage\Datasets\clean_data2.dta", replace
+file E:\users\amy.mason\staph_carriage\Datasets\clean_data2.dta saved
+
+. duplicates drop
+
+Duplicates in terms of all variables
+
+(0 observations are duplicates)
+
+. merge 1:1 using "E:\users\sarahw\small\votintseva\crsa_combined.dta", update
+varlist or _n required after merge 1:1
+    for a match merge, you must specify the key variables after merge 1:1
+    or, if you want a sequential merge, specify merge 1:1 _n
+r(198);
+
+. merge 1:1 patid using "E:\users\sarahw\small\votintseva\crsa_combined.dta", 
+> update
+variable patid does not uniquely identify observations in the using data
+r(459);
+
+. merge 1:m patid using "E:\users\sarahw\small\votintseva\crsa_combined.dta", 
+> update
+
+    Result                           # of obs.
+    -----------------------------------------
+    not matched                           762
+        from master                       758  (_merge==1)
+        from using                          4  (_merge==2)
+
+    matched                             5,691
+        not updated                     5,691  (_merge==3)
+        missing updated                     0  (_merge==4)
+        nonmissing conflict                 0  (_merge==5)
+    -----------------------------------------
+
+. keep patid _merge
+
+. rename _merge ohdear
+
+. duplicates drop
+
+Duplicates in terms of all variables
+
+(5,075 observations deleted)
+
+. tab _merge
+variable _merge not found
+r(111);
+
+. tab ohdear
+
+                 ohdear |      Freq.     Percent        Cum.
+------------------------+-----------------------------------
+        master only (1) |        758       55.01       55.01
+         using only (2) |          1        0.07       55.08
+            matched (3) |        619       44.92      100.00
+------------------------+-----------------------------------
+                  Total |      1,378      100.00
+
+. tab result
+variable result not found
+r(111);
+
+. exit, clear

@@ -1,7 +1,8 @@
-Run by AMM on 17 Aug 2016 13:15:28
+Run by AMM on  5 Sep 2016 20:16:36
 INITIAL DISTANCES
 PREVIOUS SWAB DISTANCES
-. ** add antibiotics to calc for anti in last 6 months, anti between spa types
+. 
+. ** add antibiotics to calc for anti in last 6 months, anti between spa types; also baseline data
 
 . 
 . run add_anti.do

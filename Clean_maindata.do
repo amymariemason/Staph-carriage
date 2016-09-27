@@ -19,8 +19,7 @@ drop first
 noi di _n(5) _dup(80) "=" _n "(2) DROP NON-NASAL/ NON-GP RECRUITMENT PEOPLE" _n _dup(80) "=" 
 * merge with group records
 merge m:1 patid using "E:\users\amy.mason\staph_carriage\Datasets\groups", update
-drop if _merge==2
-* why are there two records with no swabs at all??
+
 assert _merge==3
 drop _merge
 noi tab StudyGroup
@@ -33,8 +32,7 @@ summ first
 noi di  " - leaving " _N " records from " r(sum) " paticipants" 
 drop flag first
 
-* additional drop? WHY??? ASK SARAH
-* drop if inlist(patid,1101,1102,801,1401)==1
+
 
 noi di _n(5) _dup(80) "=" _n "(3)REMOVE SWABS NOT RETURNED" _n _dup(80) "=" 
 * Drop swabs that were not returned
@@ -382,9 +380,9 @@ gen nspatypes= length(spatype) - length(subinstr(spatype, "/", "", .)) + 1
 replace nspatypes=0 if spatype==""
 
 * check everyone returned at least one swab
-noi di "check everyone returned at least 2 swabs"
+noi di "check everyone returned at least 2 swabs post baseline ( 3 total)"
 by patid: gen count=_N
-gen flag =1 if count==1
+gen flag =1 if count<3
 noi list patid timepoint if flag==1
 * note patid==2116 has only two swabs originallly - 0 and 1 < 30 days apart.
 summ flag
@@ -403,6 +401,26 @@ by patid: gen PROBLEM =1 if _n==1 & timepoint!=0
 noi di "check everyone has timepoint 0"
 noi assert PROBLEM!=1 
 drop PROBLEM
+
+
+* people missing GP data
+noi di "people missing GP data"
+
+merge m:1 patid using "E:\users\amy.mason\staph_carriage\Datasets\GP_org", update
+ drop if _merge==2
+ assert inlist(_merge,1,3)
+ noi di "missing GP data; remove from study"
+ noi tab patid if _merge==1
+ gen GPmissing = 1 if _merge==1
+ bysort patid: gen count2 =1 if _n==1
+ summ count2 if GPmissing==1
+ noi di r(N) " records dropped from " r(sum) "people due to lack of GP records"
+drop if GPmissing==1
+drop GPmissing count 
+drop _merge
+ 
+
+
 
 save "E:\users\amy.mason\staph_carriage\Datasets\clean_data.dta", replace	
 
