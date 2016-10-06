@@ -39,5 +39,11 @@ sts graph, risktable
 graph save Graph "E:\users\amy.mason\staph_carriage\Graphs\KM_loss1.gph", replace
 graph export "E:\users\amy.mason\staph_carriage\Graphs\KM_loss1.tif", replace
 
-*****
+* log-cumulative graph of survival
+noi di "Log-cumulative graph of survival"
 
+stphplot, by(Follow)
+graph save Graph "E:\users\amy.mason\staph_carriage\Graphs\log_cum_loss1.gph", replace
+graph export "E:\users\amy.mason\staph_carriage\Graphs\log_cum_loss1.tif", replace
+
+*****
