@@ -89,7 +89,7 @@ save "E:\users\amy.mason\staph_carriage\Datasets\spa_BURP_init", replace
 * BURP costs for  previous spa types (compare to n-1, n-2)
 
 noi di "PREVIOUS SWAB DISTANCES"
-* compared to timepoint 0,2
+* compared to previous 2 swabs.
 
 use "E:\users\amy.mason\staph_carriage\Datasets\clean_data.dta", clear	
 

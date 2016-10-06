@@ -284,7 +284,7 @@ save "E:\users\amy.mason\staph_carriage\Datasets\record_per_spa.dta", replace
 
 **************************************
 use "E:\users\amy.mason\staph_carriage\Datasets\record_per_spa.dta", clear
-* how many people who had always carried the same spa type for more than 60 months
+noi di " how many people who had always carried the same spa type for more than 60 months (i.e. post big gap), are still carrying the same spa-type at 78 or later" 
 * keep only the spatypes that start at timepoint 0/1
 sort patid this_spa timepoint
 by patid this_spa: drop if carriage_this_spa[1]==0& carriage_this_spa[2]==0
@@ -304,6 +304,37 @@ list patid timepoint this_spa carriage_todate if timepoint==last
 * IN CONCLUSION - there is no-one still returning swabs who carries the exact same spa-type they did at timepoint 0
 *BUT patid= 424 ->  carrying two types, distance of 1  -> NOPE, still fine - all spatypes lost at timepoint 78
 
+*********************************************************************
+use "E:\users\amy.mason\staph_carriage\Datasets\record_per_spa.dta", clear
+noi di " how many people lose then regain the same spatype"
+sort patid this_spa timepoint
+keep patid this_spa carriage_this_spa this_gain this_confirmed_loss timepoint spatype*
 
+* first only keep the people who have lost at some point
+by patid this_spa: egen max_confirmed_loss = max(this_confirmed_loss)
+drop if max_confirmed_loss==0
+gsort patid this_spa -this_confirmed_loss timepoint
+drop max_confirmed_loss
+sort patid this_spa timepoint
+by patid: gen count=1 if _n==1
+summ count
+noi di r(sum) "people lost a spatype at some point in this"
+noi list patid this_spa timepoint if this_confirmed_loss==1
 
+* now find the people who regain 
+sort patid this_spa timepoint
+by patid this_spa: gen lost=0 if _n==1
+by patid this_spa: replace lost=lost[_n-1] + this_confirmed_loss if _n>1
+gen lost_then_gain = 1 if lost==1 & this_gain==1
+by patid this_spa: egen keep = max(lost_then_gain)
+keep if keep==1
+drop keep
+drop count
+
+by patid: gen count=1 if _n==1
+summ count
+noi di r(sum) "people regain a lost spatype"
+noi list patid this_spa timepoint if lost_then_gain==1
+by patid: egen gap = max(lost_then_gain)
+noi list patid timepoint this_spa carriage_this_spa spatype if gain==1
 

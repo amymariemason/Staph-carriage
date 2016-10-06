@@ -50,14 +50,14 @@ noi di "Kaplan-Meier"
 
 sts graph, by(Follow) risktable failure
 graph save Graph "E:\users\amy.mason\staph_carriage\Graphs\KM_gain.gph", replace
-graph export "E:\users\amy.mason\staph_carriage\Graphs\KM_gain.eps", as(eps) preview(off) replace
+graph export "E:\users\amy.mason\staph_carriage\Graphs\KM_gain.tif", replace
 
 * log-cumulative graph of survival
 noi di "Log-cumulative graph of survival"
 
 stphplot, by(Follow)
 graph save Graph "E:\users\amy.mason\staph_carriage\Graphs\log_cum_gain.gph", replace
-graph export "E:\users\amy.mason\staph_carriage\Graphs\log_cum_gain.eps", as(eps) preview(off) replace
+graph export "E:\users\amy.mason\staph_carriage\Graphs\log_cum_gain.tif", replace
 
 * linear in log-log graph? less so than shorter estimates (though not parellel)
 

@@ -16,7 +16,7 @@ cd "E:\users\amy.mason\staph_carriage\Programs"
 
 set more off
 * data input
-run getdata.do
+run getdata_sept16_ext.do
 set more on
 
 
@@ -40,7 +40,7 @@ run add_spa.do
 ** add antibiotics to calc for anti in last 6 months, anti between spa types; also baseline data
 run add_anti.do
 *** create a record for each patid-spatype so can talk about loss of each spa-type
-run anti_types.do
+run anti_types_sept29_16.do
 
 * analyse data
 ** gain
