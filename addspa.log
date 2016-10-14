@@ -1,8 +1,48 @@
-Run by AMM on 29 Sep 2016 17:13:10
+Run by AMM on 13 Oct 2016 14:02:36
 INITIAL DISTANCES
 PREVIOUS SWAB DISTANCES
 . 
-. ** add antibiotics to calc for anti in last 6 months, anti between spa types; also baseline data
+. use "E:\users\amy.mason\staph_carriage\Datasets\clean_data2.dta",clear
+
+. codebook Best
+
+----------------------------------------------------------------------------------------------------------------------------------
+BestDate                                                                                                               (unlabeled)
+----------------------------------------------------------------------------------------------------------------------------------
+
+                  type:  numeric daily date (float)
+
+                 range:  [17883,20718]                units:  1
+       or equivalently:  [17dec2008,21sep2016]        units:  days
+         unique values:  1,810                    missing .:  0/9,020
+
+                  mean:   18806.2 = 28jun2011 (+ 6 hours)
+              std. dev:   585.339
+
+           percentiles:        10%       25%       50%       75%       90%
+                             18193     18375   18677.5     19104   19547.5
+                         23oct2009 23apr2010 19feb2011 21apr2012 08jul2013
 
 . 
+. use "E:\users\amy.mason\staph_carriage\Datasets\clean_data3.dta", clear
+
+. codebook Best
+
+----------------------------------------------------------------------------------------------------------------------------------
+BestDate                                                                                                               (unlabeled)
+----------------------------------------------------------------------------------------------------------------------------------
+
+                  type:  numeric daily date (float)
+
+                 range:  [17883,20619]                units:  1
+       or equivalently:  [17dec2008,14jun2016]        units:  days
+         unique values:  1,770                    missing .:  0/8,949
+
+                  mean:   18791.4 = 13jun2011 (+ 11 hours)
+              std. dev:   563.527
+
+           percentiles:        10%       25%       50%       75%       90%
+                             18191     18374     18672     19086     19508
+                         21oct2009 22apr2010 14feb2011 03apr2012 30may2013
+
 . run add_anti.do
