@@ -95,8 +95,7 @@ twoway area total timepoint || area sum1 timepoint || area sum2 timepoint ||area
 legend(label (1 "Undefined") label (2 "Always Carry") label(3 "Carriage varies") label(4 "Never Carry") );
 #delimit cr
 graph save Graph "E:\users\amy.mason\staph_carriage\Graphs\carriage_type.gph", replace
-graph export "E:\users\amy.mason\staph_carriage\Graphs\carriage_type.tif", replace
-
+graph export "E:\users\amy.mason\staph_carriage\Graphs\carriage_type.eps", as(eps) preview(off) replace
 restore
 
 
@@ -111,29 +110,31 @@ by patid: gen last= timepoint[_N] if _n==_N
 
 by patid: gen seventysix_Date = BestDate[1]+ 76*30.44
 format seventysix %td
-assert seventysix < d(28/07/2016)
+assert seventysix < d(28/05/2016)
 drop seventysix
 
 * no-one who hands in 76/74/72 AND has a 78 date after end of may, has not already handed in 78 
 by patid: gen seventyeight_Date = BestDate[1]+ 78*30.44
 format seventy %td
-gen nextnotyet = 1 if seventy>= d(28/07/2016) & inlist(last, 76, 74, 72)
+gen nextnotyet = 1 if seventy>= d(28/05/2016) & inlist(last, 76, 74, 72)
 assert next==.
-drop seventy next 
+drop seventy next
 
-*80
+* start of time-based gaps: 22 still to come
 by patid: gen eighty_Date = BestDate[1]+ 80*30.44
 format eighty %td
-gen nextnotyet = 1 if eighty_Date>= d(29/07/2016) & inlist(last, 78, 76, 74)
-assert next==.
-drop eighty next last
+gen nextnotyet = 1 if eighty_Date>= d(28/05/2016) & inlist(last, 78, 76, 74)
+expand next+1, gen(copy)
+replace timepoint=80 if copy==1
+replace carriage_todate = "stilltocome" if copy==1
+drop copy eighty next last
 
-* start of missing: 40 missing
+* repeat for 82: 40 missing
 sort patid timepoint
 by patid: gen last= timepoint[_N] if _n==_N
 by patid: gen eightytwo_Date = BestDate[1]+ 82*30.44
 format eighty %td
-gen nextnotyet = 1 if eighty>= d(29/07/2016) & inlist(last, 80, 78, 76)
+gen nextnotyet = 1 if eighty>= d(28/05/2016) & inlist(last, 80, 78, 76)
 expand next+1, gen(copy)
 replace timepoint=82 if copy==1
 replace carriage_todate = "stilltocome" if copy==1
@@ -144,7 +145,7 @@ sort patid timepoint
 by patid: gen last= timepoint[_N] if _n==_N
 by patid: gen eightyfour_Date = BestDate[1]+ 84*30.44
 format eighty %td
-gen nextnotyet = 1 if eighty>= d(28/07/2016) & inlist(last, 82, 80, 78)
+gen nextnotyet = 1 if eighty>= d(28/05/2016) & inlist(last, 82, 80, 78)
 expand next+1, gen(copy)
 replace timepoint=84 if copy==1
 replace carriage_todate = "stilltocome" if copy==1
@@ -156,34 +157,9 @@ sort patid timepoint
 by patid: gen last= timepoint[_N] if _n==_N
 by patid: gen eightysix_Date = BestDate[1]+ 86*30.44
 format eighty %td
-gen nextnotyet = 1 if eighty>= d(28/07/2016) & inlist(last, 84, 82, 80)
+gen nextnotyet = 1 if eighty>= d(28/05/2016) & inlist(last, 84, 82, 80)
 expand next+1, gen(copy)
 replace timepoint=86 if copy==1
-replace carriage_todate = "stilltocome" if copy==1
-drop copy eighty next last
-
-* repeat for 88: 47 missing
-
-sort patid timepoint
-by patid: gen last= timepoint[_N] if _n==_N
-by patid: gen eighty8_Date = BestDate[1]+ 88*30.44
-format eighty %td
-gen nextnotyet = 1 if eighty>= d(28/07/2016) & inlist(last, 84, 82, 86)
-expand next+1, gen(copy)
-replace timepoint=88 if copy==1
-replace carriage_todate = "stilltocome" if copy==1
-drop copy eighty next last
-
-
-* repeat for 90: 47 missing
-
-sort patid timepoint
-by patid: gen last= timepoint[_N] if _n==_N
-by patid: gen eighty90_Date = BestDate[1]+ 90*30.44
-format eighty %td
-gen nextnotyet = 1 if eighty>= d(28/07/2016) & inlist(last, 84, 88, 86)
-expand next+1, gen(copy)
-replace timepoint=90 if copy==1
 replace carriage_todate = "stilltocome" if copy==1
 drop copy eighty next last
 
@@ -211,9 +187,7 @@ twoway area total timepoint || area sum1 timepoint || area sum2 timepoint || are
 legend(label(1 "Not yet occured") label(2 "Undefined") label(3 "Always Carry") label(4 "Carriage varies") label(5 "Never Carry") );
 #delimit cr
 graph save Graph "E:\users\amy.mason\staph_carriage\Graphs\carriage_type_timecensor.gph", replace
-graph export "E:\users\amy.mason\staph_carriage\Graphs\carriage_type_timecensor.tif", replace
-
-
+graph export "E:\users\amy.mason\staph_carriage\Graphs\carriage_type_timecensor.eps", as(eps) preview(off) replace
 restore
 
 
