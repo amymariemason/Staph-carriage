@@ -1,4 +1,4 @@
-Run by AMM on 13 Oct 2016 14:01:51
+Run by AMM on 17 Oct 2016 14:10:48
 Number of distinct spatypes seen 338
 32 distinct standalone spatypes found in 32 samples
 12 distinct spatypes in CC with no founder, found in 12 samples
@@ -38,5 +38,4 @@ Number of distinct spatypes seen 338
      +-------------------------------------+
 Number of distinct CC seen (including standalones, excluding excluded) 59
 Number of distinct CC seen (excluding standalones and excluded) 22
-. 
 . run antibiotics.do
