@@ -24,6 +24,7 @@ cd "E:\users\amy.mason\staph_carriage\Programs"
 * clean data
 set more off
 cd "E:\users\amy.mason\staph_carriage\Programs"
+* NOTE: in short term choosing to drop ambigeous swabs, this should be altered once they have all been spa-typed/checked
 run Clean_maindata.do
 run baseline.do
 cd "E:\users\amy.mason\staph_carriage\Programs"
