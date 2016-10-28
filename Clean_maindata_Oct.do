@@ -159,8 +159,6 @@ drop flag*
 *******************************************************************************
 noi di _n(5) _dup(80) "=" _n "(5b)  people missing spatype data or mismatched result data" _n _dup(80) "=" 
 
-* NOTE: this is an ongoing problem to be resolved; currently dropping unclear results so could start trying analysis
-* in particular: of missing spatypes - 1261 is the only one pre 68 months where loss affected if reclassified from pos to neg
 exit
 * some people have "Result" as MRSA and MSSA but no spatypes
 
@@ -174,53 +172,27 @@ noi tab carriage
 
 gen missingspatype=1 if inlist(Result, "MRSA", "MSSA") & spatype==""
 summ missingspatype
-noi di r(sum) "drop: records with result says MRSA MSSA, but who have missing spatypes"
+noi di r(sum) "records with result says MRSA MSSA, but who have missing spatypes"
 noi tab timepoint if missingspatype==1
-noi list patid SwabID timepoint Result spatype  if missingspatype==1, sepby(patid)
+noi list patid SwabID timepoint Result spatype if missingspatype==1, sepby(patid)
 
-summ missingspatype if timepoint < 72
-noi di r(sum) "records with result says MRSA MSSA, but who have missing spatypes before timepoint 70 ( so should have been typed already)"
-* talk to Kyle about 
-noi list patid SwabID timepoint Result spatype if missingspatype==1 & timepoint <70, sepby(patid)
-gen missing68 = missingspa if timepoint<68
-by patid: egen missingmax=max(missing68)
-noi di "detail of those patids over time: note 1261"
-noi list patid SwabID timepoint Result spatype missingspa if missingmax==1, sepby(patid) /// list out those with missing spatypes before 68 months
-drop if missingspa==1
-drop missing*
-*
-* "marked with missing spatype"
+noi list patid SwabID timepoint Result spatype if missingspatype==1 & timepoint <72, sepby(patid)
 
-gen incorrect_result_query = 1 if Result=="No growth" & spatype!="" 
+noi di "marked with missing spatype"
+
+gen incorrect_result_query = 1 if Result=="No growth" & spatype!="" & !inlist(timepoint,0,2)
 summ incorrect_result
-noi di r(sum) "drop : records with result says No Growth, but who have spatypes"
+noi di r(sum) "records with result says MRSA MSSA, but who have missing spatypes"
 noi tab timepoint if incorrect_result==1
 noi list patid SwabID timepoint Result spatype if incorrect_result==1, sepby(patid)
-by patid: egen incorrectmax=max(incorrect)
-noi di "detail of those patids over time: in both cases spatypes not otherwise seen in those patid. Not first new spatype for either"
-noi list patid SwabID timepoint Result spatype incorrect_result if incorrectmax==1, sepby(patid) /// list out those with missing spatypes before 68 months
-drop if incorrect_result==1
-drop incorrect*
 
-gen missing =1 if Result==""
-summ missing
-noi di r(sum) " drop: missing Result"
+
+noi di "missing Result"
 noi list patid SwabID timepoint Result spatype if Result==""
-by patid: egen missingmax=max(missing)
-noi di "detail of those patids over time: "
-noi list patid SwabID timepoint Result spatype missing if missingmax==1, sepby(patid) /// list out those with missing spatypes before 68 months
-drop if missing==1
-drop missing*
 
-* check all odd results gone
-noi assert inlist(Result, "MRSA", "MSSA", "No growth")
-noi assert spatype!="" if Result!="No growth"
-noi assert spatype!="" if Result!="No growth"
 
-bysort patid: gen first=(_n==1)
-summ first
-noi di  " - leaving " _N " records from " r(sum) " paticipants" 
-drop first 
+
+
 
 
 ****************************************************************************
@@ -245,15 +217,9 @@ noi list patid timepoint Sent DateTaken Received BestDate accuracy spatype if mu
 * if identical in spatype, drop copies
 sort patid BestDate spa accuracy
 by patid BestDate spa: gen flag=1 if _n>1
-
-gen result_severity = 2 if Result ==
-
-
 summ flag
 noi di "drop " r(N) " swabs  -  multiple taken at same date, same spa, drop duplicates"
 drop if flag ==1
-
-* count how many left
 bysort patid: gen first=(_n==1)
 summ first
 noi di  " - leaving " _N " records from " r(sum) " paticipants" 
