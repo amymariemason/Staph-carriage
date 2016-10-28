@@ -1,4 +1,4 @@
-Run by AMM on 13 Oct 2016 14:03:39
+Run by AMM on 17 Oct 2016 14:14:46
 Integrate with swab data
 8266 antibiotic days in all participants
 swabs with antibiotics taken between previous swab and current one
@@ -8,10 +8,10 @@ antibiotics |
 taken since |
   last swob |      Freq.     Percent        Cum.
 ------------+-----------------------------------
-          0 |      8,709       96.55       96.55
-          1 |        311        3.45      100.00
+          0 |      8,711       96.58       96.58
+          1 |        308        3.42      100.00
 ------------+-----------------------------------
-      Total |      9,020      100.00
+      Total |      9,019      100.00
 swabs with antibiotics taken in previous 6 months
 
       staph |
@@ -19,30 +19,13 @@ antibiotics |
  taken last |
  six months |      Freq.     Percent        Cum.
 ------------+-----------------------------------
-          0 |      8,330       92.35       92.35
-          1 |        690        7.65      100.00
+          0 |      8,332       92.38       92.38
+          1 |        687        7.62      100.00
 ------------+-----------------------------------
-      Total |      9,020      100.00
+      Total |      9,019      100.00
 add baseline data
-. use "E:\users\amy.mason\staph_carriage\Datasets\clean_data3.dta", clear
+. 
+. *** create a record for each patid-spatype so can talk about loss of each spa-type
 
-. codebook Best
-
-----------------------------------------------------------------------------------------------------------------------------------
-BestDate                                                                                                               (unlabeled)
-----------------------------------------------------------------------------------------------------------------------------------
-
-                  type:  numeric daily date (float)
-
-                 range:  [17883,20718]                units:  1
-       or equivalently:  [17dec2008,21sep2016]        units:  days
-         unique values:  1,810                    missing .:  0/9,020
-
-                  mean:   18806.2 = 28jun2011 (+ 6 hours)
-              std. dev:   585.339
-
-           percentiles:        10%       25%       50%       75%       90%
-                             18193     18375   18677.5     19104   19547.5
-                         23oct2009 23apr2010 19feb2011 21apr2012 08jul2013
-
-. run anti_types.do
+. 
+. run anti_types_sept29_16.do
