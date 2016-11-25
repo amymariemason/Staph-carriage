@@ -71,6 +71,16 @@ sort patid timepoint current start
 
 replace masterdist=1000 if initial=="" & currentspa!=""
 
+*assert masterdist!=. if currentspa!=""
+* create missing list
+noi di "BURP DISTANCES WE CANNOT CALCULATE: estimates provided by TIM PETO"
+noi list if masterdist==. & currentspa!=""
+
+replace masterdist=1 if currentspa=="txAI" & initial=="t3304"
+replace masterdist=2 if currentspa=="txAI" & initial=="t7514"
+replace masterdist=1 if currentspa=="txAE" & initial=="t032"
+replace masterdist=10 if currentspa=="txAG" & initial=="t160"
+
 assert masterdist!=. if currentspa!=""
 assert masterdist==. if currentspa==""
 
@@ -155,6 +165,19 @@ sort patid timepoint current start
 
 replace masterdist=1000 if onebehind=="" & currentspa!=""
 
+*assert masterdist!=. if currentspa!=""
+* create missing list
+noi di "BURP DISTANCES WE CANNOT CALCULATE: estimates provided by TIM PETO"
+noi list if masterdist==. & currentspa!=""
+replace masterdist=1 if currentspa=="txAI" & onebe=="t3304"
+replace masterdist=1 if onebe=="txAI" & currentspa=="t3304"
+replace masterdist=1 if currentspa=="txAE" & onebe=="t032"
+replace masterdist=2 if currentspa=="txAG" & onebe=="t120"
+replace masterdist=3 if currentspa=="t499" & onebe=="txAG"
+replace masterdist=3 if currentspa=="txAG" & onebe=="t499"
+replace masterdist=1 if currentspa=="txAH" & onebe=="t065"
+replace masterdist=3 if currentspa=="txAJ" & onebe=="t279"
+
 assert masterdist!=. if currentspa!=""
 assert masterdist==. if currentspa==""
 
@@ -166,6 +189,7 @@ by patid timepoint: egen maxCOST_prev = max(minCOST)
 
 keep patid timepoint maxCOST
 duplicates drop
+
 
 save "E:\users\amy.mason\staph_carriage\Datasets\spa_BURP_prev", replace
 merge 1:1 patid timepoint using "E:\users\amy.mason\staph_carriage\Datasets\spa_BURP_init", update
@@ -183,4 +207,4 @@ tab newspa_prev, m
 
 drop max* SwabID  Sent Received DateTaken org_timepoint StudyGroup DateOfBirth Sex year  days_since_first ideal_days accuracy max_accuracy count
 
-save "E:\users\amy.mason\staph_carriage\Datasets\clean_data2.dta", replace
+noi save "E:\users\amy.mason\staph_carriage\Datasets\clean_data2.dta", replace

@@ -17,6 +17,9 @@ cd "E:\users\amy.mason\staph_carriage\Programs"
 set more off
 * data input
 run getdata_sept16_ext.do
+* fix additional spa data not in extract
+***** NOTE: some of these spa-types came back as unknown by Ridom or were unresolvable at the lab level
+run spa_update.do
 set more on
 
 
@@ -31,7 +34,6 @@ run spatypes.do
 run antibiotics.do
 set more on
 
-
 cd "E:\users\amy.mason\staph_carriage\Programs"
 * combine data
 
@@ -42,7 +44,7 @@ run add_anti.do
 *** create a record for each patid-spatype so can talk about loss of each spa-type
 run anti_types_sept29_16.do
 
-* analyse data
+* create stset data
 ** gain
 run gain_analysis.do  * gain of spa different from initial spatypes
 run gain_analysis2.do * gain of spa different from previous 2 swabs

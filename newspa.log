@@ -1,0 +1,24 @@
+Run by AMM on 23 Nov 2016 18:59:24
+. 
+. set more on
+
+. 
+. 
+. 
+. 
+. 
+. cd "E:\users\amy.mason\staph_carriage\Programs"
+E:\users\amy.mason\staph_carriage\Programs
+
+. 
+. * clean data
+
+. 
+. set more off
+
+. 
+. cd "E:\users\amy.mason\staph_carriage\Programs"
+E:\users\amy.mason\staph_carriage\Programs
+
+. 
+. run Clean_maindata.do

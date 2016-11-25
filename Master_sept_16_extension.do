@@ -25,6 +25,7 @@ cd "E:\users\amy.mason\staph_carriage\Programs"
 set more off
 cd "E:\users\amy.mason\staph_carriage\Programs"
 * NOTE: in short term choosing to drop ambigeous swabs, this should be altered once they have all been spa-typed/checked
+* ALSO: dropping after month 74 due to lack of spatyping
 run Clean_maindata.do
 run baseline.do
 cd "E:\users\amy.mason\staph_carriage\Programs"
@@ -35,14 +36,14 @@ set more on
 
 cd "E:\users\amy.mason\staph_carriage\Programs"
 * combine data
-
+set more off
 ** then add spatypes to clean_data and calc burp cost
 run add_spa.do
 ** add antibiotics to calc for anti in last 6 months, anti between spa types; also baseline data
 run add_anti.do
 *** create a record for each patid-spatype so can talk about loss of each spa-type
 run anti_types_sept29_16.do
-
+set more on
 * analyse data
 ** gain
 run gain_analysis.do  * gain of spa different from initial spatypes

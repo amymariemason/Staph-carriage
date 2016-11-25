@@ -132,7 +132,7 @@ save "E:\users\amy.mason\staph_carriage\Datasets\Skin", replace
 
 *cc-groups 
 noi di _n(5) _dup(80) "=" _n "Clonal colonies" _n _dup(80) "=" 
-import delimited E:\users\amy.mason\staph_carriage\Inputs\Spa-typing_burp_16.08.2016.csv, delimiter(";:", collapse) varnames(1) clear 
+import delimited E:\users\amy.mason\staph_carriage\Inputs\CC_noexclusions_23_11_16.csv, delimiter(";:", collapse) varnames(1) clear 
 drop v5
 drop taxa
 rename v4 CCname
@@ -145,7 +145,8 @@ save  "E:\users\amy.mason\staph_carriage\Datasets\CC", replace
 * spa burp distance 
 
 noi di _n(5) _dup(80) "=" _n "Burp distances" _n _dup(80) "=" 
-import delimited E:\users\amy.mason\staph_carriage\Inputs\cost_noexclusions_16_08.txt, delimiter(",", collapse) varnames(1) stripquote(yes) clear 
+ import delimited E:\users\amy.mason\staph_carriage\Inputs\cost_noexclusions_23_11_16.txt, clear
+ drop v4
  noi di "DROP STRAIGHT DUPLICATES" 
 noi bysort *: drop if _n>1
 compress
@@ -154,4 +155,25 @@ save  "E:\users\amy.mason\staph_carriage\Datasets\BURP", replace
 
 cd "E:\users\amy.mason\staph_carriage\Programs"
 
+
+exit
+***********************************************
+How to get BURP details out of ridom program.
+
+
+1) Open and click on burp clustering. 
+2) upload list of all spa-types from the staph carriage study. Let ridom update if there are spa-types not in it's database.
+3) tell it to cluster WITH exclusion. 
+4) extract the CC-groups data from this set (this should be a csv file). This gives you the list of which spa-types are in which Clonal cluster.
+5) tell it to cluster WITHOUT excluding any spatypes
+6) extract the cost matrix from this set (this should be as a mega file)
+7) open the cost matrix in mega. Export the values as a csv file with export type "column". This will give you the distances between each pair of spa-types. 
+
+************************************************
+How to extract updated spa-details from the database
+(sorry these instructions are very vague as I cannot access the program I am talking about)
+Open the database in access. There should be a number of queries with Amy in the name. You need both Results Query and antibiotics query
+to bring this set up to date. You should not any other extracts as all the rest is data that hasn't changed since the two year point.
+
+Amy
 

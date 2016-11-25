@@ -1,0 +1,26 @@
+<NotepadPlus>
+    <Session activeView="1">
+        <mainView activeIndex="0" />
+        <subView activeIndex="11">
+            <File firstVisibleLine="25" xOffset="0" scrollWidth="825" startPos="1288" endPos="1177" selMode="0" lang="Stata Commands" encoding="-1" filename="E:\users\amy.mason\staph_carriage\Programs\Master.do" />
+            <File firstVisibleLine="0" xOffset="0" scrollWidth="932" startPos="417" endPos="368" selMode="0" lang="Stata Commands" encoding="-1" filename="E:\users\amy.mason\staph_carriage\Programs\Master_sept_16_extension.do" />
+            <File firstVisibleLine="7" xOffset="0" scrollWidth="1414" startPos="1285" endPos="1285" selMode="0" lang="Stata Commands" encoding="-1" filename="E:\users\amy.mason\staph_carriage\Programs\spa_update.do" />
+            <File firstVisibleLine="142" xOffset="0" scrollWidth="1414" startPos="7100" endPos="7100" selMode="0" lang="Stata Commands" encoding="-1" filename="E:\users\amy.mason\staph_carriage\Programs\getdata_sept16_ext.do" />
+            <File firstVisibleLine="180" xOffset="0" scrollWidth="1377" startPos="1694" endPos="1694" selMode="0" lang="Stata Commands" encoding="-1" filename="E:\users\amy.mason\staph_carriage\Programs\Clean_maindata.do" />
+            <File firstVisibleLine="0" xOffset="0" scrollWidth="630" startPos="194" endPos="148" selMode="0" lang="Stata Commands" encoding="-1" filename="E:\users\amy.mason\staph_carriage\Programs\baseline.do" />
+            <File firstVisibleLine="42" xOffset="0" scrollWidth="1022" startPos="2190" endPos="2190" selMode="0" lang="Stata Commands" encoding="-1" filename="E:\users\amy.mason\staph_carriage\Programs\spatypes.do" />
+            <File firstVisibleLine="135" xOffset="0" scrollWidth="1449" startPos="8325" endPos="8325" selMode="0" lang="Stata Commands" encoding="-1" filename="E:\users\amy.mason\staph_carriage\Programs\antibiotics.do" />
+            <File firstVisibleLine="175" xOffset="0" scrollWidth="1296" startPos="6763" endPos="6763" selMode="0" lang="Stata Commands" encoding="-1" filename="E:\users\amy.mason\staph_carriage\Programs\add_spa.do" />
+            <File firstVisibleLine="70" xOffset="0" scrollWidth="900" startPos="3092" endPos="3014" selMode="0" lang="Stata Commands" encoding="-1" filename="E:\users\amy.mason\staph_carriage\Programs\add_anti.do" />
+            <File firstVisibleLine="234" xOffset="0" scrollWidth="1476" startPos="8550" endPos="8477" selMode="0" lang="Stata Commands" encoding="-1" filename="E:\users\amy.mason\staph_carriage\Programs\anti_types_sept29_16.do" />
+            <File firstVisibleLine="62" xOffset="0" scrollWidth="1476" startPos="3225" endPos="3135" selMode="0" lang="Stata Commands" encoding="-1" filename="E:\users\amy.mason\staph_carriage\Programs\continue.do" />
+            <File firstVisibleLine="245" xOffset="0" scrollWidth="2592" startPos="0" endPos="0" selMode="0" lang="Stata Commands" encoding="-1" filename="E:\users\amy.mason\staph_carriage\Programs\gain_analyisis.do" />
+            <File firstVisibleLine="0" xOffset="0" scrollWidth="1" startPos="0" endPos="0" selMode="0" lang="Stata Commands" encoding="-1" filename="E:\users\amy.mason\staph_carriage\Programs\gain_analysis2.do" />
+            <File firstVisibleLine="0" xOffset="0" scrollWidth="1" startPos="0" endPos="0" selMode="0" lang="Stata Commands" encoding="-1" filename="E:\users\amy.mason\staph_carriage\Programs\loss_analysis1.do" />
+            <File firstVisibleLine="0" xOffset="0" scrollWidth="1" startPos="0" endPos="0" selMode="0" lang="Stata Commands" encoding="-1" filename="E:\users\amy.mason\staph_carriage\Programs\loss_analysis2.do" />
+            <File firstVisibleLine="0" xOffset="0" scrollWidth="1" startPos="0" endPos="0" selMode="0" lang="Stata Commands" encoding="-1" filename="E:\users\amy.mason\staph_carriage\Programs\loss_analysis3.do" />
+            <File firstVisibleLine="1297" xOffset="0" scrollWidth="1116" startPos="53242" endPos="91528" selMode="0" lang="Normal Text" encoding="-1" filename="E:\users\amy.mason\staph_carriage\Programs\clean_maindata.log" />
+            <File firstVisibleLine="0" xOffset="0" scrollWidth="720" startPos="38286" endPos="38286" selMode="0" lang="Normal Text" encoding="-1" filename="E:\users\amy.mason\staph_carriage\Dona\spatype checks.txt" />
+        </subView>
+    </Session>
+</NotepadPlus>
