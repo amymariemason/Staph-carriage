@@ -1,0 +1,2674 @@
+----------------------------------------------------------------------------------------------------------------------------------
+      name:  <unnamed>
+       log:  E:\users\amy.mason\staph_carriage\Programs\gain_analysis.log
+  log type:  text
+ opened on:  31 Oct 2016, 17:37:41
+
+. 
+. noi di "Run by AMM on $S_DATE $S_TIME"
+Run by AMM on 31 Oct 2016 17:37:41
+
+. 
+. 
+. 
+. ************ create analysis set for gain of new spatype
+
+. 
+. 
+. 
+. 
+. 
+. noi di "gain of spatype distinct from initial spatypes"
+gain of spatype distinct from initial spatypes
+
+. 
+. 
+. 
+. use "E:\users\amy.mason\staph_carriage\Datasets\clean_data4.dta", clear
+
+. 
+. assert _N==8949
+assertion is false
+r(9);
+
+. 
+. 
+. 
+. gsort patid -newspa_init timepoint
+
+. 
+. by patid: gen firstevent = timepoint[1] if newspa_i[1]==1
+(4,723 missing values generated)
+
+. 
+. by patid: replace firstevent = timepoint[_N] if newspa_i[1]==0
+(4723 real changes made)
+
+. 
+. assert firstevent!=.
+
+. 
+. drop if timepoint > firstevent
+(1,724 observations deleted)
+
+. 
+. drop if timepoint==0
+(521 observations deleted)
+
+. 
+. stset timepoint, fail(newspa_init) id(patid)
+
+                id:  patid
+     failure event:  newspa_init != 0 & newspa_init < .
+obs. time interval:  (timepoint[_n-1], timepoint]
+ exit on or before:  failure
+
+------------------------------------------------------------------------------
+       6520  total observations
+          0  exclusions
+------------------------------------------------------------------------------
+       6520  observations remaining, representing
+        521  subjects
+        217  failures in single-failure-per-subject data
+      14184  total analysis time at risk and under observation
+                                                at risk from t =         0
+                                     earliest observed entry t =         0
+                                          last observed exit t =        74
+
+. 
+. * NOTE GAIN MARKER = newspa_init; it is not single failure per person, but stata deals with that
+
+. 
+. assert _st==1
+
+. 
+. 
+. 
+. *** 
+
+. 
+. noi di "Kaplan-Meier"
+Kaplan-Meier
+
+. 
+. 
+. 
+. sts graph, by(Follow) risktable failure
+
+         failure _d:  newspa_init
+   analysis time _t:  timepoint
+                 id:  patid
+
+. 
+. graph export "E:\users\amy.mason\staph_carriage\Graphs\KM_gain.tif", replace
+(file E:\users\amy.mason\staph_carriage\Graphs\KM_gain.tif written in TIFF format)
+
+. tab timepoint
+
+  timepoint |      Freq.     Percent        Cum.
+------------+-----------------------------------
+          2 |        493        7.56        7.56
+          4 |        483        7.41       14.97
+          6 |        461        7.07       22.04
+          8 |        434        6.66       28.70
+         10 |        399        6.12       34.82
+         12 |        395        6.06       40.87
+         14 |        371        5.69       46.56
+         16 |        366        5.61       52.18
+         18 |        352        5.40       57.58
+         20 |        333        5.11       62.68
+         22 |        315        4.83       67.52
+         24 |        315        4.83       72.35
+         26 |        181        2.78       75.12
+         28 |        163        2.50       77.62
+         30 |        158        2.42       80.05
+         32 |        146        2.24       82.29
+         34 |        135        2.07       84.36
+         36 |        129        1.98       86.33
+         38 |        121        1.86       88.19
+         40 |        116        1.78       89.97
+         42 |        117        1.79       91.76
+         44 |        109        1.67       93.44
+         46 |        103        1.58       95.02
+         48 |        101        1.55       96.56
+         50 |          2        0.03       96.60
+         54 |          2        0.03       96.63
+         56 |         12        0.18       96.81
+         58 |         16        0.25       97.06
+         60 |         26        0.40       97.45
+         62 |         21        0.32       97.78
+         64 |         28        0.43       98.21
+         66 |         19        0.29       98.50
+         68 |         22        0.34       98.83
+         70 |         28        0.43       99.26
+         72 |         26        0.40       99.66
+         74 |         22        0.34      100.00
+------------+-----------------------------------
+      Total |      6,520      100.00
+
+. sts graph, by(Follow) risktable failure
+
+         failure _d:  newspa_init
+   analysis time _t:  timepoint
+                 id:  patid
+
+. gen twoprevious = timepoint-2 if timepoint!=0
+
+. gen two=0 if timepoint==0
+(6,520 missing values generated)
+
+. drop two
+
+. replace two=0 if timepoint==0
+(0 real changes made)
+
+. stset timepoint, fail(newspa_init) id(patid) time0(two)
+
+                id:  patid
+     failure event:  newspa_init != 0 & newspa_init < .
+obs. time interval:  (twoprevious, timepoint]
+ exit on or before:  failure
+
+------------------------------------------------------------------------------
+       6520  total observations
+          0  exclusions
+------------------------------------------------------------------------------
+       6520  observations remaining, representing
+        521  subjects
+        217  failures in single-failure-per-subject data
+      13040  total analysis time at risk and under observation
+                                                at risk from t =         0
+                                     earliest observed entry t =         0
+                                          last observed exit t =        74
+
+. stset timepoint, fail(newspa_init) id(patid)
+
+                id:  patid
+     failure event:  newspa_init != 0 & newspa_init < .
+obs. time interval:  (timepoint[_n-1], timepoint]
+ exit on or before:  failure
+
+------------------------------------------------------------------------------
+       6520  total observations
+          0  exclusions
+------------------------------------------------------------------------------
+       6520  observations remaining, representing
+        521  subjects
+        217  failures in single-failure-per-subject data
+      14184  total analysis time at risk and under observation
+                                                at risk from t =         0
+                                     earliest observed entry t =         0
+                                          last observed exit t =        74
+
+. stset timepoint, fail(newspa_init) id(patid) time0(two)
+
+                id:  patid
+     failure event:  newspa_init != 0 & newspa_init < .
+obs. time interval:  (twoprevious, timepoint]
+ exit on or before:  failure
+
+------------------------------------------------------------------------------
+       6520  total observations
+          0  exclusions
+------------------------------------------------------------------------------
+       6520  observations remaining, representing
+        521  subjects
+        217  failures in single-failure-per-subject data
+      13040  total analysis time at risk and under observation
+                                                at risk from t =         0
+                                     earliest observed entry t =         0
+                                          last observed exit t =        74
+
+. sts graph, by(Follow) risktable failure
+
+         failure _d:  newspa_init
+   analysis time _t:  timepoint
+                 id:  patid
+
+. stset timepoint, fail(newspa_init) id(patid)
+
+                id:  patid
+     failure event:  newspa_init != 0 & newspa_init < .
+obs. time interval:  (timepoint[_n-1], timepoint]
+ exit on or before:  failure
+
+------------------------------------------------------------------------------
+       6520  total observations
+          0  exclusions
+------------------------------------------------------------------------------
+       6520  observations remaining, representing
+        521  subjects
+        217  failures in single-failure-per-subject data
+      14184  total analysis time at risk and under observation
+                                                at risk from t =         0
+                                     earliest observed entry t =         0
+                                          last observed exit t =        74
+
+. sts graph, by(Follow) risktable failure
+
+         failure _d:  newspa_init
+   analysis time _t:  timepoint
+                 id:  patid
+
+. stphplot, by(Follow)
+
+         failure _d:  newspa_init
+   analysis time _t:  timepoint
+                 id:  patid
+
+. stset timepoint, fail(newspa_init) id(patid) time0(two)
+
+                id:  patid
+     failure event:  newspa_init != 0 & newspa_init < .
+obs. time interval:  (twoprevious, timepoint]
+ exit on or before:  failure
+
+------------------------------------------------------------------------------
+       6520  total observations
+          0  exclusions
+------------------------------------------------------------------------------
+       6520  observations remaining, representing
+        521  subjects
+        217  failures in single-failure-per-subject data
+      13040  total analysis time at risk and under observation
+                                                at risk from t =         0
+                                     earliest observed entry t =         0
+                                          last observed exit t =        74
+
+. stphplot, by(Follow)
+
+         failure _d:  newspa_init
+   analysis time _t:  timepoint
+                 id:  patid
+
+. stset timepoint, fail(newspa_init) id(patid)
+
+                id:  patid
+     failure event:  newspa_init != 0 & newspa_init < .
+obs. time interval:  (timepoint[_n-1], timepoint]
+ exit on or before:  failure
+
+------------------------------------------------------------------------------
+       6520  total observations
+          0  exclusions
+------------------------------------------------------------------------------
+       6520  observations remaining, representing
+        521  subjects
+        217  failures in single-failure-per-subject data
+      14184  total analysis time at risk and under observation
+                                                at risk from t =         0
+                                     earliest observed entry t =         0
+                                          last observed exit t =        74
+
+. stpm2 Follow, scale(hazard) df(3) tvc(Follow) dftvc(1)
+note: delayed entry models are being fitted
+
+Iteration 0:   log likelihood = -508.15029  
+Iteration 1:   log likelihood = -498.60225  
+Iteration 2:   log likelihood = -498.07479  
+Iteration 3:   log likelihood = -498.07404  
+Iteration 4:   log likelihood = -498.07404  
+
+Log likelihood = -498.07404                     Number of obs     =      6,520
+
+--------------------------------------------------------------------------------------
+                     |      Coef.   Std. Err.      z    P>|z|     [95% Conf. Interval]
+---------------------+----------------------------------------------------------------
+xb                   |
+         FollowUpNeg |    .509333   .1904727     2.67   0.007     .1360133    .8826526
+               _rcs1 |   1.598724   .1354914    11.80   0.000     1.333166    1.864283
+               _rcs2 |   .2227512   .0675498     3.30   0.001     .0903559    .3551465
+               _rcs3 |   .0004195   .0301895     0.01   0.989    -.0587509    .0595899
+   _rcs_FollowUpNeg1 |  -.3275293   .1284887    -2.55   0.011    -.5793625    -.075696
+               _cons |   -2.12443   .1394738   -15.23   0.000    -2.397794   -1.851067
+--------------------------------------------------------------------------------------
+
+. stpm2 Follow, scale(hazard) df(3) tvc(Follow) dftvc(2)
+note: delayed entry models are being fitted
+
+Iteration 0:   log likelihood = -508.44954  
+Iteration 1:   log likelihood =  -498.8354  
+Iteration 2:   log likelihood = -498.04415  
+Iteration 3:   log likelihood = -498.04357  
+Iteration 4:   log likelihood = -498.04357  
+
+Log likelihood = -498.04357                     Number of obs     =      6,520
+
+--------------------------------------------------------------------------------------
+                     |      Coef.   Std. Err.      z    P>|z|     [95% Conf. Interval]
+---------------------+----------------------------------------------------------------
+xb                   |
+         FollowUpNeg |   .4863568   .2116908     2.30   0.022     .0714505    .9012631
+               _rcs1 |   1.573535   .1677488     9.38   0.000     1.244753    1.902316
+               _rcs2 |   .2079326   .0897869     2.32   0.021     .0319535    .3839117
+               _rcs3 |  -.0004505   .0304153    -0.01   0.988    -.0600634    .0591625
+   _rcs_FollowUpNeg1 |  -.2844191   .2164271    -1.31   0.189    -.7086083    .1397702
+   _rcs_FollowUpNeg2 |   .0247297   .1000596     0.25   0.805    -.1713834    .2208429
+               _cons |  -2.109867   .1504795   -14.02   0.000    -2.404801   -1.814932
+--------------------------------------------------------------------------------------
+
+. stpm2 Follow, scale(hazard) df(3) tvc(Follow) dftvc(2) cure
+note: delayed entry models are being fitted
+
+Iteration 0:   log likelihood = -543.79277  
+Iteration 1:   log likelihood = -537.77416  
+Iteration 2:   log likelihood = -537.65854  
+Iteration 3:   log likelihood = -537.65849  
+
+Log likelihood = -537.65849                     Number of obs     =      6,520
+
+--------------------------------------------------------------------------------------
+                     |      Coef.   Std. Err.      z    P>|z|     [95% Conf. Interval]
+---------------------+----------------------------------------------------------------
+xb                   |
+         FollowUpNeg |   .4203801   .2094972     2.01   0.045     .0097732    .8309871
+               _rcs1 |   1.525704   .1644233     9.28   0.000      1.20344    1.847967
+               _rcs2 |   -.147688    .043802    -3.37   0.001    -.2335384   -.0618376
+               _rcs3 |  -8.26e-17   5.95e-17    -1.39   0.165    -1.99e-16    3.40e-17
+   _rcs_FollowUpNeg1 |  -.2922493   .2130718    -1.37   0.170    -.7098623    .1253637
+   _rcs_FollowUpNeg2 |  -1.49e-16   6.36e-17    -2.34   0.019    -2.74e-16   -2.44e-17
+               _cons |  -2.075489   .1480381   -14.02   0.000    -2.365638   -1.785339
+--------------------------------------------------------------------------------------
+
+. 
+. foreach var of varlist Sex Ethnic_group residence_group CurrentlyEm HealthcareR SportsActivity LookAfter VascularAccess Catheter
+>  inpatient inpatient_summ household_group districtnurse DistrictNurse_summ skin surgery surgery_summ GP GP_summ {
+  2. 
+. di "`var'"
+  3. 
+. encode `var', gen(`var'_cat)
+  4. 
+. drop `var'
+  5. 
+. rename `var'_cat `var'
+  6. 
+. }
+Sex
+Ethnic_group
+residence_group
+CurrentlyEmployed
+HealthcareRelatedEmployed
+SportsActivity
+LookAfter
+VascularAccess
+Catheter
+inpatient
+inpatient_summ
+household_group
+districtnurse
+DistrictNurse_summ
+skin
+surgery
+surgery_summ
+GP
+GP_summ
+
+. 
+. * identify df using aIC
+
+. 
+. cap est drop _all
+
+. 
+. * test different df for baseline and tvc hazard with adm_we
+
+. 
+. forval i=1(1)6{
+  2. 
+.    noi di _c "..`i'"
+  3. 
+.    qui stpm2 Follow, scale(hazard) df(`i')
+  4. 
+.    qui est store stpm_`i'
+  5. 
+.    forval j=1(1)`i' {
+  6. 
+.       qui stpm2 Follow, scale(hazard) df(`i') tvc(Follow) dftvc(`j')
+  7. 
+.       qui est store stpm_`i'_`j'
+  8. 
+.    }
+  9. 
+.    *noi est stats _all
+. 
+. }   
+..1..2..3..4..5..6
+. 
+. * test different df for base
+
+. est stats_all
+subcommand estimates stats_all is unrecognized
+r(198);
+
+. est stats _all
+
+Akaike's information criterion and Bayesian information criterion
+
+-----------------------------------------------------------------------------
+       Model |        Obs  ll(null)  ll(model)      df         AIC        BIC
+-------------+---------------------------------------------------------------
+      stpm_1 |      6,520         .  -510.6969       3    1027.394   1047.742
+    stpm_1_1 |      6,520         .  -507.8504       4    1023.701   1050.831
+      stpm_2 |      6,520         .  -501.6917       4    1011.383   1038.514
+    stpm_2_1 |      6,520         .  -498.5428       5    1007.086   1040.999
+    stpm_2_2 |      6,520         .  -498.4741       6    1008.948   1049.644
+      stpm_3 |      6,520         .  -501.3009       5    1012.602   1046.515
+    stpm_3_1 |      6,520         .   -498.074       6    1008.148   1048.844
+    stpm_3_2 |      6,520         .  -498.0436       7    1010.087   1057.566
+    stpm_3_3 |      6,520         .  -497.7759       8    1011.552   1065.813
+      stpm_4 |      6,520         .  -494.7328       6    1001.466   1042.161
+    stpm_4_1 |      6,520         .  -491.8106       7    997.6213     1045.1
+    stpm_4_2 |      6,520         .  -491.8075       8    999.6149   1053.876
+    stpm_4_3 |      6,520         .  -491.4846       9    1000.969   1062.013
+    stpm_4_4 |      6,520         .  -491.3766      10    1002.753   1070.579
+      stpm_5 |      6,520         .   -493.036       7    1000.072    1047.55
+    stpm_5_1 |      6,520         .  -490.3223       8    996.6446   1050.906
+    stpm_5_2 |      6,520         .  -490.3166       9    998.6332   1059.677
+    stpm_5_3 |      6,520         .  -490.0675      10    1000.135   1067.961
+    stpm_5_4 |      6,520         .  -489.9421      11    1001.884   1076.493
+    stpm_5_5 |      6,520         .  -489.1016      12    1002.203   1083.595
+      stpm_6 |      6,520         .  -492.7259       8    1001.452   1055.713
+    stpm_6_1 |      6,520         .  -490.0479       9    998.0958   1059.139
+    stpm_6_2 |      6,520         .  -490.0428      10    1000.086   1067.912
+    stpm_6_3 |      6,520         .  -489.7168      11    1001.434   1076.043
+    stpm_6_4 |      6,520         .  -489.5592      12    1003.118    1084.51
+    stpm_6_5 |      6,520         .  -488.8641      13    1003.728   1091.902
+    stpm_6_6 |      6,520         .  -488.9713      14    1005.943   1100.899
+-----------------------------------------------------------------------------
+               Note: N=Obs used in calculating BIC; see [R] BIC note.
+
+. help est stats
+
+. forval i=3(1)6{
+  2. 
+.    noi di _c "..`i'"
+  3. 
+.    qui stpm2 Follow, scale(hazard) df(`i') cure
+  4. 
+.    qui est store stpm_`i'_cure
+  5. 
+.    forval j=1(1)`i' {
+  6. 
+.       qui stpm2 Follow, scale(hazard) df(`i') tvc(Follow) dftvc(`j') cure
+  7. 
+.       qui est store stpm_`i'_`j'_cure
+  8. 
+.    }
+  9. 
+.    *noi est stats _all
+. 
+. }
+..3
+initial values not feasible
+r(1400);
+
+. stpm2 Follow, scale(hazard) df(3) cure
+note: delayed entry models are being fitted
+
+initial values not feasible
+r(1400);
+
+. stpm2 Follow, scale(hazard) df(4) cure
+note: delayed entry models are being fitted
+
+initial values not feasible
+r(1400);
+
+. stpm2 Follow, scale(hazard) df(5) cure
+note: delayed entry models are being fitted
+
+initial values not feasible
+r(1400);
+
+. stpm2 Follow, scale(hazard) df(5) tvc (3) cure
+3 invalid name
+(error in option tvc())
+r(198);
+
+. stpm2 Follow, scale(hazard) df(5) tvc(3) cure
+3 invalid name
+(error in option tvc())
+r(198);
+
+. stpm2 Follow, scale(hazard) df(5) tvc(Follow) dftvc(3) cure
+note: delayed entry models are being fitted
+
+Iteration 0:   log likelihood = -537.86403  
+Iteration 1:   log likelihood = -528.18621  
+Iteration 2:   log likelihood = -527.49178  
+Iteration 3:   log likelihood = -527.49023  
+Iteration 4:   log likelihood = -527.49023  
+
+Log likelihood = -527.49023                     Number of obs     =      6,520
+
+--------------------------------------------------------------------------------------
+                     |      Coef.   Std. Err.      z    P>|z|     [95% Conf. Interval]
+---------------------+----------------------------------------------------------------
+xb                   |
+         FollowUpNeg |   .4227701   .2101322     2.01   0.044     .0109185    .8346217
+               _rcs1 |   1.641238   .1972428     8.32   0.000     1.254649    2.027827
+               _rcs2 |  -.0759211   .0877988    -0.86   0.387    -.2480036    .0961615
+               _rcs3 |   .0960247   .0480329     2.00   0.046     .0018819    .1901676
+               _rcs4 |   .0660633   .0302055     2.19   0.029     .0068615     .125265
+               _rcs5 |   3.41e-16   2.56e-17    13.30   0.000     2.91e-16    3.91e-16
+   _rcs_FollowUpNeg1 |  -.1977636   .2618463    -0.76   0.450    -.7109729    .3154457
+   _rcs_FollowUpNeg2 |   .1304759   .1140513     1.14   0.253    -.0930605    .3540123
+   _rcs_FollowUpNeg3 |   3.72e-16   6.81e-17     5.46   0.000     2.38e-16    5.05e-16
+               _cons |  -2.115675   .1516615   -13.95   0.000    -2.412926   -1.818424
+--------------------------------------------------------------------------------------
+
+. forval i=3(1)6{
+  2. 
+.    noi di _c "..`i'"
+  3. 
+.    *qui stpm2 Follow, scale(hazard) df(`i') cure
+. 
+.    qui est store stpm_`i'_cure
+  4. 
+.    forval j=1(1)`i' {
+  5. 
+.       qui stpm2 Follow, scale(hazard) df(`i') tvc(Follow) dftvc(`j') cure
+  6. 
+.       qui est store stpm_`i'_`j'_cure
+  7. 
+.    }
+  8. 
+.    *noi est stats _all
+. 
+. }   
+..3varlist required
+               st_data():  3598  Stata returned error
+                orthgs():     -  function returned error
+                 <istmt>:     -  function returned error
+r(3598);
+
+. forval i=3(1)6{
+  2. 
+.    noi di _c "..`i'"
+  3. 
+.    *qui stpm2 Follow, scale(hazard) df(`i') cure
+. 
+.    *qui est store stpm_`i'_cure
+. 
+.    forval j=1(1)`i' {
+  4. 
+.       qui stpm2 Follow, scale(hazard) df(`i') tvc(Follow) dftvc(`j') cure
+  5. 
+.       qui est store stpm_`i'_`j'_cure
+  6. 
+.    }
+  7. 
+.    *noi est stats _all
+. 
+. }   
+..3varlist required
+               st_data():  3598  Stata returned error
+                orthgs():     -  function returned error
+                 <istmt>:     -  function returned error
+r(3598);
+
+. forval i=3(1)6{
+  2. 
+.    noi di _c "..`i'"
+  3. 
+.    *qui stpm2 Follow, scale(hazard) df(`i') cure
+. 
+.    *qui est store stpm_`i'_cure
+. 
+.    forval j=1(1)`i' {
+  4. 
+. noi di /`j' 
+  5. 
+.       qui stpm2 Follow, scale(hazard) df(`i') tvc(Follow) dftvc(`j') cure
+  6. 
+.       qui est store stpm_`i'_`j'_cure
+  7. 
+.    }
+  8. 
+.    *noi est stats _all
+. 
+. }   
+..3/1 invalid name
+r(198);
+
+. forval i=3(1)6{
+  2. 
+.    noi di _c "..`i'"
+  3. 
+.    *qui stpm2 Follow, scale(hazard) df(`i') cure
+. 
+.    *qui est store stpm_`i'_cure
+. 
+.    forval j=1(1)`i' {
+  4. 
+. noi di ,`j' 
+  5. 
+.       qui stpm2 Follow, scale(hazard) df(`i') tvc(Follow) dftvc(`j') cure
+  6. 
+.       qui est store stpm_`i'_`j'_cure
+  7. 
+.    }
+  8. 
+.    *noi est stats _all
+. 
+. }
+..3 1
+varlist required
+               st_data():  3598  Stata returned error
+                orthgs():     -  function returned error
+                 <istmt>:     -  function returned error
+r(3598);
+
+. forval i=3(1)6{
+  2. 
+.    noi di _c "..`i'"
+  3. 
+.    *qui stpm2 Follow, scale(hazard) df(`i') cure
+. 
+.    *qui est store stpm_`i'_cure
+. 
+.    forval j=1(1)`i' {
+  4. 
+. noi di `j' 
+  5. 
+.       qui stpm2 Follow, scale(hazard) df(`i') tvc(Follow) dftvc(`j') cure
+  6. 
+.       qui est store stpm_`i'_`j'_cure
+  7. 
+.    }
+  8. 
+.    *noi est stats _all
+. 
+. }
+..31
+varlist required
+               st_data():  3598  Stata returned error
+                orthgs():     -  function returned error
+                 <istmt>:     -  function returned error
+r(3598);
+
+. stpm2 Follow, scale(hazard) df(3) tvc(Follow) dftvc(1) cure
+note: delayed entry models are being fitted
+varlist required
+               st_data():  3598  Stata returned error
+                orthgs():     -  function returned error
+                 <istmt>:     -  function returned error
+r(3598);
+
+. stpm2 Follow, scale(hazard) df(3) tvc(Follow) dftvc(1)
+note: delayed entry models are being fitted
+
+Iteration 0:   log likelihood = -508.15029  
+Iteration 1:   log likelihood = -498.60225  
+Iteration 2:   log likelihood = -498.07479  
+Iteration 3:   log likelihood = -498.07404  
+Iteration 4:   log likelihood = -498.07404  
+
+Log likelihood = -498.07404                     Number of obs     =      6,520
+
+--------------------------------------------------------------------------------------
+                     |      Coef.   Std. Err.      z    P>|z|     [95% Conf. Interval]
+---------------------+----------------------------------------------------------------
+xb                   |
+         FollowUpNeg |    .509333   .1904727     2.67   0.007     .1360133    .8826526
+               _rcs1 |   1.598724   .1354914    11.80   0.000     1.333166    1.864283
+               _rcs2 |   .2227512   .0675498     3.30   0.001     .0903559    .3551465
+               _rcs3 |   .0004195   .0301895     0.01   0.989    -.0587509    .0595899
+   _rcs_FollowUpNeg1 |  -.3275293   .1284887    -2.55   0.011    -.5793625    -.075696
+               _cons |   -2.12443   .1394738   -15.23   0.000    -2.397794   -1.851067
+--------------------------------------------------------------------------------------
+
+. stpm2 Follow, scale(hazard) df(3) tvc(Follow) dftvc(1) cure
+note: delayed entry models are being fitted
+varlist required
+               st_data():  3598  Stata returned error
+                orthgs():     -  function returned error
+                 <istmt>:     -  function returned error
+r(3598);
+
+. stpm2 Follow, scale(hazard) df(3) tvc(Follow) dftvc(2) cure
+note: delayed entry models are being fitted
+
+Iteration 0:   log likelihood = -543.79277  
+Iteration 1:   log likelihood = -537.77416  
+Iteration 2:   log likelihood = -537.65854  
+Iteration 3:   log likelihood = -537.65849  
+
+Log likelihood = -537.65849                     Number of obs     =      6,520
+
+--------------------------------------------------------------------------------------
+                     |      Coef.   Std. Err.      z    P>|z|     [95% Conf. Interval]
+---------------------+----------------------------------------------------------------
+xb                   |
+         FollowUpNeg |   .4203801   .2094972     2.01   0.045     .0097732    .8309871
+               _rcs1 |   1.525704   .1644233     9.28   0.000      1.20344    1.847967
+               _rcs2 |   -.147688    .043802    -3.37   0.001    -.2335384   -.0618376
+               _rcs3 |  -8.26e-17   5.95e-17    -1.39   0.165    -1.99e-16    3.40e-17
+   _rcs_FollowUpNeg1 |  -.2922493   .2130718    -1.37   0.170    -.7098623    .1253637
+   _rcs_FollowUpNeg2 |  -1.49e-16   6.36e-17    -2.34   0.019    -2.74e-16   -2.44e-17
+               _cons |  -2.075489   .1480381   -14.02   0.000    -2.365638   -1.785339
+--------------------------------------------------------------------------------------
+
+. stpm2 Follow, scale(hazard) df(3) tvc(Follow) dftvc(3) cure
+note: delayed entry models are being fitted
+
+Iteration 0:   log likelihood = -544.25565  
+Iteration 1:   log likelihood =  -532.7978  
+Iteration 2:   log likelihood = -532.27552  
+Iteration 3:   log likelihood = -532.27433  
+Iteration 4:   log likelihood = -532.27433  
+
+Log likelihood = -532.27433                     Number of obs     =      6,520
+
+--------------------------------------------------------------------------------------
+                     |      Coef.   Std. Err.      z    P>|z|     [95% Conf. Interval]
+---------------------+----------------------------------------------------------------
+xb                   |
+         FollowUpNeg |   .4748757   .2060798     2.30   0.021     .0709667    .8787846
+               _rcs1 |   1.458261   .1520222     9.59   0.000     1.160303    1.756219
+               _rcs2 |  -.2541582   .0524716    -4.84   0.000    -.3570006   -.1513158
+               _rcs3 |  -2.14e-17   7.30e-17    -0.29   0.770    -1.65e-16    1.22e-16
+   _rcs_FollowUpNeg1 |  -.0780722   .2301017    -0.34   0.734    -.5290632    .3729188
+   _rcs_FollowUpNeg2 |   .3033134    .090309     3.36   0.001     .1263109    .4803159
+   _rcs_FollowUpNeg3 |  -1.45e-16   2.62e-17    -5.52   0.000    -1.96e-16   -9.33e-17
+               _cons |  -2.091955   .1448947   -14.44   0.000    -2.375944   -1.807967
+--------------------------------------------------------------------------------------
+
+. stpm2 Follow, scale(hazard) df(4) tvc(Follow) dftvc(1) cure
+note: delayed entry models are being fitted
+varlist required
+               st_data():  3598  Stata returned error
+                orthgs():     -  function returned error
+                 <istmt>:     -  function returned error
+r(3598);
+
+. stpm2 Follow, scale(hazard) df(4) tvc(Follow) dftvc(2) cure
+note: delayed entry models are being fitted
+
+initial values not feasible
+r(1400);
+
+. stpm2 Follow, scale(hazard) df(4) tvc(Follow) dftvc(3) cure
+note: delayed entry models are being fitted
+
+initial values not feasible
+r(1400);
+
+. drop if timepoint>48
+(224 observations deleted)
+
+. stset timepoint, fail(newspa_init) id(patid)
+
+                id:  patid
+     failure event:  newspa_init != 0 & newspa_init < .
+obs. time interval:  (timepoint[_n-1], timepoint]
+ exit on or before:  failure
+
+------------------------------------------------------------------------------
+       6296  total observations
+          0  exclusions
+------------------------------------------------------------------------------
+       6296  observations remaining, representing
+        521  subjects
+        212  failures in single-failure-per-subject data
+      13318  total analysis time at risk and under observation
+                                                at risk from t =         0
+                                     earliest observed entry t =         0
+                                          last observed exit t =        48
+
+. forval i=1(1)6{
+  2. 
+.    noi di _c "..`i'"
+  3. 
+.    qui stpm2 Follow, scale(hazard) df(`i')
+  4. 
+.    qui est store stpm_`i'
+  5. 
+.    forval j=1(1)`i' {
+  6. 
+.       qui stpm2 Follow, scale(hazard) df(`i') tvc(Follow) dftvc(`j')
+  7. 
+.       qui est store stpm_`i'_`j'
+  8. 
+.    }
+  9. 
+.    *noi est stats _all
+. 
+. }
+..1..2..3..4..5..6
+. est stats _all
+
+Akaike's information criterion and Bayesian information criterion
+
+-----------------------------------------------------------------------------
+       Model |        Obs  ll(null)  ll(model)      df         AIC        BIC
+-------------+---------------------------------------------------------------
+      stpm_1 |      6,296         .  -491.2049       3    988.4098   1008.653
+    stpm_1_1 |      6,296         .  -489.5013       4    987.0025   1013.993
+      stpm_2 |      6,296         .  -487.4781       4    982.9561   1009.947
+    stpm_2_1 |      6,296         .  -485.4363       5    980.8726   1014.611
+    stpm_2_2 |      6,296         .  -485.3908       6    982.7815   1023.268
+      stpm_3 |      6,296         .  -486.1931       5    982.3862   1016.125
+    stpm_3_1 |      6,296         .  -483.9092       6    979.8184   1020.304
+    stpm_3_2 |      6,296         .  -483.9012       7    981.8023   1029.036
+    stpm_3_3 |      6,296         .  -483.5573       8    983.1145   1037.096
+      stpm_4 |      6,296         .  -482.5425       6    977.0849   1017.571
+    stpm_4_1 |      6,296         .  -480.3623       7    974.7245   1021.958
+    stpm_4_2 |      6,296         .  -480.3578       8    976.7155   1030.697
+    stpm_4_3 |      6,296         .  -479.9294       9    977.8589   1038.588
+    stpm_4_4 |      6,296         .  -479.7113      10    979.4225   1046.899
+      stpm_5 |      6,296         .  -481.0983       7    976.1965    1023.43
+    stpm_5_1 |      6,296         .  -479.0986       8    974.1971   1028.179
+    stpm_5_2 |      6,296         .  -479.0896       9    976.1792   1036.908
+    stpm_5_3 |      6,296         .   -478.668      10    977.3361   1044.813
+    stpm_5_4 |      6,296         .  -478.3579      11    978.7158    1052.94
+    stpm_5_5 |      6,296         .  -476.9068      12    977.8136   1058.786
+      stpm_6 |      6,296         .   -480.706       8    977.4121   1031.393
+    stpm_6_1 |      6,296         .  -478.8338       9    975.6676   1036.397
+    stpm_6_2 |      6,296         .  -478.8213      10    977.6426   1045.119
+    stpm_6_3 |      6,296         .  -478.3359      11    978.6718   1052.896
+    stpm_6_4 |      6,296         .  -478.1174      12    980.2349   1061.207
+    stpm_6_5 |      6,296         .  -476.7382      13    979.4765   1067.196
+    stpm_6_6 |      6,296         .  -476.1075      14    980.2151   1074.682
+ stpm_3_cure |      6,520         .  -527.4902       8     1070.98   1125.241
+-----------------------------------------------------------------------------
+               Note: N=Obs used in calculating BIC; see [R] BIC note.
+
+. forval i=3(1)6{
+  2. 
+.    noi di _c "..`i'"
+  3. 
+.    qui stpm2 Follow, scale(hazard) df(`i') cure
+  4. 
+.    qui est store stpm_`i'_cure
+  5. 
+.    forval j=1(1)`i' {
+  6. 
+. noi di `j' 
+  7. 
+.       qui stpm2 Follow, scale(hazard) df(`i') tvc(Follow) dftvc(`j') cure
+  8. 
+.       qui est store stpm_`i'_`j'_cure
+  9. 
+.    }
+ 10. 
+.    *noi est stats _all
+. 
+. }   
+..3
+initial values not feasible
+r(1400);
+
+. forval i=3(1)6{
+  2. 
+.    noi di _c "..`i'"
+  3. 
+.    *qui stpm2 Follow, scale(hazard) df(`i') cure
+. 
+.    *qui est store stpm_`i'_cure
+. 
+.    forval j=1(1)`i' {
+  4. 
+. noi di `j' 
+  5. 
+.       qui stpm2 Follow, scale(hazard) df(`i') tvc(Follow) dftvc(`j') cure
+  6. 
+.       qui est store stpm_`i'_`j'_cure
+  7. 
+.    }
+  8. 
+.    *noi est stats _all
+. 
+. }   
+..31
+varlist required
+               st_data():  3598  Stata returned error
+                orthgs():     -  function returned error
+                 <istmt>:     -  function returned error
+r(3598);
+
+. stset timepoint, fail(newspa_init) id(patid) time0(two)
+
+                id:  patid
+     failure event:  newspa_init != 0 & newspa_init < .
+obs. time interval:  (twoprevious, timepoint]
+ exit on or before:  failure
+
+------------------------------------------------------------------------------
+       6296  total observations
+          0  exclusions
+------------------------------------------------------------------------------
+       6296  observations remaining, representing
+        521  subjects
+        212  failures in single-failure-per-subject data
+      12592  total analysis time at risk and under observation
+                                                at risk from t =         0
+                                     earliest observed entry t =         0
+                                          last observed exit t =        48
+
+.       qui stpm2 Follow, scale(hazard) df(3) tvc(Follow) dftvc(1) cure
+varlist required
+               st_data():  3598  Stata returned error
+                orthgs():     -  function returned error
+                 <istmt>:     -  function returned error
+r(3598);
+
+.       qui stpm2 Follow, scale(hazard) df(3) tvc(Follow) dftvc(2) cure
+
+.       stpm2 Follow, scale(hazard) df(3) tvc(Follow) dftvc(2) cure
+note: delayed entry models are being fitted
+
+Iteration 0:   log likelihood = -657.13143  
+Iteration 1:   log likelihood = -648.97466  
+Iteration 2:   log likelihood = -648.75355  
+Iteration 3:   log likelihood = -648.75342  
+Iteration 4:   log likelihood = -648.75342  
+
+Log likelihood = -648.75342                     Number of obs     =      6,296
+
+--------------------------------------------------------------------------------------
+                     |      Coef.   Std. Err.      z    P>|z|     [95% Conf. Interval]
+---------------------+----------------------------------------------------------------
+xb                   |
+         FollowUpNeg |   .4644526   .2112822     2.20   0.028      .050347    .8785581
+               _rcs1 |   1.538733    .169713     9.07   0.000     1.206102    1.871365
+               _rcs2 |  -.1898083   .0435694    -4.36   0.000    -.2752028   -.1044139
+               _rcs3 |  -7.17e-17   6.18e-17    -1.16   0.246    -1.93e-16    4.94e-17
+   _rcs_FollowUpNeg1 |  -.3101213   .2212899    -1.40   0.161    -.7438414    .1235989
+   _rcs_FollowUpNeg2 |  -1.49e-16   6.63e-17    -2.25   0.024    -2.79e-16   -1.94e-17
+               _cons |  -2.107064   .1517795   -13.88   0.000    -2.404546   -1.809581
+--------------------------------------------------------------------------------------
+
+.       stpm2 Follow, scale(hazard) df(3) tvc(Follow) dftvc(3) cure
+note: delayed entry models are being fitted
+
+Iteration 0:   log likelihood = -661.69444  
+Iteration 1:   log likelihood = -644.53012  
+Iteration 2:   log likelihood =  -643.3892  
+Iteration 3:   log likelihood = -643.37974  
+Iteration 4:   log likelihood = -643.37974  
+
+Log likelihood = -643.37974                     Number of obs     =      6,296
+
+--------------------------------------------------------------------------------------
+                     |      Coef.   Std. Err.      z    P>|z|     [95% Conf. Interval]
+---------------------+----------------------------------------------------------------
+xb                   |
+         FollowUpNeg |   .5964036   .2084357     2.86   0.004     .1878771     1.00493
+               _rcs1 |   1.516754     .15819     9.59   0.000     1.206707      1.8268
+               _rcs2 |  -.3106974   .0530265    -5.86   0.000    -.4146274   -.2067673
+               _rcs3 |   2.17e-18   7.43e-17     0.03   0.977    -1.43e-16    1.48e-16
+   _rcs_FollowUpNeg1 |  -.1522147   .2343044    -0.65   0.516    -.6114428    .3070134
+   _rcs_FollowUpNeg2 |    .352795   .0861844     4.09   0.000     .1838766    .5217134
+   _rcs_FollowUpNeg3 |  -1.26e-16   2.61e-17    -4.83   0.000    -1.77e-16   -7.49e-17
+               _cons |  -2.164387   .1515735   -14.28   0.000    -2.461465   -1.867308
+--------------------------------------------------------------------------------------
+
+.       stpm2 Follow, scale(hazard) df(4) tvc(Follow) dftvc(2) cure
+note: delayed entry models are being fitted
+
+initial values not feasible
+r(1400);
+
+.       stpm2 Follow, scale(hazard) df(4) tvc(Follow) dftvc(3) cure
+note: delayed entry models are being fitted
+
+initial values not feasible
+r(1400);
+
+.       stpm2 Follow, scale(hazard) df(4) tvc(Follow) dftvc(4) cure
+note: delayed entry models are being fitted
+
+initial values not feasible
+r(1400);
+
+.       stpm2 Follow, scale(hazard) df(5) tvc(Follow) dftvc(1) cure
+note: delayed entry models are being fitted
+varlist required
+               st_data():  3598  Stata returned error
+                orthgs():     -  function returned error
+                 <istmt>:     -  function returned error
+r(3598);
+
+.       stpm2 Follow, scale(hazard) df(5) tvc(Follow) dftvc(2) cure
+note: delayed entry models are being fitted
+
+initial values not feasible
+r(1400);
+
+.       stpm2 Follow, scale(hazard) df(5) tvc(Follow) dftvc(3) cure
+note: delayed entry models are being fitted
+
+Iteration 0:   log likelihood = -642.59116  
+Iteration 1:   log likelihood = -631.69484  
+Iteration 2:   log likelihood = -631.00508  
+Iteration 3:   log likelihood =  -631.0028  
+Iteration 4:   log likelihood =  -631.0028  
+
+Log likelihood =  -631.0028                     Number of obs     =      6,296
+
+--------------------------------------------------------------------------------------
+                     |      Coef.   Std. Err.      z    P>|z|     [95% Conf. Interval]
+---------------------+----------------------------------------------------------------
+xb                   |
+         FollowUpNeg |   .4337215   .2177025     1.99   0.046     .0070325    .8604105
+               _rcs1 |   1.705866   .2136622     7.98   0.000     1.287096    2.124636
+               _rcs2 |  -.0626133   .0859882    -0.73   0.467     -.231147    .1059204
+               _rcs3 |   .1286555   .0471927     2.73   0.006     .0361596    .2211514
+               _rcs4 |   .0650845   .0301215     2.16   0.031     .0060474    .1241216
+               _rcs5 |   3.51e-16   2.71e-17    12.92   0.000     2.97e-16    4.04e-16
+   _rcs_FollowUpNeg1 |  -.2378738   .2810099    -0.85   0.397    -.7886432    .3128956
+   _rcs_FollowUpNeg2 |   .0760404   .1094903     0.69   0.487    -.1385566    .2906375
+   _rcs_FollowUpNeg3 |   3.86e-16   7.44e-17     5.19   0.000     2.40e-16    5.32e-16
+               _cons |  -2.141164   .1587404   -13.49   0.000    -2.452289   -1.830038
+--------------------------------------------------------------------------------------
+
+.       stpm2 Follow, scale(hazard) df(5) tvc(Follow) dftvc(4) cure
+note: delayed entry models are being fitted
+
+Iteration 0:   log likelihood =  -640.8157  
+Iteration 1:   log likelihood = -627.98968  
+Iteration 2:   log likelihood = -626.80366  
+Iteration 3:   log likelihood =  -626.7996  
+Iteration 4:   log likelihood =  -626.7996  
+
+Log likelihood =  -626.7996                     Number of obs     =      6,296
+
+--------------------------------------------------------------------------------------
+                     |      Coef.   Std. Err.      z    P>|z|     [95% Conf. Interval]
+---------------------+----------------------------------------------------------------
+xb                   |
+         FollowUpNeg |   .5272186   .2275548     2.32   0.021     .0812193    .9732178
+               _rcs1 |   1.777183   .2192455     8.11   0.000      1.34747    2.206897
+               _rcs2 |   -.061652   .0896941    -0.69   0.492    -.2374491    .1141452
+               _rcs3 |   .1366063    .054897     2.49   0.013     .0290101    .2442025
+               _rcs4 |   .0744269    .040114     1.86   0.064    -.0041952     .153049
+               _rcs5 |  -1.87e-16   2.79e-17    -6.72   0.000    -2.42e-16   -1.33e-16
+   _rcs_FollowUpNeg1 |  -.3448858   .2929797    -1.18   0.239    -.9191154    .2293438
+   _rcs_FollowUpNeg2 |   .0867029   .1208547     0.72   0.473     -.150168    .3235738
+   _rcs_FollowUpNeg3 |    -.00094   .0699181    -0.01   0.989    -.1379769    .1360969
+   _rcs_FollowUpNeg4 |  -1.03e-15   1.64e-16    -6.24   0.000    -1.35e-15   -7.05e-16
+               _cons |  -2.188475   .1633024   -13.40   0.000    -2.508541   -1.868408
+--------------------------------------------------------------------------------------
+
+.       stpm2 Follow, scale(hazard) df(5) tvc(Follow) dftvc(5) cure
+note: delayed entry models are being fitted
+
+Iteration 0:   log likelihood = -651.63173  
+Iteration 1:   log likelihood = -635.53117  
+Iteration 2:   log likelihood = -633.45406  
+Iteration 3:   log likelihood = -633.43977  
+Iteration 4:   log likelihood = -633.43976  
+
+Log likelihood = -633.43976                     Number of obs     =      6,296
+
+--------------------------------------------------------------------------------------
+                     |      Coef.   Std. Err.      z    P>|z|     [95% Conf. Interval]
+---------------------+----------------------------------------------------------------
+xb                   |
+         FollowUpNeg |   .5291264   .2288314     2.31   0.021      .080625    .9776278
+               _rcs1 |   1.726197   .2139122     8.07   0.000     1.306936    2.145457
+               _rcs2 |  -.1152124   .0900015    -1.28   0.201    -.2916121    .0611873
+               _rcs3 |   .1073429   .0558061     1.92   0.054     -.002035    .2167209
+               _rcs4 |   .0459329   .0391059     1.17   0.240    -.0307133     .122579
+               _rcs5 |   4.48e-16   5.52e-17     8.12   0.000     3.40e-16    5.56e-16
+   _rcs_FollowUpNeg1 |   -.197292     .31381    -0.63   0.530    -.8123483    .4177643
+   _rcs_FollowUpNeg2 |   .2308366   .1357063     1.70   0.089    -.0351428    .4968161
+   _rcs_FollowUpNeg3 |   .0917254   .0832784     1.10   0.271    -.0714973    .2549482
+   _rcs_FollowUpNeg4 |    .082187   .0480379     1.71   0.087    -.0119656    .1763397
+   _rcs_FollowUpNeg5 |  -3.87e-16   1.36e-16    -2.85   0.004    -6.53e-16   -1.20e-16
+               _cons |  -2.197829   .1606557   -13.68   0.000    -2.512708   -1.882949
+--------------------------------------------------------------------------------------
+
+. help stpm2
+
+.       stpm2 Follow, scale(hazard) df(5) tvc(Follow) dftvc(4) cure
+note: delayed entry models are being fitted
+
+Iteration 0:   log likelihood =  -640.8157  
+Iteration 1:   log likelihood = -627.98968  
+Iteration 2:   log likelihood = -626.80366  
+Iteration 3:   log likelihood =  -626.7996  
+Iteration 4:   log likelihood =  -626.7996  
+
+Log likelihood =  -626.7996                     Number of obs     =      6,296
+
+--------------------------------------------------------------------------------------
+                     |      Coef.   Std. Err.      z    P>|z|     [95% Conf. Interval]
+---------------------+----------------------------------------------------------------
+xb                   |
+         FollowUpNeg |   .5272186   .2275548     2.32   0.021     .0812193    .9732178
+               _rcs1 |   1.777183   .2192455     8.11   0.000      1.34747    2.206897
+               _rcs2 |   -.061652   .0896941    -0.69   0.492    -.2374491    .1141452
+               _rcs3 |   .1366063    .054897     2.49   0.013     .0290101    .2442025
+               _rcs4 |   .0744269    .040114     1.86   0.064    -.0041952     .153049
+               _rcs5 |  -1.87e-16   2.79e-17    -6.72   0.000    -2.42e-16   -1.33e-16
+   _rcs_FollowUpNeg1 |  -.3448858   .2929797    -1.18   0.239    -.9191154    .2293438
+   _rcs_FollowUpNeg2 |   .0867029   .1208547     0.72   0.473     -.150168    .3235738
+   _rcs_FollowUpNeg3 |    -.00094   .0699181    -0.01   0.989    -.1379769    .1360969
+   _rcs_FollowUpNeg4 |  -1.03e-15   1.64e-16    -6.24   0.000    -1.35e-15   -7.05e-16
+               _cons |  -2.188475   .1633024   -13.40   0.000    -2.508541   -1.868408
+--------------------------------------------------------------------------------------
+
+.       stpm2 Follow, scale(hazard) df(5) tvc(Follow) dftvc(1) cure
+note: delayed entry models are being fitted
+varlist required
+               st_data():  3598  Stata returned error
+                orthgs():     -  function returned error
+                 <istmt>:     -  function returned error
+r(3598);
+
+. set trace on
+
+.       stpm2 Follow, scale(hazard) df(5) tvc(Follow) dftvc(1) cure
+-------------------------------------------------------------------------------------- begin stpm2 ---
+- version 11.1
+- if strpos("`0'","oldstpm") >0 {
+= if strpos("Follow, scale(hazard) df(5) tvc(Follow) dftvc(1) cure","oldstpm") >0 {
+  local 0:subinstr local 0 "oldstpm" ""
+  stpm `0'
+  exit
+  }
+- if _by() {
+  local by "by `_byvars'`_byrc0':"
+  }
+- if replay() {
+  syntax [, DF(string) KNOTS(numlist ascending) BKNOTS(numlist ascending min=2 max=2) *]
+  if "`df'`knots'`bknots'" != "" {
+  `by' Estimate `0'
+  ereturn local cmdline `"stpm2 `0'"'
+  }
+  else {
+  if "`e(cmd)'" != "stpm2" {
+  error 301
+  }
+  if _by() {
+  error 190
+  }
+  Replay `0'
+  }
+  exit
+  }
+- `by' Estimate `0'
+=  Estimate Follow, scale(hazard) df(5) tvc(Follow) dftvc(1) cure
+  --------------------------------------------------------------------------- begin stpm2.Estimate ---
+  - st_is 2 analysis
+    ---------------------------------------------------------------------------------- begin st_is ---
+    - version 6
+    - if "`1'"=="2" & `"`_dta[_dta]'"'=="st" & `"`_dta[st_ver]'"'=="2" & _caller()>5 {
+    = if "2"=="2" & `"st"'=="st" & `"2"'=="2" & _caller()>5 {
+    - if "`2'"=="analysis" & `"`_dta[st_full]'"'=="" | "`2'"=="full" {
+    = if "analysis"=="analysis" & `""'=="" | "analysis"=="full" {
+    - exit
+    ------------------------------------------------------------------------------------ end st_is ---
+  - syntax [varlist(fv default=empty)] [fw pw iw aw] [if] [in] [, DF(string) TVC(varlist fv) DFTvc(str
+> ing) KNOTS(numlist ascending) KNOTSTvc(string) BKnots(numlist ascending min=2 max=2) KNSCALE(string)
+>  noORTHog SCale(string) noCONStant INITTheta(real 1) CONSTheta(string) EForm ALLEQ KEEPCons BHAZard(
+> varname) LINinit STratify(varlist) THeta(string) OFFset(varname) RCSBASEOFF BHAZINIT(string) STPMDF(
+> int 0) VERBose SHOWCons MLMethod(string) ALL RMAT REVerse CURE FAILCONVLININIT from(string) ] [ noLO
+> g noLRTEST Level(integer `c(level)') * ]
+  = syntax [varlist(fv default=empty)] [fw pw iw aw] [if] [in] [, DF(string) TVC(varlist fv) DFTvc(str
+> ing) KNOTS(numlist ascending) KNOTSTvc(string) BKnots(numlist ascending min=2 max=2) KNSCALE(string)
+>  noORTHog SCale(string) noCONStant INITTheta(real 1) CONSTheta(string) EForm ALLEQ KEEPCons BHAZard(
+> varname) LINinit STratify(varlist) THeta(string) OFFset(varname) RCSBASEOFF BHAZINIT(string) STPMDF(
+> int 0) VERBose SHOWCons MLMethod(string) ALL RMAT REVerse CURE FAILCONVLININIT from(string) ] [ noLO
+> g noLRTEST Level(integer 95) * ]
+  - if `stpmdf'>0 local df `stpmdf'
+  = if 0>0 local df 0
+  - capture which rcsgen
+  - if _rc >0 {
+    display in yellow "You need to install the command rcsgen. This can be installed using,"
+    display in yellow ". {stata ssc install rcsgen}"
+    exit 198
+    }
+  - if "`weight'" != "" {
+  = if "" != "" {
+    display as err "weights must be stset"
+    exit 101
+    }
+  - local wt: char _dta[st_w]
+  - local wtvar: char _dta[st_wv]
+  - if "`wt'" != "" {
+  = if "" != "" {
+    local fw fw(`wtvar')
+    }
+  - fvexpand `tvc'
+  = fvexpand FollowUpNeg
+  - if "`r(fvops)'" != "" {
+  = if "" != "" {
+    display as error "Factor variables not allowed for tvc() option. Create your own dummy varibles."
+    exit 198
+    }
+  - tempvar Z xb lnt lnt0 coxindex S Sadj cons touse2 touse_t0 cons
+  - tempname initmat Rinv_bh R_bh rmatrix
+  - marksample touse
+  - qui replace `touse' = 0 if _st==0
+  = qui replace __00000F = 0 if _st==0
+  - mlopts mlopts, `options'
+  = mlopts mlopts, 
+    --------------------------------------------------------------------------------- begin mlopts ---
+    - version 8.0
+    - local maxoptlist MLOPTs(string) TRace TRACEDIffs GRADient HESSian SHOWSTEP ITERate(int -1) TOLer
+> ance(real -1) LTOLerance(real -1) GTOLerance(real -1) NONRTOLerance SHOWNRtolerance SHOWTOLerance NR
+> TOLerance(real -1) QTOLerance(real -1) DIFficult HALFSTEPonly CONSTraints(string) noCNSNOTEs COLline
+> ar TECHnique(passthru) VCE(passthru) DOTS depsilon(passthru) SHOWH
+    - syntax namelist(id="macro names" min=1 max=2) [, `maxoptlist' * ]
+    = syntax namelist(id="macro names" min=1 max=2) [, MLOPTs(string) TRace TRACEDIffs GRADient HESSia
+> n SHOWSTEP ITERate(int -1) TOLerance(real -1) LTOLerance(real -1) GTOLerance(real -1) NONRTOLerance 
+> SHOWNRtolerance SHOWTOLerance NRTOLerance(real -1) QTOLerance(real -1) DIFficult HALFSTEPonly CONSTr
+> aints(string) noCNSNOTEs COLlinear TECHnique(passthru) VCE(passthru) DOTS depsilon(passthru) SHOWH *
+>  ]
+    - gettoken dest rest : namelist
+    - if "`rest'" == "" {
+    = if "" == "" {
+    - syntax namelist [, `maxoptlist' ]
+    = syntax namelist [, MLOPTs(string) TRace TRACEDIffs GRADient HESSian SHOWSTEP ITERate(int -1) TOL
+> erance(real -1) LTOLerance(real -1) GTOLerance(real -1) NONRTOLerance SHOWNRtolerance SHOWTOLerance 
+> NRTOLerance(real -1) QTOLerance(real -1) DIFficult HALFSTEPonly CONSTraints(string) noCNSNOTEs COLli
+> near TECHnique(passthru) VCE(passthru) DOTS depsilon(passthru) SHOWH ]
+    - }
+    - local mlopts `mlopts' `trace' `tracediffs' `gradient' `hessian' `showstep' `difficult' `halfstep
+> only' `nonrtolerance' `shownrtolerance' `showtolerance' `dots' `depsilon' `showh'
+    = local mlopts              
+    - if `tolerance'!= -1 {
+    = if -1!= -1 {
+      local tol "tolerance(`tolerance')"
+      }
+    - if `ltolerance' != -1 {
+    = if -1 != -1 {
+      local ltol "ltolerance(`ltolerance')"
+      }
+    - if `gtolerance' != -1 {
+    = if -1 != -1 {
+      local gtol "gtolerance(`gtolerance')"
+      }
+    - if `nrtolerance' != -1 {
+    = if -1 != -1 {
+      local nrtol "nrtolerance(`nrtolerance')"
+      }
+    - if `qtolerance' != -1 {
+    = if -1 != -1 {
+      local qtol "qtolerance(`qtolerance')"
+      }
+    - if `iterate' != -1 {
+    = if -1 != -1 {
+      local iter "iterate(`iterate')"
+      }
+    - sreturn clear
+    - if "`technique'`vce'" != "" {
+    = if "" != "" {
+      ml_technique, `technique' `vce' nodefault
+      if `"`s(technique)'"' != "" {
+      local technique "technique(`s(technique)')"
+      }
+      if "`s(vce)'" != "" {
+      local vce "`s(vceopt)'"
+      }
+      sreturn local technique "`technique'"
+      sreturn local vce "`vce'"
+      }
+    - if "`constraints'" != "" {
+    = if "" != "" {
+      capture confirm name `constraints'
+      if _rc {
+      CheckClist constraints , constraints(`constraints')
+      }
+      else {
+      CheckCmat `constraints'
+      }
+      local const "constraints(`constraints')"
+      sreturn local constraints "`constraints'"
+      }
+    - sreturn local collinear "`collinear'"
+    = sreturn local collinear ""
+    - c_local `dest' `mlopts' `tol' `ltol' `gtol' `nrtol' `iter' `const' `cnsnotes' `collinear' `techn
+> ique' `vce' `qtol'
+    = c_local mlopts            
+    - if "`rest'" != "" {
+    = if "" != "" {
+      c_local `rest' `"`options'"'
+      }
+    ----------------------------------------------------------------------------------- end mlopts ---
+  - local extra_constraints `s(constraints)'
+  = local extra_constraints 
+  - if `"`s(collinear)'"' != "" {
+  = if `""' != "" {
+    di as err "option collinear not allowed"
+    exit 198
+    }
+  - if "`all'" != "" {
+  = if "" != "" {
+    gen `touse2' = 1
+    }
+  - else {
+  - gen `touse2' = `touse'
+  = gen __000008 = __00000F
+  - }
+  - capture drop _rcs*
+  - capture drop _d_rcs*
+  - capture drop _s0_rcs*
+  - local del_entry = 0
+  - qui summ _t0 if `touse' , meanonly
+  = qui summ _t0 if __00000F , meanonly
+  - if r(max)>0 {
+  - display in green "note: delayed entry models are being fitted"
+note: delayed entry models are being fitted
+  - local del_entry = 1
+  - }
+  - if "`orthog'"=="noorthog" {
+  = if ""=="noorthog" {
+    local orthog
+    }
+  - else {
+  - local orthog orthog
+  - }
+  - qui gen `lnt' = ln(_t) if `touse2'
+  = qui gen __000002 = ln(_t) if __000008
+  - if "`tvc'" == "" {
+  = if "FollowUpNeg" == "" {
+    foreach opt in dftvc knotstvc {
+    if "``opt''" != "" {
+    display as txt _n "[`opt'() used without specifying tvc(), option ignored]"
+    local `opt'
+    }
+    }
+    }
+  - if "`df'" != "" {
+  = if "5" != "" {
+  - capture confirm integer number `df'
+  = capture confirm integer number 5
+  - if _rc>0 {
+    display in red "df option must be an integer"
+    exit 198
+    }
+  - }
+  - if "`rmat'" != "" {
+  = if "" != "" {
+    if "`tvc'" != "" {
+    display as error "tvc option not available when using rmat option"
+    exit 198
+    }
+    local orthog
+    matrix `rmatrix' = e(R_bh)
+    local rmatrixopt rmatrix(`rmatrix')
+    }
+  - if "`stratify'" != "" {
+  = if "" != "" {
+    if "`tvc'" != "" {
+    display as error "You can not specify both the stratify and tvc options"
+    exit 198
+    }
+    local tvc `stratify'
+    local dftvc `df'
+    }
+  - if "`rcsbaseoff'" != "" & "`lininit'" != "" {
+  = if "" != "" & "" != "" {
+    display as error "You cannot use the -lininit- option with the -rcsbaseoff- option"
+    exit 198
+    }
+  - if "`rcsbaseoff'" != "" & "`tvc'" == "" {
+  = if "" != "" & "FollowUpNeg" == "" {
+    display as error "You must specify the tvc() option if you use the rcsbaseoff option"
+    exit 198
+    }
+  - if "`bhazard'" != "" {
+  = if "" != "" {
+    if `touse' & missing(`bhazard') == 1 {
+    display as err "baseline hazard contains missing values"
+    exit
+    }
+    local rs _rs
+    }
+  - if "`bhazinit'" == "" {
+  = if "" == "" {
+  - local bhazinit 0.1
+  - }
+  - tokenize `knots'
+  = tokenize 
+  - local nbhknots : word count `knots'
+  = local nbhknots : word count 
+  - if "`df'" != "" & `nbhknots'>0 {
+  = if "5" != "" & 0>0 {
+    display as error "Only one of DF OR KNOTS can be specified"
+    exit
+    }
+  - if (`nbhknots' == 0 & "`df'" == "") & "`rcsbaseoff'" == "" {
+  = if (0 == 0 & "5" == "") & "" == "" {
+    display as error "Use of either the df or knots option is compulsory"
+    exit 198
+    }
+  - if "`tvc'" != "" {
+  = if "FollowUpNeg" != "" {
+  - if "`dftvc'" == "" & "`knotstvc'" == "" {
+  = if "1" == "" & "" == "" {
+    display as error "The dftvc or knotstvc option is compulsory if you use the tvc option"
+    exit 198
+    }
+  - if "`knotstvc'" == "" {
+  = if "" == "" {
+  - local ntvcdf: word count `dftvc'
+  = local ntvcdf: word count 1
+  - local lasttvcdf : word `ntvcdf' of `dftvc'
+  = local lasttvcdf : word 1 of 1
+  - capture confirm number `lasttvcdf'
+  = capture confirm number 1
+  - if `ntvcdf' == 1 | _rc==0 {
+  = if 1 == 1 | _rc==0 {
+  - foreach tvcvar in `tvc' {
+  = foreach tvcvar in FollowUpNeg {
+  - if _rc==0 {
+  - local tmptvc = subinstr("`1'",".","_",1)
+  = local tmptvc = subinstr("",".","_",1)
+  - local tvc_`tvcvar'_df `lasttvcdf'
+  = local tvc_FollowUpNeg_df 1
+  - }
+  - }
+  - }
+  - if `ntvcdf'>1 | _rc >1 {
+  = if 1>1 | _rc >1 {
+    tokenize "`dftvc'"
+    forvalues i = 1/`ntvcdf' {
+    local tvcdflist`i' ``i''
+    }
+    forvalues i = 1/`ntvcdf' {
+    capture confirm number `tvcdflist`i''
+    if _rc>0 {
+    tokenize "`tvcdflist`i''", parse(":")
+    confirm var `1'
+    if `"`: list posof `"`1'"' in tvc'"' == "0" {
+    display as error "`1' is not listed in the tvc option"
+    exit 198
+    }
+    local tmptvc `1'
+    local tvc_`tmptvc'_df 1
+    }
+    local `1'_df `3'
+    }
+    }
+  - }
+  - if "`knotstvc'" == "" {
+  = if "" == "" {
+  - foreach tvcvar in `tvc' {
+  = foreach tvcvar in FollowUpNeg {
+  - if "`tvc_`tvcvar'_df'" == "" {
+  = if "1" == "" {
+    display as error "df for time-dependent effect of `tvcvar' are not specified"
+    exit 198
+    }
+  - }
+  - }
+  - forvalues i = 1/`ntvcdf' {
+  = forvalues i = 1/1 {
+  - tokenize "`tvcdflist`i''", parse(":")
+  = tokenize "", parse(":")
+  - local tvc_`1'_df `3'
+  = local tvc__df 
+  - }
+  - }
+  - if "`knotstvc'" != "" {
+  = if "" != "" {
+    if "`dftvc'" != "" {
+    display as error "You can not specify the dftvc and knotstvc options"
+    exit 198
+    }
+    tokenize `knotstvc'
+    while "`2'"!="" {
+    cap confirm var `1'
+    if _rc == 0 {
+    if `"`: list posof `"`1'"' in tvc'"' == "0" {
+    display as error "`1' is not listed in the tvc option"
+    exit 198
+    }
+    local tmptvc `1'
+    local tvc_`tmptvc'_df 1
+    }
+    cap confirm num `2'
+    if _rc == 0 {
+    local tvcknots_`tmptvc'_user `tvcknots_`tmptvc'_user' `2'
+    local tvc_`tmptvc'_df = ``tmptvc'_df' + 1
+    }
+    else {
+    cap confirm var `2'
+    if _rc {
+    display as error "`2' is not a variable"
+    exit 198
+    }
+    }
+    macro shift 1
+    }
+    }
+  - if "`scale'" =="" {
+  = if "hazard" =="" {
+    display as error "The scale must be specified"
+    exit
+    }
+  - if substr("`scale'", 1, 1)=="h" {
+  = if substr("hazard", 1, 1)=="h" {
+  - local scale "hazard"
+  - }
+  - else if substr("`scale'", 1, 1)=="o" {
+  = else if substr("hazard", 1, 1)=="o" {
+    local scale "odds"
+    }
+  - else if substr("`scale'", 1, 1)=="n" {
+  = else if substr("hazard", 1, 1)=="n" {
+    local scale "normal"
+    }
+  - else if substr("`scale'", 1, 1)=="t" {
+  = else if substr("hazard", 1, 1)=="t" {
+    local scale "theta"
+    }
+  - else {
+    display as error "The scale must be specified as either hazard, odds, normal or theta"
+    exit
+    }
+  - if "`cure'" != "" & "`scale'" != "hazard" {
+  = if "cure" != "" & "hazard" != "hazard" {
+    display as err "The cure option should only be used with the scale(hazard) option"
+    exit 198
+    }
+  - if "`cure'" != "" {
+  = if "cure" != "" {
+  - local reverse reverse
+  - }
+  - if "`scale'" != "theta" {
+  = if "hazard" != "theta" {
+  - foreach thetaopt in constheta {
+  - if "``thetaopt''" != "" {
+  = if "" != "" {
+    display as err "`thetaopt' should only be used with the scale(theta) option"
+    exit 198
+    }
+  - }
+  - }
+  - if "`scale'" == "odds" & "`theta'" != "" {
+  = if "hazard" == "odds" & "" != "" {
+    local scale theta
+    if "`theta'" != "est" {
+    local constheta `theta'
+    }
+    }
+  - if "`knscale'" == "" {
+  = if "" == "" {
+  - local knscale time
+  - }
+  - if "`bknots'" == "" {
+  = if "" == "" {
+  - summ `lnt' if `touse' & _d == 1, meanonly
+  = summ __000002 if __00000F & _d == 1, meanonly
+  - local lowerknot `r(min)'
+  = local lowerknot 1.386294364929199
+  - local upperknot `r(max)'
+  = local upperknot 3.871201038360596
+  - }
+  - else if substr("`knscale'",1,1) == "t" {
+  = else if substr("time",1,1) == "t" {
+    local lowerknot = ln(real(word("`bknots'",1)))
+    local upperknot = ln(real(word("`bknots'",2)))
+    }
+  - else if substr("`knscale'",1,1) == "l" {
+  = else if substr("time",1,1) == "l" {
+    local lowerknot = word("`bknots'",1)
+    local upperknot = word("`bknots'",2)
+    }
+  - else if substr("`knscale'",1,1) == "c" {
+  = else if substr("time",1,1) == "c" {
+    qui centile `lnt' if `touse' & _d==1, centile(`bknots')
+    local lowerknot = `r(c_1)'
+    local upperknot = `r(c_2)'
+    }
+  - if `nbhknots' == 0 & "`rcsbaseoff'" == "" & "`cure'" == "" {
+  = if 0 == 0 & "" == "" & "cure" == "" {
+    if `df' == 1 {
+    qui rcsgen `lnt' if `touse2', gen(_rcs) dgen(_d_rcs) `orthog' `rmatrixopt' `reverse'
+    if "`orthog'" != "" {
+    matrix `R_bh' = r(R)
+    }
+    }
+    else if `df' == 2 {
+    qui _pctile `lnt' if `touse' & _d==1 `wt', p(50)
+    local bhknots `lowerknot' `r(r1)' `upperknot'
+    }
+    else if `df' == 3 {
+    qui _pctile `lnt' if `touse' & _d==1 `wt', p(33 67)
+    local bhknots `lowerknot' `r(r1)' `r(r2)' `upperknot'
+    }
+    else if `df' == 4 {
+    qui _pctile `lnt' if `touse' & _d==1 `wt', p(25 50 75)
+    local bhknots `lowerknot' `r(r1)' `r(r2)' `r(r3)' `upperknot'
+    }
+    else if `df' == 5 {
+    qui _pctile `lnt' if `touse' & _d==1 `wt', p(20 40 60 80)
+    local bhknots `lowerknot' `r(r1)' `r(r2)' `r(r3)' `r(r4)' `upperknot'
+    }
+    else if `df' == 6 {
+    qui _pctile `lnt' if `touse' & _d==1 `wt', p(17 33 50 67 83)
+    local bhknots `lowerknot' `r(r1)' `r(r2)' `r(r3)' `r(r4)' `r(r5)' `upperknot'
+    }
+    else if `df' == 7 {
+    qui _pctile `lnt' if `touse' & _d==1 `wt', p(14 29 43 57 71 86)
+    local bhknots `lowerknot' `r(r1)' `r(r2)' `r(r3)' `r(r4)' `r(r5)' `r(r6)' `upperknot'
+    }
+    else if `df' == 8 {
+    qui _pctile `lnt' if `touse' & _d==1 `wt', p(12.5 25 37.5 50 62.5 75 87.5)
+    local bhknots `lowerknot' `r(r1)' `r(r2)' `r(r3)' `r(r4)' `r(r5)' `r(r6)' `r(r7)' `upperknot'
+    }
+    else if `df' == 9 {
+    qui _pctile `lnt' if `touse' & _d==1 `wt', p(11.1 22.2 33.3 44.4 55.6 66.7 77.8 88.9)
+    local bhknots `lowerknot' `r(r1)' `r(r2)' `r(r3)' `r(r4)' `r(r5)' `r(r6)' `r(r7)' `r(r8)' `upperkn
+> ot'
+    }
+    else if `df' == 10 {
+    qui _pctile `lnt' if `touse' & _d==1 `wt', p(10 20 30 40 50 60 70 80 90)
+    local bhknots `lowerknot' `r(r1)' `r(r2)' `r(r3)' `r(r4)' `r(r5)' `r(r6)' `r(r7)' `r(r8)' `r(r9)' 
+> `upperknot'
+    }
+    else {
+    display as error "DF must be between 1 and 10"
+    exit
+    }
+    }
+  - if `nbhknots' == 0 & "`rcsbaseoff'" == "" & "`cure'" != ""{
+  = if 0 == 0 & "" == "" & "cure" != ""{
+  - if `df' == 3 {
+  = if 5 == 3 {
+    qui _pctile `lnt' if `touse' & _d==1 `wt', p(50 95)
+    local bhknots `lowerknot' `r(r1)' `r(r2)' `upperknot'
+    }
+  - else if `df' == 4{
+  = else if 5 == 4{
+    qui _pctile `lnt' if `touse' & _d==1 `wt', p(33 67 95)
+    local bhknots `lowerknot' `r(r1)' `r(r2)' `r(r3)' `upperknot'
+    }
+  - else if `df' == 5 {
+  = else if 5 == 5 {
+  - qui _pctile `lnt' if `touse' & _d==1 `wt', p(25 50 75 95)
+  = qui _pctile __000002 if __00000F & _d==1 , p(25 50 75 95)
+  - local bhknots `lowerknot' `r(r1)' `r(r2)' `r(r3)' `r(r4)' `upperknot'
+  = local bhknots 1.386294364929199 2.302585124969482 2.890371799468994 3.332204580307007 3.7376697063
+> 44605 3.871201038360596
+  - }
+  - else if `df' == 6 {
+  = else if 5 == 6 {
+    qui _pctile `lnt' if `touse' & _d==1 `wt', p(20 40 60 80 95)
+    local bhknots `lowerknot' `r(r1)' `r(r2)' `r(r3)' `r(r4)' `r(r5)' `upperknot'
+    }
+  - else if `df' == 7 {
+  = else if 5 == 7 {
+    qui _pctile `lnt' if `touse' & _d==1 `wt', p(17 33 50 67 83 95)
+    local bhknots `lowerknot' `r(r1)' `r(r2)' `r(r3)' `r(r4)' `r(r5)' `r(r6)' `upperknot'
+    }
+  - else if `df' == 8 {
+  = else if 5 == 8 {
+    qui _pctile `lnt' if `touse' & _d==1 `wt', p(14 29 43 57 71 86 95)
+    local bhknots `lowerknot' `r(r1)' `r(r2)' `r(r3)' `r(r4)' `r(r5)' `r(r6)' `r(r7)' `upperknot'
+    }
+  - else if `df' == 9 {
+  = else if 5 == 9 {
+    qui _pctile `lnt' if `touse' & _d==1 `wt', p(12.5 25 37.5 50 62.5 75 87.5 95)
+    local bhknots `lowerknot' `r(r1)' `r(r2)' `r(r3)' `r(r4)' `r(r5)' `r(r6)' `r(r7)' `r(r8)' `upperkn
+> ot'
+    }
+  - else if `df' == 10 {
+  = else if 5 == 10 {
+    qui _pctile `lnt' if `touse' & _d==1 `wt', p(11.1 22.2 33.3 44.4 55.6 66.7 77.8 88.9 95)
+    local bhknots `lowerknot' `r(r1)' `r(r2)' `r(r3)' `r(r4)' `r(r5)' `r(r6)' `r(r7)' `r(r8)' `r(r9)' 
+> `upperknot'
+    }
+  - else if `df' == 11 {
+  = else if 5 == 11 {
+    qui _pctile `lnt' if `touse' & _d==1 `wt', p(10 20 30 40 50 60 70 80 90 95)
+    local bhknots `lowerknot' `r(r1)' `r(r2)' `r(r3)' `r(r4)' `r(r5)' `r(r6)' `r(r7)' `r(r8)' `r(r9)' 
+> `r(r10)' `upperknot'
+    }
+  - else {
+    display as error "DF must be between 3 and 11"
+    exit
+    }
+  - }
+  - if "`tvc'" != "" {
+  = if "FollowUpNeg" != "" {
+  - foreach tvcvar in `tvc' {
+  = foreach tvcvar in FollowUpNeg {
+  - if "`tvcknots_`tvcvar'_user'" == "" {
+  = if "" == "" {
+  - if `tvc_`tvcvar'_df' == 1 {
+  = if 1 == 1 {
+  - qui rcsgen `lnt' if `touse2', gen(_rcs_`tvcvar') dgen(_d_rcs_`tvcvar') `orthog' `reverse'
+  = qui rcsgen __000002 if __000008, gen(_rcs_FollowUpNeg) dgen(_d_rcs_FollowUpNeg) orthog reverse
+    --------------------------------------------------------------------------------- begin rcsgen ---
+    - version 10.0
+    - syntax varlist(max=1) [if] [in] , [Gen(string) DGen(string) Knots(numlist) BKnots(numlist max=2)
+>  Orthog Percentiles(numlist ascending) RMATrix(name) DF(int 0) IF2(string) FW(varname) REVerse]
+    - marksample touse
+    - if "`knots'" != "" {
+    = if "" != "" {
+      numlist "`knots'", sort
+      local knots `r(numlist)'
+      }
+    - if "`knots'" != "" & "`percentiles'" != "" {
+    = if "" != "" & "" != "" {
+      display as err "Only one of the knots, df and percentiles options can be used"
+      exit 198
+      }
+    - if "`knots'" != "" & "`df'" != "0" {
+    = if "" != "" & "0" != "0" {
+      display as err "Only one of the knots, df and percentiles options can be used"
+      exit 198
+      }
+    - if "`df'" != "0" & "`percentiles'" != "" {
+    = if "0" != "0" & "" != "" {
+      display as err "Only one of the knots, df and percentiles options can be used"
+      exit 198
+      }
+    - if "`bknots'" != "" & "`df'" == "0" {
+    = if "" != "" & "0" == "0" {
+      display as err "Boundary knots can only be defined with the degrees of freedom option"
+      exit 198
+      }
+    - if "`orthog'" != "" & "`rmatrix'" != "" {
+    = if "orthog" != "" & "" != "" {
+      display as error "Only one of the orthog and rmatrix options  can be specified"
+      exit 198
+      }
+    - if "`gen'" == "" {
+    = if "_rcs_FollowUpNeg" == "" {
+      di in red "Must specify name for cubic splines basis"
+      exit 198
+      }
+    - if "`percentiles'" != "" {
+    = if "" != "" {
+      if "`fw'" != "" {
+      local fw [fw=`fw']
+      }
+      if "`if2'" != "" {
+      local aif & `if2'
+      }
+      local knots
+      foreach ptile in `percentiles' {
+      summ `varlist' if `touse' `aif', meanonly
+      if `ptile' == 0 {
+      local knots `r(min)'
+      }
+      else if `ptile' == 100 {
+      local knots `knots' `r(max)'
+      }
+      else {
+      _pctile `varlist' if `touse' `aif' `fw', p(`ptile')
+      local knots `knots' `r(r1)'
+      }
+      }
+      }
+    - if "`df'" != "0" {
+    = if "0" != "0" {
+      if "`fw'" != "" {
+      local fw [fw=`fw']
+      }
+      if "`if2'" != "" {
+      local aif & `if2'
+      }
+      if "`bknots'"!="" {
+      local lowerknot: word 1 of `bknots'
+      local upperknot: word 2 of `bknots'
+      }
+      else {
+      quietly summ `varlist' if `touse' `aif', meanonly
+      local lowerknot `r(min)'
+      local upperknot `r(max)'
+      }
+      local dfm1=`df'-1
+      forvalues y= 1/`dfm1' {
+      local centile=(100/`df')*`y'
+      local centilelist `centilelist' `centile'
+      }
+      local intknots
+      foreach ctile in `centilelist' {
+      _pctile `varlist' if `touse' `aif' `fw', p(`ctile')
+      local intknots `intknots' `r(r1)'
+      }
+      if real(word("`intknots'",1))<=`lowerknot' {
+      display as err "Lowest internal knot is not greater than lower boundary knot"
+      exit 198
+      }
+      if real(word("`intknots'",`dfm1'))>=`upperknot' {
+      display as err "Highest internal knot is not greater than upper boundary knot"
+      exit 198
+      }
+      local knots
+      local knots `lowerknot' `intknots' `upperknot'
+      }
+    - if "`reverse'" == "" {
+    = if "reverse" == "" {
+      quietly gen double `gen'1 = `varlist' if `touse'
+      if "`dgen'" != "" {
+      quietly gen double `dgen'1 = 1 if `touse'
+      }
+      local rcslist `gen'1
+      local drcslist `dgen'1
+      local nk : word count `knots'
+      if "`knots'" == "" {
+      local interior = 0
+      }
+      else {
+      local interior = `nk' - 2
+      }
+      local nparams = `interior' + 1
+      if "`knots'" != "" {
+      local i = 1
+      tokenize "`knots'"
+      while "``i''" != "" {
+      local k`i' ``i''
+      local i = `i' + 1
+      }
+      local kmin = `k1'
+      local kmax = `k`nk''
+      forvalues j=2/`nparams' {
+      local lambda = (`kmax' - `k`j'')/(`kmax' - `kmin')
+      quietly gen double `gen'`j' = ((`varlist'-`k`j'')^3)*(`varlist'>`k`j'') - `lambda'*((`varlist'-`
+> kmin')^3)*(`varlist'>`kmin') - (1-`lambda')*((`varlist'-`kmax')^3)*(`varlist'>`kmax') if `touse'
+      local rcslist `rcslist' `gen'`j'
+      if "`dgen'"!="" {
+      quietly gen double `dgen'`j' = (3*(`varlist'- `k`j'')^2)*(`varlist'>`k`j'') - `lambda'*(3*(`varl
+> ist'-`kmin')^2)*(`varlist'>`kmin') - (1-`lambda')*(3*(`varlist'-`kmax')^2)*(`varlist'>`kmax') if `to
+> use'
+      local drcslist `drcslist' `dgen'`j'
+      }
+      }
+      }
+      }
+    - else if "`reverse'" != "" {
+    = else if "reverse" != "" {
+    - local rcslist
+    - local drcslist
+    - local nk : word count `knots'
+    = local nk : word count 
+    - if "`knots'" == "" {
+    = if "" == "" {
+    - local interior = 0
+    - }
+    - else {
+      local interior = `nk' - 2
+      }
+    - local nparams = `interior' + 1
+    = local nparams = 0 + 1
+    - if "`knots'" != "" {
+    = if "" != "" {
+      local i = 1
+      tokenize "`knots'"
+      while "``i''" != "" {
+      local k`i' ``i''
+      local i = `i' + 1
+      }
+      local kmin = `k1'
+      local kmax = `k`nk''
+      forvalues j=1/`interior' {
+      local h = `nk'-`j'
+      local lambda = (`k`h''-`kmin')/(`kmax' - `kmin')
+      quietly gen double `gen'`j' = ((`k`h''-`varlist')^3)*(`k`h''>`varlist') - `lambda'*((`kmax'-`var
+> list')^3)*(`kmax'>`varlist') - (1-`lambda')*((`kmin'-`varlist')^3)*(`kmin'>`varlist') if `touse'
+      local rcslist `rcslist' `gen'`j'
+      if "`dgen'"!="" {
+      quietly gen double `dgen'`j' = (-3*(`k`h''-`varlist')^2)*(`k`h''>`varlist') - `lambda'*(-3*(`kma
+> x'-`varlist')^2)*(`kmax'>`varlist') - (1-`lambda')*(-3*(`kmin'-`varlist')^2)*(`kmin'>`varlist') if `
+> touse'
+      local drcslist `drcslist' `dgen'`j'
+      }
+      }
+      quietly gen double `gen'`nparams' = `varlist' if `touse'
+      local rcslist `rcslist' `gen'`nparams'
+      if "`dgen'" != "" {
+      quietly gen double `dgen'`nparams' = 1 if `touse'
+      local drcslist `drcslist' `dgen'`nparams'
+      }
+      }
+    - }
+    - if "`orthog'" != "" {
+    = if "orthog" != "" {
+    - tempname R Rinv cons
+    - mata: orthgs("`rcslist'","`touse'")
+    = mata: orthgs("","__00000G")
+varlist required
+               st_data():  3598  Stata returned error
+                orthgs():     -  function returned error
+                 <istmt>:     -  function returned error
+      if "`dgen'" != "" {
+      gen `cons' = 1 if `touse'
+      matrix `Rinv' = inv(`R')
+      mata st_store(.,tokens(st_local("drcslist")), "`touse'",st_data(.,tokens(st_local("drcslist")), 
+> "`touse'")*st_matrix("`Rinv'")[1..`nparams',1..`nparams'])
+      }
+      }
+    ----------------------------------------------------------------------------------- end rcsgen ---
+    if "`orthog'" != "" {
+    tempname R_`tvcvar' Rinv_`tvcvar'
+    matrix `R_`tvcvar'' = r(R)
+    }
+    }
+    else if `tvc_`tvcvar'_df'==2 {
+    qui _pctile `lnt' if `touse' & _d==1 `wt', p(50)
+    local tvcknots_`tvcvar' `lowerknot' `r(r1)' `upperknot'
+    }
+    else if `tvc_`tvcvar'_df'==3 {
+    qui _pctile `lnt' if `touse' & _d==1 `wt', p(33 67)
+    local tvcknots_`tvcvar' `lowerknot' `r(r1)' `r(r2)' `upperknot'
+    }
+    else if `tvc_`tvcvar'_df'==4 {
+    qui _pctile `lnt' if `touse' & _d==1 `wt', p(25 50 75)
+    local tvcknots_`tvcvar' `lowerknot' `r(r1)' `r(r2)' `r(r3)' `upperknot'
+    }
+    else if `tvc_`tvcvar'_df'==5 {
+    qui _pctile `lnt' if `touse' & _d==1 `wt', p(20 40 60 80)
+    local tvcknots_`tvcvar' `lowerknot' `r(r1)' `r(r2)' `r(r3)' `r(r4)' `upperknot'
+    }
+    else if `tvc_`tvcvar'_df'==6 {
+    qui _pctile `lnt' if `touse' & _d==1 `wt', p(17 33 50 67 83)
+    local tvcknots_`tvcvar' `lowerknot' `r(r1)' `r(r2)' `r(r3)' `r(r4)' `r(r5)' `upperknot'
+    }
+    else if `tvc_`tvcvar'_df'==7 {
+    qui _pctile `lnt' if `touse' & _d==1 `wt', p(14 29 43 57 71 86)
+    local tvcknots_`tvcvar' `lowerknot' `r(r1)' `r(r2)' `r(r3)' `r(r4)' `r(r5)' `r(r6)' `upperknot'
+    }
+    else if `tvc_`tvcvar'_df'==8 {
+    qui _pctile `lnt' if `touse' & _d==1 `wt', p(12.5 25 37.5 50 62.5 75 87.5)
+    local tvcknots_`tvcvar' `lowerknot' `r(r1)' `r(r2)' `r(r3)' `r(r4)' `r(r5)' `r(r6)' `r(r7)' `upper
+> knot'
+    }
+    else if `tvc_`tvcvar'_df'==9 {
+    qui _pctile `lnt' if `touse' & _d==1 `wt', p(11.1 22.2 33.3 44.4 55.6 66.7 77.8 88.9)
+    local tvcknots_`tvcvar' `lowerknot' `r(r1)' `r(r2)' `r(r3)' `r(r4)' `r(r5)' `r(r6)' `r(r7)' `r(r8)
+> ' `upperknot'
+    }
+    else if `tvc_`tvcvar'_df'==10 {
+    qui _pctile `lnt' if `touse' & _d==1 `wt', p(10 20 30 40 50 60 70 80 90)
+    local tvcknots_`tvcvar' `lowerknot' `r(r1)' `r(r2)' `r(r3)' `r(r4)' `r(r5)' `r(r6)' `r(r7)' `r(r8)
+> ' `r(r9)' `upperknot'
+    }
+    else {
+    display as error "DF for time-dependent effects must be between 1 and 10"
+    exit
+    }
+    }
+    }
+    }
+  ----------------------------------------------------------------------------- end stpm2.Estimate ---
+---------------------------------------------------------------------------------------- end stpm2 ---
+r(3598);
+
+. set trace off
+
+.       stpm2 Follow, scale(hazard) knots(10 50 90)  cure
+note: delayed entry models are being fitted
+
+initial values not feasible
+r(1400);
+
+.       stpm2 Follow, scale(hazard) knots(10 50 80 90)  cure
+note: delayed entry models are being fitted
+
+Iteration 0:   log likelihood = -479.76015  (not concave)
+Iteration 1:   log likelihood = -474.71863  (not concave)
+Iteration 2:   log likelihood = -473.62795  (not concave)
+Iteration 3:   log likelihood = -472.27082  (not concave)
+Iteration 4:   log likelihood = -471.95922  (not concave)
+Iteration 5:   log likelihood = -471.69861  (not concave)
+Iteration 6:   log likelihood = -471.59708  (not concave)
+Iteration 7:   log likelihood = -471.54178  (not concave)
+Iteration 8:   log likelihood = -471.47674  (not concave)
+Iteration 9:   log likelihood = -471.44809  (not concave)
+Iteration 10:  log likelihood = -471.41919  (not concave)
+Iteration 11:  log likelihood = -471.39324  (not concave)
+Iteration 12:  log likelihood = -471.36841  (not concave)
+Iteration 13:  log likelihood = -471.34319  (not concave)
+Iteration 14:  log likelihood = -471.31824  (not concave)
+Iteration 15:  log likelihood = -471.29361  (not concave)
+Iteration 16:  log likelihood = -471.26909  (not concave)
+Iteration 17:  log likelihood = -471.24449  (not concave)
+Iteration 18:  log likelihood = -471.21997  (not concave)
+Iteration 19:  log likelihood = -471.19543  (not concave)
+Iteration 20:  log likelihood = -471.17092  (not concave)
+Iteration 21:  log likelihood = -471.14636  (not concave)
+Iteration 22:  log likelihood = -471.12183  (not concave)
+Iteration 23:  log likelihood = -471.09725  (not concave)
+Iteration 24:  log likelihood = -471.07269  (not concave)
+Iteration 25:  log likelihood = -471.04808  (not concave)
+Iteration 26:  log likelihood =  -471.0235  (not concave)
+Iteration 27:  log likelihood = -470.99886  (not concave)
+Iteration 28:  log likelihood = -470.97424  (not concave)
+Iteration 29:  log likelihood = -470.94958  (not concave)
+Iteration 30:  log likelihood = -470.92493  (not concave)
+Iteration 31:  log likelihood = -470.90024  (not concave)
+Iteration 32:  log likelihood = -470.87557  (not concave)
+Iteration 33:  log likelihood = -470.85084  (not concave)
+Iteration 34:  log likelihood = -470.82614  (not concave)
+Iteration 35:  log likelihood = -470.80139  (not concave)
+Iteration 36:  log likelihood = -470.77665  (not concave)
+Iteration 37:  log likelihood = -470.75187  (not concave)
+Iteration 38:  log likelihood = -470.72711  (not concave)
+Iteration 39:  log likelihood =  -470.7023  (not concave)
+Iteration 40:  log likelihood = -470.67751  (not concave)
+Iteration 41:  log likelihood = -470.65267  (not concave)
+Iteration 42:  log likelihood = -470.62785  (not concave)
+Iteration 43:  log likelihood = -470.60298  (not concave)
+Iteration 44:  log likelihood = -470.57814  (not concave)
+Iteration 45:  log likelihood = -470.55324  (not concave)
+Iteration 46:  log likelihood = -470.52836  (not concave)
+Iteration 47:  log likelihood = -470.50343  (not concave)
+Iteration 48:  log likelihood = -470.47853  (not concave)
+Iteration 49:  log likelihood = -470.45357  (not concave)
+Iteration 50:  log likelihood = -470.42864  (not concave)
+Iteration 51:  log likelihood = -470.40365  (not concave)
+Iteration 52:  log likelihood = -470.37869  (not concave)
+Iteration 53:  log likelihood = -470.35368  (not concave)
+Iteration 54:  log likelihood = -470.32869  (not concave)
+Iteration 55:  log likelihood = -470.30364  (not concave)
+Iteration 56:  log likelihood = -470.27862  (not concave)
+Iteration 57:  log likelihood = -470.25355  (not concave)
+Iteration 58:  log likelihood =  -470.2285  (not concave)
+Iteration 59:  log likelihood =  -470.2034  (not concave)
+Iteration 60:  log likelihood = -470.17832  (not concave)
+Iteration 61:  log likelihood = -470.15319  (not concave)
+Iteration 62:  log likelihood = -470.12809  (not concave)
+Iteration 63:  log likelihood = -470.10293  (not concave)
+Iteration 64:  log likelihood = -470.07779  (not concave)
+Iteration 65:  log likelihood = -470.05261  (not concave)
+Iteration 66:  log likelihood = -470.02744  (not concave)
+Iteration 67:  log likelihood = -470.00222  (not concave)
+Iteration 68:  log likelihood = -469.97703  (not concave)
+Iteration 69:  log likelihood = -469.95179  (not concave)
+Iteration 70:  log likelihood = -469.92656  (not concave)
+Iteration 71:  log likelihood = -469.90129  (not concave)
+Iteration 72:  log likelihood = -469.87604  (not concave)
+Iteration 73:  log likelihood = -469.85074  (not concave)
+Iteration 74:  log likelihood = -469.82546  (not concave)
+Iteration 75:  log likelihood = -469.80013  (not concave)
+Iteration 76:  log likelihood = -469.77482  (not concave)
+Iteration 77:  log likelihood = -469.74946  (not concave)
+Iteration 78:  log likelihood = -469.72412  (not concave)
+Iteration 79:  log likelihood = -469.69873  (not concave)
+Iteration 80:  log likelihood = -469.67337  (not concave)
+--Break--
+r(1);
+
+.       stpm2 Follow, scale(hazard) knots(10 60 80 90)  cure
+note: delayed entry models are being fitted
+
+Iteration 0:   log likelihood = -482.30037  (not concave)
+Iteration 1:   log likelihood = -479.89286  (not concave)
+Iteration 2:   log likelihood = -478.90324  (not concave)
+Iteration 3:   log likelihood = -478.43267  (not concave)
+Iteration 4:   log likelihood =   -478.072  (not concave)
+Iteration 5:   log likelihood = -477.83006  (not concave)
+Iteration 6:   log likelihood = -477.68192  (not concave)
+Iteration 7:   log likelihood = -477.54099  (not concave)
+Iteration 8:   log likelihood = -477.25415  (not concave)
+Iteration 9:   log likelihood = -477.12158  (not concave)
+Iteration 10:  log likelihood = -476.05681  (not concave)
+Iteration 11:  log likelihood = -475.49837  (not concave)
+Iteration 12:  log likelihood =  -475.3961  (not concave)
+Iteration 13:  log likelihood =  -475.3036  (not concave)
+Iteration 14:  log likelihood = -475.20879  (not concave)
+Iteration 15:  log likelihood = -475.11731  (not concave)
+Iteration 16:  log likelihood = -475.02777  (not concave)
+Iteration 17:  log likelihood = -474.93816  (not concave)
+Iteration 18:  log likelihood = -474.84817  (not concave)
+Iteration 19:  log likelihood =   -474.759  (not concave)
+Iteration 20:  log likelihood = -474.66965  (not concave)
+Iteration 21:  log likelihood = -474.58043  (not concave)
+Iteration 22:  log likelihood = -474.49086  (not concave)
+Iteration 23:  log likelihood = -474.40161  (not concave)
+Iteration 24:  log likelihood = -474.31198  (not concave)
+Iteration 25:  log likelihood = -474.22255  (not concave)
+Iteration 26:  log likelihood = -474.13274  (not concave)
+Iteration 27:  log likelihood = -474.04316  (not concave)
+Iteration 28:  log likelihood = -473.95319  (not concave)
+Iteration 29:  log likelihood = -473.86343  (not concave)
+Iteration 30:  log likelihood = -473.77329  (not concave)
+Iteration 31:  log likelihood = -473.68337  (not concave)
+Iteration 32:  log likelihood = -473.59306  (not concave)
+Iteration 33:  log likelihood = -473.50297  (not concave)
+Iteration 34:  log likelihood = -473.41249  (not concave)
+Iteration 35:  log likelihood = -473.32224  (not concave)
+Iteration 36:  log likelihood =  -473.2316  (not concave)
+Iteration 37:  log likelihood = -473.14119  (not concave)
+Iteration 38:  log likelihood = -473.05039  (not concave)
+Iteration 39:  log likelihood = -472.95982  (not concave)
+Iteration 40:  log likelihood = -472.86887  (not concave)
+Iteration 41:  log likelihood = -472.77815  (not concave)
+Iteration 42:  log likelihood = -472.68704  (not concave)
+Iteration 43:  log likelihood = -472.59618  (not concave)
+Iteration 44:  log likelihood = -472.50492  (not concave)
+Iteration 45:  log likelihood = -472.41391  (not concave)
+Iteration 46:  log likelihood = -472.32251  (not concave)
+Iteration 47:  log likelihood = -472.23136  (not concave)
+Iteration 48:  log likelihood = -472.13983  (not concave)
+Iteration 49:  log likelihood = -472.04854  (not concave)
+Iteration 50:  log likelihood = -471.95686  (not concave)
+Iteration 51:  log likelihood = -471.86544  (not concave)
+Iteration 52:  log likelihood = -471.77364  (not concave)
+Iteration 53:  log likelihood = -471.68209  (not concave)
+Iteration 54:  log likelihood = -471.59015  (not concave)
+Iteration 55:  log likelihood = -471.49848  (not concave)
+Iteration 56:  log likelihood = -471.40642  (not concave)
+Iteration 57:  log likelihood = -471.31462  (not concave)
+Iteration 58:  log likelihood = -471.22244  (not concave)
+Iteration 59:  log likelihood = -471.13052  (not concave)
+Iteration 60:  log likelihood = -471.03823  (not concave)
+Iteration 61:  log likelihood = -470.94619  (not concave)
+Iteration 62:  log likelihood = -470.85378  (not concave)
+Iteration 63:  log likelihood = -470.76164  (not concave)
+Iteration 64:  log likelihood = -470.66912  (not concave)
+Iteration 65:  log likelihood = -470.57687  (not concave)
+--Break--
+r(1);
+
+.       stpm2 Follow, scale(hazard) knots(5 30 40)  cure
+note: delayed entry models are being fitted
+
+initial values not feasible
+r(1400);
+
+.       stpm2 Follow, scale(hazard) knots(5 30 40 45)  cure
+note: delayed entry models are being fitted
+
+Iteration 0:   log likelihood = -684.72967  
+Iteration 1:   log likelihood = -671.11346  
+Iteration 2:   log likelihood =  -666.3494  
+Iteration 3:   log likelihood = -665.95225  
+Iteration 4:   log likelihood = -665.95095  
+Iteration 5:   log likelihood = -665.95095  
+
+Log likelihood = -665.95095                     Number of obs     =      6,296
+
+------------------------------------------------------------------------------
+             |      Coef.   Std. Err.      z    P>|z|     [95% Conf. Interval]
+-------------+----------------------------------------------------------------
+xb           |
+ FollowUpNeg |   .1907406   .1397741     1.36   0.172    -.0832116    .4646928
+       _rcs1 |   1.713921    .158736    10.80   0.000     1.402804    2.025038
+       _rcs2 |   .0516833   .0647646     0.80   0.425     -.075253    .1786197
+       _rcs3 |   .1391061   .0322884     4.31   0.000      .075822    .2023902
+       _rcs4 |   .2212644   .0478614     4.62   0.000     .1274577    .3150711
+       _rcs5 |   2.73e-16   4.10e-17     6.65   0.000     1.93e-16    3.54e-16
+       _cons |  -2.071217   .1292562   -16.02   0.000    -2.324555    -1.81788
+------------------------------------------------------------------------------
+
+.       stpm2 Follow, scale(hazard) knots(5 30 40 45) knscale(time_ cure
+) required
+r(100);
+
+.       stpm2 Follow, scale(hazard) knots(5 30 40 45) knscale(time) cure
+note: delayed entry models are being fitted
+
+Iteration 0:   log likelihood = -684.72967  
+Iteration 1:   log likelihood = -671.11346  
+Iteration 2:   log likelihood =  -666.3494  
+Iteration 3:   log likelihood = -665.95225  
+Iteration 4:   log likelihood = -665.95095  
+Iteration 5:   log likelihood = -665.95095  
+
+Log likelihood = -665.95095                     Number of obs     =      6,296
+
+------------------------------------------------------------------------------
+             |      Coef.   Std. Err.      z    P>|z|     [95% Conf. Interval]
+-------------+----------------------------------------------------------------
+xb           |
+ FollowUpNeg |   .1907406   .1397741     1.36   0.172    -.0832116    .4646928
+       _rcs1 |   1.713921    .158736    10.80   0.000     1.402804    2.025038
+       _rcs2 |   .0516833   .0647646     0.80   0.425     -.075253    .1786197
+       _rcs3 |   .1391061   .0322884     4.31   0.000      .075822    .2023902
+       _rcs4 |   .2212644   .0478614     4.62   0.000     .1274577    .3150711
+       _rcs5 |   2.73e-16   4.10e-17     6.65   0.000     1.93e-16    3.54e-16
+       _cons |  -2.071217   .1292562   -16.02   0.000    -2.324555    -1.81788
+------------------------------------------------------------------------------
+
+.       stpm2 Follow, scale(hazard) knots(5 30 40 45) knscale(time)
+note: delayed entry models are being fitted
+
+Iteration 0:   log likelihood = -478.65046  
+Iteration 1:   log likelihood = -469.62943  
+Iteration 2:   log likelihood = -469.38544  
+Iteration 3:   log likelihood = -469.38422  
+Iteration 4:   log likelihood = -469.38422  
+
+Log likelihood = -469.38422                     Number of obs     =      6,296
+
+------------------------------------------------------------------------------
+             |      Coef.   Std. Err.      z    P>|z|     [95% Conf. Interval]
+-------------+----------------------------------------------------------------
+xb           |
+ FollowUpNeg |   .1924094   .1397376     1.38   0.169    -.0814712    .4662899
+       _rcs1 |    1.55309   .1406527    11.04   0.000     1.277416    1.828765
+       _rcs2 |   .3383921   .0988757     3.42   0.001     .1445993    .5321849
+       _rcs3 |   -.082396   .0366481    -2.25   0.025    -.1542249   -.0105671
+       _rcs4 |   .0259148   .0102925     2.52   0.012      .005742    .0460877
+       _rcs5 |  -.0046914   .0035179    -1.33   0.182    -.0115865    .0022036
+       _cons |  -2.030398   .1272031   -15.96   0.000    -2.279712   -1.781085
+------------------------------------------------------------------------------
+
+.       stpm2 Follow, scale(hazard) knots(5 30 40 44) knscale(time)
+note: delayed entry models are being fitted
+
+Iteration 0:   log likelihood =  -478.7028  
+Iteration 1:   log likelihood = -469.70847  
+Iteration 2:   log likelihood = -469.46095  
+Iteration 3:   log likelihood = -469.45971  
+Iteration 4:   log likelihood = -469.45971  
+
+Log likelihood = -469.45971                     Number of obs     =      6,296
+
+------------------------------------------------------------------------------
+             |      Coef.   Std. Err.      z    P>|z|     [95% Conf. Interval]
+-------------+----------------------------------------------------------------
+xb           |
+ FollowUpNeg |   .1923435    .139738     1.38   0.169     -.081538     .466225
+       _rcs1 |   1.553231   .1406837    11.04   0.000     1.277496    1.828966
+       _rcs2 |   .3385142   .0989154     3.42   0.001     .1446435    .5323849
+       _rcs3 |  -.0825131   .0366714    -2.25   0.024    -.1543878   -.0106384
+       _rcs4 |   .0258872    .010382     2.49   0.013     .0055388    .0462356
+       _rcs5 |  -.0047941   .0036681    -1.31   0.191    -.0119835    .0023952
+       _cons |  -2.030418   .1272084   -15.96   0.000    -2.279741   -1.781094
+------------------------------------------------------------------------------
+
+.       stpm2 Follow, scale(hazard) knots(5 30 40 44) knscale(time) tvcknots(30 40)
+option tvcknots() not allowed
+r(198);
+
+.       stpm2 Follow, scale(hazard) knots(5 30 40 44) knscale(time) knotstvc(30 40)
+note: delayed entry models are being fitted
+
+[knotstvc() used without specifying tvc(), option ignored]
+
+Iteration 0:   log likelihood =  -478.7028  
+Iteration 1:   log likelihood = -469.70847  
+Iteration 2:   log likelihood = -469.46095  
+Iteration 3:   log likelihood = -469.45971  
+Iteration 4:   log likelihood = -469.45971  
+
+Log likelihood = -469.45971                     Number of obs     =      6,296
+
+------------------------------------------------------------------------------
+             |      Coef.   Std. Err.      z    P>|z|     [95% Conf. Interval]
+-------------+----------------------------------------------------------------
+xb           |
+ FollowUpNeg |   .1923435    .139738     1.38   0.169     -.081538     .466225
+       _rcs1 |   1.553231   .1406837    11.04   0.000     1.277496    1.828966
+       _rcs2 |   .3385142   .0989154     3.42   0.001     .1446435    .5323849
+       _rcs3 |  -.0825131   .0366714    -2.25   0.024    -.1543878   -.0106384
+       _rcs4 |   .0258872    .010382     2.49   0.013     .0055388    .0462356
+       _rcs5 |  -.0047941   .0036681    -1.31   0.191    -.0119835    .0023952
+       _cons |  -2.030418   .1272084   -15.96   0.000    -2.279741   -1.781094
+------------------------------------------------------------------------------
+
+.       stpm2 Follow, scale(hazard) knots(5 30 40 44) knscale(time) tvc(Follow) knotstvc(30 40)
+note: delayed entry models are being fitted
+invalid syntax
+r(198);
+
+.       stpm2 Follow, scale(hazard) knots(5 30 40 44) knscale(time) tvc(Follow) knotstvc(5 30 40 44)
+note: delayed entry models are being fitted
+invalid syntax
+r(198);
+
+.       stpm2 Follow, scale(hazard) knots(5 30 40 44) knscale(time) tvc(Follow) knotstvc(30 40)
+note: delayed entry models are being fitted
+invalid syntax
+r(198);
+
+. set trace on
+
+.       stpm2 Follow, scale(hazard) knots(5 30 40 44) knscale(time) tvc(Follow) knotstvc(30 40)
+-------------------------------------------------------------------------------------- begin stpm2 ---
+- version 11.1
+- if strpos("`0'","oldstpm") >0 {
+= if strpos("Follow, scale(hazard) knots(5 30 40 44) knscale(time) tvc(Follow) knotstvc(30 40)","oldst
+> pm") >0 {
+  local 0:subinstr local 0 "oldstpm" ""
+  stpm `0'
+  exit
+  }
+- if _by() {
+  local by "by `_byvars'`_byrc0':"
+  }
+- if replay() {
+  syntax [, DF(string) KNOTS(numlist ascending) BKNOTS(numlist ascending min=2 max=2) *]
+  if "`df'`knots'`bknots'" != "" {
+  `by' Estimate `0'
+  ereturn local cmdline `"stpm2 `0'"'
+  }
+  else {
+  if "`e(cmd)'" != "stpm2" {
+  error 301
+  }
+  if _by() {
+  error 190
+  }
+  Replay `0'
+  }
+  exit
+  }
+- `by' Estimate `0'
+=  Estimate Follow, scale(hazard) knots(5 30 40 44) knscale(time) tvc(Follow) knotstvc(30 40)
+  --------------------------------------------------------------------------- begin stpm2.Estimate ---
+  - st_is 2 analysis
+    ---------------------------------------------------------------------------------- begin st_is ---
+    - version 6
+    - if "`1'"=="2" & `"`_dta[_dta]'"'=="st" & `"`_dta[st_ver]'"'=="2" & _caller()>5 {
+    = if "2"=="2" & `"st"'=="st" & `"2"'=="2" & _caller()>5 {
+    - if "`2'"=="analysis" & `"`_dta[st_full]'"'=="" | "`2'"=="full" {
+    = if "analysis"=="analysis" & `""'=="" | "analysis"=="full" {
+    - exit
+    ------------------------------------------------------------------------------------ end st_is ---
+  - syntax [varlist(fv default=empty)] [fw pw iw aw] [if] [in] [, DF(string) TVC(varlist fv) DFTvc(str
+> ing) KNOTS(numlist ascending) KNOTSTvc(string) BKnots(numlist ascending min=2 max=2) KNSCALE(string)
+>  noORTHog SCale(string) noCONStant INITTheta(real 1) CONSTheta(string) EForm ALLEQ KEEPCons BHAZard(
+> varname) LINinit STratify(varlist) THeta(string) OFFset(varname) RCSBASEOFF BHAZINIT(string) STPMDF(
+> int 0) VERBose SHOWCons MLMethod(string) ALL RMAT REVerse CURE FAILCONVLININIT from(string) ] [ noLO
+> g noLRTEST Level(integer `c(level)') * ]
+  = syntax [varlist(fv default=empty)] [fw pw iw aw] [if] [in] [, DF(string) TVC(varlist fv) DFTvc(str
+> ing) KNOTS(numlist ascending) KNOTSTvc(string) BKnots(numlist ascending min=2 max=2) KNSCALE(string)
+>  noORTHog SCale(string) noCONStant INITTheta(real 1) CONSTheta(string) EForm ALLEQ KEEPCons BHAZard(
+> varname) LINinit STratify(varlist) THeta(string) OFFset(varname) RCSBASEOFF BHAZINIT(string) STPMDF(
+> int 0) VERBose SHOWCons MLMethod(string) ALL RMAT REVerse CURE FAILCONVLININIT from(string) ] [ noLO
+> g noLRTEST Level(integer 95) * ]
+  - if `stpmdf'>0 local df `stpmdf'
+  = if 0>0 local df 0
+  - capture which rcsgen
+  - if _rc >0 {
+    display in yellow "You need to install the command rcsgen. This can be installed using,"
+    display in yellow ". {stata ssc install rcsgen}"
+    exit 198
+    }
+  - if "`weight'" != "" {
+  = if "" != "" {
+    display as err "weights must be stset"
+    exit 101
+    }
+  - local wt: char _dta[st_w]
+  - local wtvar: char _dta[st_wv]
+  - if "`wt'" != "" {
+  = if "" != "" {
+    local fw fw(`wtvar')
+    }
+  - fvexpand `tvc'
+  = fvexpand FollowUpNeg
+  - if "`r(fvops)'" != "" {
+  = if "" != "" {
+    display as error "Factor variables not allowed for tvc() option. Create your own dummy varibles."
+    exit 198
+    }
+  - tempvar Z xb lnt lnt0 coxindex S Sadj cons touse2 touse_t0 cons
+  - tempname initmat Rinv_bh R_bh rmatrix
+  - marksample touse
+  - qui replace `touse' = 0 if _st==0
+  = qui replace __00000F = 0 if _st==0
+  - mlopts mlopts, `options'
+  = mlopts mlopts, 
+    --------------------------------------------------------------------------------- begin mlopts ---
+    - version 8.0
+    - local maxoptlist MLOPTs(string) TRace TRACEDIffs GRADient HESSian SHOWSTEP ITERate(int -1) TOLer
+> ance(real -1) LTOLerance(real -1) GTOLerance(real -1) NONRTOLerance SHOWNRtolerance SHOWTOLerance NR
+> TOLerance(real -1) QTOLerance(real -1) DIFficult HALFSTEPonly CONSTraints(string) noCNSNOTEs COLline
+> ar TECHnique(passthru) VCE(passthru) DOTS depsilon(passthru) SHOWH
+    - syntax namelist(id="macro names" min=1 max=2) [, `maxoptlist' * ]
+    = syntax namelist(id="macro names" min=1 max=2) [, MLOPTs(string) TRace TRACEDIffs GRADient HESSia
+> n SHOWSTEP ITERate(int -1) TOLerance(real -1) LTOLerance(real -1) GTOLerance(real -1) NONRTOLerance 
+> SHOWNRtolerance SHOWTOLerance NRTOLerance(real -1) QTOLerance(real -1) DIFficult HALFSTEPonly CONSTr
+> aints(string) noCNSNOTEs COLlinear TECHnique(passthru) VCE(passthru) DOTS depsilon(passthru) SHOWH *
+>  ]
+    - gettoken dest rest : namelist
+    - if "`rest'" == "" {
+    = if "" == "" {
+    - syntax namelist [, `maxoptlist' ]
+    = syntax namelist [, MLOPTs(string) TRace TRACEDIffs GRADient HESSian SHOWSTEP ITERate(int -1) TOL
+> erance(real -1) LTOLerance(real -1) GTOLerance(real -1) NONRTOLerance SHOWNRtolerance SHOWTOLerance 
+> NRTOLerance(real -1) QTOLerance(real -1) DIFficult HALFSTEPonly CONSTraints(string) noCNSNOTEs COLli
+> near TECHnique(passthru) VCE(passthru) DOTS depsilon(passthru) SHOWH ]
+    - }
+    - local mlopts `mlopts' `trace' `tracediffs' `gradient' `hessian' `showstep' `difficult' `halfstep
+> only' `nonrtolerance' `shownrtolerance' `showtolerance' `dots' `depsilon' `showh'
+    = local mlopts              
+    - if `tolerance'!= -1 {
+    = if -1!= -1 {
+      local tol "tolerance(`tolerance')"
+      }
+    - if `ltolerance' != -1 {
+    = if -1 != -1 {
+      local ltol "ltolerance(`ltolerance')"
+      }
+    - if `gtolerance' != -1 {
+    = if -1 != -1 {
+      local gtol "gtolerance(`gtolerance')"
+      }
+    - if `nrtolerance' != -1 {
+    = if -1 != -1 {
+      local nrtol "nrtolerance(`nrtolerance')"
+      }
+    - if `qtolerance' != -1 {
+    = if -1 != -1 {
+      local qtol "qtolerance(`qtolerance')"
+      }
+    - if `iterate' != -1 {
+    = if -1 != -1 {
+      local iter "iterate(`iterate')"
+      }
+    - sreturn clear
+    - if "`technique'`vce'" != "" {
+    = if "" != "" {
+      ml_technique, `technique' `vce' nodefault
+      if `"`s(technique)'"' != "" {
+      local technique "technique(`s(technique)')"
+      }
+      if "`s(vce)'" != "" {
+      local vce "`s(vceopt)'"
+      }
+      sreturn local technique "`technique'"
+      sreturn local vce "`vce'"
+      }
+    - if "`constraints'" != "" {
+    = if "" != "" {
+      capture confirm name `constraints'
+      if _rc {
+      CheckClist constraints , constraints(`constraints')
+      }
+      else {
+      CheckCmat `constraints'
+      }
+      local const "constraints(`constraints')"
+      sreturn local constraints "`constraints'"
+      }
+    - sreturn local collinear "`collinear'"
+    = sreturn local collinear ""
+    - c_local `dest' `mlopts' `tol' `ltol' `gtol' `nrtol' `iter' `const' `cnsnotes' `collinear' `techn
+> ique' `vce' `qtol'
+    = c_local mlopts            
+    - if "`rest'" != "" {
+    = if "" != "" {
+      c_local `rest' `"`options'"'
+      }
+    ----------------------------------------------------------------------------------- end mlopts ---
+  - local extra_constraints `s(constraints)'
+  = local extra_constraints 
+  - if `"`s(collinear)'"' != "" {
+  = if `""' != "" {
+    di as err "option collinear not allowed"
+    exit 198
+    }
+  - if "`all'" != "" {
+  = if "" != "" {
+    gen `touse2' = 1
+    }
+  - else {
+  - gen `touse2' = `touse'
+  = gen __000008 = __00000F
+  - }
+  - capture drop _rcs*
+  - capture drop _d_rcs*
+  - capture drop _s0_rcs*
+  - local del_entry = 0
+  - qui summ _t0 if `touse' , meanonly
+  = qui summ _t0 if __00000F , meanonly
+  - if r(max)>0 {
+  - display in green "note: delayed entry models are being fitted"
+note: delayed entry models are being fitted
+  - local del_entry = 1
+  - }
+  - if "`orthog'"=="noorthog" {
+  = if ""=="noorthog" {
+    local orthog
+    }
+  - else {
+  - local orthog orthog
+  - }
+  - qui gen `lnt' = ln(_t) if `touse2'
+  = qui gen __000002 = ln(_t) if __000008
+  - if "`tvc'" == "" {
+  = if "FollowUpNeg" == "" {
+    foreach opt in dftvc knotstvc {
+    if "``opt''" != "" {
+    display as txt _n "[`opt'() used without specifying tvc(), option ignored]"
+    local `opt'
+    }
+    }
+    }
+  - if "`df'" != "" {
+  = if "" != "" {
+    capture confirm integer number `df'
+    if _rc>0 {
+    display in red "df option must be an integer"
+    exit 198
+    }
+    }
+  - if "`rmat'" != "" {
+  = if "" != "" {
+    if "`tvc'" != "" {
+    display as error "tvc option not available when using rmat option"
+    exit 198
+    }
+    local orthog
+    matrix `rmatrix' = e(R_bh)
+    local rmatrixopt rmatrix(`rmatrix')
+    }
+  - if "`stratify'" != "" {
+  = if "" != "" {
+    if "`tvc'" != "" {
+    display as error "You can not specify both the stratify and tvc options"
+    exit 198
+    }
+    local tvc `stratify'
+    local dftvc `df'
+    }
+  - if "`rcsbaseoff'" != "" & "`lininit'" != "" {
+  = if "" != "" & "" != "" {
+    display as error "You cannot use the -lininit- option with the -rcsbaseoff- option"
+    exit 198
+    }
+  - if "`rcsbaseoff'" != "" & "`tvc'" == "" {
+  = if "" != "" & "FollowUpNeg" == "" {
+    display as error "You must specify the tvc() option if you use the rcsbaseoff option"
+    exit 198
+    }
+  - if "`bhazard'" != "" {
+  = if "" != "" {
+    if `touse' & missing(`bhazard') == 1 {
+    display as err "baseline hazard contains missing values"
+    exit
+    }
+    local rs _rs
+    }
+  - if "`bhazinit'" == "" {
+  = if "" == "" {
+  - local bhazinit 0.1
+  - }
+  - tokenize `knots'
+  = tokenize 5 30 40 44
+  - local nbhknots : word count `knots'
+  = local nbhknots : word count 5 30 40 44
+  - if "`df'" != "" & `nbhknots'>0 {
+  = if "" != "" & 4>0 {
+    display as error "Only one of DF OR KNOTS can be specified"
+    exit
+    }
+  - if (`nbhknots' == 0 & "`df'" == "") & "`rcsbaseoff'" == "" {
+  = if (4 == 0 & "" == "") & "" == "" {
+    display as error "Use of either the df or knots option is compulsory"
+    exit 198
+    }
+  - if "`tvc'" != "" {
+  = if "FollowUpNeg" != "" {
+  - if "`dftvc'" == "" & "`knotstvc'" == "" {
+  = if "" == "" & "30 40" == "" {
+    display as error "The dftvc or knotstvc option is compulsory if you use the tvc option"
+    exit 198
+    }
+  - if "`knotstvc'" == "" {
+  = if "30 40" == "" {
+    local ntvcdf: word count `dftvc'
+    local lasttvcdf : word `ntvcdf' of `dftvc'
+    capture confirm number `lasttvcdf'
+    if `ntvcdf' == 1 | _rc==0 {
+    foreach tvcvar in `tvc' {
+    if _rc==0 {
+    local tmptvc = subinstr("`1'",".","_",1)
+    local tvc_`tvcvar'_df `lasttvcdf'
+    }
+    }
+    }
+    if `ntvcdf'>1 | _rc >1 {
+    tokenize "`dftvc'"
+    forvalues i = 1/`ntvcdf' {
+    local tvcdflist`i' ``i''
+    }
+    forvalues i = 1/`ntvcdf' {
+    capture confirm number `tvcdflist`i''
+    if _rc>0 {
+    tokenize "`tvcdflist`i''", parse(":")
+    confirm var `1'
+    if `"`: list posof `"`1'"' in tvc'"' == "0" {
+    display as error "`1' is not listed in the tvc option"
+    exit 198
+    }
+    local tmptvc `1'
+    local tvc_`tmptvc'_df 1
+    }
+    local `1'_df `3'
+    }
+    }
+    }
+  - if "`knotstvc'" == "" {
+  = if "30 40" == "" {
+    foreach tvcvar in `tvc' {
+    if "`tvc_`tvcvar'_df'" == "" {
+    display as error "df for time-dependent effect of `tvcvar' are not specified"
+    exit 198
+    }
+    }
+    }
+  - forvalues i = 1/`ntvcdf' {
+  = forvalues i = 1/ {
+invalid syntax
+    tokenize "`tvcdflist`i''", parse(":")
+    local tvc_`1'_df `3'
+    }
+  ----------------------------------------------------------------------------- end stpm2.Estimate ---
+---------------------------------------------------------------------------------------- end stpm2 ---
+r(198);
+
+. set trace off
+
+. di word count "30 40"
+word not found
+r(111);
+
+. help stpm2
+
+.       stpm2 Follow, scale(hazard) knots(5 30 40 44) knscale(time) tvc(Follow) knotstvc(30 40)
+note: delayed entry models are being fitted
+invalid syntax
+r(198);
+
+.       stpm2 Follow, scale(hazard) knots(5 30 40 44) tvc(Follow) knotstvc(30 40)
+note: delayed entry models are being fitted
+invalid syntax
+r(198);
+
+. exit, clear

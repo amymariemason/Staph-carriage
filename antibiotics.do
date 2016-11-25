@@ -212,3 +212,8 @@ summ patid
 noi di r(N) " unique reports of antibiotics remain"
 save  "E:\users\amy.mason\staph_carriage\Datasets\antistaph_antibiotics_nooverlap", replace
 
+exit
+*******************************************************************************
+We are only using antibiotic data that the patient reported here - I ran a simple regression prediction of loss of carriage based on GP reports
+of staph sensitive antibiotics, patient reports and combined reports (at end of two years). The patient reports were the most predictive. 
+Given that getting more GP reports also came at increased cost it was decided that we would only use patient reports of antibiotics for the study.

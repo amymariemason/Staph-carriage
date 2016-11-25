@@ -7,9 +7,34 @@ log using spaclean.log, replace
 noi di "Run by AMM on $S_DATE $S_TIME"
 
 
+* create list of all spatypes
+use "E:\users\amy.mason\staph_carriage\Datasets\clean_data.dta", clear
+keep patid timepoint spatype
+split spatype, parse(/)
+drop spatype
+reshape long spatype, i(patid timepoint) j(spanum)
+drop if spatype==""
 
-use "E:\users\amy.mason\staph_carriage\Datasets\CC", clear
-* data printout of spatypes
+* merge with CC groups data
+merge m:1 spatype using "E:\users\amy.mason\staph_carriage\Datasets\CC", update
+
+replace CCname="new " + spatype if _merge==1 & strpos(spatype, "tx")
+replace CC="999" if strpos(CCname, "new")
+noi di "new spatypes that were not on Ridom database"
+noi list if CC=="999"
+assert CC!="" if _merge==1
+drop if _merge==2
+assert inlist(_merge, 1,3)
+drop _merge
+
+* save matching of spatypes to CC
+preserve
+keep spatype CC CCname
+duplicates drop
+save "E:\users\amy.mason\staph_carriage\Datasets\CCnames", replace
+restore
+
+* start counting types
 sort spatype CC 
 noi by spatype: assert CC[_n]==CC[1]
 gen count=1
@@ -17,38 +42,37 @@ gen count=1
 collapse (sum) count, by(spatype CC CCname)
 summ count
 noi di "Number of distinct spatypes seen " r(N)
-gsort -count 
-noi list spatype CC* count if count >100
+noi di "list of spatypes where more than 100 samples seens"
+noi list spatype CC* count if count> 100 
 
 summ count if strpos(CC, "#")
 noi display r(N) " distinct standalone spatypes found in " r(sum) " samples"
-noi list spatype CC* count if count >30 & strpos(CC, "#")
+noi di "stand alone samples"
+sort CC
+noi list spatype CC if  strpos(CC, "#")
 
 summ count if strpos(CCname, "no")
 noi display r(N) " distinct spatypes in CC with no founder, found in " r(sum) " samples"
-noi list spatype CC* count if count> 30 & strpos(CCname, "no")
+noi list spatype CC* count if strpos(CCname, "no")
 
 summ count if strpos(CC, "Ex")
 noi display r(N) " distinct spatypes excluded, found in " r(sum) " samples"
 noi list spatype CC* count if  strpos(CC, "Ex")
 
 collapse (sum) count, by(CC CCname)
-summ count if CC!="Excluded"
-noi di "Number of distinct CC seen (including standalones, excluding excluded) " r(N)
-gsort -count 
+summ count if !strpos(CCname, "new")
+noi di "Number of distinct CC seen (including standalones, excluding new) " r(N)
+gsort count
+noi di "CC with more than 200 samples seen" 
 noi list CC* count if count >200
 
 collapse (sum) count, by (CCname)
-drop if CCname==""
+drop if CCname=="" | strpos(CCname, "new")
 summ count
-noi di "Number of distinct CC seen (excluding standalones and excluded) " r(N)
-noi list CC* count if count >200
+noi di "Number of distinct CC seen (excluding standalones and new) " r(N)
 
-* save matching of spatypes <-> CC
-use "E:\users\amy.mason\staph_carriage\Datasets\CC", clear
-duplicates drop
-save "E:\users\amy.mason\staph_carriage\Datasets\CCnames", replace
 
+******************************************************************************************************
 *distances of spatypes
 
 use "E:\users\amy.mason\staph_carriage\Datasets\BURP", clear
@@ -79,7 +103,10 @@ gen sample2= strpos(subsub2, " ")
 assert sample2==0
 drop sample2 sub2 species2
 rename subsub2 spatype2
-drop v4
+
 save "E:\users\amy.mason\staph_carriage\Datasets\spa_BURP", replace
 *
+**************************************************************
+
+
 cd "E:\users\amy.mason\staph_carriage\Programs"

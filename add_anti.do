@@ -1,5 +1,5 @@
 
-* add antibiotics to cleanswab data
+* add antibiotics usage indicators to main dataset and merge in baseline data
 
 set li 130
 
@@ -8,8 +8,7 @@ log using addanti.log, replace
 noi di "Run by AMM on $S_DATE $S_TIME"
 
 ************** integrate with cleaned swab data
-
-
+*data from antibiotics.do
 use "E:\users\amy.mason\staph_carriage\Datasets\antistaph_antibiotics_nooverlap", clear
 noi di "Integrate with swab data"
 
@@ -85,21 +84,21 @@ keep patid timepoint prev_anti prev_anti_6mon
 
 save  "E:\users\amy.mason\staph_carriage\Datasets\AntiStaph_markers", replace
 
+* merge into data + spatypes from add_spa.do
 merge 1:1 patid timepoint using "E:\users\amy.mason\staph_carriage\Datasets\clean_data2.dta", update
 assert _merge==3
 drop _merge
 
 
-
+* merge in the baseline data from baseline.do
 noi di "add baseline data"
 
 merge m:1 patid using "E:\users\amy.mason\staph_carriage\Datasets\baseline_data", update
 assert _merge==3
 drop _merge
 
-
-
-save "E:\users\amy.mason\staph_carriage\Datasets\clean_data3.dta", replace
+* save the data
+noi save "E:\users\amy.mason\staph_carriage\Datasets\clean_data3.dta", replace
 
 
 

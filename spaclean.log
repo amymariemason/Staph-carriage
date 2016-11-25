@@ -1,41 +1,103 @@
-Run by AMM on 17 Oct 2016 14:10:48
-Number of distinct spatypes seen 338
-32 distinct standalone spatypes found in 32 samples
-12 distinct spatypes in CC with no founder, found in 12 samples
-24 distinct spatypes excluded, found in 24 samples
+Run by AMM on 24 Nov 2016 11:49:23
+new spatypes that were not on Ridom database
 
-     +-------------------------------------+
-     | spatype         CC   CCname   count |
-     |-------------------------------------|
- 15. |    t026   Excluded                1 |
- 35. |   t1023   Excluded                1 |
- 38. |   t1040   Excluded                1 |
- 70. |   t1445   Excluded                1 |
- 78. |   t1509   Excluded                1 |
-     |-------------------------------------|
- 82. |   t1544   Excluded                1 |
-127. |    t227   Excluded                1 |
-132. |   t2365   Excluded                1 |
-138. |   t2726   Excluded                1 |
-164. |   t3345   Excluded                1 |
-     |-------------------------------------|
-166. |   t3369   Excluded                1 |
-183. |    t386   Excluded                1 |
-185. |    t398   Excluded                1 |
-201. |   t4776   Excluded                1 |
-210. |    t528   Excluded                1 |
-     |-------------------------------------|
-213. |    t543   Excluded                1 |
-216. |    t559   Excluded                1 |
-226. |    t605   Excluded                1 |
-237. |    t643   Excluded                1 |
-280. |    t693   Excluded                1 |
-     |-------------------------------------|
-298. |    t748   Excluded                1 |
-302. |    t779   Excluded                1 |
-315. |    t870   Excluded                1 |
-318. |   t8811   Excluded                1 |
-     +-------------------------------------+
-Number of distinct CC seen (including standalones, excluding excluded) 59
-Number of distinct CC seen (excluding standalones and excluded) 22
-. run antibiotics.do
+      +------------------------------------------------------------------------+
+      | patid   timepo~t   spanum   spatype    CC     CCname            _merge |
+      |------------------------------------------------------------------------|
+4647. |   671         80        1      txAE   999   new txAE   master only (1) |
+4648. |   671         86        1      txAE   999   new txAE   master only (1) |
+4649. |   671         88        1      txAE   999   new txAE   master only (1) |
+4650. |  1231         78        1      txAG   999   new txAG   master only (1) |
+4651. |  1231         82        1      txAG   999   new txAG   master only (1) |
+      |------------------------------------------------------------------------|
+4652. |  1295         82        1      txAH   999   new txAH   master only (1) |
+4653. |   424         86        1      txAI   999   new txAI   master only (1) |
+4654. |   424         80        1      txAI   999   new txAI   master only (1) |
+4655. |   424         88        1      txAI   999   new txAI   master only (1) |
+4656. |   424         84        1      txAI   999   new txAI   master only (1) |
+      |------------------------------------------------------------------------|
+4657. |  1332         82        1      txAJ   999   new txAJ   master only (1) |
+      +------------------------------------------------------------------------+
+Number of distinct spatypes seen 345
+list of spatypes where more than 100 samples seens
+
+     +------------------------------------+
+     | spatype   CC        CCname   count |
+     |------------------------------------|
+  1. |    t002    4    spa-CC 002     119 |
+  3. |    t005    2    spa-CC 005     113 |
+  7. |    t012    1    spa-CC 084     360 |
+ 12. |    t021    1    spa-CC 084     108 |
+ 28. |    t084    1    spa-CC 084     146 |
+     |------------------------------------|
+ 62. |    t127    1    spa-CC 084     134 |
+     +------------------------------------+
+28 distinct standalone spatypes found in 141 samples
+stand alone samples
+
+     +----------------+
+     | spatype     CC |
+     |----------------|
+  1. |    t273     #1 |
+  2. |   t1736    #10 |
+  3. |   t3610    #11 |
+  4. |   t6154    #14 |
+  5. |   t6292    #15 |
+     |----------------|
+  6. |   t6794    #16 |
+  7. |   t6800    #17 |
+  8. |   t6814    #19 |
+  9. |    t537     #2 |
+ 10. |   t6820    #20 |
+     |----------------|
+ 11. |   t6821    #21 |
+ 12. |   t6823    #22 |
+ 13. |   t6825    #23 |
+ 14. |   t6828    #24 |
+ 15. |   t6833    #25 |
+     |----------------|
+ 16. |   t8062    #26 |
+ 17. |   t8585    #28 |
+ 18. |    t730     #3 |
+ 19. |   t8811    #30 |
+ 20. |   t9794    #32 |
+     |----------------|
+ 21. |  t10514    #34 |
+ 22. |  t11040    #35 |
+ 23. |  t14942    #36 |
+ 24. |    t773     #4 |
+ 25. |    t939     #6 |
+     |----------------|
+ 26. |   t1166     #7 |
+ 27. |   t1362     #8 |
+ 28. |   t1445     #9 |
+     +----------------+
+9 distinct spatypes in CC with no founder, found in 63 samples
+
+     +------------------------------------+
+     | spatype   CC        CCname   count |
+     |------------------------------------|
+234. |   t6806   15    no founder       6 |
+235. |   t3072   15    no founder       1 |
+236. |   t3092   16    no founder      13 |
+237. |    t148   16    no founder       5 |
+238. |    t337   17    no founder      25 |
+     |------------------------------------|
+239. |  t15776   17    no founder       1 |
+240. |   t4549   18    no founder       2 |
+241. |    t375   19    no founder       7 |
+242. |    t525   19    no founder       3 |
+     +------------------------------------+
+0 distinct spatypes excluded, found in 0 samples
+Number of distinct CC seen (including standalones, excluding new) 46
+CC with more than 200 samples seen
+
+     +--------------------------+
+     | CC        CCname   count |
+     |--------------------------|
+ 49. |  4    spa-CC 002     271 |
+ 50. |  2    spa-CC 005     405 |
+ 51. |  1    spa-CC 084    2948 |
+     +--------------------------+
+Number of distinct CC seen (excluding standalones and new) 14
+. run add_spa.do

@@ -1,4 +1,4 @@
-Run by AMM on 17 Oct 2016 14:14:46
+Run by AMM on 24 Nov 2016 12:00:13
 Integrate with swab data
 8266 antibiotic days in all participants
 swabs with antibiotics taken between previous swab and current one
@@ -8,10 +8,10 @@ antibiotics |
 taken since |
   last swob |      Freq.     Percent        Cum.
 ------------+-----------------------------------
-          0 |      8,711       96.58       96.58
-          1 |        308        3.42      100.00
+          0 |      8,683       96.56       96.56
+          1 |        309        3.44      100.00
 ------------+-----------------------------------
-      Total |      9,019      100.00
+      Total |      8,992      100.00
 swabs with antibiotics taken in previous 6 months
 
       staph |
@@ -19,13 +19,1506 @@ antibiotics |
  taken last |
  six months |      Freq.     Percent        Cum.
 ------------+-----------------------------------
-          0 |      8,332       92.38       92.38
-          1 |        687        7.62      100.00
+          0 |      8,310       92.42       92.42
+          1 |        682        7.58      100.00
 ------------+-----------------------------------
-      Total |      9,019      100.00
+      Total |      8,992      100.00
 add baseline data
-. 
-. *** create a record for each patid-spatype so can talk about loss of each spa-type
+file E:\users\amy.mason\staph_carriage\Datasets\clean_data3.dta saved
+. tab timepoint
+
+  timepoint |      Freq.     Percent        Cum.
+------------+-----------------------------------
+          0 |        521        5.79        5.79
+          2 |        493        5.48       11.28
+          4 |        483        5.37       16.65
+          6 |        480        5.34       21.99
+          8 |        464        5.16       27.15
+         10 |        442        4.92       32.06
+         12 |        452        5.03       37.09
+         14 |        436        4.85       41.94
+         16 |        436        4.85       46.79
+         18 |        439        4.88       51.67
+         20 |        428        4.76       56.43
+         22 |        413        4.59       61.02
+         24 |        426        4.74       65.76
+         26 |        224        2.49       68.25
+         28 |        214        2.38       70.63
+         30 |        220        2.45       73.08
+         32 |        212        2.36       75.43
+         34 |        207        2.30       77.74
+         36 |        207        2.30       80.04
+         38 |        197        2.19       82.23
+         40 |        198        2.20       84.43
+         42 |        200        2.22       86.65
+         44 |        194        2.16       88.81
+         46 |        190        2.11       90.93
+         48 |        183        2.04       92.96
+         50 |          8        0.09       93.05
+         52 |          2        0.02       93.07
+         54 |          2        0.02       93.09
+         56 |         17        0.19       93.28
+         58 |         27        0.30       93.58
+         60 |         40        0.44       94.03
+         62 |         37        0.41       94.44
+         64 |         49        0.54       94.98
+         66 |         39        0.43       95.42
+         68 |         44        0.49       95.91
+         70 |         52        0.58       96.49
+         72 |         51        0.57       97.05
+         74 |         46        0.51       97.56
+         76 |         47        0.52       98.09
+         78 |         48        0.53       98.62
+         80 |         50        0.56       99.18
+         82 |         38        0.42       99.60
+         84 |         14        0.16       99.76
+         86 |         11        0.12       99.88
+         88 |         10        0.11       99.99
+         90 |          1        0.01      100.00
+------------+-----------------------------------
+      Total |      8,992      100.00
+
+. ************
 
 . 
+. * data from add_anti
+
+. 
+. use "E:\users\amy.mason\staph_carriage\Datasets\clean_data3.dta", clear
+
+. 
+. 
+. 
+. * split spatypes and add counters 
+
+. 
+. noi di "split spatypes"
+split spatypes
+
+. 
+. split spatype, parse(/)
+variables created as string: 
+spatype1  spatype2  spatype3  spatype4  spatype5
+
+. 
+. gen n_spatype = 0
+
+. 
+. replace n_spatype= 1 if spatype1!=""
+(4,448 real changes made)
+
+. 
+. replace n_spatype= 2 if spatype2!=""
+(185 real changes made)
+
+. 
+. replace n_spatype= 3 if spatype3!=""
+(20 real changes made)
+
+. 
+. replace n_spatype= 4 if spatype4!=""
+(2 real changes made)
+
+. 
+. replace n_spatype= 5 if spatype5!=""
+(2 real changes made)
+
+. 
+. 
+. 
+. noi di "number of spatypes in each swab"
+number of spatypes in each swab
+
+. 
+. noi tab n_spatype
+
+  n_spatype |      Freq.     Percent        Cum.
+------------+-----------------------------------
+          0 |      4,544       50.53       50.53
+          1 |      4,263       47.41       97.94
+          2 |        165        1.83       99.78
+          3 |         18        0.20       99.98
+          5 |          2        0.02      100.00
+------------+-----------------------------------
+      Total |      8,992      100.00
+
+. 
+. 
+. 
+. sort patid timepoint
+
+. 
+. by patid: gen prev_n_spa= n_spatype[_n-1]
+(521 missing values generated)
+
+. 
+. by patid: replace prev_n_spa=n_spatype if _n==1
+(521 real changes made)
+
+. 
+. by patid: egen max_spa = max(n_spatype)
+
+. 
+. by patid: egen min_spa = min(n_spatype)
+
+. 
+. by patid: gen count = 1 if _n==1
+(8,471 missing values generated)
+
+. 
+. 
+. 
+. noi di "max number of spatypes"
+max number of spatypes
+
+. 
+. noi tab max_spa if count==1,m
+
+    max_spa |      Freq.     Percent        Cum.
+------------+-----------------------------------
+          0 |         87       16.70       16.70
+          1 |        343       65.83       82.53
+          2 |         77       14.78       97.31
+          3 |         12        2.30       99.62
+          5 |          2        0.38      100.00
+------------+-----------------------------------
+      Total |        521      100.00
+
+. 
+. 
+. 
+. noi di "min number of spatypes"
+min number of spatypes
+
+. 
+. noi tab min_spa if count==1,m 
+
+    min_spa |      Freq.     Percent        Cum.
+------------+-----------------------------------
+          0 |        383       73.51       73.51
+          1 |        138       26.49      100.00
+------------+-----------------------------------
+      Total |        521      100.00
+
+. 
+. 
+. 
+. noi tab max_spa min_spa if count==1,m
+
+           |        min_spa
+   max_spa |         0          1 |     Total
+-----------+----------------------+----------
+         0 |        87          0 |        87 
+         1 |       247         96 |       343 
+         2 |        44         33 |        77 
+         3 |         4          8 |        12 
+         5 |         1          1 |         2 
+-----------+----------------------+----------
+     Total |       383        138 |       521 
+
+
+. 
+. 
+. 
+. * create variables assessing carriage to date
+
+. 
+. gen pos = (n_spatype>0)
+
+. 
+. gen neg = (n_spatype<1)
+
+. 
+. sort patid timepoint
+
+. 
+. by patid: gen confirmedneg = ( neg[_n]==1 & neg[_n+1]==1) & _n!=_N 
+
+. 
+. by patid: replace confirmedneg = . if _n==_N
+(521 real changes made, 521 to missing)
+
+. 
+. by patid: gen pos_so_far = sum(pos)
+
+. 
+. by patid: gen neg_so_far = sum(confirmedneg)
+
+. 
+. assert !(neg_s==0 & pos_s==0 &timepoint!=0)
+
+. 
+. 
+. 
+. gen carriage_todate = "always" if neg_s == 0
+(5,210 missing values generated)
+
+. 
+. replace carriage_todate = "never" if pos_s ==0 
+(2,470 real changes made)
+
+. 
+. replace carriage_todate = "unclear" if neg_s==0& pos_s==0
+variable carriage_todate was str6 now str7
+(14 real changes made)
+
+. 
+. replace carriage_todate = "varies" if neg_s!=0& pos_s!=0
+(2,754 real changes made)
+
+. 
+. 
+. 
+. noi di "carriage to date (unclear = unconfirmed neg at timepoint 0)"
+carriage to date (unclear = unconfirmed neg at timepoint 0)
+
+. 
+. noi tab timepoint carriage_todate, m 
+
+           |               carriage_todate
+ timepoint |    always      never    unclear     varies |     Total
+-----------+--------------------------------------------+----------
+         0 |       346        161         14          0 |       521 
+         2 |       302        147          0         44 |       493 
+         4 |       266        145          0         72 |       483 
+         6 |       256        138          0         86 |       480 
+         8 |       238        128          0         98 |       464 
+        10 |       221        116          0        105 |       442 
+        12 |       209        119          0        124 |       452 
+        14 |       195        109          0        132 |       436 
+        16 |       186        107          0        143 |       436 
+        18 |       188        105          0        146 |       439 
+        20 |       176         98          0        154 |       428 
+        22 |       173         93          0        147 |       413 
+        24 |       177         92          0        157 |       426 
+        26 |        75         74          0         75 |       224 
+        28 |        64         70          0         80 |       214 
+        30 |        65         67          0         88 |       220 
+        32 |        59         61          0         92 |       212 
+        34 |        57         57          0         93 |       207 
+        36 |        58         58          0         91 |       207 
+        38 |        55         52          0         90 |       197 
+        40 |        54         49          0         95 |       198 
+        42 |        55         49          0         96 |       200 
+        44 |        50         48          0         96 |       194 
+        46 |        50         46          0         94 |       190 
+        48 |        49         43          0         91 |       183 
+        50 |         2          1          0          5 |         8 
+        52 |         0          0          0          2 |         2 
+        54 |         0          2          0          0 |         2 
+        56 |         2         10          0          5 |        17 
+        58 |         3         13          0         11 |        27 
+        60 |        10         19          0         11 |        40 
+        62 |         4         16          0         17 |        37 
+        64 |        13         18          0         18 |        49 
+        66 |         8         14          0         17 |        39 
+        68 |         9         16          0         19 |        44 
+        70 |        13         17          0         22 |        52 
+        72 |        13         18          0         20 |        51 
+        74 |        10         16          0         20 |        46 
+        76 |        10         17          0         20 |        47 
+        78 |        10         17          0         21 |        48 
+        80 |        12         17          0         21 |        50 
+        82 |         8         12          0         18 |        38 
+        84 |         5          1          0          8 |        14 
+        86 |         6          0          0          5 |        11 
+        88 |         6          0          0          4 |        10 
+        90 |         0          0          0          1 |         1 
+-----------+--------------------------------------------+----------
+     Total |     3,768      2,456         14      2,754 |     8,992 
+
+
+. 
+. 
+. 
+. preserve
+
+. 
+. gen weight = 1
+
+. 
+. collapse (count) weight, by(timepoint carriage_todate)
+
+. 
+. bysort timepoint: egen total = sum(weight)
+
+. 
+. reshape wide weight, i(timepoint) j(carriage) string
+(note: j = always never unclear varies)
+
+Data                               long   ->   wide
+-----------------------------------------------------------------------------
+Number of obs.                      130   ->      46
+Number of variables                   4   ->       6
+j variable (4 values)   carriage_todate   ->   (dropped)
+xij variables:
+                                 weight   ->   weightalways weightnever ... weightvaries
+-----------------------------------------------------------------------------
+
+. 
+. * replace blanks with zeros
+
+. 
+. replace weighta = 0 if weighta==.
+(3 real changes made)
+
+. 
+. replace weightn = 0 if weightn==.
+(4 real changes made)
+
+. 
+. replace weightu = 0 if weightu==.
+(45 real changes made)
+
+. 
+. replace weightv = 0 if weightv==.
+(2 real changes made)
+
+. 
+. 
+. 
+. * plot
+
+. 
+. gen sum1 = weightalways + weightnever + weightvaries
+
+. 
+. gen sum2 = weightnever + weightvaries
+
+. 
+. 
+. 
+. 
+. 
+. #delimit ;
+Unknown #command
+
+. 
+. twoway area total timepoint || area sum1 timepoint || area sum2 timepoint ||area weightnever timepoint
+
+. 
+. ,title("Count of carriage types")
+, is not a valid command name
+r(199);
+
+. 
+. legend(label (1 "Undefined") label (2 "Always Carry") label(3 "Carriage varies") label(4 "Never Carry") );
+command legend is unrecognized
+r(199);
+
+. 
+. #delimit cr
+Unknown #command
+
+. 
+. graph save Graph "E:\users\amy.mason\staph_carriage\Graphs\carriage_type.gph", replace
+(file E:\users\amy.mason\staph_carriage\Graphs\carriage_type.gph saved)
+
+. 
+. graph export "E:\users\amy.mason\staph_carriage\Graphs\carriage_type.tif", replace
+(file E:\users\amy.mason\staph_carriage\Graphs\carriage_type.tif written in TIFF format)
+
+. * add missing due to not having had the chance to send swabs back yet
+
+. 
+. noi di "missing due to lack of opportunity"
+missing due to lack of opportunity
+
+. 
+. 
+. 
+. preserve
+already preserved
+r(621);
+
+. 
+. keep patid timepoint BestDate carriage_todate
+variable patid not found
+r(111);
+
+. 
+. * everyone's 76th timeperiod has passed, allowing for month grace period of processing. so for those who returned their 78th swa
+> b, should be updated to timepoint 86 (last point on record)
+
+. 
+. sort patid timepoint
+variable patid not found
+r(111);
+
+. 
+. by patid: gen last= timepoint[_N] if _n==_N
+variable patid not found
+r(111);
+
+. 
+. 
+. 
+. by patid: gen seventysix_Date = BestDate[1]+ 76*30.44
+variable patid not found
+r(111);
+
+. 
+. format seventysix %td
+variable seventysix not found
+r(111);
+
+. 
+. assert seventysix < d(28/07/2016)
+seventysix not found
+r(111);
+
+. 
+. drop seventysix
+variable seventysix not found
+r(111);
+
+. 
+. 
+. 
+. * no-one who hands in 76/74/72 AND has a 78 date after end of may, has not already handed in 78 
+
+. 
+. by patid: gen seventyeight_Date = BestDate[1]+ 78*30.44
+variable patid not found
+r(111);
+
+. 
+. format seventy %td
+variable seventy not found
+r(111);
+
+. 
+. gen nextnotyet = 1 if seventy>= d(28/07/2016) & inlist(last, 76, 74, 72)
+seventy not found
+r(111);
+
+. 
+. assert next==.
+next not found
+r(111);
+
+. 
+. drop seventy next 
+variable seventy not found
+r(111);
+
+. 
+. 
+. 
+. *80
+
+. 
+. by patid: gen eighty_Date = BestDate[1]+ 80*30.44
+variable patid not found
+r(111);
+
+. 
+. format eighty %td
+variable eighty not found
+r(111);
+
+. 
+. gen nextnotyet = 1 if eighty_Date>= d(29/07/2016) & inlist(last, 78, 76, 74)
+eighty_Date not found
+r(111);
+
+. 
+. assert next==.
+next not found
+r(111);
+
+. 
+. drop eighty next last
+variable eighty not found
+r(111);
+
+. 
+. 
+. 
+. * start of missing: 40 missing
+
+. 
+. sort patid timepoint
+variable patid not found
+r(111);
+
+. 
+. by patid: gen last= timepoint[_N] if _n==_N
+variable patid not found
+r(111);
+
+. 
+. by patid: gen eightytwo_Date = BestDate[1]+ 82*30.44
+variable patid not found
+r(111);
+
+. 
+. format eighty %td
+variable eighty not found
+r(111);
+
+. 
+. gen nextnotyet = 1 if eighty>= d(29/07/2016) & inlist(last, 80, 78, 76)
+eighty not found
+r(111);
+
+. 
+. expand next+1, gen(copy)
+next not found
+r(111);
+
+. 
+. replace timepoint=82 if copy==1
+copy not found
+r(111);
+
+. 
+. replace carriage_todate = "stilltocome" if copy==1
+variable carriage_todate not found
+r(111);
+
+. 
+. drop copy eighty next last
+variable copy not found
+r(111);
+
+. 
+. 
+. 
+. * repeat for 84: 41 missing
+
+. 
+. sort patid timepoint
+variable patid not found
+r(111);
+
+. 
+. by patid: gen last= timepoint[_N] if _n==_N
+variable patid not found
+r(111);
+
+. 
+. by patid: gen eightyfour_Date = BestDate[1]+ 84*30.44
+variable patid not found
+r(111);
+
+. 
+. format eighty %td
+variable eighty not found
+r(111);
+
+. 
+. gen nextnotyet = 1 if eighty>= d(28/07/2016) & inlist(last, 82, 80, 78)
+eighty not found
+r(111);
+
+. 
+. expand next+1, gen(copy)
+next not found
+r(111);
+
+. 
+. replace timepoint=84 if copy==1
+copy not found
+r(111);
+
+. 
+. replace carriage_todate = "stilltocome" if copy==1
+variable carriage_todate not found
+r(111);
+
+. 
+. drop copy eighty next last
+variable copy not found
+r(111);
+
+. 
+. 
+. 
+. * repeat for 86: 47 missing
+
+. 
+. 
+. 
+. sort patid timepoint
+variable patid not found
+r(111);
+
+. 
+. by patid: gen last= timepoint[_N] if _n==_N
+variable patid not found
+r(111);
+
+. 
+. by patid: gen eightysix_Date = BestDate[1]+ 86*30.44
+variable patid not found
+r(111);
+
+. 
+. format eighty %td
+variable eighty not found
+r(111);
+
+. 
+. gen nextnotyet = 1 if eighty>= d(28/07/2016) & inlist(last, 84, 82, 80)
+eighty not found
+r(111);
+
+. 
+. expand next+1, gen(copy)
+next not found
+r(111);
+
+. 
+. replace timepoint=86 if copy==1
+copy not found
+r(111);
+
+. 
+. replace carriage_todate = "stilltocome" if copy==1
+variable carriage_todate not found
+r(111);
+
+. 
+. drop copy eighty next last
+variable copy not found
+r(111);
+
+. 
+. 
+. 
+. * repeat for 88: 47 missing
+
+. 
+. 
+. 
+. sort patid timepoint
+variable patid not found
+r(111);
+
+. 
+. by patid: gen last= timepoint[_N] if _n==_N
+variable patid not found
+r(111);
+
+. 
+. by patid: gen eighty8_Date = BestDate[1]+ 88*30.44
+variable patid not found
+r(111);
+
+. 
+. format eighty %td
+variable eighty not found
+r(111);
+
+. 
+. gen nextnotyet = 1 if eighty>= d(28/07/2016) & inlist(last, 84, 82, 86)
+eighty not found
+r(111);
+
+. 
+. expand next+1, gen(copy)
+next not found
+r(111);
+
+. 
+. replace timepoint=88 if copy==1
+copy not found
+r(111);
+
+. 
+. replace carriage_todate = "stilltocome" if copy==1
+variable carriage_todate not found
+r(111);
+
+. 
+. drop copy eighty next last
+variable copy not found
+r(111);
+
+. 
+. 
+. 
+. 
+. 
+. * repeat for 90: 47 missing
+
+. 
+. 
+. 
+. sort patid timepoint
+variable patid not found
+r(111);
+
+. 
+. by patid: gen last= timepoint[_N] if _n==_N
+variable patid not found
+r(111);
+
+. 
+. by patid: gen eighty90_Date = BestDate[1]+ 90*30.44
+variable patid not found
+r(111);
+
+. 
+. format eighty %td
+variable eighty not found
+r(111);
+
+. 
+. gen nextnotyet = 1 if eighty>= d(28/07/2016) & inlist(last, 84, 88, 86)
+eighty not found
+r(111);
+
+. 
+. expand next+1, gen(copy)
+next not found
+r(111);
+
+. 
+. replace timepoint=90 if copy==1
+copy not found
+r(111);
+
+. 
+. replace carriage_todate = "stilltocome" if copy==1
+variable carriage_todate not found
+r(111);
+
+. 
+. drop copy eighty next last
+variable copy not found
+r(111);
+
+. 
+. ************
+
+. 
+. * data from add_anti
+
+. 
+. use "E:\users\amy.mason\staph_carriage\Datasets\clean_data3.dta", clear
+
+. 
+. 
+. 
+. * split spatypes and add counters 
+
+. 
+. noi di "split spatypes"
+split spatypes
+
+. 
+. split spatype, parse(/)
+variables created as string: 
+spatype1  spatype2  spatype3  spatype4  spatype5
+
+. 
+. gen n_spatype = 0
+
+. 
+. replace n_spatype= 1 if spatype1!=""
+(4,448 real changes made)
+
+. 
+. replace n_spatype= 2 if spatype2!=""
+(185 real changes made)
+
+. 
+. replace n_spatype= 3 if spatype3!=""
+(20 real changes made)
+
+. 
+. replace n_spatype= 4 if spatype4!=""
+(2 real changes made)
+
+. 
+. replace n_spatype= 5 if spatype5!=""
+(2 real changes made)
+
+. 
+. 
+. 
+. noi di "number of spatypes in each swab"
+number of spatypes in each swab
+
+. 
+. noi tab n_spatype
+
+  n_spatype |      Freq.     Percent        Cum.
+------------+-----------------------------------
+          0 |      4,544       50.53       50.53
+          1 |      4,263       47.41       97.94
+          2 |        165        1.83       99.78
+          3 |         18        0.20       99.98
+          5 |          2        0.02      100.00
+------------+-----------------------------------
+      Total |      8,992      100.00
+
+. 
+. 
+. 
+. sort patid timepoint
+
+. 
+. by patid: gen prev_n_spa= n_spatype[_n-1]
+(521 missing values generated)
+
+. 
+. by patid: replace prev_n_spa=n_spatype if _n==1
+(521 real changes made)
+
+. 
+. by patid: egen max_spa = max(n_spatype)
+
+. 
+. by patid: egen min_spa = min(n_spatype)
+
+. 
+. by patid: gen count = 1 if _n==1
+(8,471 missing values generated)
+
+. 
+. 
+. 
+. noi di "max number of spatypes"
+max number of spatypes
+
+. 
+. noi tab max_spa if count==1,m
+
+    max_spa |      Freq.     Percent        Cum.
+------------+-----------------------------------
+          0 |         87       16.70       16.70
+          1 |        343       65.83       82.53
+          2 |         77       14.78       97.31
+          3 |         12        2.30       99.62
+          5 |          2        0.38      100.00
+------------+-----------------------------------
+      Total |        521      100.00
+
+. 
+. 
+. 
+. noi di "min number of spatypes"
+min number of spatypes
+
+. 
+. noi tab min_spa if count==1,m 
+
+    min_spa |      Freq.     Percent        Cum.
+------------+-----------------------------------
+          0 |        383       73.51       73.51
+          1 |        138       26.49      100.00
+------------+-----------------------------------
+      Total |        521      100.00
+
+. 
+. 
+. 
+. noi tab max_spa min_spa if count==1,m
+
+           |        min_spa
+   max_spa |         0          1 |     Total
+-----------+----------------------+----------
+         0 |        87          0 |        87 
+         1 |       247         96 |       343 
+         2 |        44         33 |        77 
+         3 |         4          8 |        12 
+         5 |         1          1 |         2 
+-----------+----------------------+----------
+     Total |       383        138 |       521 
+
+
+. 
+. 
+. 
+. * create variables assessing carriage to date
+
+. 
+. gen pos = (n_spatype>0)
+
+. 
+. gen neg = (n_spatype<1)
+
+. 
+. sort patid timepoint
+
+. 
+. by patid: gen confirmedneg = ( neg[_n]==1 & neg[_n+1]==1) & _n!=_N 
+
+. 
+. by patid: replace confirmedneg = . if _n==_N
+(521 real changes made, 521 to missing)
+
+. 
+. by patid: gen pos_so_far = sum(pos)
+
+. 
+. by patid: gen neg_so_far = sum(confirmedneg)
+
+. 
+. assert !(neg_s==0 & pos_s==0 &timepoint!=0)
+
+. 
+. 
+. 
+. gen carriage_todate = "always" if neg_s == 0
+(5,210 missing values generated)
+
+. 
+. replace carriage_todate = "never" if pos_s ==0 
+(2,470 real changes made)
+
+. 
+. replace carriage_todate = "unclear" if neg_s==0& pos_s==0
+variable carriage_todate was str6 now str7
+(14 real changes made)
+
+. 
+. replace carriage_todate = "varies" if neg_s!=0& pos_s!=0
+(2,754 real changes made)
+
+. 
+. 
+. 
+. noi di "carriage to date (unclear = unconfirmed neg at timepoint 0)"
+carriage to date (unclear = unconfirmed neg at timepoint 0)
+
+. 
+. noi tab timepoint carriage_todate, m 
+
+           |               carriage_todate
+ timepoint |    always      never    unclear     varies |     Total
+-----------+--------------------------------------------+----------
+         0 |       346        161         14          0 |       521 
+         2 |       302        147          0         44 |       493 
+         4 |       266        145          0         72 |       483 
+         6 |       256        138          0         86 |       480 
+         8 |       238        128          0         98 |       464 
+        10 |       221        116          0        105 |       442 
+        12 |       209        119          0        124 |       452 
+        14 |       195        109          0        132 |       436 
+        16 |       186        107          0        143 |       436 
+        18 |       188        105          0        146 |       439 
+        20 |       176         98          0        154 |       428 
+        22 |       173         93          0        147 |       413 
+        24 |       177         92          0        157 |       426 
+        26 |        75         74          0         75 |       224 
+        28 |        64         70          0         80 |       214 
+        30 |        65         67          0         88 |       220 
+        32 |        59         61          0         92 |       212 
+        34 |        57         57          0         93 |       207 
+        36 |        58         58          0         91 |       207 
+        38 |        55         52          0         90 |       197 
+        40 |        54         49          0         95 |       198 
+        42 |        55         49          0         96 |       200 
+        44 |        50         48          0         96 |       194 
+        46 |        50         46          0         94 |       190 
+        48 |        49         43          0         91 |       183 
+        50 |         2          1          0          5 |         8 
+        52 |         0          0          0          2 |         2 
+        54 |         0          2          0          0 |         2 
+        56 |         2         10          0          5 |        17 
+        58 |         3         13          0         11 |        27 
+        60 |        10         19          0         11 |        40 
+        62 |         4         16          0         17 |        37 
+        64 |        13         18          0         18 |        49 
+        66 |         8         14          0         17 |        39 
+        68 |         9         16          0         19 |        44 
+        70 |        13         17          0         22 |        52 
+        72 |        13         18          0         20 |        51 
+        74 |        10         16          0         20 |        46 
+        76 |        10         17          0         20 |        47 
+        78 |        10         17          0         21 |        48 
+        80 |        12         17          0         21 |        50 
+        82 |         8         12          0         18 |        38 
+        84 |         5          1          0          8 |        14 
+        86 |         6          0          0          5 |        11 
+        88 |         6          0          0          4 |        10 
+        90 |         0          0          0          1 |         1 
+-----------+--------------------------------------------+----------
+     Total |     3,768      2,456         14      2,754 |     8,992 
+
+
+. 
+. 
+. 
+. preserve
+already preserved
+r(621);
+
+. 
+. gen weight = 1
+
+. 
+. collapse (count) weight, by(timepoint carriage_todate)
+
+. 
+. bysort timepoint: egen total = sum(weight)
+
+. 
+. reshape wide weight, i(timepoint) j(carriage) string
+(note: j = always never unclear varies)
+
+Data                               long   ->   wide
+-----------------------------------------------------------------------------
+Number of obs.                      130   ->      46
+Number of variables                   4   ->       6
+j variable (4 values)   carriage_todate   ->   (dropped)
+xij variables:
+                                 weight   ->   weightalways weightnever ... weightvaries
+-----------------------------------------------------------------------------
+
+. 
+. * replace blanks with zeros
+
+. 
+. replace weighta = 0 if weighta==.
+(3 real changes made)
+
+. 
+. replace weightn = 0 if weightn==.
+(4 real changes made)
+
+. 
+. replace weightu = 0 if weightu==.
+(45 real changes made)
+
+. 
+. replace weightv = 0 if weightv==.
+(2 real changes made)
+
+. 
+. 
+. 
+. * plot
+
+. 
+. gen sum1 = weightalways + weightnever + weightvaries
+
+. 
+. gen sum2 = weightnever + weightvaries
+
+. 
+. 
+. 
+. 
+. 
+. #delimit ;
+Unknown #command
+
+. 
+. twoway area total timepoint || area sum1 timepoint || area sum2 timepoint ||area weightnever timepoint
+
+. 
+. ,title("Count of carriage types")
+, is not a valid command name
+r(199);
+
+. 
+. legend(label (1 "Undefined") label (2 "Always Carry") label(3 "Carriage varies") label(4 "Never Carry") );
+command legend is unrecognized
+r(199);
+
+. 
+. #delimit cr
+Unknown #command
+
+. 
+. graph save Graph "E:\users\amy.mason\staph_carriage\Graphs\carriage_type.gph", replace
+(file E:\users\amy.mason\staph_carriage\Graphs\carriage_type.gph saved)
+
+. 
+. graph export "E:\users\amy.mason\staph_carriage\Graphs\carriage_type.tif", replace
+(file E:\users\amy.mason\staph_carriage\Graphs\carriage_type.tif written in TIFF format)
+
+. 
+. 
+. 
+. restore
+
+. 
+. 
+. 
+. 
+. 
+. * add missing due to not having had the chance to send swabs back yet
+
+. 
+. noi di "missing due to lack of opportunity"
+missing due to lack of opportunity
+
+. 
+. 
+. 
+. preserve
+
+. 
+. keep patid timepoint BestDate carriage_todate
+
+. 
+. * everyone's 76th timeperiod has passed, allowing for month grace period of processing. so for those who returned their 78th swa
+> b, should be updated to timepoint 86 (last point on record)
+
+. 
+. sort patid timepoint
+
+. 
+. by patid: gen last= timepoint[_N] if _n==_N
+(8,471 missing values generated)
+
+. 
+. 
+. 
+. by patid: gen seventysix_Date = BestDate[1]+ 76*30.44
+
+. 
+. format seventysix %td
+
+. 
+. assert seventysix < d(28/07/2016)
+
+. 
+. drop seventysix
+
+. 
+. 
+. 
+. * no-one who hands in 76/74/72 AND has a 78 date after end of may, has not already handed in 78 
+
+. 
+. by patid: gen seventyeight_Date = BestDate[1]+ 78*30.44
+
+. 
+. format seventy %td
+
+. 
+. gen nextnotyet = 1 if seventy>= d(28/07/2016) & inlist(last, 76, 74, 72)
+(8,992 missing values generated)
+
+. 
+. assert next==.
+
+. 
+. drop seventy next 
+
+. 
+. 
+. 
+. *80
+
+. 
+. by patid: gen eighty_Date = BestDate[1]+ 80*30.44
+
+. 
+. format eighty %td
+
+. 
+. gen nextnotyet = 1 if eighty_Date>= d(29/07/2016) & inlist(last, 78, 76, 74)
+(8,992 missing values generated)
+
+. 
+. assert next==.
+
+. 
+. drop eighty next last
+
+. 
+. 
+. 
+. * start of missing: 40 missing
+
+. 
+. sort patid timepoint
+
+. 
+. by patid: gen last= timepoint[_N] if _n==_N
+(8,471 missing values generated)
+
+. 
+. by patid: gen eightytwo_Date = BestDate[1]+ 82*30.44
+
+. 
+. format eighty %td
+
+. 
+. gen nextnotyet = 1 if eighty>= d(29/07/2016) & inlist(last, 80, 78, 76)
+(8,981 missing values generated)
+
+. 
+. expand next+1, gen(copy)
+(8,981 missing counts ignored; observations not deleted)
+(11 observations created)
+
+. 
+. replace timepoint=82 if copy==1
+(11 real changes made)
+
+. 
+. replace carriage_todate = "stilltocome" if copy==1
+variable carriage_todate was str7 now str11
+(11 real changes made)
+
+. 
+. drop copy eighty next last
+
+. 
+. 
+. 
+. * repeat for 84: 41 missing
+
+. 
+. sort patid timepoint
+
+. 
+. by patid: gen last= timepoint[_N] if _n==_N
+(8,482 missing values generated)
+
+. 
+. by patid: gen eightyfour_Date = BestDate[1]+ 84*30.44
+
+. 
+. format eighty %td
+
+. 
+. gen nextnotyet = 1 if eighty>= d(28/07/2016) & inlist(last, 82, 80, 78)
+(8,966 missing values generated)
+
+. 
+. expand next+1, gen(copy)
+(8,966 missing counts ignored; observations not deleted)
+(37 observations created)
+
+. 
+. replace timepoint=84 if copy==1
+(37 real changes made)
+
+. 
+. replace carriage_todate = "stilltocome" if copy==1
+(26 real changes made)
+
+. 
+. drop copy eighty next last
+
+. 
+. 
+. 
+. * repeat for 86: 47 missing
+
+. 
+. 
+. 
+. sort patid timepoint
+
+. 
+. by patid: gen last= timepoint[_N] if _n==_N
+(8,519 missing values generated)
+
+. 
+. by patid: gen eightysix_Date = BestDate[1]+ 86*30.44
+
+. 
+. format eighty %td
+
+. 
+. gen nextnotyet = 1 if eighty>= d(28/07/2016) & inlist(last, 84, 82, 80)
+(8,999 missing values generated)
+
+. 
+. expand next+1, gen(copy)
+(8,999 missing counts ignored; observations not deleted)
+(41 observations created)
+
+. 
+. replace timepoint=86 if copy==1
+(41 real changes made)
+
+. 
+. replace carriage_todate = "stilltocome" if copy==1
+(4 real changes made)
+
+. 
+. drop copy eighty next last
+
+. 
+. 
+. 
+. * repeat for 88: 47 missing
+
+. 
+. 
+. 
+. sort patid timepoint
+
+. 
+. by patid: gen last= timepoint[_N] if _n==_N
+(8,560 missing values generated)
+
+. 
+. by patid: gen eighty8_Date = BestDate[1]+ 88*30.44
+
+. 
+. format eighty %td
+
+. 
+. gen nextnotyet = 1 if eighty>= d(28/07/2016) & inlist(last, 84, 82, 86)
+(9,039 missing values generated)
+
+. 
+. expand next+1, gen(copy)
+(9,039 missing counts ignored; observations not deleted)
+(42 observations created)
+
+. 
+. replace timepoint=88 if copy==1
+(42 real changes made)
+
+. 
+. replace carriage_todate = "stilltocome" if copy==1
+(1 real change made)
+
+. 
+. drop copy eighty next last
+
+. 
+. 
+. 
+. 
+. 
+. * repeat for 90: 47 missing
+
+. 
+. 
+. 
+. sort patid timepoint
+
+. 
+. by patid: gen last= timepoint[_N] if _n==_N
+(8,602 missing values generated)
+
+. 
+. by patid: gen eighty90_Date = BestDate[1]+ 90*30.44
+
+. 
+. format eighty %td
+
+. 
+. gen nextnotyet = 1 if eighty>= d(28/07/2016) & inlist(last, 84, 88, 86)
+(9,072 missing values generated)
+
+. 
+. expand next+1, gen(copy)
+(9,072 missing counts ignored; observations not deleted)
+(51 observations created)
+
+. 
+. replace timepoint=90 if copy==1
+(51 real changes made)
+
+. 
+. replace carriage_todate = "stilltocome" if copy==1
+(9 real changes made)
+
+. 
+. drop copy eighty next last
+
+. 
+. 
+. 
+. 
+. 
+. * repeat graph above 
+
+. 
+. gen weight = 1
+
+. 
+. collapse (count) weight, by(timepoint carriage_todate)
+
+. 
+. bysort timepoint: egen total = sum(weight)
+
+. 
+. reshape wide weight, i(timepoint) j(carriage) string
+(note: j = always never stilltocome unclear varies)
+
+Data                               long   ->   wide
+-----------------------------------------------------------------------------
+Number of obs.                      135   ->      46
+Number of variables                   4   ->       7
+j variable (5 values)   carriage_todate   ->   (dropped)
+xij variables:
+                                 weight   ->   weightalways weightnever ... weightvaries
+-----------------------------------------------------------------------------
+
+. 
+. * replace blanks with zeros
+
+. 
+. replace weighta = 0 if weighta==.
+(3 real changes made)
+
+. 
+. replace weightn = 0 if weightn==.
+(4 real changes made)
+
+. 
+. replace weights = 0 if weights==.
+(41 real changes made)
+
+. 
+. replace weightu = 0 if weightu==.
+(45 real changes made)
+
+. 
+. replace weightv = 0 if weightv==.
+(2 real changes made)
+
+. 
+. 
+. 
+. * plot
+
+. 
+. gen sum1 = weightalways + weightnever + weightvaries + weightunclear
+
+. 
+. gen sum2 =  weightalways + weightnever + weightvaries 
+
+. 
+. gen sum3 = weightnever + weightvaries 
+
+. 
+. 
+. 
+. #delimit ;
+Unknown #command
+
+. 
+. twoway area total timepoint || area sum1 timepoint || area sum2 timepoint || area sum3 timepoint ||area weightnever timepoint
+
+. 
+. ,title("Count of carriage types")
+, is not a valid command name
+r(199);
+
+. 
+. legend(label(1 "Not yet occured") label(2 "Undefined") label(3 "Always Carry") label(4 "Carriage varies") label(5 "Never Carry")
+>  );
+command legend is unrecognized
+r(199);
+
+. 
+. #delimit cr
+Unknown #command
+
+. 
+. graph save Graph "E:\users\amy.mason\staph_carriage\Graphs\carriage_type_timecensor.gph", replace
+(file E:\users\amy.mason\staph_carriage\Graphs\carriage_type_timecensor.gph saved)
+
+. 
+. graph export "E:\users\amy.mason\staph_carriage\Graphs\carriage_type_timecensor.tif", replace
+(file E:\users\amy.mason\staph_carriage\Graphs\carriage_type_timecensor.tif written in TIFF format)
+
 . run anti_types_sept29_16.do

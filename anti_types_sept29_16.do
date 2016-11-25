@@ -1,5 +1,5 @@
-
-* looks at spatypes data
+* creates graph of carriage so far
+* creates "record per spatype" dataset
 
 set li 130
 
@@ -8,11 +8,8 @@ log using spatypes.log, replace
 noi di "Run by AMM on $S_DATE $S_TIME"
 
 ************
-
+* data from add_anti
 use "E:\users\amy.mason\staph_carriage\Datasets\clean_data3.dta", clear
-
-
-
 
 * split spatypes and add counters 
 noi di "split spatypes"
@@ -42,20 +39,7 @@ noi tab min_spa if count==1,m
 
 noi tab max_spa min_spa if count==1,m
 
-
-
-* never/always carry
-sort patid timepoint
-by patid: gen lasttime = timepoint[_N]
-
-gen carry ="always" if min_spa>0
-replace carry="never" if max_spa<1
-replace carry = "varies" if carry ==""
-
-noi di "carriage over whole time; timepoint = last time seen"
-noi tab lasttime carry if count ==1, m
-
-* carriage to date
+* create variables assessing carriage to date
 gen pos = (n_spatype>0)
 gen neg = (n_spatype<1)
 sort patid timepoint
@@ -73,7 +57,11 @@ replace carriage_todate = "varies" if neg_s!=0& pos_s!=0
 noi di "carriage to date (unclear = unconfirmed neg at timepoint 0)"
 noi tab timepoint carriage_todate, m 
 
-preserve
+*save carriage to date data for continue.do to analyse
+
+noi save "E:\users\amy.mason\staph_carriage\Datasets\clean_data4.dta", replace
+
+use  "E:\users\amy.mason\staph_carriage\Datasets\clean_data4.dta", clear
 gen weight = 1
 collapse (count) weight, by(timepoint carriage_todate)
 bysort timepoint: egen total = sum(weight)
@@ -97,13 +85,13 @@ legend(label (1 "Undefined") label (2 "Always Carry") label(3 "Carriage varies")
 graph save Graph "E:\users\amy.mason\staph_carriage\Graphs\carriage_type.gph", replace
 graph export "E:\users\amy.mason\staph_carriage\Graphs\carriage_type.tif", replace
 
-restore
 
 
-* add missing due to time point
+
+* add missing due to not having had the chance to send swabs back yet
 noi di "missing due to lack of opportunity"
 
-preserve
+use  "E:\users\amy.mason\staph_carriage\Datasets\clean_data4.dta", clear
 keep patid timepoint BestDate carriage_todate
 * everyone's 76th timeperiod has passed, allowing for month grace period of processing. so for those who returned their 78th swab, should be updated to timepoint 86 (last point on record)
 sort patid timepoint
@@ -214,14 +202,14 @@ graph save Graph "E:\users\amy.mason\staph_carriage\Graphs\carriage_type_timecen
 graph export "E:\users\amy.mason\staph_carriage\Graphs\carriage_type_timecensor.tif", replace
 
 
-restore
 
 
 
 * WEIGHT BY DROPOUTS
-preserve
+
 
 noi di "Weigh by starting proportion of carriage/ no carriage"
+use  "E:\users\amy.mason\staph_carriage\Datasets\clean_data4.dta", clear
 bysort timepoint FollowUpNeg: gen currentsize = _N
 bysort FollowUp: gen startsize = currentsize[1]
 bysort timepoint: gen currenttotal = _N
@@ -250,15 +238,14 @@ legend(label (1 "Undefined") label (2 "Always Carry") label(3 "Carriage varies")
 graph save Graph "E:\users\amy.mason\staph_carriage\Graphs\weight_carriage_type.gph", replace
 graph export "E:\users\amy.mason\staph_carriage\Graphs\weight_carriage_type.eps", as(eps) preview(off) replace
 
-restore
 
-save "E:\users\amy.mason\staph_carriage\Datasets\clean_data4.dta", replace
+
 
 
 
 ************* breakdown into carriage per spatype
 * create masterlist of who carries what spatypes
-preserve 
+use  "E:\users\amy.mason\staph_carriage\Datasets\clean_data4.dta", clear 
 keep patid timepoint spatype* 
 drop spatype
 reshape long spatype, i(patid timepoint) j(count)
@@ -271,20 +258,20 @@ noi tab count
 rename spatype this_spa
 drop count
 by patid: gen spacount = _n
-save allspa, replace
+noi save allspa, replace
 
-restore
+
 
 * create unique carriage records for each patid-spatype combination ("record per spatype")
 
-preserve
+use  "E:\users\amy.mason\staph_carriage\Datasets\clean_data4.dta", clear
 keep patid timepoint spatype* 
 drop  spatype1 spatype2 spatype3 spatype4 spatype5
-expand 7
+expand 9
 bysort patid timepoint: gen spacount = _n
 merge m:1 patid spacount using allspa, update
 drop if _merge==1 & spacount>1
-* this drops the extra records created in the expand 7
+* this drops the extra records created in the expand 9
 assert spatype=="" if _merge==1
 * these are the people who never carry
 drop _merge
@@ -305,62 +292,5 @@ keep patid timepoint spacount this_spa carriage_this_spa this*
 merge m:1 patid timepoint using "E:\users\amy.mason\staph_carriage\Datasets\clean_data4.dta", update
 assert _merge==3
 drop _merge
-save "E:\users\amy.mason\staph_carriage\Datasets\record_per_spa.dta", replace
-
-
-**************************************
-use "E:\users\amy.mason\staph_carriage\Datasets\record_per_spa.dta", clear
-noi di " how many people who had always carried the same spa type for more than 60 months (i.e. post big gap), are still carrying the same spa-type at 78 or later" 
-* keep only the spatypes that start at timepoint 0/1
-sort patid this_spa timepoint
-by patid this_spa: drop if carriage_this_spa[1]==0& carriage_this_spa[2]==0
-by patid this_spa: gen last = timepoint[_N]
-drop if last<60
-
-* how many people carry continually to their last timepoint : 4 people
-tab  carriage_todate if timepoint==last
-* how many people had been carrying continually at end of Miller study: 21 people
-tab  carriage_todate if timepoint==36
-* of those 21 people, how many were lost to followup, and how many were seen stopping carrying
-gen marker = (timepoint==36 & carriage_todate=="always")
-by patid this_spa: egen maxmarker = max(marker)
-drop if maxmarker==0
-sort carriage_todate patid this_spa timepoint
-list patid timepoint this_spa carriage_todate if timepoint==last
-* IN CONCLUSION - there is no-one still returning swabs who carries the exact same spa-type they did at timepoint 0
-*BUT patid= 424 ->  carrying two types, distance of 1  -> NOPE, still fine - all spatypes lost at timepoint 78
-
-*********************************************************************
-use "E:\users\amy.mason\staph_carriage\Datasets\record_per_spa.dta", clear
-noi di " how many people lose then regain the same spatype"
-sort patid this_spa timepoint
-keep patid this_spa carriage_this_spa this_gain this_confirmed_loss timepoint spatype*
-
-* first only keep the people who have lost at some point
-by patid this_spa: egen max_confirmed_loss = max(this_confirmed_loss)
-drop if max_confirmed_loss==0
-gsort patid this_spa -this_confirmed_loss timepoint
-drop max_confirmed_loss
-sort patid this_spa timepoint
-by patid: gen count=1 if _n==1
-summ count
-noi di r(sum) "people lost a spatype at some point in this"
-noi list patid this_spa timepoint if this_confirmed_loss==1
-
-* now find the people who regain 
-sort patid this_spa timepoint
-by patid this_spa: gen lost=0 if _n==1
-by patid this_spa: replace lost=lost[_n-1] + this_confirmed_loss if _n>1
-gen lost_then_gain = 1 if lost==1 & this_gain==1
-by patid this_spa: egen keep = max(lost_then_gain)
-keep if keep==1
-drop keep
-drop count
-
-by patid: gen count=1 if _n==1
-summ count
-noi di r(sum) "people regain a lost spatype"
-noi list patid this_spa timepoint if lost_then_gain==1
-by patid: egen gap = max(lost_then_gain)
-noi list patid timepoint this_spa carriage_this_spa spatype if gap==1, sepby(patid)
+noi save "E:\users\amy.mason\staph_carriage\Datasets\record_per_spa.dta", replace
 

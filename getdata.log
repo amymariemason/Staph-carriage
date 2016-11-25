@@ -1,4 +1,4 @@
-Run by AMM on 13 Oct 2016 14:01:39
+Run by AMM on 23 Nov 2016 18:59:15
 
 
 
@@ -122,21 +122,10 @@ Burp distances
 DROP STRAIGHT DUPLICATES
 (0 observations deleted)
 . 
-. set more on
+. * fix additional spa data not in extract
 
 . 
-. cd "E:\users\amy.mason\staph_carriage\Programs"
-E:\users\amy.mason\staph_carriage\Programs
+. ***** NOTE: some of these spa-types came back as unknown by Ridom or were unresolvable at the lab level
 
 . 
-. * clean data
-
-. 
-. set more off
-
-. 
-. cd "E:\users\amy.mason\staph_carriage\Programs"
-E:\users\amy.mason\staph_carriage\Programs
-
-. 
-. run Clean_maindata.do
+. run spa_update.do
