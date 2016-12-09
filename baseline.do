@@ -212,13 +212,6 @@ replace inpatient = "Yes" if inlist(inpatient_summ, "Within 30 days" , "> 30 day
 noi tab inpatient_summ, m
 noi tab inpatient, m
 
-* skin infection in past month
-noi di "skin infection in past month" 
-
-*all negative - (even if go to full set)???
-gen skininfection = V12Skininfectioninpastmonth 
-noi tab skininfection,  m
-
 
 * outpatient
 noi di "outpatient - adding outside of ORH appointments"

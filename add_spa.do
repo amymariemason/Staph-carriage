@@ -7,7 +7,7 @@ log using addspa.log, replace
 noi di "Run by AMM on $S_DATE $S_TIME"
 
 noi di "INITIAL DISTANCES"
-* compared to timepoint 0,2
+* new spatypes compared to timepoint 0,2
 
 use "E:\users\amy.mason\staph_carriage\Datasets\clean_data.dta", clear	
 
