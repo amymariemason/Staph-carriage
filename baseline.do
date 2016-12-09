@@ -1,5 +1,15 @@
+************************************************
+*BASELINE.DO
+************************************************
+* create a database of the variables that do not change over time
 
-* add baseline characteristics to dataset
+* INPUTS:    clean_data,  minimal,  patid (from clean_maindata.do)
+* Personal  Household  GP_org    Skin  Illness (from Inputs.do)
+
+*OUTPUTS : baseline_data (database of baseline variable, to merge into main dataset)
+
+* written by Amy Mason
+
 
 set li 130
 
@@ -8,7 +18,7 @@ log using basline.log, replace
 noi di "Run by AMM on $S_DATE $S_TIME"
 cd E:\users\amy.mason\staph_carriage\Datasets\
 
-
+* input the data
 use "E:\users\amy.mason\staph_carriage\Datasets\clean_data.dta", clear
 
 * check count
@@ -22,26 +32,36 @@ assert timepoint!=0 if first!=1
 drop if first!=1
 keep patid Sex DateOfBirth BestDate
 
+*****************************
 * sex 
+*****************************
 noi di "SEX"
 assert inlist(Sex, "Female", "Male")
 noi tab Sex ,m
 
+label variable Sex "sex at baseline"
+
+*****************************
 *age
+*****************************
 noi di "AGE"
 assert DateOfBirth!=.
 by patid: gen age = floor((BestDate[1]-DateOfBirth)/ 365.25) 
 noi tabstat age, c(s) s(n median iqr min p25 p75 max)
 
-save temp, replace
-use temp, clear
+label variable age "age at baseline"
+
 ********************************************************************************
+* PERSONAL DATA
+*******************************************************************************
 
 merge m:1 patid using "E:\users\amy.mason\staph_carriage\Datasets\Personal", update
 drop if _merge==2
 assert _merge==3
 
+*********************************
 *ethnicity
+*********************************
 noi di "ETHNIC"
 noi assert Ethnic!=""
 noi tab Ethnic 
@@ -50,33 +70,55 @@ replace Ethnic_group = "White British/Irish" if inlist(EthnicB, "1a White Britis
 replace Ethnic_group = "Other White" if inlist(EthnicB, "1c Other white background")
 noi tab Ethnic*,m
 
+label variable Ethnic_group "Ethnicity"
+
+*********************************
 * residence (for use in deciding household)
+*********************************
+
 noi di "residence"
 noi tab Residence
 gen residence_group = "own home/None of the above" if strpos(Residence,"9")
 replace residence_group = "shared home" if strpos(Reside, "6") | strpos(Resid, "7") | strpos(Resid, "8")
 replace residence_group = "No response" if residence_group==""
 noi tab residence_ Reside, m
+
+label variable residence_group "type of living arrangements"
+
+*********************************
 * current employment at baseline
+*********************************
 
 noi di "Current Employment at recruitment"
 noi assert inlist(CurrentlyEmployed, "No", "Yes")
 noi tab CurrentlyEmployed ,m
 
+label variable CurrentlyEmployed "was employed at baseline"
+
+*********************************
 * Healthcare related employment at baseline
+*********************************
 
 noi di "Healthcare related employment at recruitment"
 rename  HeathcareRelatedEmployed HealthcareRelatedEmployed
 noi assert inlist( HealthcareRelatedEmployed, "No", "Yes")
 noi tab  HealthcareRelatedEmployed ,m
 
+label variable HealthcareRelatedEmployed "was employed in healthcare at baseline"
+
+*********************************
 * participation in contact sport 
+*********************************
 
 noi di "Participation in contact sport"
 noi assert inlist(SportsActivity, "Yes", "No")
 noi tab SportsActivity ,m
 
+label variable SportsActivity "participated in contact sports at baseline"
+
+*********************************
 * looks after someone with disability or old age
+*********************************
 
 noi di "Looks after anyone with a disability/old age"
 noi assert inlist( LookAfterDisability, "Yes", "No")
@@ -86,17 +128,32 @@ gen LookAfter = LookAfterDisability
 replace LookAfter = "Yes" if LookAfterOldAge=="Yes"
 noi tab LookAfter,m
 
+label variable LookAfter "looked after someone in old age or with disability at baseline"
+
+*********************************
 * ever had vasular access
+*********************************
+
 noi di "Ever had vascular access"
 noi assert  VascularAccess!=""
 noi tab  VascularAccess,m
 
+label variable VascularAccess "ever had vascular access at baseline"
+
+*********************************
 * ever had catheter
+*********************************
+
 noi di "Ever had Catheter"
 noi assert Catheter !=""
 noi tab Catheter,m
 
+label variable Catheter "ever had Catheter at baseline"
+
+*********************************
 * inpatient
+*********************************
+
 noi di "inpatient"
 noi tab IPEver, m
 gen inpatient_days =  BestDate -  DateMostRecentIP
@@ -109,7 +166,11 @@ noi tab inpatient_summ
 gen inpatient = IPEver 
 replace inpatient = "No" if IPEver=="Not known"
 
+
+*********************************
 *outpatient
+*********************************
+
 noi di "outpatient"
 noi tab OPEver, m
 gen outpatient_days =  BestDate -  DateMostRecentOP
@@ -126,12 +187,13 @@ replace outpatient = "No" if OPEver=="Not known"
 
 keep outpatient_summ inpatient_summ patid residence_group LiveAlone Sex age DateOfBirth Ethnic_group CurrentlyEmployed HealthcareRelatedEmployed SportsActivity LookAfter DIED REMOVEDCONSENT FollowUpNeg VascularAccess Catheter inpatient outpatient
 
+
+
 save temp, replace
 
-use temp, clear
-
-
 ***************************************
+*HOUSEHOLD
+*********************************
 
 use "E:\users\amy.mason\staph_carriage\Datasets\patid.dta", clear
 merge 1:m patid using "E:\users\amy.mason\staph_carriage\Datasets\Household", update
@@ -160,6 +222,8 @@ replace household = household +1
   noi tab household household_group, m
  noi tab residence household_group, m
 
+ label variable household_group "number of people in household"
+ 
 * trust the household numbers set, as otherwise only have a binary variable
 
 merge 1:1 patid using temp, update
@@ -169,8 +233,10 @@ drop _merge
  save temp, replace
 use temp, clear
 
-************************ GP data***********
 
+*********************************
+*GP DATA
+*********************************
 
 use "E:\users\amy.mason\staph_carriage\Datasets\minimal.dta", clear
 keep if timepoint==0
@@ -183,7 +249,10 @@ drop _merge
  merge 1:1 patid using temp, update
 assert _merge==3
 drop _merge
+
+**********************************
 * district nurse
+*********************************
 
 noi di "district nurse"
 noi tab  DistrictNurseCare, m
@@ -200,7 +269,13 @@ gen districtnurse = DistrictNurseCare
 replace districtnurse = "No" if districtnurse=="Not known"
 noi tab districtnurse , m
 
+label variable districtnurse "binary seen district nurse (at baseline)"
+label variable DistrictNurse_summ "when last district nurse (at baseline)"
+
+*********************************
 * inpatient
+*********************************
+
 noi di "inpatient - adding outside of ORH appointments"
 noi tab InPatientNonORH inpatient_summ , m
 gen inpatient_days2 =  BestDate - InPatientNonORHDate
@@ -212,8 +287,13 @@ replace inpatient = "Yes" if inlist(inpatient_summ, "Within 30 days" , "> 30 day
 noi tab inpatient_summ, m
 noi tab inpatient, m
 
+label variable inpatient "binary: ever an inpatient (at baseline) "
+label variable inpatient_summ "when last inpatient (at baseline)"
 
+*********************************
 * outpatient
+*********************************
+
 noi di "outpatient - adding outside of ORH appointments"
 noi tab OutPatientNonORH outpatient_summ , m
 gen outpatient_days2 =  BestDate - OutPatientNonORHDate
@@ -225,7 +305,13 @@ replace outpatient = "Yes" if inlist(outpatient_summ, "Within 30 days" , "> 30 d
 noi tab outpatient_summ , m
 noi tab outpatient , m
 
+label variable outpatient "binary: ever an outpatient (at baseline) "
+label variable outpatient_summ "when last outpatient (at baseline)"
+
+*********************************
 *surgery
+*********************************
+
 noi di "surgery"
 noi tab  UndergoneSurgery , m
 gen surgery_days =  BestDate - UndergoneSurgeryDate
@@ -238,7 +324,13 @@ gen surgery = UndergoneSurgery
 replace surgery = "No" if UndergoneSurgery=="Not known"
 noi tab surgery  , m
 
+label variable surgery "binary: ever had surgery (at baseline) "
+label variable surgery_summ "when last had surgery (at baseline)"
+
+*********************************
 * GP appointments
+*********************************
+
 noi di "GP appointments"
 noi tab  GPAppointment , m
 gen GP_days =  BestDate - GPAppointmentDate
@@ -251,7 +343,11 @@ gen GP = GPAppointment
 replace GP = "No" if GPAppointment=="Not known"
 noi tab GP , m
 
+label variable GP "binary: ever had GP appointment (at baseline) "
+label variable GP_summ "when last had GP appointment (at baseline)"
+
 * merge back into larger set
+
 
 drop InPatientNonORH InPatientNonORHDate OutPatientNonORH OutPatientNonORHDate GPAppointment GPAppointmentDate PracticeNurseAppointment PracticeNurseAppointmentDate DistrictNurseCare DistrictNurseCareDate LongTermIllness UndergoneChemotherapy UndergoneChemotherapyDate UndergoneChemotherapyApprox UndergoneRenalDialysis UndergoneRenalDialysisDate UndergoneRenalDialysisApprox UndergoneSurgery UndergoneSurgeryDate UndergoneSurgeryApprox UndergoneVascularAccess UndergoneVascularAccessDate UndergoneInsertionUrinaryCatheti Y UnderongePrescriptionOralSteroid AA ReceivedAntimicrobials ReceivedAntimicrobialsDate ReceivedAntimicrobialsHospital MRSAIsolatedPreviously MRSAIsolatedPreviouslyDate MRSAIsolatedPreviouslySampleType MSSAIsolatedPreviously MSSAIsolatedPreviouslyDate MSSAIsolatedPreviouslySampleType Comments SkinBreaks SkinBreakDetails VascAccess SourceOfInfection MainDiganosis Smoker SmokerYear SmokerMonth Numberofcigarettesperday V1Asthma V2Eczema V3Hayfever V4Surgeryinpastmonth V5Dateofsurgery V6Vaccinationinpastmonth V7Dateofvaccination V8Hospitalinpatientinpastmo V9Dateofinpatient V10Flulikeillnessinpastmon V11Dateoffluillness V12Skininfectioninpastmonth V13Dateofskininfection V14Antibioticsinpastmonth V15Dateofantibiotics V16Receivedchildhoodvaccines V17PreviousSaureusinfection V18Healthcareworkerwithcurre
 
@@ -259,7 +355,9 @@ save "E:\users\amy.mason\staph_carriage\Datasets\baseline_data", replace
 
 
 ******************************************
-*skin
+*SKIN
+*******************************************
+
 
 use "E:\users\amy.mason\staph_carriage\Datasets\baseline_data", clear
 keep patid BestDate
@@ -275,6 +373,8 @@ drop if Skin==""
 summ patid
 noi di r(N) " participants reported skin problems prior to start of study"
 
+
+* date issues; needs some extracting
 gen datestart= strpos(Skin, ".")
 * deal with year only dates first
 gen yearstart=strpos(Skin, " ") if datestart==0
@@ -404,6 +504,11 @@ replace skinday4=. if skinday4<0
 
 egen skinday = rowmin(skinday*)
 
+*********************************
+* skin treatment variable
+*********************************
+
+
 gen skin = "No"
 replace skin = "> 30 days" if skinday<.
 replace skin = "within 30 days" if skinday<=30
@@ -417,12 +522,17 @@ assert inlist(_merge, 2,3)
 replace skin = "Did Not Report" if skin==""
 noi dis "has had skin treatment within 30 days of recruitment"
 noi tab skin
+
+label variable skin "has had skin treatment 30 days before recruitment"
 drop _merge
 
 save "E:\users\amy.mason\staph_carriage\Datasets\baseline_data", replace
 
 ***************************************************
-* co-morbidities for staph
+*CO-MORBIDITIES for staph
+*********************************
+
+
 use "E:\users\amy.mason\staph_carriage\Datasets\baseline_data", clear
 keep patid BestDate
 noi di "Long Term Illness"
@@ -437,36 +547,50 @@ drop _merge
 *asthma/COPD on inhaled steroids (36), history of cancer (24), history of dermatitis or psoriasis (43), 
 *most recent BMI >=30 (102), history of drug misuse (4), dialysis (1), cirrhosis (1). 
 *The effect of one of these long-term illnesses was very similar to the effect of the larger group with any long-term illness shown above."
-
+*********************************
 * Type 1 diabetes
+*********************************
 noi di "Type 1 disbetes"
 noi assert Type1DiabetesYOnInsulin!=.
 noi tab Type1DiabetesYOnInsulin
 
+*********************************
 * Type 2 diabetes
+*********************************
+
 noi di "Type 2 disbetes"
 noi assert Type2diabetesYOnOralPx!=.
 noi tab Type2diabetesYOnOralPx
 
+*********************************
 * Asthma or COPD on inhaled steriods
+*********************************
 
 noi di "Asthma or COPD on inhaled steriods"
 noi assert AsthmaCOPDonINh!=.
 assert  AsthmaCOPDonINh ==  AsthmaOnInhSteroid +  COPDOnINhaler
 noi tab AsthmaCOPDonINh
 
+*********************************
 * History Cancer
+*********************************
+
 noi di "History of Cancer"
 noi assert Cancer!=.
 noi tab Cancer
 
-
+*********************************
 * history of dermatitis or psoriasis 
+*********************************
+
 noi di "History of dermatitis or psoriasis"
 noi assert HxDermPsoriasis!=.
 noi tab HxDermPsoriasis
 
+*********************************
 * most recent BMI >=30 
+*********************************
+
 gen BMIclean = BMIMostrecent
 noi replace BMIclean=. if BMIclean==999
 noi summ Dialysis if BMIclean==.
@@ -476,29 +600,41 @@ noi summ BMIclean if BMIclean!=.
 gen BMI30 = (BMIclean>=30 &BMIclean!=.) 
 noi tab BMI30, m
 
+*********************************
 * history of drug misuse
+*********************************
+
 noi di "history of drug misuse"
 noi assert IDUHx!=.
 noi tab IDUHx, m 
 
-
+*********************************
 * dialysis 
+*********************************
+
 noi di "dialysis" 
 noi assert Dialysis!=.
 noi tab Dialysis
 
+*********************************
 *cirrhosis
+*********************************
 
 noi di "cirrhosis" 
 noi assert Cirrhosis!=.
 noi tab Cirrhosis
 
+*********************************
+* combined variable for long term illness  (see quote from Ruth Miller's paper above)
+*********************************
 
-* all together
 noi di "Long Term Illness"
 egen LTI = rowmax( Cirrhosis Dialysis IDUHx BMI30  HxDermPsoriasis Cancer AsthmaCOPDonINh Type2diabetesYOnOralPx Type1DiabetesYOnInsulin)
 noi assert LTI!=.
 noi tab LTI, m
+
+label variable LTI "has had long term illness before recruitment"
+label FollowUpNeg "was negative for staph at recruitment"
 
 keep patid LTI
 merge 1:1 patid using "E:\users\amy.mason\staph_carriage\Datasets\baseline_data",  update
@@ -507,7 +643,9 @@ drop _merge
 
 drop BestDate timepoint
 
-keep patid Sex age Ethnic_group residence_group CurrentlyEm HealthcareR SportsActivity LookAfter VascularAccess Catheter inpatient inpatient_summ outpatient outpatient_summ LiveAlone Follow household_group districtnurse DistrictNurse_summ skininfection surgery surgery_summ GP GP_sum skin LTI
+keep patid Sex age Ethnic_group residence_group CurrentlyEm HealthcareR SportsActivity LookAfter VascularAccess Catheter inpatient inpatient_summ outpatient outpatient_summ LiveAlone Follow household_group districtnurse DistrictNurse_summ surgery surgery_summ GP GP_sum skin LTI
+
+* save
 
 save "E:\users\amy.mason\staph_carriage\Datasets\baseline_data", replace
 

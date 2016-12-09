@@ -1,4 +1,16 @@
-* clean up spa data
+************************************************
+*SPATYPES.DO
+************************************************
+* creats clonal colonies and BURP distances info for every spatype in the dataset
+
+* INPUTS:    clean_data, (from clean_maindata.do)
+* CC, BURP (from Inputs.do)
+
+*OUTPUTS : CC_names (clonal colony info) , Spa_BURP (burp distances)
+
+* written by Amy Mason
+
+
 
 set li 130
 
@@ -6,6 +18,13 @@ cap log close
 log using spaclean.log, replace
 noi di "Run by AMM on $S_DATE $S_TIME"
 
+****************************************
+* CC GROUP
+****************************************
+
+* excluded = it was not used to group into clonal colonies (see Ridom options)
+* new = not currently known in Ridom database 
+* standalones = only spatype from that colony seen
 
 * create list of all spatypes
 use "E:\users\amy.mason\staph_carriage\Datasets\clean_data.dta", clear
@@ -39,6 +58,7 @@ sort spatype CC
 noi by spatype: assert CC[_n]==CC[1]
 gen count=1
 
+* add summary of data to 
 collapse (sum) count, by(spatype CC CCname)
 summ count
 noi di "Number of distinct spatypes seen " r(N)
@@ -60,20 +80,23 @@ noi display r(N) " distinct spatypes excluded, found in " r(sum) " samples"
 noi list spatype CC* count if  strpos(CC, "Ex")
 
 collapse (sum) count, by(CC CCname)
-summ count if !strpos(CCname, "new")
-noi di "Number of distinct CC seen (including standalones, excluding new) " r(N)
+summ count if !strpos(CCname, "new") & !strpos(CC, "Ex")
+noi di "Number of distinct CC seen (including standalones, excluding new and excluded) " r(N)
 gsort count
 noi di "CC with more than 200 samples seen" 
 noi list CC* count if count >200
 
+drop if CCname=="" | strpos(CCname, "new") 
 collapse (sum) count, by (CCname)
-drop if CCname=="" | strpos(CCname, "new")
 summ count
-noi di "Number of distinct CC seen (excluding standalones and new) " r(N)
+noi di "Number of distinct CC seen (excluding standalones, excluded and new) " r(N)
 
 
 ******************************************************************************************************
-*distances of spatypes
+*all spatype pairs
+************************************************************************************
+
+
 
 use "E:\users\amy.mason\staph_carriage\Datasets\BURP", clear
 

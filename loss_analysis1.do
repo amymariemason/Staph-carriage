@@ -35,7 +35,7 @@ assert _st==1
 *** 
 noi di "Kaplan-Meier"
 
-sts graph, risktable 
+sts graph, risktable ci
 graph save Graph "E:\users\amy.mason\staph_carriage\Graphs\KM_loss1.gph", replace
 graph export "E:\users\amy.mason\staph_carriage\Graphs\KM_loss1.tif", replace
 

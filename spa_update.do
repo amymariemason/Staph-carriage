@@ -5,7 +5,7 @@
 *input: Datasets (from getdata_sept16_ext.do) , spa_types_donaby.xlsx (made by Bernadette and Dona)
 *output: spa_update2.dta , an update of some of the spa types for late swabs
 
-*NOTE: ONCE DATABASE IS UP TO DATE, THIS SHOULD NOT BE NEEDED
+*NOTE: ONCE DATABASE IS UP TO DATE AND NEW EXTRACT OF DATA DONE, THIS SHOULD NOT BE NEEDED
 
 * written by Amy Mason
 

@@ -1,13 +1,14 @@
 ************************************************
-*getdata_sept16_ext.DO
+*Clean_maindata.DO
 ************************************************
 * creates a clean dataset of partipants; with focus on removing swabs with missing data
 *keeps a log file of what cleaning has been done
+* NOte: in section 5 swabs where spatype variable doesn't match result are dropped - check for if update to access database resolves any of these
 
 * INPUTS: raw_input.dta , groups.dta, GP_org, ( from getdata_sept16_ext.do)
 *spa_update2.dta  (from spa_update.do)
 
-*OUTPUTS : clean_data (cleaned dataset of swabs and spatypes), patid (list of participants in final dataset)
+*OUTPUTS : clean_data (cleaned dataset of swabs and spatypes), minimal (patid and dates only) patid (list of participants in final dataset)
 
 * written by Amy Mason
 
@@ -26,8 +27,9 @@ noi di  " starting with " _N " records from " r(sum) " paticipants"
 drop first
 
 *******************************************************************	
-* add updates swab data
+* add updates swab data from spa_update.do
 ******************************************************************
+* this step should be removed after new extract made from the database
 
 merge m:1 patid timepoint using "E:\users\amy.mason\staph_carriage\Datasets\spa_update2.dta", update
 assert inlist(_merge,1,3)
@@ -37,7 +39,7 @@ gen count =1 if spatype=="" & spa_update!=""
 summ count
 noi di r(sum) " spa-types updates with Nov 2016 spa check"
 
-* some of the spatypes couldn't be identified
+* some of the spatypes couldn't be identified: create log list of them
 gen prob = strpos(spa_update, "tx") | strpos(spa_update, "undet")
 summ prob if count==1
 noi di r(sum) " of " r(N) " of these updates are unknown in Ridom (tx) or were unable to be determined from lab results"
@@ -69,9 +71,10 @@ noi di  " - leaving " _N " records from " r(sum) " paticipants"
 drop flag first
 
 
-
+***************************************************************************
+* 2: Drop swabs that were not returned
+***************************************************************************
 noi di _n(5) _dup(80) "=" _n "(2)REMOVE SWABS NOT RETURNED" _n _dup(80) "=" 
-* Drop swabs that were not returned
 gen flag = (Result==""| Result=="swab number created in error")
 noi summ flag if flag==1
 noi di r(N) " swabs where no result entered on system"
@@ -88,8 +91,9 @@ noi di r(N) " drop swabs where no result, return date, taken date OR spatype ent
 drop if flag==1
 drop flag
 
-
+*****************************************************************************
 *drop people who only returns a single swab
+****************************************************************************
 
 noi di _n(5) _dup(80) "=" _n "(3) DROP SINGLE SWAB ONLY PEOPLE" _n _dup(80) "=" 
 bysort patid: gen flag= 1 if _N==1
@@ -100,8 +104,11 @@ bysort patid: gen first=(_n==1)
 summ first
 noi di  " - leaving " _N " records from " r(sum) " paticipants" 
 drop flag first
+**************************************************************************
+* 5: drop timepoint 0 people 
+*************************************************************************
+* these people were given a double swab in 2015, which is turning up in the records as a late timepoint 0 swab; remove
 
-* drop timepoint 0 people
 noi di _n(5) _dup(80) "=" _n "(4) DROP TIMEPOINT 0 in 2015 Swabs" _n _dup(80) "=" 
 gen year= year(Sent)
 bysort patid: gen flag= 1 if timepoint==0 & year==2014
@@ -113,18 +120,13 @@ summ first
 noi di  " - leaving " _N " records from " r(sum) " paticipants" 
 drop flag first
 
-
-****************************************************************		
-save "E:\users\amy.mason\staph_carriage\Datasets\input1.dta", replace	
-
-use "E:\users\amy.mason\staph_carriage\Datasets\input1.dta", clear
-
-
-
 ****************************************************************************
-*  4 : clean up dates
+*  5 : clean up dates
 ****************************************************************************
 * Create Best Date = best guess at when swab was taken.
+* There are three dates that come with each swab: Sent, Taken and Received. 
+* Theorectically Taken would be when the swab was swabbed, but many of the records are dubious
+
 sort patid time
 
 gen BestDate=DateTaken
@@ -140,7 +142,7 @@ assert Sent!=. & Received!=. if flag==1
 noi di r(N) " disputed dates  - no chronological order of Sent, Taken, Received" 
 noi list patid timepoint Sent DateTaken  Received if flag!=0, sepby(patid)
 
-* if can find a pair of dates in Sent, Taken, Received in correct order + within 30 days of each other -> accept as correct.
+* Decision: if can find a pair of dates in Sent, Taken, Received in correct order + within 30 days of each other -> accept as correct.
 gen Diff_S_T =  DateTaken-Sent if DateTaken!=.
 gen Diff_T_R =  Received - DateTaken if DateTaken!=.
 gen Diff_S_R =  Received-Sent
@@ -154,14 +156,19 @@ summ flag if flag == 1 & closest <30
 noi di r(N) " have a pair of dates in the correct order, within 30 days of each other."
 noi di "If DateTaken is part of the optimal pair, keep BestDate as Date taken." 
 summ flag if flag == 1 & (closest >=30| closest==.)
+
 noi di r(N) "do not have pair in correct order"
+* define the best pair of dates to be the closest two dates, even if they are in the incorrect order
+* (because they are likely to be accurate to month/ year even if off as to day)
 gen BestPair =  "S_T" if closest==Diff_S_T & closest< 30
 replace BestPair =  "T_R" if closest==Diff_T_R & closest< 30
 replace BestPair =  "S_R" if closest==Diff_S_R & closest< 30
 assert BestDate==DateTaken if inlist(BestPair, "T_R", "S_T")==1
 summ flag if BestPair=="S_R" &flag==1
-noi di r(N) " disordered date swabs with Sent/Recieved best pair, replace with Recieved)"
+noi di r(N) " disordered date swabs with Sent/Recieved best pair, replace with Recieved"
 replace BestDate = Received if flag==1 & BestPair =="S_R"
+
+* check for dates still in doubt
 replace flag=0 if BestPair!=""
 summ flag if flag==1
 noi di r(N) "disordered dates still remaining"
@@ -174,7 +181,7 @@ replace flag=. if flag==0
 sort patid timepoint
 noi list SwabID patid timepoint Sent DateTaken  Received flag BestDate if flagmax!=0, sepby(patid)
 
-*clear year typos
+*clear year typos: based on visual expection of the data
 replace BestDate=d(19dec2011) if SwabID==9880
 replace BestDate=d(27nov2009) if SwabID==2309
 replace BestDate=d(03feb2015) if SwabID==13812
@@ -190,12 +197,9 @@ noi list patid timepoint Sent DateTaken  Received BestDate if flag==1, sepby(pat
 drop flag*
 
 ********************************************************************************
-
-* SORT AMBIGUOUS RESULTS
-
+* 5b: SORT AMBIGUOUS RESULTS
 *******************************************************************************
 noi di _n(5) _dup(80) "=" _n "(5b)  people missing spatype data or mismatched result data" _n _dup(80) "=" 
-
 
 * NOTE: this is an ongoing problem to be resolved; currently dropping unclear results so could start trying analysis
 * in particular: of missing spatypes - 1261 is the only one pre 68 months where loss affected if reclassified from pos to neg
@@ -219,7 +223,6 @@ noi tab timepoint if missingspatype==1
 noi list patid SwabID timepoint Result spatype  if missingspatype==1, sepby(patid)
 noi drop if missingspa==1
 noi drop missing*
-*
 
 * people where we could not determine spatype from result
 gen missingspatype=1 if inlist(Result, "MRSA", "MSSA") & (strpos(spatype,"undet") | strpos(spatype, "contam"))
@@ -231,7 +234,6 @@ drop if missing==1
 drop missing
 
 * No growth, but have spatype
-
 gen incorrect_result_query = 1 if Result=="No growth" & spatype!="" 
 summ incorrect_result
 noi di r(sum) "drop : records with result says No Growth, but who have spatypes"
@@ -239,7 +241,8 @@ noi tab timepoint if incorrect_result==1
 noi list patid SwabID timepoint Result spatype if incorrect_result==1, sepby(patid)
 by patid: egen incorrectmax=max(incorrect)
 noi di "detail of those patids over time: in both cases spatypes not otherwise seen in those patid. Not first new spatype for either"
-noi list patid SwabID timepoint Result spatype incorrect_result if incorrectmax==1, sepby(patid) // list out those with missing spatypes before 68 months
+* list out those with missing spatypes before 68 months
+noi list patid SwabID timepoint Result spatype incorrect_result if incorrectmax==1, sepby(patid) 
 drop if incorrect_result==1
 drop incorrect*
 
@@ -250,7 +253,8 @@ noi di r(sum) " drop: missing Result"
 noi list patid SwabID timepoint Result spatype if Result==""
 by patid: egen missingmax=max(missing)
 noi di "detail of those patids over time: "
-noi list patid SwabID timepoint Result spatype missing if missingmax==1, sepby(patid) // list out those with missing spatypes before 68 months
+* list out those with missing spatypes before 68 months
+noi list patid SwabID timepoint Result spatype missing if missingmax==1, sepby(patid) 
 drop if missing==1
 drop missing*
 
@@ -267,7 +271,7 @@ drop first
 
 
 ****************************************************************************
-*  5 : problem of in accurate timepoint/ duplicate swabs
+*  6 : problem of in accurate timepoint/ duplicate swabs
 ****************************************************************************
 noi di _n(5) _dup(80) "=" _n "(6) SORT MULTIPLE BEST DATES" _n _dup(80) "=" 
 * look at spread of results
@@ -277,8 +281,6 @@ gen accuracy = abs(days/(30.44) -timepoint )
 
 noi di "accuracy of timeperiod"
 noi summ accuracy
-
-
 
 duplicates tag patid BestDate, gen (multiple)
 noi summ multiple if multiple!=0
@@ -384,7 +386,7 @@ noi assert multiple==0
 drop multiple
 
 **************************************
-******  6 inaccuracy of "timepoint" timing: keep all spatypes found within 30.44 days of a timepoint, combine onto single result.
+*  7 inaccuracy of "timepoint" timing: keep all spatypes found within 30.44 days of a timepoint, combine onto single result.
 *****************************************
 noi di _n(5) _dup(80) "=" _n "(7) SORT INACCURATE TIMINGS" _n _dup(80) "=" 
 bysort patid: egen max_accuracy = max(accuracy)
@@ -412,6 +414,11 @@ noi di r(N) " renumbered timepoints to timepoint closest to when swab was taken"
 noi summ accuracy max org_acc org_max
 noi list patid Sent DateTaken Received org_time BestDate timepoint acc spa if flag==1
 drop flag org_acc org_max
+
+******************************************
+* 8) sort out the multiple timepoints
+******************************************
+* where there are multiple swabs matching to a single timepoint
 
 * reorder by new timepoint
 noi di _n(5) _dup(80) "=" _n "(8) SORT MULTIPLE TIMEPOINTS" _n _dup(80) "=" 
@@ -444,7 +451,7 @@ noi summ multiple if multiple!=0
 noi di r(N) " duplicated swabs" 
 noi list patid org_timepoint timepoint BestDate accuracy spatype Result if multiple!=0, sepby(patid)
 
-******** ideally at this point, want to keep all the spa-types on the two swabs.
+******** ********* at this point, want to keep all the spa-types on the two swabs.
 * create blended list of spa-types found
 preserve
 keep if multiple!=0
@@ -529,7 +536,9 @@ tab Result, m
 gen nspatypes= length(spatype) - length(subinstr(spatype, "/", "", .)) + 1
 replace nspatypes=0 if spatype==""
 
-* check everyone returned at least one swab
+****************************************************************
+* 9: check everyone returned at least one swab
+***************************************************************
 noi di _n(5) _dup(80) "=" _n "(9) At least 2 Swabs & timepoint 0" _n _dup(80) "=" 
 noi di "check everyone returned at least 2 swabs post baseline ( 3 total)"
 by patid: gen count=_N
@@ -553,8 +562,10 @@ noi di "check everyone has timepoint 0"
 noi assert PROBLEM!=1 
 drop PROBLEM
 
+**************************************************************
+* 10 people missing GP data
+**************************************************************
 
-* people missing GP data
 noi di _n(5) _dup(80) "=" _n "(10) people missing GP data" _n _dup(80) "=" 
 
 merge m:1 patid using "E:\users\amy.mason\staph_carriage\Datasets\GP_org", update
@@ -571,9 +582,10 @@ drop if GPmissing==1
 drop GPmissing count 
 drop _merge
 
-save "E:\users\amy.mason\staph_carriage\Datasets\for_baseline.dta", replace	
+save "E:\users\amy.mason\staph_carriage\Datasets\clean_data.dta", replace	
+
 **********************************************************************
-*drop non-relevant data; label rest
+*11: drop non-relevant data; label rest
 *******************************************************************
  noi di _n(5) _dup(80) "=" _n "(11) drop non-relevant data" _n _dup(80) "=" 
  
@@ -585,25 +597,46 @@ save "E:\users\amy.mason\staph_carriage\Datasets\for_baseline.dta", replace
 * recruitment CC, positive on previous swab, carriage of CC8, CC15 or other
 *antibiotics in last 6 months, antibiotics in last interval, recruitment pos
 *having multiple spa-types, gaining new spatype in prev swab 
+
+
+
+*DON'T WANT: 
+ drop Sent Received  DateTaken  StudyGroup org_timepoint  year  days_since_first result_severity  ideal_days 
+ drop accuracy max_accuracy  nspatypes  PracticeNurseAppointment PracticeNurseAppointmentDate  LongTermIllness UndergoneChemotherapy
+drop  UndergoneChemotherapyDate UndergoneChemotherapyApprox UndergoneRenalDialysis UndergoneRenalDialysisDate UndergoneRenalDialysisApprox 
+drop UndergoneSurgeryApprox UndergoneVascularAccess UndergoneVascularAccessDate UndergoneInsertionUrinaryCatheti
+drop Y UnderongePrescriptionOralSteroid AA ReceivedAntimicrobials ReceivedAntimicrobialsDate ReceivedAntimicrobialsHospital 
+drop MRSAIsolatedPreviously MRSAIsolatedPreviouslyDate MRSAIsolatedPreviouslySampleType MSSAIsolatedPreviously MSSAIsolatedPreviouslyDate 
+drop MSSAIsolatedPreviouslySampleType Comments SkinBreaks SkinBreakDetails VascAccess SourceOfInfection MainDiganosis Smoker SmokerYear 
+drop SmokerMonth Numberofcigarettesperday V1Asthma V2Eczema V3Hayfever V4Surgeryinpastmonth V5Dateofsurgery V6Vaccinationinpastmonth 
+drop V7Dateofvaccination V8Hospitalinpatientinpastmo V9Dateofinpatient V10Flulikeillnessinpastmon V11Dateoffluillness  V13Dateofskininfection
+drop V14Antibioticsinpastmonth V15Dateofantibiotics V16Receivedchildhoodvaccines V17PreviousSaureusinfection V18Healthcareworkerwithcurre 
+drop count2  V12Skininfectioninpastmonth Result_max
  
 *WANT:
-SwabID: 
-patid: 
-spatype : what spatypes found on sample
-DateOfBirth: date of birth
-Sex: sex at baseline
-BestDate: best estimate of when sample taken
-timepoint: number of months since first swab
-Result_max :  rename to Result = is it MSSA/MSRA/ No growth
-*DON'T WANT: 
- Sent Received  DateTaken  StudyGroup org_timepoint  year  days_since_first result_severity  ideal_days 
- accuracy max_accuracy  nspatypes 
+label variable SwabID "Unique Swab identifier"
+label variable patid "Participant identifer"
+label variable Result "what type of staph, if any"
+label variable spatype "all spatypes found on sample this timepoint" 
+label variable DateOfBirth "date of birth"
+label variable Sex "sex at baseline"
+label variable BestDate "best estimate of when sample taken"
+label variable timepoint "number of months since first swab"
 
- InPatientNonORH InPatientNonORHDate OutPatientNonORH OutPatientNonORHDate GPAppointment GPAppointmentDate PracticeNurseAppointment PracticeNurseAppointmentDate DistrictNurseCare DistrictNurseCareDate LongTermIllness UndergoneChemotherapy UndergoneChemotherapyDate UndergoneChemotherapyApprox UndergoneRenalDialysis UndergoneRenalDialysisDate UndergoneRenalDialysisApprox UndergoneSurgery UndergoneSurgeryDate UndergoneSurgeryApprox UndergoneVascularAccess UndergoneVascularAccessDate UndergoneInsertionUrinaryCatheti Y UnderongePrescriptionOralSteroid AA ReceivedAntimicrobials ReceivedAntimicrobialsDate ReceivedAntimicrobialsHospital MRSAIsolatedPreviously MRSAIsolatedPreviouslyDate MRSAIsolatedPreviouslySampleType MSSAIsolatedPreviously MSSAIsolatedPreviouslyDate MSSAIsolatedPreviouslySampleType Comments SkinBreaks SkinBreakDetails VascAccess SourceOfInfection MainDiganosis Smoker SmokerYear SmokerMonth Numberofcigarettesperday V1Asthma V2Eczema V3Hayfever V4Surgeryinpastmonth V5Dateofsurgery V6Vaccinationinpastmonth V7Dateofvaccination V8Hospitalinpatientinpastmo V9Dateofinpatient V10Flulikeillnessinpastmon V11Dateoffluillness V12Skininfectioninpastmonth V13Dateofskininfection V14Antibioticsinpastmonth V15Dateofantibiotics V16Receivedchildhoodvaccines V17PreviousSaureusinfection V18Healthcareworkerwithcurre count2
+label variable InPatientNonORH "any record of inpatient appointment outside of ORH at baseline"
+label variable InPatientNonORHDate "date of last inpatient appointment outside of ORH if known"
+label variable OutPatientNonORH "any record of outpatient appointment outside of ORH at baseline"
+label variable OutPatientNonORHDate "date of last outpatient appointment outside of ORH if known"
+label variable DistrictNurseCare "any record of District Nurse at baseline"
+label variable DistrictNurseCareDate "date of last District Nurse if known"
+label variable UndergoneSurgery "any record of surgery  at baseline"
+label variable UndergoneSurgeryDate "date of last surgery if known"
+label variable GPAppointment "any record of GP appointment at baseline"
+label variable GPAppointmentDate "date of last GP appointment if known"
  
- 
+
 *******************************************************************
-*save final data sets
+* save final data sets
 *****************************************************************
 
 noi di "NO TIMEPOINT CUTOFF"
