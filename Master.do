@@ -15,7 +15,7 @@ set logtype text
 cd "E:\users\amy.mason\staph_carriage\Programs"
 
 set more off
-* data input
+* data input; contain instructions on updating data from Ridom and access database
 run getdata_sept16_ext.do
 * fix additional spa data not in extract
 ***** NOTE: some of these spa-types came back as unknown by Ridom or were unresolvable at the lab level
@@ -24,9 +24,9 @@ set more on
 
 
 cd "E:\users\amy.mason\staph_carriage\Programs"
-* clean data
 set more off
 cd "E:\users\amy.mason\staph_carriage\Programs"
+* cleans main dataset, creating a log report of problems and steps taken
 run Clean_maindata.do
 run baseline.do
 cd "E:\users\amy.mason\staph_carriage\Programs"

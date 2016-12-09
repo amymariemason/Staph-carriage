@@ -1,5 +1,15 @@
-* Cleans up main dataset
-* creates cleandata.dta
+************************************************
+*getdata_sept16_ext.DO
+************************************************
+* creates a clean dataset of partipants; with focus on removing swabs with missing data
+*keeps a log file of what cleaning has been done
+
+* INPUTS: raw_input.dta , groups.dta, GP_org, ( from getdata_sept16_ext.do)
+*spa_update2.dta  (from spa_update.do)
+
+*OUTPUTS : clean_data (cleaned dataset of swabs and spatypes), patid (list of participants in final dataset)
+
+* written by Amy Mason
 
 set li 130
 
@@ -7,10 +17,11 @@ cap log close
 log using clean_maindata.log, replace
 noi di "Run by AMM on $S_DATE $S_TIME"
 
-
+* load in data
 use "E:\users\amy.mason\staph_carriage\Datasets\raw_input.dta", clear
 bysort patid: gen first=(_n==1)
 summ first
+* keep track of numbers in dataset
 noi di  " starting with " _N " records from " r(sum) " paticipants" 
 drop first
 
@@ -21,10 +32,12 @@ drop first
 merge m:1 patid timepoint using "E:\users\amy.mason\staph_carriage\Datasets\spa_update2.dta", update
 assert inlist(_merge,1,3)
 assert spatype=="" if _merge==3
+* count number of new spatypes from this dataset
 gen count =1 if spatype=="" & spa_update!=""
 summ count
 noi di r(sum) " spa-types updates with Nov 2016 spa check"
 
+* some of the spatypes couldn't be identified
 gen prob = strpos(spa_update, "tx") | strpos(spa_update, "undet")
 summ prob if count==1
 noi di r(sum) " of " r(N) " of these updates are unknown in Ridom (tx) or were unable to be determined from lab results"
@@ -36,15 +49,16 @@ drop count prob spa_update _merge
 
 *******************************************************************	
 *1 drop people outside of study scope, or who didn't return swabs
-
+******************************************************************
 * drop people who were recruited in hospital / non nasal swabs
 noi di _n(5) _dup(80) "=" _n "(1) DROP NON-NASAL/ NON-GP RECRUITMENT PEOPLE" _n _dup(80) "=" 
-* merge with group records
+* merge with recruitment group records
 merge m:1 patid using "E:\users\amy.mason\staph_carriage\Datasets\groups", update
 
 assert _merge==3
 drop _merge
 noi tab StudyGroup
+* keep track of numbers dropped
 gen flag =1 if StudyGroup!="C3 GP"
 summ flag if flag==1
 noi di "drop " r(N) " records where either not from nose, or from hospital recuitement"
@@ -556,6 +570,37 @@ merge m:1 patid using "E:\users\amy.mason\staph_carriage\Datasets\GP_org", updat
 drop if GPmissing==1
 drop GPmissing count 
 drop _merge
+
+save "E:\users\amy.mason\staph_carriage\Datasets\for_baseline.dta", replace	
+**********************************************************************
+*drop non-relevant data; label rest
+*******************************************************************
+ noi di _n(5) _dup(80) "=" _n "(11) drop non-relevant data" _n _dup(80) "=" 
+ 
+ *Ruth's paper found significant: sex, age, ethnicity, being in current employment at recruitment, participation in contact sport at recruitment
+ *more household members, time since district nurse, ever being an inpatient, outpatient exposure
+ *Days since surgery, days since last GP appointment (per year), 
+ *treatment for skin condition within last 30 day - everyone negative; double check?
+*Ever had long term illness (defined as: One hundred and sixty nine patients had one or more long term illnesses that have been associated with either S.aureus carriage or community acquired S. aureus infection: (n=number of patients). type 1 diabetes (5), type 2 diabetes (25), asthma/COPD on inhaled steroids (36), history of cancer (24), history of dermatitis or psoriasis (43), most recent BMI >=30 (102), history of drug misuse (4), dialysis (1), cirrhosis (1). The effect of one of these long-term illnesses was very similar to the effect of the larger group with any long-term illness shown above.)
+* recruitment CC, positive on previous swab, carriage of CC8, CC15 or other
+*antibiotics in last 6 months, antibiotics in last interval, recruitment pos
+*having multiple spa-types, gaining new spatype in prev swab 
+ 
+*WANT:
+SwabID: 
+patid: 
+spatype : what spatypes found on sample
+DateOfBirth: date of birth
+Sex: sex at baseline
+BestDate: best estimate of when sample taken
+timepoint: number of months since first swab
+Result_max :  rename to Result = is it MSSA/MSRA/ No growth
+*DON'T WANT: 
+ Sent Received  DateTaken  StudyGroup org_timepoint  year  days_since_first result_severity  ideal_days 
+ accuracy max_accuracy  nspatypes 
+
+ InPatientNonORH InPatientNonORHDate OutPatientNonORH OutPatientNonORHDate GPAppointment GPAppointmentDate PracticeNurseAppointment PracticeNurseAppointmentDate DistrictNurseCare DistrictNurseCareDate LongTermIllness UndergoneChemotherapy UndergoneChemotherapyDate UndergoneChemotherapyApprox UndergoneRenalDialysis UndergoneRenalDialysisDate UndergoneRenalDialysisApprox UndergoneSurgery UndergoneSurgeryDate UndergoneSurgeryApprox UndergoneVascularAccess UndergoneVascularAccessDate UndergoneInsertionUrinaryCatheti Y UnderongePrescriptionOralSteroid AA ReceivedAntimicrobials ReceivedAntimicrobialsDate ReceivedAntimicrobialsHospital MRSAIsolatedPreviously MRSAIsolatedPreviouslyDate MRSAIsolatedPreviouslySampleType MSSAIsolatedPreviously MSSAIsolatedPreviouslyDate MSSAIsolatedPreviouslySampleType Comments SkinBreaks SkinBreakDetails VascAccess SourceOfInfection MainDiganosis Smoker SmokerYear SmokerMonth Numberofcigarettesperday V1Asthma V2Eczema V3Hayfever V4Surgeryinpastmonth V5Dateofsurgery V6Vaccinationinpastmonth V7Dateofvaccination V8Hospitalinpatientinpastmo V9Dateofinpatient V10Flulikeillnessinpastmon V11Dateoffluillness V12Skininfectioninpastmonth V13Dateofskininfection V14Antibioticsinpastmonth V15Dateofantibiotics V16Receivedchildhoodvaccines V17PreviousSaureusinfection V18Healthcareworkerwithcurre count2
+ 
  
 *******************************************************************
 *save final data sets

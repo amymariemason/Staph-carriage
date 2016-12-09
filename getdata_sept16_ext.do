@@ -1,7 +1,21 @@
-* GETDATA.DO
+************************************************
+*getdata_sept16_ext.DO
+************************************************
+* loads the data from the inputs files and creates stata data sets 
 
-* create clean data set for analysis
+* INPUTS: Amy 29_09 Results Query.xlsx,   Amy 29_09 Antimicrobials Query.xlsx, ( from ACCESS DATABASE, will need updating)
+*  Confidential Details Query
+*Staph_drugslist_nicola_update_mar2016.xlsx,  ( made by Nicki Fawcett, may need to be updated if new drugs reported)
+*GPRecordInformation.xlsx, GPRecordInformationAfter2Years.xlsx
+* HouseholdMembers.xlsx, PersonalDetails.xlsx
+* KYLE_ Underlying illnesses study numbers 18.4.13.xls, 
+* CC_23_11_16.csv,  cost_noexclusions_23_11_16.txt (FROM RIDOM, see instructions at end)
 
+
+*OUTPUTS : raw_input , raw_druglist, raw_antibiotics, groups, GP_org, GP_2Y, Household, Personal, Illness, Skin
+* all Stata datasets saved in DATASETS
+
+* written by Amy Mason
 
 set li 130
 
@@ -11,6 +25,7 @@ noi di "Run by AMM on $S_DATE $S_TIME"
 
 *********************************************
 * Input data
+*********************************************
 
 * main dataset
 noi di _n(5) _dup(80) "=" _n "Input Results extract" _n _dup(80) "=" 
@@ -107,7 +122,7 @@ noi bysort *: drop if _n>1
 compress
 save  "E:\users\amy.mason\staph_carriage\Datasets\Personal", replace
 
-* intake details (via data from Kyle)
+* intake details (via data from Kyle, from Ruth's original study)
 noi di _n(5) _dup(80) "=" _n "Long Term Illness" _n _dup(80) "=" 
  import excel "E:\users\amy.mason\staph_carriage\Inputs\KYLE_ Underlying illnesses study numbers 18.4.13.xls", sheet("Cleaned for analysis") firstrow clear
 rename ID patid
@@ -132,7 +147,7 @@ save "E:\users\amy.mason\staph_carriage\Datasets\Skin", replace
 
 *cc-groups 
 noi di _n(5) _dup(80) "=" _n "Clonal colonies" _n _dup(80) "=" 
-import delimited E:\users\amy.mason\staph_carriage\Inputs\CC_noexclusions_23_11_16.csv, delimiter(";:", collapse) varnames(1) clear 
+import delimited E:\users\amy.mason\staph_carriage\Inputs\CC_23_11_16.csv, delimiter(";:", collapse) varnames(1) clear 
 drop v5
 drop taxa
 rename v4 CCname
