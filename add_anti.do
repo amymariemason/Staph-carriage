@@ -1,13 +1,5 @@
-************************************************
-*add_spa.DO
-************************************************
-** add antibiotics usage indicators to main dataset and merge in baseline data
-* one to indicate antibiotics taken between this swab and last, 
-* one to indicate antibiotics taken in last 6 months
-* INPUTS:   clean_data2 (from add_spa), antistaph_antibiotics_nooverlap (from antibiotics)
-*OUTPUTS : clean_data3
-* written by Amy Mason
 
+* add antibiotics usage indicators to main dataset and merge in baseline data
 
 set li 130
 

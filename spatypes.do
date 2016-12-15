@@ -1,7 +1,7 @@
 ************************************************
 *SPATYPES.DO
 ************************************************
-* creats clonal colonies and BURP distances info for every spatype/ spatype pair in the dataset
+* creats clonal colonies and BURP distances info for every spatype in the dataset
 
 * INPUTS:    clean_data, (from clean_maindata.do)
 * CC, BURP (from Inputs.do)
@@ -93,9 +93,9 @@ noi di "Number of distinct CC seen (excluding standalones, excluded and new) " r
 
 
 ******************************************************************************************************
-*all spatype pairs in burp database
+*all spatype pairs
 ************************************************************************************
-* so that ready to be merged in to calculate distances later
+
 
 
 use "E:\users\amy.mason\staph_carriage\Datasets\BURP", clear

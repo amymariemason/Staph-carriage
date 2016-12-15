@@ -1568,16 +1568,3 @@ CC with more than 200 samples seen
 . noi di "Number of distinct CC seen (excluding standalones, excluded and new) " r(N)
 Number of distinct CC seen (excluding standalones, excluded and new) 19
 
-. cd "E:\users\amy.mason\staph_carriage\Programs"
-E:\users\amy.mason\staph_carriage\Programs
-
-. 
-. * combine data
-
-. 
-. 
-. 
-. ** then add spatypes to clean_data and calc burp cost
-
-. 
-. run add_spa.do
