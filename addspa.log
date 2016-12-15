@@ -1,4 +1,4 @@
-Run by AMM on 24 Nov 2016 12:00:09
+Run by AMM on 15 Dec 2016 11:18:28
 INITIAL DISTANCES
 BURP DISTANCES WE CANNOT CALCULATE: estimates provided by TIM PETO
 
@@ -41,9 +41,670 @@ BURP DISTANCES WE CANNOT CALCULATE: estimates provided by TIM PETO
        |---------------------------------------------------------------------|
  7609. |  1332         82         1       1       txAJ       t279          . |
        +---------------------------------------------------------------------+
+number of swabs with new spa types (compared to initial 2)
+
+    new spa |
+  different |
+ to initial |
+   spatypes |      Freq.     Percent        Cum.
+------------+-----------------------------------
+          0 |      8,004       89.01       89.01
+          1 |        988       10.99      100.00
+------------+-----------------------------------
+      Total |      8,992      100.00
+number of swabs with new spa types (compared to previous 2)
+
+    new spa |
+  different |
+    to prev |
+   spatypes |      Freq.     Percent        Cum.
+------------+-----------------------------------
+          0 |      8,570       95.31       95.31
+          1 |        422        4.69      100.00
+------------+-----------------------------------
+      Total |      8,992      100.00
 file E:\users\amy.mason\staph_carriage\Datasets\clean_data2.dta saved
-. 
-. ** add antibiotics to calc for anti in last 6 months, anti between spa types; also baseline data
+
+. * create list of all spatypes
 
 . 
-. run add_anti.do
+. use "E:\users\amy.mason\staph_carriage\Datasets\clean_data.dta", clear
+
+. 
+. keep patid timepoint spatype
+
+. 
+. split spatype, parse(/)
+variables created as string: 
+spatype1  spatype2  spatype3  spatype4  spatype5
+
+. 
+. drop spatype
+
+. 
+. reshape long spatype, i(patid timepoint) j(spanum)
+(note: j = 1 2 3 4 5)
+
+Data                               wide   ->   long
+-----------------------------------------------------------------------------
+Number of obs.                     8992   ->   44960
+Number of variables                   7   ->       4
+j variable (5 values)                     ->   spanum
+xij variables:
+         spatype1 spatype2 ... spatype5   ->   spatype
+-----------------------------------------------------------------------------
+
+. 
+. drop if spatype==""
+(40,303 observations deleted)
+
+. preserve
+
+. 
+. keep spatype
+
+. 
+. drop duplicates
+variable duplicates not found
+r(111);
+
+. export delimited using "E:\users\amy.mason\staph_carriage\Outpits\unique_spa.csv", replace
+(note: file E:\users\amy.mason\staph_carriage\Outpits\unique_spa.csv not found)
+file E:\users\amy.mason\staph_carriage\Outpits\unique_spa.csv saved
+
+. restore
+
+. 
+. * create list of all spatypes
+
+. 
+. use "E:\users\amy.mason\staph_carriage\Datasets\clean_data.dta", clear
+
+. 
+. keep patid timepoint spatype
+
+. 
+. split spatype, parse(/)
+variables created as string: 
+spatype1  spatype2  spatype3  spatype4  spatype5
+
+. 
+. drop spatype
+
+. 
+. reshape long spatype, i(patid timepoint) j(spanum)
+(note: j = 1 2 3 4 5)
+
+Data                               wide   ->   long
+-----------------------------------------------------------------------------
+Number of obs.                     8992   ->   44960
+Number of variables                   7   ->       4
+j variable (5 values)                     ->   spanum
+xij variables:
+         spatype1 spatype2 ... spatype5   ->   spatype
+-----------------------------------------------------------------------------
+
+. 
+. drop if spatype==""
+(40,303 observations deleted)
+
+. 
+. 
+. 
+. **** LIST FOR EXTRACTING TO RIDOM***
+
+. 
+. preserve
+
+. 
+. keep spatype
+
+. 
+. duplicates drop
+
+Duplicates in terms of all variables
+
+(4,312 observations deleted)
+
+. 
+. export delimited using "E:\users\amy.mason\staph_carriage\Outpits\unique_spa.csv", replace
+file E:\users\amy.mason\staph_carriage\Outpits\unique_spa.csv saved
+
+. 
+. restore
+
+. 
+. 
+. 
+. *********
+
+. 
+. 
+. 
+. * merge with CC groups data
+
+. 
+. merge m:1 spatype using "E:\users\amy.mason\staph_carriage\Datasets\CC", update
+
+    Result                           # of obs.
+    -----------------------------------------
+    not matched                            85
+        from master                        11  (_merge==1)
+        from using                         74  (_merge==2)
+
+    matched                             4,646
+        not updated                     4,646  (_merge==3)
+        missing updated                     0  (_merge==4)
+        nonmissing conflict                 0  (_merge==5)
+    -----------------------------------------
+
+. 
+. 
+. 
+. replace CCname="new " + spatype if _merge==1 & strpos(spatype, "tx")
+(11 real changes made)
+
+. 
+. replace CC="999" if strpos(CCname, "new")
+(11 real changes made)
+
+. 
+. noi di "new spatypes that were not on Ridom database"
+new spatypes that were not on Ridom database
+
+. 
+. noi list if CC=="999"
+
+      +------------------------------------------------------------------------+
+      | patid   timepo~t   spanum   spatype    CC     CCname            _merge |
+      |------------------------------------------------------------------------|
+4647. |   671         80        1      txAE   999   new txAE   master only (1) |
+4648. |   671         88        1      txAE   999   new txAE   master only (1) |
+4649. |   671         86        1      txAE   999   new txAE   master only (1) |
+4650. |  1231         78        1      txAG   999   new txAG   master only (1) |
+4651. |  1231         82        1      txAG   999   new txAG   master only (1) |
+      |------------------------------------------------------------------------|
+4652. |  1295         82        1      txAH   999   new txAH   master only (1) |
+4653. |   424         80        1      txAI   999   new txAI   master only (1) |
+4654. |   424         86        1      txAI   999   new txAI   master only (1) |
+4655. |   424         84        1      txAI   999   new txAI   master only (1) |
+4656. |   424         88        1      txAI   999   new txAI   master only (1) |
+      |------------------------------------------------------------------------|
+4657. |  1332         82        1      txAJ   999   new txAJ   master only (1) |
+      +------------------------------------------------------------------------+
+
+. 
+. assert CC!="" if _merge==1
+
+. 
+. drop if _merge==2
+(74 observations deleted)
+
+. 
+. assert inlist(_merge, 1,3)
+
+. 
+. drop _merge
+
+. 
+. 
+. 
+. * save matching of spatypes to CC
+
+. 
+. preserve
+
+. 
+. keep spatype CC CCname
+
+. 
+. duplicates drop
+
+Duplicates in terms of all variables
+
+(4,312 observations deleted)
+
+. 
+. save "E:\users\amy.mason\staph_carriage\Datasets\CCnames", replace
+file E:\users\amy.mason\staph_carriage\Datasets\CCnames.dta saved
+
+. 
+. restore
+
+. reshape wide
+(note: j = 1 2 3 4 5)
+variable CC not constant within patid timepoint
+variable CCname not constant within patid timepoint
+    Your data are currently long.  You are performing a reshape wide.  You typed something like
+
+        . reshape wide a b, i(patid timepoint) j(spanum)
+
+    There are variables other than a, b, patid timepoint, spanum in your data.  They must be constant within patid timepoint
+    because that is the only way they can fit into wide data without loss of information.
+
+    The variable or variables listed above are not constant within patid timepoint.  Perhaps the values are in error.  Type
+    reshape error for a list of the problem observations.
+
+    Either that, or the values vary because they should vary, in which case you must either add the variables to the list of xij
+    variables to be reshaped, or drop them.
+r(9);
+
+. reshape wide , i(patid timepoint) j(spanum)
+invalid syntax
+r(198);
+
+. reshape wide spatype, i(patid timepoint) j(spanum)
+(note: j = 1 2 3 4 5)
+variable CC not constant within patid timepoint
+variable CCname not constant within patid timepoint
+    Your data are currently long.  You are performing a reshape wide.  You typed something like
+
+        . reshape wide a b, i(patid timepoint) j(spanum)
+
+    There are variables other than a, b, patid timepoint, spanum in your data.  They must be constant within patid timepoint
+    because that is the only way they can fit into wide data without loss of information.
+
+    The variable or variables listed above are not constant within patid timepoint.  Perhaps the values are in error.  Type
+    reshape error for a list of the problem observations.
+
+    Either that, or the values vary because they should vary, in which case you must either add the variables to the list of xij
+    variables to be reshaped, or drop them.
+r(9);
+
+. reshape wide spatype CC CCname, i(patid timepoint) j(spanum)
+(note: j = 1 2 3 4 5)
+
+Data                               long   ->   wide
+-----------------------------------------------------------------------------
+Number of obs.                     4657   ->    4448
+Number of variables                   6   ->      17
+j variable (5 values)            spanum   ->   (dropped)
+xij variables:
+                                spatype   ->   spatype1 spatype2 ... spatype5
+                                     CC   ->   CC1 CC2 ... CC5
+                                 CCname   ->   CCname1 CCname2 ... CCname5
+-----------------------------------------------------------------------------
+
+. restore
+nothing to restore
+r(622);
+
+. reshape long
+(note: j = 1 2 3 4 5)
+
+Data                               wide   ->   long
+-----------------------------------------------------------------------------
+Number of obs.                     4448   ->   22240
+Number of variables                  17   ->       6
+j variable (5 values)                     ->   spanum
+xij variables:
+         spatype1 spatype2 ... spatype5   ->   spatype
+                        CC1 CC2 ... CC5   ->   CC
+            CCname1 CCname2 ... CCname5   ->   CCname
+-----------------------------------------------------------------------------
+
+. replace CCname = CC if CCname==""
+(330 real changes made)
+
+. 
+. replace CCname = CC +CCname if CCname=="no founder"
+(0 real changes made)
+
+. 
+. * excluded = it was not used to group into clonal colonies (see Ridom options)
+
+. 
+. * new = not currently known in Ridom database 
+
+. 
+. * standalones = only spatype from that colony seen
+
+. 
+. 
+. 
+. * create list of all spatypes
+
+. 
+. use "E:\users\amy.mason\staph_carriage\Datasets\clean_data.dta", clear
+
+. 
+. keep patid timepoint spatype
+
+. 
+. split spatype, parse(/)
+variables created as string: 
+spatype1  spatype2  spatype3  spatype4  spatype5
+
+. 
+. drop spatype
+
+. 
+. reshape long spatype, i(patid timepoint) j(spanum)
+(note: j = 1 2 3 4 5)
+
+Data                               wide   ->   long
+-----------------------------------------------------------------------------
+Number of obs.                     8992   ->   44960
+Number of variables                   7   ->       4
+j variable (5 values)                     ->   spanum
+xij variables:
+         spatype1 spatype2 ... spatype5   ->   spatype
+-----------------------------------------------------------------------------
+
+. 
+. drop if spatype==""
+(40,303 observations deleted)
+
+. 
+. 
+. 
+. **** LIST FOR EXTRACTING TO RIDOM***
+
+. 
+. preserve
+
+. 
+. keep spatype
+
+. 
+. duplicates drop
+
+Duplicates in terms of all variables
+
+(4,312 observations deleted)
+
+. 
+. export delimited using "E:\users\amy.mason\staph_carriage\Outpits\unique_spa.csv", replace
+file E:\users\amy.mason\staph_carriage\Outpits\unique_spa.csv saved
+
+. 
+. restore
+
+. 
+. 
+. 
+. *********
+
+. 
+. 
+. 
+. * merge with CC groups data
+
+. 
+. merge m:1 spatype using "E:\users\amy.mason\staph_carriage\Datasets\CC", update
+
+    Result                           # of obs.
+    -----------------------------------------
+    not matched                            85
+        from master                        11  (_merge==1)
+        from using                         74  (_merge==2)
+
+    matched                             4,646
+        not updated                     4,646  (_merge==3)
+        missing updated                     0  (_merge==4)
+        nonmissing conflict                 0  (_merge==5)
+    -----------------------------------------
+
+. 
+. 
+. 
+. replace CCname="new " + spatype if _merge==1 & strpos(spatype, "tx")
+(11 real changes made)
+
+. 
+. replace CC="999" if strpos(CCname, "new")
+(11 real changes made)
+
+. 
+. noi di "new spatypes that were not on Ridom database"
+new spatypes that were not on Ridom database
+
+. 
+. noi list if CC=="999"
+
+      +------------------------------------------------------------------------+
+      | patid   timepo~t   spanum   spatype    CC     CCname            _merge |
+      |------------------------------------------------------------------------|
+4647. |   671         80        1      txAE   999   new txAE   master only (1) |
+4648. |   671         88        1      txAE   999   new txAE   master only (1) |
+4649. |   671         86        1      txAE   999   new txAE   master only (1) |
+4650. |  1231         78        1      txAG   999   new txAG   master only (1) |
+4651. |  1231         82        1      txAG   999   new txAG   master only (1) |
+      |------------------------------------------------------------------------|
+4652. |  1295         82        1      txAH   999   new txAH   master only (1) |
+4653. |   424         84        1      txAI   999   new txAI   master only (1) |
+4654. |   424         86        1      txAI   999   new txAI   master only (1) |
+4655. |   424         80        1      txAI   999   new txAI   master only (1) |
+4656. |   424         88        1      txAI   999   new txAI   master only (1) |
+      |------------------------------------------------------------------------|
+4657. |  1332         82        1      txAJ   999   new txAJ   master only (1) |
+      +------------------------------------------------------------------------+
+
+. 
+. assert CC!="" if _merge==1
+
+. 
+. drop if _merge==2
+(74 observations deleted)
+
+. 
+. assert inlist(_merge, 1,3)
+
+. 
+. drop _merge
+
+. 
+. 
+. 
+. * save matching of spatypes to CC
+
+. 
+. preserve
+
+. 
+. keep spatype CC CCname
+
+. 
+. replace CCname = CC if CCname==""
+(330 real changes made)
+
+. 
+. replace CCname = CC +CCname if CCname=="no founder"
+(0 real changes made)
+
+. tab CCname
+
+           CCname |      Freq.     Percent        Cum.
+------------------+-----------------------------------
+               #1 |          8        0.17        0.17
+              #10 |          1        0.02        0.19
+              #11 |          8        0.17        0.37
+              #13 |          3        0.06        0.43
+              #14 |          2        0.04        0.47
+              #15 |          9        0.19        0.67
+              #16 |          3        0.06        0.73
+              #18 |          7        0.15        0.88
+              #19 |          2        0.04        0.92
+               #2 |          3        0.06        0.99
+              #20 |         30        0.64        1.63
+              #21 |          3        0.06        1.70
+              #22 |          1        0.02        1.72
+              #23 |          3        0.06        1.78
+              #24 |          1        0.02        1.80
+              #25 |          3        0.06        1.87
+              #27 |          2        0.04        1.91
+              #28 |          1        0.02        1.93
+               #3 |          1        0.02        1.95
+              #30 |          7        0.15        2.10
+              #32 |          6        0.13        2.23
+              #33 |          6        0.13        2.36
+              #34 |          6        0.13        2.49
+               #4 |          1        0.02        2.51
+               #6 |          1        0.02        2.53
+               #7 |          1        0.02        2.56
+               #8 |          7        0.15        2.71
+               #9 |          1        0.02        2.73
+       no founder |         63        1.35        4.08
+       spa-CC 002 |        271        5.82        9.90
+       spa-CC 005 |        405        8.70       18.60
+       spa-CC 012 |      1,487       31.93       50.53
+       spa-CC 024 |        193        4.14       54.67
+       spa-CC 084 |        525       11.27       65.94
+       spa-CC 089 |        111        2.38       68.33
+ spa-CC 1149/1614 |         10        0.21       68.54
+       spa-CC 136 |        111        2.38       70.93
+     spa-CC 15775 |         14        0.30       71.23
+       spa-CC 160 |        132        2.83       74.06
+       spa-CC 186 |         14        0.30       74.36
+   spa-CC 195/164 |        104        2.23       76.59
+       spa-CC 216 |        101        2.17       78.76
+   spa-CC 267/359 |        345        7.41       86.17
+       spa-CC 349 |        197        4.23       90.40
+       spa-CC 364 |         60        1.29       91.69
+       spa-CC 659 |        148        3.18       94.87
+      spa-CC 6792 |         25        0.54       95.40
+         Excluded |        203        4.36       99.76
+         new txAE |          3        0.06       99.83
+         new txAG |          2        0.04       99.87
+         new txAH |          1        0.02       99.89
+         new txAI |          4        0.09       99.98
+         new txAJ |          1        0.02      100.00
+------------------+-----------------------------------
+            Total |      4,657      100.00
+
+. replace CCname = CC +CCname if strpos(CCname,"founder")
+(63 real changes made)
+
+. tab CCname
+
+           CCname |      Freq.     Percent        Cum.
+------------------+-----------------------------------
+               #1 |          8        0.17        0.17
+              #10 |          1        0.02        0.19
+              #11 |          8        0.17        0.37
+              #13 |          3        0.06        0.43
+              #14 |          2        0.04        0.47
+              #15 |          9        0.19        0.67
+              #16 |          3        0.06        0.73
+              #18 |          7        0.15        0.88
+              #19 |          2        0.04        0.92
+               #2 |          3        0.06        0.99
+              #20 |         30        0.64        1.63
+              #21 |          3        0.06        1.70
+              #22 |          1        0.02        1.72
+              #23 |          3        0.06        1.78
+              #24 |          1        0.02        1.80
+              #25 |          3        0.06        1.87
+              #27 |          2        0.04        1.91
+              #28 |          1        0.02        1.93
+               #3 |          1        0.02        1.95
+              #30 |          7        0.15        2.10
+              #32 |          6        0.13        2.23
+              #33 |          6        0.13        2.36
+              #34 |          6        0.13        2.49
+               #4 |          1        0.02        2.51
+               #6 |          1        0.02        2.53
+               #7 |          1        0.02        2.56
+               #8 |          7        0.15        2.71
+               #9 |          1        0.02        2.73
+       spa-CC 002 |        271        5.82        8.55
+       spa-CC 005 |        405        8.70       17.24
+       spa-CC 012 |      1,487       31.93       49.17
+       spa-CC 024 |        193        4.14       53.32
+       spa-CC 084 |        525       11.27       64.59
+       spa-CC 089 |        111        2.38       66.97
+ spa-CC 1149/1614 |         10        0.21       67.19
+       spa-CC 136 |        111        2.38       69.57
+     spa-CC 15775 |         14        0.30       69.87
+       spa-CC 160 |        132        2.83       72.71
+       spa-CC 186 |         14        0.30       73.01
+   spa-CC 195/164 |        104        2.23       75.24
+       spa-CC 216 |        101        2.17       77.41
+   spa-CC 267/359 |        345        7.41       84.82
+       spa-CC 349 |        197        4.23       89.05
+       spa-CC 364 |         60        1.29       90.34
+       spa-CC 659 |        148        3.18       93.52
+      spa-CC 6792 |         25        0.54       94.05
+    20 no founder |          7        0.15       94.20
+    21 no founder |         18        0.39       94.59
+    22 no founder |         26        0.56       95.15
+    23 no founder |          2        0.04       95.19
+    24 no founder |         10        0.21       95.40
+         Excluded |        203        4.36       99.76
+         new txAE |          3        0.06       99.83
+         new txAG |          2        0.04       99.87
+         new txAH |          1        0.02       99.89
+         new txAI |          4        0.09       99.98
+         new txAJ |          1        0.02      100.00
+------------------+-----------------------------------
+            Total |      4,657      100.00
+
+. replace CCname = subinstr(CCname, "#", "singleton ") if strpos(CCname, "#")
+invalid syntax
+r(198);
+
+. help subinstr
+
+. replace CCname = subinstr(CCname, "#", "singleton ")
+invalid syntax
+r(198);
+
+. replace CCname = usubinstr(CCname, "#", "singleton ")
+invalid syntax
+r(198);
+
+. subinstr("#22", "#", "singleton ")
+command subinstr is unrecognized
+r(199);
+
+. subinstr("this is the day","is","X",1)
+command subinstr is unrecognized
+r(199);
+
+. di subinstr("this is the day","is","X",1)
+thX is the day
+
+. di subinstr("#22", "#", "singleton ")
+invalid syntax
+r(198);
+
+. di usubinstr("#22", "#", "singleton ")
+invalid syntax
+r(198);
+
+. gen make2 = regexr(CCname, "^#.*", "found.*")
+
+. drop make2
+
+. gen make2 = regexr(CCname, "^#*")
+invalid syntax
+r(198);
+
+. gen make2 = regexr(CCname, "^#.*")
+invalid syntax
+r(198);
+
+. gen make2 = regexr(CCname, "^#")
+invalid syntax
+r(198);
+
+. gen make2 = ustrregexm(CCname, "^#")
+
+. gen make3 = strpos(CCname, "#")
+
+. tab make3
+
+      make3 |      Freq.     Percent        Cum.
+------------+-----------------------------------
+          0 |      4,530       97.27       97.27
+          2 |        127        2.73      100.00
+------------+-----------------------------------
+      Total |      4,657      100.00
+
+. list if make2==2
+
+. cd E:\users\amy.mason\Pipeline_27_07_2016\
+E:\users\amy.mason\Pipeline_27_07_2016
+
+. 
+. run clean_predict.do

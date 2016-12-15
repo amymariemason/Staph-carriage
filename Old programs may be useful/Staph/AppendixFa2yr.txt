@@ -1,0 +1,1503 @@
+384,"Amoxicillin",13/1/2010 00:00:00,"250mgs tds",15
+3002,"Co-amoxiclav",11/11/2009 00:00:00,"375mg",21
+3002,"Amoxicillin",11/11/2009 00:00:00,"250mg",21
+3002,"Nitrofurantoin",19/11/2009 00:00:00,"50mg",16
+3001,"Gentamycin",30/10/2010 00:00:00,"420mg stat",1
+3001,"Co- amoxicillin",30/10/2010 00:00:00,"625mg tds",1
+3001,"Co-amoxicillin",31/10/2010 00:00:00,"1.2gram",1
+1,"Nitrofurantoin",10/11/2009 00:00:00,"100mg bd",10
+1,"Cefalexin",9/12/2009 00:00:00,"250mg qds",20
+4,"Erythromycin",1/12/2010 00:00:00,"250mg qds",40
+4,"Erythromycin",14/10/2010 00:00:00,"250mg qds",40
+4,"Erythromycin",27/1/2010 00:00:00,"250mg qds",40
+5,"Nitrofurantoin",23/9/2010 00:00:00,"50mg qds",28
+5,"Trimethoprim",17/9/2010 00:00:00,"200mg bd",14
+5,"Erythromycin",7/4/2010 00:00:00,"250mg qds",20
+5,"Nitrofurantoin",1/12/2009 00:00:00,"50mg qds",12
+5,"Trimethoprim",16/10/2009 00:00:00,"200mg bd",10
+6,"Amoxicillin",21/12/2010 00:00:00,"1 gram bd",28
+6,"Clarithromycin",21/12/2010 00:00:00,"500mg bd",14
+6,"Acyclovir",3/7/2010 00:00:00,"800mg x 5 day",35
+31,"Erythromycin",27/7/2009 00:00:00,"250mg",28
+16,"Amoxicillin",9/4/2009 00:00:00,"250mg",21
+16,"Metronidazole",9/4/2009 00:00:00,"400mg",21
+22,"Amoxicillin",29/12/2010 00:00:00,"500mg",21
+24,"erythromycin",18/3/2010 00:00:00,"250mg",28
+24,"amoxicillin",11/12/2009 00:00:00,"500mg",42
+24,"amoxicillin",5/1/2009 00:00:00,"500mg",15
+20,"flucloxicillin",1/7/2010 00:00:00,"250mg",28
+20,"doxycycline",1/7/2010 00:00:00,"100mg od",
+20,"doxycycline",2/2/2010 00:00:00,"100mg od",97
+19,"ciprofloxacin",27/5/2009 00:00:00,"500mg bd",14
+26,"Ciprofloxacin",24/12/2010 00:00:00,"250mg bd",10
+26,"Flucloxicillin",26/11/2010 00:00:00,"500mg qds",28
+26,"Flucloxicillin",6/8/2010 00:00:00,"500mg qds",28
+26,"Flucloxicillin",29/7/2010 00:00:00,"500mg qds",28
+26,"Ciprofloxacin",21/5/2010 00:00:00,"250mg bd",10
+27,"co amoxiclav",10/1/2011 00:00:00,"375mg tds",21
+27,"Amoxicillin",4/1/2011 00:00:00,"500mg",21
+34,"Nitrofurantoin",5/1/2011 00:00:00,"100mg od",56
+34,"Nitrofurantoin",26/10/2010 00:00:00,"100mg od",56
+34,"Nitrofurantoin",7/9/2010 00:00:00,"100mg od",14
+34,"Nitrofurantoin",28/6/2010 00:00:00,"100mg od",14
+34,"Nitrofurantoin",7/1/2011 00:00:00,"50mg od",28
+34,"Nitrofurantoin",20/5/2010 00:00:00,"50mg od",28
+34,"Nitrofurantoin",14/4/2010 00:00:00,"50mg od",12
+34,"Nitrofurantoin",28/1/2010 00:00:00,"50mg od",12
+34,"Coamoxiclav",12/11/2010 00:00:00,"250/125 tds",21
+34,"Trimethoprim",9/8/2010 00:00:00,"200mg bd",14
+34,"Ciprofloxacin",29/3/2010 00:00:00,"500mg bd",14
+34,"Coamoxiclav",29/7/2010 00:00:00,"500/125 tds",21
+34,"Ciprofloxacin",3/3/2009 00:00:00,"250mg bd",10
+36,"Erythromycin",10/1/2011 00:00:00,"500mg bd",28
+38,"Penicillin V",10/5/2010 00:00:00,"500mg qds",28
+38,"Amoxicillin",7/5/2010 00:00:00,"500mg tds",21
+40,"Erythromycin",30/11/2009 00:00:00,"250mg qds",40
+40,"coamoxiclav",31/3/2009 00:00:00,"250/125mg tds",21
+46,"Oxytetracycline",21/12/2010 00:00:00,"250mg bd",168
+46,"Oxytetracycline",5/10/2010 00:00:00,"250mg bd",168
+46,"Oxytetracycline",29/6/2010 00:00:00,"250mg bd",168
+46,"Oxytetracycline",1/4/2010 00:00:00,"250mg bd",168
+46,"Oxytetracycline",26/1/2010 00:00:00,"250mg bd",168
+46,"Oxytetracycline",23/10/2009 00:00:00,"250mg bd",168
+46,"Oxytetracycline",23/6/2009 00:00:00,"250mg bd",168
+46,"Oxytetracycline",30/3/2009 00:00:00,"250mg bd",168
+47,"amoxicillin",11/5/2010 00:00:00,"250mg tds",15
+47,"oxytetracycline",26/3/2009 00:00:00,"250mg qds",28
+47,"amoxicillin",2/3/2009 00:00:00,"500mg tds",21
+48,"flucloxicillin",1/7/2009 00:00:00,"500mg bd",14
+51,"Amoxicillin",12/11/2010 00:00:00,"250mg od",100
+51,"Amoxicillin",5/10/2010 00:00:00,"250mg od",100
+51,"Amoxicillin",12/7/2010 00:00:00,"250mg od",100
+51,"Amoxicillin",24/2/2010 00:00:00,"250mg od",100
+51,"Amoxicillin",4/1/2010 00:00:00,"250mg od",100
+51,"Amoxicillin",9/11/2009 00:00:00,"250mg od",100
+51,"Amoxicillin",21/7/2009 00:00:00,"250mg od",100
+51,"Amoxicillin",5/5/2009 00:00:00,"250mg od",100
+346,"Amoxicillin",13/1/2010 00:00:00,"500mg tds",15
+334,"Phenoxymethlypenicillin",9/4/2010 00:00:00,"250mg (x2) qds",56
+327,"Ciprofloxacillin",7/5/2009 00:00:00,"500mg bd",10
+348,"Amoxicillin",4/1/2011 00:00:00,"500mg tds",21
+348,"Flucloxicillin",19/3/2009 00:00:00,"250mgs qds 28",
+332,"Clarithromycin",3/3/2011 00:00:00,"500mg bd",14
+333,"Amoxicillin",9/12/2010 00:00:00,"500mg tds",21
+350,"Amoxicillin",19/6/2009 00:00:00,"500mg tds",21
+361,"Erythromycin",28/6/2010 00:00:00,"250mg qds",28
+357,"Flucloxicillin",22/11/2010 00:00:00,"500mg qds",28
+357,"Flucloxicillin",24/11/2009 00:00:00,"250 mg qds",28
+354,"Flucloxicillin",2/12/2010 00:00:00,"500mg qds",20
+354,"Amoxicillin",10/2/2011 00:00:00,"500mg tds",21
+354,"Doxycycline",29/9/2010 00:00:00,"100mg bd",50
+354,"oxytetracycline",21/5/2010 00:00:00,"250mg qds",28
+354,"Amoxicillin",29/3/2010 00:00:00,"500mg tds",21
+354,"Ciprofloxacin",11/12/2009 00:00:00,"500mg bd",10
+386,"Erythromycin",4/2/2011 00:00:00,"500mg qds",28
+386,"Erythromycin",18/10/2010 00:00:00,"250mg qds",28
+386,"Erythromycin",30/9/2010 00:00:00,"250/5mls qds",60
+386,"Erythromycin",25/3/2010 00:00:00,"500mg qds",28
+386,"Erythromycin",11/1/2010 00:00:00,"250mg qds",20
+386,"Erythromycin",19/9/2009 00:00:00,"250mg qds",28
+374,"Cefalexin",29/12/2010 00:00:00,"500mg tds",21
+374,"Doxycycline",26/10/2010 00:00:00,"100mg bd",14
+374,"Cefalexin",21/10/2010 00:00:00,"500mg bd",14
+374,"Nitrofurantoin",27/5/2009 00:00:00,"50mg qds",28
+369,"Clarithromycin",28/2/2011 00:00:00,"500mg bd",14
+369,"Trimethoprim",28/9/2010 00:00:00,"200mg bd",12
+369,"Trimethoprim",12/3/2010 00:00:00,"200mg bd",14
+366,"Ciprofloxacin",14/1/2011 00:00:00,"250mg bd",56
+366,"Ciprofloxacin",28/10/2010 00:00:00,"250mg bd",56
+366,"Ciprofloxacin",29/9/2010 00:00:00,"250mg bd",56
+366,"Ciprofloxacin",8/9/2010 00:00:00,"250mg bd",56
+366,"Ciprofloxacin",16/7/2010 00:00:00,"250mg bd",56
+366,"Ciprofloxacin",5/5/2010 00:00:00,"250mg bd",56
+366,"Ciprofloxacin",24/3/2010 00:00:00,"250mg bd",56
+366,"Ciprofloxacin",28/11/2010 00:00:00,"250mg bd",56
+366,"Ciprofloxacin",29/10/2009 00:00:00,"250mg bd",56
+366,"Ciprofloxacin",1/9/2009 00:00:00,"250mg bd",56
+366,"Ciprofloxacin",11/8/2009 00:00:00,"250mg bd",56
+366,"Ciprofloxacin",26/6/2009 00:00:00,"250mg bd",56
+366,"Ciprofloxacin",3/6/2009 00:00:00,"250mg bd",56
+366,"Ciprofloxacin",30/3/2009 00:00:00,"250mg bd",56
+363,"Flucloxicillin",5/10/2010 00:00:00,"500mg qds",20
+407,"Cefalexin",8/4/2011 00:00:00,"250mg qds",20
+407,"Clarithromycin",1/6/2009 00:00:00,"500mg bd",14
+412,"Erthromycin",4/3/2010 00:00:00,"250mg qds",28
+418,"Flucloxacillin",10/5/2010 00:00:00,"500 mg qds",28
+418,"Flucloxacillin",29/3/2010 00:00:00,"500 mg qds",28
+418,"Flucloxacillin",2/11/2009 00:00:00,"500 mg qds",28
+418,"Flucloxacillin",15/7/2009 00:00:00,"500 mg qds",28
+418,"Flucloxacillin",3/6/2009 00:00:00,"500 mg qds",28
+420,"Penicillin V",13/8/2010 00:00:00,"250mg (x2) qds",56
+420,"PenicillinV",19/11/2010 00:00:00,"250mg qds",28
+601,"Amoxicillin",8/11/2010 00:00:00,"250mg tds",21
+601,"Amoxicillin",3/11/2010 00:00:00,"250mg tds",21
+601,"Amoxicillin",15/3/2010 00:00:00,"250mg tds",21
+608,"Flucloxicillin",20/12/2010 00:00:00,"250mg qds",28
+614,"Amoxicillin",4/1/2011 00:00:00,"500mg tds",21
+615,"Amoxicillin",2/12/2008 00:00:00,"500mg tds",21
+616,"Amoxicillin",22/3/2011 00:00:00,"500mg tds",21
+616,"Clarithromycin",10/1/2011 00:00:00,"250mg tds",21
+616,"Amoxicillin",22/12/2010 00:00:00,"500mg tds",21
+616,"Amoxicillin",23/3/2011 00:00:00,"500mg tds",21
+616,"Flucloxicillin",16/6/2009 00:00:00,"500mg qds",28
+626,"Amoxicillin",16/12/2010 00:00:00,"250mg tds",21
+626,"Nitrofurantoin",13/9/2010 00:00:00,"50mg qds",40
+626,"Nitrofurantoin",4/5/2010 00:00:00,"50mg qds",20
+626,"Nitrofurantoin",31/3/2010 00:00:00,"100mg qds",28
+626,"Flucloxicillin",11/3/2010 00:00:00,"250mg qds",28
+626,"Ciprofloxicin",4/6/2009 00:00:00,"250mg bd",20
+626,"Nitrofurantoin",22/3/2010 00:00:00,"50mg qds",20
+626,"Nitrofurantoin",23/4/2010 00:00:00,"50mg qds",20
+51,"Amoxicillin",10/3/2009 00:00:00,"250mg od",100
+51,"Ceflaclor",1/3/2010 00:00:00,"375mg bd",14
+52,"Erythromycin",20/1/2010 00:00:00,"250mg qds",28
+52,"Erythromycin",18/1/2010 00:00:00,"250mg qds",28
+52,"Erythromycin",9/11/2009 00:00:00,"250mg qds",28
+52,"Erythromycin",3/9/2009 00:00:00,"250mg qds",28
+52,"Erythromycin",9/3/2009 00:00:00,"250mg qds",28
+50,"amoxicillin",8/11/2010 00:00:00,"500mg tds",15
+49,"Flucloxicillin",16/10/2010 00:00:00,"250mg qds",28
+49,"Penicillin V",7/10/2010 00:00:00,"250mg qds",28
+49,"Flucloxicillin",7/10/2010 00:00:00,"500mg qds",28
+49,"Flucloxicillin",17/8/2010 00:00:00,"500mg qds",40
+49,"Flucloxicillin",28/5/2010 00:00:00,"500mg qds",40
+49,"Flucloxicillin",26/10/2009 00:00:00,"500mg qds",40
+49,"Flucloxicillin",3/7/2009 00:00:00,"500mg qds",40
+49,"Penicillin V",26/10/2009 00:00:00,"500mg qds",28
+60,"Flucloxicillin",11/10/2010 00:00:00,"500mg qds",28
+60,"Flucloxicillin",4/5/2010 00:00:00,"250mgs qds",28
+60,"Amoxicillin",28/8/2009 00:00:00,"500mg tds",21
+66,"amoxicillin",19/1/2010 00:00:00,"500mg tds",21
+70,"Nitrofurntoin",17/12/2009 00:00:00,"50mg qds",12
+97,"Amoxicillin",29/12/2009 00:00:00,"250mg tds",21
+97,"Nitrofurantoin",1/12/2009 00:00:00,"50mg qds",12
+96,"Co-amoxiclav",18/5/2010 00:00:00,"250/125mg tds",21
+71,"Flucloxacillin",1/2/2010 00:00:00,"250mg qds",20
+75,"Amoxicillin",23/7/2009 00:00:00,"500mg tds",21
+84,"Ciprofloxacin",19/2/2009 00:00:00,"500mg bd",14
+124,"Amoxicillin",20/2/2009 00:00:00,"500mg tds",21
+123,"Doxycycline",15/10/2009 00:00:00,"100mg bd",28
+123,"Amoxicillin",5/10/2009 00:00:00,"500mg tds",21
+110,"flucloxicillin",16/7/2010 00:00:00,"500mg qds",28
+108,"Erythromycin",7/5/2009 00:00:00,"250mg qds",28
+111,"Flucloxicillin",13/1/2011 00:00:00,"500mg qds",28
+111,"Amoxicillin",13/12/2010 00:00:00,"250mg tds",15
+111,"Flucloxicillin",17/6/2010 00:00:00,"500mg qds",28
+111,"Nitrofuratoin",3/6/2010 00:00:00,"50mg qds",12
+111,"Nitrofuratoin",10/2/2010 00:00:00,"100mg qds",12
+111,"Doxycycline",27/4/2009 00:00:00,"100mg qds",8
+111,"Erythromycin",20/4/2009 00:00:00,"250mg (x2) qds",56
+111,"Amoxicillin",16/4/2001 00:00:00,"500mg tds",21
+106,"Clarithromycin",3/11/2009 00:00:00,"250mg bd",14
+106,"Metronidazole",3/11/2009 00:00:00,"400mg bd",14
+139,"Amoxicillin",11/5/2010 00:00:00,"250mg tds",21
+133,"Flucloxicillin",25/10/2010 00:00:00,"250mg qds",12
+133,"flucloxicillin",14/10/2010 00:00:00,"250mg qds",20
+133,"Trimethoprim",13/7/2009 00:00:00,"200mg bd",20
+131,"Doxycycline",23/11/2009 00:00:00,"100mg od",125
+130,"Amoxicillin",15/2/2010 00:00:00,"500mg tds",21
+128,"Amoxicillin",29/3/2010 00:00:00,"250mg tds",15
+128,"Amoxicillin",21/7/2009 00:00:00,"250mg tds",15
+157,"Amoxicillin",27/4/2010 00:00:00,"500mg tds",21
+157,"flucloxicillin",17/2/2010 00:00:00,"500mg qds",20
+157,"Amoxicillin",7/11/2009 00:00:00,"250mg tds",21
+158,"Flucloxicillin",15/6/2010 00:00:00,"250mg qds",56
+158,"Flucloxicillin",16/3/2009 00:00:00,"250mg qds",56
+158,"Flucloxicillin",20/2/2009 00:00:00,"250mg qds",56
+159,"Flucloxicillin",15/4/2009 00:00:00,"500mg qds",20
+164,"Co-amoxiclav",27/4/2010 00:00:00,"625mg tds",21
+171,"Amoxicillin",7/10/2009 00:00:00,"500mg (x2) bd",28
+171,"Clarithromycin",7/10/2009 00:00:00,"250mg (x2) bd",28
+170,"Azitromycin",10/1/2011 00:00:00,"250mg (x2) od",36
+170,"Azitromycin",20/9/2010 00:00:00,"250mg (x2) od",36
+170,"Azitromycin",13/3/2010 00:00:00,"250mg (x2) od",36
+170,"Azitromycin",16/11/2009 00:00:00,"250mg (x2) od",36
+170,"Azitromycin",15/6/2009 00:00:00,"250mg (x2) od",36
+169,"Erthromycin",9/12/2010 00:00:00,"250mg qds",28
+169,"Flucloxicillin",3/12/2010 00:00:00,"500mg qds",28
+169,"Amoxicillin",8/11/2010 00:00:00,"250mg tds",15
+169,"Amoxicillin",1/11/2010 00:00:00,"250mg tds",15
+169,"Flucloxicillin",18/10/2010 00:00:00,"500mg qds",56
+169,"Flucloxicillin",15/3/2010 00:00:00,"500mg qds",56
+169,"Flucloxicillin",10/12/2009 00:00:00,"250mg qds",20
+169,"Ciprofloxicillin",29/4/2009 00:00:00,"250mg bd",100
+141,"Amoxicillin",22/1/2011 00:00:00,"3g (x2)",2
+446,"Erythromycin",5/5/2011 00:00:00,"250mg qds",28
+446,"Trimethoprim",15/11/2010 00:00:00,"200mg bd",10
+446,"Amoxicillin",4/10/2010 00:00:00,"500mg tds",21
+446,"Amoxicillin",4/1/2010 00:00:00,"500mg tds",21
+446,"Clarithromycin",7/5/2011 00:00:00,"500mg bd",14
+433,"Amoxicillin",24/2/2010 00:00:00,"500mg tds",15
+433,"Ciprofloxicin",5/6/2009 00:00:00,"500mg tds",4
+433,"Metronidazole",5/6/2009 00:00:00,"400mg tds",6
+432,"Co-amoxiclav",5/3/2011 00:00:00,"250/125mg tds",21
+424,"Co-amoxiclav",5/5/2011 00:00:00,"500/125mg tds",21
+448,"Amoxicillin",25/8/2010 00:00:00,"250mg tds",15
+448,"Amoxicillin",28/11/2009 00:00:00,"500mg tds",15
+450,"Amoxicillin",16/11/2010 00:00:00,"500mg tds",21
+450,"coamoxiclav",17/3/2010 00:00:00,"250/125 tds",21
+450,"clarithromycin",4/8/2009 00:00:00,"500mg bd",14
+450,"Amoxicillin",28/7/2009 00:00:00,"500mg tds",21
+459,"Amoxicillin",16/7/2009 00:00:00,"500mg tds",21
+637,"Amoixicillin",10/5/2010 00:00:00,"250mg tds",15
+637,"Amoixicillin",12/1/2010 00:00:00,"250mg tds",21
+638,"Bactroban (3g tube)",3/12/2010 00:00:00,"2-3xday",1
+639,"Co-amoxiclav",4/10/2010 00:00:00,"375mg tds",21
+639,"Co-amoxiclav",11/10/2010 00:00:00,"375mg tds",42
+639,"Co-amoxiclav",27/9/2010 00:00:00,"375mg tds",21
+639,"Flucloxicillin",23/9/2010 00:00:00,"500mg qds",28
+639,"Doxycycline",23/9/2010 00:00:00,"100mg (2 today, then 1 a day)",8
+639,"Doxycycline",14/4/2010 00:00:00,"100mg (2 today, then 1 a day)",8
+670,"Amoxicillin",9/6/2009 00:00:00,"500mg tds",21
+671,"Amoxicillin",7/12/2009 00:00:00,"250mg tds",15
+671,"Amoxicillin",15/5/2009 00:00:00,"250mg tds",15
+678,"Co-amoxiclav",18/8/2009 00:00:00,"500+125mg tds",21
+682,"Amoxicillin",10/6/2009 00:00:00,"250mg tds",15
+479,"Flucloxicillin",10/6/2010 00:00:00,"500mg qds",28
+481,"Erythromycin",11/6/2009 00:00:00,"250mg qds",28
+481,"Ciprofloxacin",9/6/2009 00:00:00,"500mg bd",14
+484,"Erythromycin",30/3/2010 00:00:00,"250mg qds",28
+484,"Amoxicillin",17/3/2010 00:00:00,"500mg tds",15
+482,"Doxycycline",8/6/2011 00:00:00,"200mg bd (unknown number of tablets Privte Prescription)",
+482,"Trimethoprim",8/4/2010 00:00:00,"200mg bd",14
+482,"Doxycycline",26/6/2009 00:00:00,"100mg x2 od",14
+482,"Doxycycline",8/6/2009 00:00:00,"100mg x2 od",28
+482,"Doxycycline",18/5/2009 00:00:00,"200mg od (unknown number of tablets Privte Prescription)",
+482,"Doxycycline",10/1/2011 00:00:00,"200mg bd (unknown number of tablets Privte Prescription)",
+482,"Doxycycline",5/11/2010 00:00:00,"200mg bd (unknown number of tablets Privte Prescription)",
+482,"Rifampicin",30/8/2011 00:00:00,"300mg bd (unknown number of tablets Privte Prescription)",
+482,"Amoxicillin",25/8/2009 00:00:00,"500mg tds- 4 days a week (unknown number of tablets Privte Prescription)",
+482,"Azitromycin",25/8/2010 00:00:00,"500mg bd - 4 days a week (unknown number of tablets Privte Prescription)",
+482,"Tiridazole",25/8/2009 00:00:00,"500mg bd - 3 days a week (unknown number of tablets Privte Prescription)",
+1367,"Flucloxacillin",1/12/2010 00:00:00,"500mg qds then bd ford 2/52",56
+1367,"Nitrofurantoin",26/11/2009 00:00:00,"50mg qds",30
+1366,"Clarythromycin",28/3/2011 00:00:00,"250 mg bd",14
+1366,"Amoxicillin",21/3/2011 00:00:00,"500 mg tds",21
+1366,"Augmentin",30/12/2010 00:00:00,"250/125 tds",21
+1366,"Augmentin",2/12/2010 00:00:00,"250/125 tds",21
+1366,"Flucloxacillin",9/11/2010 00:00:00,"500 mg qds",28
+1366,"AMOXICILLIN",2/9/2010 00:00:00,"250 MG TDS",21
+493,"Trimethoprim",19/10/2009 00:00:00,"200mg bd",6
+716,"Flucloxicillin",7/8/2009 00:00:00,"500mg qds",28
+705,"Amoxicillin",19/4/2011 00:00:00,"500mg tds",21
+704,"Erythromycin",26/4/2011 00:00:00,"250mg qds",28
+704,"Clindamycin",5/11/2010 00:00:00,"150mg bd",224
+704,"Rifampicin",5/11/2010 00:00:00,"300mg od",112
+704,"Erythromycin",14/6/2010 00:00:00,"250mg qds",100
+704,"Erythromycin",28/5/2010 00:00:00,"250mg qds",56
+702,"Amoxicillin",17/12/2010 00:00:00,"500mg tds",21
+702,"Clarithromycin",12/11/2010 00:00:00,"500mg bd",28
+702,"Amoxicillin",12/11/2010 00:00:00,"500mg bd",56
+702,"Amoxicillin",7/1/2009 00:00:00,"500mg tds",21
+701,"Flucloxicillin",2/9/2010 00:00:00,"500mg qds",28
+693,"Clarithromycin",15/4/2011 00:00:00,"500mg bd",14
+693,"Flucloxicillin",26/7/2010 00:00:00,"500mg qds",28
+693,"Flucloxicillin",12/7/2010 00:00:00,"500mg qds",28
+693,"Flucloxicillin",28/9/2009 00:00:00,"500mg qds",28
+693,"Flucloxicillin",6/7/2009 00:00:00,"500mg qds",28
+692,"Tamiflu",21/7/2009 00:00:00,"75mg bd",10
+690,"Metronidazole",26/4/2011 00:00:00,"400mg tds",21
+690,"Doxycycline",14/4/2011 00:00:00,"100mg (2 now then OD)",8
+690,"Amoxicillin",23/2/2011 00:00:00,"250mg tds",21
+690,"Penicillin V",18/5/2009 00:00:00,"250mg qds",20
+688,"Co-amoxiclav",19/10/2009 00:00:00,"375mg tds",21
+688,"Amoxicillin",13/5/2011 00:00:00,"500mg tds",21
+688,"Doxycycline",7/2/2011 00:00:00,"100mg (2 now the OD)",8
+688,"Co-amoxiclav",6/8/2010 00:00:00,"275mg tds",21
+688,"Amoxicillin",7/6/2010 00:00:00,"250mg tds",21
+688,"Metronidazole",12/3/2010 00:00:00,"400mg tds",21
+688,"Flucloxicillin",21/12/2009 00:00:00,"250mg qds",28
+688,"Flucloxicillin",1/12/2009 00:00:00,"250mg qds",28
+688,"Co-amoxiclav",30/10/2009 00:00:00,"625mg tds",21
+3068,"Flucloxicillin",6/1/2011 00:00:00,"500mg qds",12
+3068,"Amoxicillin",7/1/2011 00:00:00,"500mg qds",15
+732,"Flucloxacillin",24/2/2010 00:00:00,"500mg qds",28
+746,"Erythromycin",30/9/2010 00:00:00,"250mg bd",112
+746,"Erythromycin",1/12/2010 00:00:00,"250mg bd",112
+746,"Erythromycin",31/1/2011 00:00:00,"250mg bd",112
+746,"Doxycycline",31/1/2011 00:00:00,"100mg od (for travel)",110
+749,"Erythromycin",10/8/2009 00:00:00,"250mg qds",28
+749,"Erythromycin",1/3/2010 00:00:00,"500mg qds",28
+754,"Amoxicillin",13/1/2010 00:00:00,"500mg tds",21
+761,"Amoxicillin",19/11/2009 00:00:00,"250mg tds",15
+761,"Doxycycline",21/12/2009 00:00:00,"100 mg  2 now then od",8
+761,"Amoxicillin",10/6/2010 00:00:00,"250mg tds",15
+761,"Doxycycline",21/7/2010 00:00:00,"100 mg  2 now then od",8
+761,"Amoxicillin",6/10/2010 00:00:00,"250mg tds",15
+761,"Doxyxcycline",25/2/2011 00:00:00,"100 mg  2 now then od",8
+761,"Amoxicillin",2/3/2011 00:00:00,"500mg tds",21
+764,"Amoxicillin",11/8/2009 00:00:00,"250mg tds",15
+764,"Aciclovir",17/8/2010 00:00:00,"200mg (frequancy recorded)",25
+764,"Flucloxicillin",7/9/2010 00:00:00,"500mg qds",28
+764,"Aciclovir",7/9/2010 00:00:00,"800mg 5xday",35
+769,"Flucloxicillin",10/6/2009 00:00:00,"500mg qds",28
+770,"Amoxicillin",9/5/2011 00:00:00,"500mg tds",21
+774,"Trimethoprim",13/7/2009 00:00:00,"200mg bd",14
+776,"Aciclovir",15/7/2009 00:00:00,"800mg 5xday",35
+786,"Flucloxicillin",9/9/2009 00:00:00,"250mg qds",28
+786,"Trimethoprim",17/7/2009 00:00:00,"200mg bd",6
+798,"Flucloxicillin",6/5/2011 00:00:00,"250mg qds",28
+922,"Amoxicillin",5/3/2010 00:00:00,"500mg tds",21
+918,"Amoxicillin",4/1/2010 00:00:00,"500mg tds",21
+906,"Trimethoprim",9/5/2011 00:00:00,"200mg bd",6
+906,"Nitrofurantoin",25/11/2010 00:00:00,"50mg qds",28
+906,"Amoxicillin",9/11/2010 00:00:00,"500mg tds",21
+906,"Amoxicillin",24/5/2010 00:00:00,"500mg tds",21
+906,"Coamoxiclav",18/3/2010 00:00:00,"500/125 tds",21
+906,"Doxycycline",9/11/2009 00:00:00,"100mg bd",8
+906,"Coamoxiclav",24/9/2009 00:00:00,"500/125 tds",21
+907,"Amoxicillin",1/6/2011 00:00:00,"500mg tds",21
+907,"Trimethoprim",28/4/2010 00:00:00,"200mg bd",6
+907,"Trimethoprim",16/7/2009 00:00:00,"200mg bd",6
+901,"Ciprofloxin",3/9/2010 00:00:00,"500mg bd",10
+902,"Flucloxicillin",17/5/2010 00:00:00,"500mg qds",28
+903,"Amoxicillin",4/11/2009 00:00:00,"250mg tds",21
+903,"Coamoxiclav",10/12/2010 00:00:00,"250/125 tds",21
+954,"Trimethoprim",21/9/2009 00:00:00,"200mg bd",6
+954,"Amoxicillin",19/1/2010 00:00:00,"500mg tds",21
+954,"Flucloxicillin",27/5/2010 00:00:00,"500mg qds",28
+952,"Amoxicillin",25/10/2010 00:00:00,"500mg tds",21
+951,"Flucloxicillin",21/3/2011 00:00:00,"250mg qds",28
+951,"Flucloxicillin",26/2/2010 00:00:00,"500mg qds",28
+936,"Ceftriaxone",31/10/2010 00:00:00,"in hospital",
+936,"Doxycycline",31/10/2010 00:00:00,"in hospital",
+936,"Ceftriaxone",27/5/2011 00:00:00,"in hospital",
+936,"clindamycin",27/5/2011 00:00:00,"in hospital",
+936,"Cefalexin",27/5/2011 00:00:00,"in hospital",
+936,"Erythromycin",10/12/2010 00:00:00,"250mg qds",20
+936,"Erythromycin",6/4/2010 00:00:00,"500mg qds",28
+933,"Doxycycline",9/3/2010 00:00:00,"100mg bd",10
+933,"Trimethoprim",8/2/2010 00:00:00,"200mg bd",6
+933,"Nitrofurantoin",8/9/2009 00:00:00,"50mg qds",28
+933,"metronidazole",10/8/2009 00:00:00,"200mg tds",21
+932,"Flucloxicillin",29/3/2011 00:00:00,"500mg qds",28
+932,"Oxytetracycline",7/8/2009 00:00:00,"250mg bd",28
+932,"Pencillin V",21/7/2009 00:00:00,"250mg x 2 qds",112
+932,"Flucloxicillin",21/7/2009 00:00:00,"500mg qds",56
+930,"Amoxicillin",23/11/2009 00:00:00,"500mg tds",21
+930,"Trimethoprim",11/8/2009 00:00:00,"200mg bd",6
+930,"Oxytetracycline",20/7/2009 00:00:00,"250mg qds",28
+976,"Flucloxicillin",19/2/2010 00:00:00,"500mg qds",28
+985,"Flucloxicillin",24/7/2009 00:00:00,"500mg qds",28
+987,"Penicillin V",7/10/2009 00:00:00,"250mg qds",28
+988,"Nitrofurantoin",14/1/2011 00:00:00,"50mg qds",12
+988,"Nitrofurantoin",6/10/2010 00:00:00,"50 mg qds",28
+988,"Cefalexin",27/9/2010 00:00:00,"500mg tds",21
+989,"Flucloxicillin",18/8/2010 00:00:00,"500mg qds",28
+989,"Oxytetracycline",2/9/2010 00:00:00,"250mg bd x2",112
+989,"Oxytetracycline",27/7/2009 00:00:00,"250mg bd",56
+992,"Amoxicillin",25/10/2010 00:00:00,"500mg tds",21
+992,"Oxytetracycline",18/1/2010 00:00:00,"250mg x2 BD",28
+992,"Amoxicillin",24/9/2009 00:00:00,"500mg tds",21
+992,"Amoxicillin",27/7/2009 00:00:00,"500mg tds",21
+993,"Trimethoprim",19/7/2011 00:00:00,"100mg OD",28
+993,"Trimethoprim",15/6/2011 00:00:00,"100mg od",28
+993,"Coamoxiclav",3/6/2011 00:00:00,"500/125 tds",21
+993,"Trimethoprim",27/5/2011 00:00:00,"100mg od",28
+993,"Ciprofloxacin",12/5/2011 00:00:00,"500mg bd",6
+993,"Trimethoprim",6/5/2011 00:00:00,"100mg od",28
+993,"Trimethoprim",4/4/2011 00:00:00,"100mg od",28
+993,"Trimethoprim",16/3/2011 00:00:00,"100mg od",28
+993,"Ciprofloxacin",28/2/2011 00:00:00,"500mg bd",14
+993,"Trimethoprim",4/1/2011 00:00:00,"200mg bd",14
+993,"Ciprofloxacin",29/12/2010 00:00:00,"500mg bd",18
+993,"Trimethoprim",20/8/2010 00:00:00,"200mg bd",14
+993,"Trimethoprim",16/7/2010 00:00:00,"200mg bd",14
+993,"Trimethoprim",18/5/2010 00:00:00,"200mg bd",14
+993,"Ciprofloxacin",16/12/2009 00:00:00,"500mg bd",20
+993,"Coamoxiclav",20/11/2009 00:00:00,"500/125 mg",21
+993,"Ciprofloxacin",3/11/2009 00:00:00,"500mg bd",10
+993,"Ciprofloxacin",17/9/2009 00:00:00,"500mg bd",10
+971,"Trimethoprim",19/3/2010 00:00:00,"200mg bd",6
+974,"Amoxicillin",23/7/2009 00:00:00,"500mg tds",21
+1003,"Nitrofurantoin",3/3/2010 00:00:00,"50mg qds",12
+1005,"Flucloxicillin",18/9/2009 00:00:00,"500mg qds",28
+1005,"Metronidazole",29/7/2009 00:00:00,"400mg tds",21
+1016,"Amoxicillin",8/6/2011 00:00:00,"250mg tds",21
+1016,"Amoxicillin",24/5/2011 00:00:00,"500mg tds",21
+2001,"Nitrafurantoin",19/4/2011 00:00:00,"50mg qds",20
+2001,"Flucloxacillin",31/3/2011 00:00:00,"250mg qds",28
+2001,"Flucloxacillin",22/3/2011 00:00:00,"250mg qds",28
+2005,"Penicillin V",20/7/2010 00:00:00,"250 mg qds",28
+2007,"Azithromycin",8/2/2010 00:00:00,"500mg",3
+2007,"Erythromycin",27/1/2010 00:00:00,"250mg",28
+2019,"Penicillin V",9/6/2010 00:00:00,"250 mg qds",56
+1037,"Ciprofloxacin",6/12/2010 00:00:00,"500mg bd",10
+1037,"Doxycycline",22/4/2010 00:00:00,"100mg bd",14
+1030,"cefalexin",29/7/2011 00:00:00,"500mg tds",21
+1030,"oxytetracycline",16/12/2010 00:00:00,"250mg qds",28
+1030,"amoxicillin",7/12/2010 00:00:00,"500mg tds",21
+1030,"amoxicillin",28/10/2010 00:00:00,"500mg tds",21
+1030,"amoxicillin",14/4/2010 00:00:00,"500mg tds",21
+1030,"cefalexin",2/3/2010 00:00:00,"500mg tds",21
+1030,"augmentin",23/2/2010 00:00:00,"625mg tds",21
+1030,"nitrofurantoin",2/2/2010 00:00:00,"50mg qds",12
+1030,"amoxicillin",22/1/2010 00:00:00,"500mg tds",21
+1078,"Trimethoprim",8/7/2011 00:00:00,"200mg bd",14
+1078,"Trimethoprim",21/4/2011 00:00:00,"200mg bd",14
+1078,"Amoxicillin",7/1/2011 00:00:00,"500mg tds",21
+1078,"Amoxicillin",8/11/2010 00:00:00,"500mg tds",30
+1078,"Amoxicillin",21/7/2010 00:00:00,"500mg tds",21
+1078,"Amoxicillin",24/8/2009 00:00:00,"500mg tds",21
+1201,"Amoxicillin",20/1/2011 00:00:00,"250mg tds",21
+1205,"Erythromycin",7/1/2011 00:00:00,"250mg qds",28
+1206,"Amoxicillin",28/3/2011 00:00:00,"250mg tds",21
+1207,"Cefalexin",21/12/2010 00:00:00,"500mg tds",21
+1207,"Flucloxicillin",3/11/2010 00:00:00,"500mg qds",28
+1210,"Amoxicillin",23/7/2010 00:00:00,"500mg tds",21
+1212,"Ciprofloxacin",5/1/2011 00:00:00,"500mg bd",28
+1213,"Doxycycline",16/12/2009 00:00:00,"100mg od",8
+1215,"Nitrofurantoin",29/11/2010 00:00:00,"50mg qds",20
+1218,"Co amoxoiclav",27/6/2011 00:00:00,"250/125 tds",21
+1218,"Clarithomycin",21/6/2010 00:00:00,"500mg bd",14
+1219,"Co amoxiclav",1/6/2011 00:00:00,"500/125 tds",21
+1219,"Nitrofurantoin",6/5/2011 00:00:00,"50mg qds",30
+1219,"Flucloxicillin",14/2/2011 00:00:00,"250mg qds",28
+1219,"Clarithromycin",20/12/2010 00:00:00,"500mg bd",14
+1219,"Amoxicillin",13/12/2010 00:00:00,"500mg tds",21
+1220,"Clarithromycin",10/9/2011 00:00:00,"500mg bd",14
+1220,"Clarithromycin",2/9/2011 00:00:00,"500mg bd",14
+1220,"Clarithromycin",8/8/2011 00:00:00,"500mg bd",14
+1220,"Clarithromycin",27/4/2011 00:00:00,"500mg bd",14
+1220,"Clarithromycin",11/4/2011 00:00:00,"500mg bd",14
+1220,"Clarithromycin",18/7/2011 00:00:00,"500mg bd",14
+1220,"Clarithromycin",16/2/2011 00:00:00,"500mg bd",14
+1220,"Clarithromycin",22/6/2011 00:00:00,"500mg bd",14
+1220,"Clarithromycin",18/3/2011 00:00:00,"500mg bd",14
+1220,"Clarithromycin",31/1/2011 00:00:00,"500mg bd",14
+1220,"Clarithromycin",9/12/2010 00:00:00,"500mg bd",14
+1220,"Clarithromycin",12/3/2010 00:00:00,"500mg bd",14
+1220,"Amoxicillin",12/9/2011 00:00:00,"500mg tds",21
+1220,"Amoxicillin",29/9/2010 00:00:00,"500mg tds",21
+1220,"Amoxicillin",2/9/2010 00:00:00,"500mg tds",21
+1220,"Amoxicillin",6/7/2010 00:00:00,"500mg tds",21
+1220,"Amoxicillin",7/6/2011 00:00:00,"500mg tds",21
+1220,"Amoxicillin",25/2/2011 00:00:00,"500mg tds",21
+1220,"Amoxicillin",28/6/2010 00:00:00,"500mg tds",21
+1220,"Amoxicillin",26/5/2010 00:00:00,"500mg tds",21
+1220,"Amoxicillin",14/4/2010 00:00:00,"500mg tds",21
+1220,"Amoxicillin",5/3/2010 00:00:00,"500mg tds",21
+1220,"Amoxicillin",19/10/2009 00:00:00,"500mg tds",21
+1220,"Amoxicillin",12/9/2011 00:00:00,"500mg tds",21
+1220,"Co amoxiclav",13/6/2011 00:00:00,"500/125 tds",21
+1220,"Oxytetracycline",31/3/2011 00:00:00,"250 x2 qds",56
+1220,"Nitrofurantoin",12/11/2010 00:00:00,"50mg qds",20
+1220,"Trimethoprim",30/10/2010 00:00:00,"20mg bd",10
+1220,"Erythromycin",14/9/2010 00:00:00,"250 x2 qds",56
+1220,"Cefalexin",26/2/2010 00:00:00,"500mg x2 bd",12
+1220,"Co amoxiclav",25/9/2009 00:00:00,"250/125 tds",21
+1220,"Doxycycline",2/2/2010 00:00:00,"100mg od",8
+1220,"Metronidazole",20/11/2009 00:00:00,"400mg bd",14
+1221,"Co amoxiclav",22/11/2010 00:00:00,"250/125 tds",21
+1221,"Doxycyline",8/7/2010 00:00:00,"100mg bd",14
+1221,"amoxicillin",1/7/2010 00:00:00,"250mg tds",21
+1221,"Flucloxicillin",16/11/2009 00:00:00,"500mg qds",28
+1222,"Erythromycin",23/12/2010 00:00:00,"250 x2 tds",21
+1222,"Co amoxiclav",16/12/2010 00:00:00,"250/125 tds",21
+1222,"Penicillin",4/3/2010 00:00:00,"250mg qds",28
+1223,"Amoxicillin",11/8/2011 00:00:00,"500mg tds",21
+1223,"Amoxicillin",9/3/2010 00:00:00,"250mg tds",21
+1223,"Nitrofurantoin",15/9/2009 00:00:00,"50mg qds",20
+1225,"Flucloxicillin",20/4/2011 00:00:00,"250mg qds",28
+1226,"Amoxicillin",16/8/2010 00:00:00,"500mg tds",21
+1226,"Amoxicillin",11/5/2010 00:00:00,"250mg tds",21
+1228,"ciprofloxacin",19/10/2011 00:00:00,"500mg bd",20
+1228,"ciprofloxacin",23/8/2011 00:00:00,"250mg bd",20
+1228,"Amoxicillin",25/2/2010 00:00:00,"250mg tds",21
+1229,"Penicillin",3/5/2011 00:00:00,"250mg qds",28
+1230,"Nitrofurantoin",4/4/2011 00:00:00,"50mg qds",20
+1230,"Erythromycin",4/2/2011 00:00:00,"250mg qds",20
+1230,"Trimethoprim",26/10/2009 00:00:00,"200mg bd",6
+1233,"Doxycycline",30/3/2011 00:00:00,"100mg bd",14
+141,"Amoxicillin",17/6/2009 00:00:00,"3g (x2)",2
+141,"Cindamycin",23/7/2010 00:00:00,"150mg (x4) stat",4
+144,"Amoxicillin",11/2/2011 00:00:00,"500mg tds",21
+147,"Fluconazole",8/11/2010 00:00:00,"150mg od",1
+152,"nitrofurantoin",17/9/2009 00:00:00,"50mg qds",12
+163,"Erythromycin",11/8/2010 00:00:00,"250mg qds",28
+163,"Ciprofloxin",22/2/2010 00:00:00,"500mg bd",14
+163,"Ciprofloxin",1/2/2010 00:00:00,"500mg bd",14
+163,"Doxycycline",8/9/2009 00:00:00,"100mg x2 od",28
+176,"Fluclox",25/9/2009 00:00:00,"500qds",28
+180,"Flucloxicillin",7/2/2011 00:00:00,"250qds",20
+185,"Co-amoxicillin",21/2/2011 00:00:00,"500/125mg tds",21
+174,"Amoxicillin",11/1/2010 00:00:00,"500mg tds",21
+189,"Naseptin cream",6/1/2011 00:00:00,"15grms",
+189,"Amoxillin",5/1/2011 00:00:00,"250mg tds",21
+177,"Amoxicillin",20/12/2010 00:00:00,"250mg tds",21
+177,"Co-amoxicillin",28/9/2010 00:00:00,"500/125 mg tds",30
+177,"Flucloxicillin",11/8/2010 00:00:00,"500mg qds",28
+177,"Co-amoxicillin",11/8/2010 00:00:00,"500/125mg tds",21
+177,"Amoxicillin",21/4/2010 00:00:00,"50mg bd",28
+177,"Amoxicillin",26/1/2010 00:00:00,"500mg bd",28
+177,"Metronidazole",26/1/2010 00:00:00,"400mg tds",21
+200,"Flucloxicillin",3/12/2009 00:00:00,"500mg qds",28
+200,"Co-amoxiclav",10/12/2009 00:00:00,"500/125mg tds",30
+198,"Amoxicillin",7/4/2010 00:00:00,"500mg tds",21
+197,"Amoxicillin",28/6/2010 00:00:00,"500mg tds",21
+196,"Flucloxicillin",25/6/2010 00:00:00,"500mg qds",28
+192,"Clindamycin",8/12/2010 00:00:00,"150mg (x2) qds",80
+301,"Nitrofurantoin",18/11/2010 00:00:00,"100mg qds",16
+301,"Phenoxymethylpenicillin",19/10/2010 00:00:00,"250mg qds",20
+301,"Nitrofurantoin",17/6/2010 00:00:00,"100mg  qds",20
+301,"Amoxicillin",3/9/2009 00:00:00,"500mg tds",21
+301,"Nitrofurantoin",30/4/2009 00:00:00,"50mg qds",28
+302,"Coamoxicillin",5/8/2010 00:00:00,"250/125 tds",21
+302,"Amoxicillin",5/8/2010 00:00:00,"250mg tds",21
+302,"Amoxicillin",7/1/2010 00:00:00,"500mg tds",21
+302,"Ciprofloxin",16/4/2009 00:00:00,"500mg bd",14
+302,"Ciprofloxin",26/3/2009 00:00:00,"500mg bd",10
+304,"Nitrofuatoin",30/4/2010 00:00:00,"50mg qds",28
+305,"Clarithromycin",24/12/2010 00:00:00,"500mg bd",14
+305,"Amoxicillin",7/1/2010 00:00:00,"500mg tds",21
+309,"Amoxicillin",24/12/2010 00:00:00,"500mg tds",21
+309,"Amoxicillin",9/11/2009 00:00:00,"500mg tds",21
+311,"Amoxicillin",31/12/2010 00:00:00,"500mg qds",28
+313,"Flucloxicillin",6/10/2009 00:00:00,"500mg qds",28
+313,"Trimethoprim",6/8/2009 00:00:00,"200mg bd",14
+315,"Nitrofuratoin",13/1/2010 00:00:00,"50mg qds",12
+315,"Nitrofuratoin",26/11/2009 00:00:00,"50mg qds",12
+315,"Nitrofuratoin",24/10/2009 00:00:00,"50mg qds",12
+335,"amoxicillin",21/1/2010 00:00:00,"500mg tds",21
+336,"Nitrofurantoin",27/11/2010 00:00:00,"100mg bd",10
+336,"Trimethoprim",28/10/2010 00:00:00,"200mg bd",14
+336,"Flucloxicillin",13/9/2010 00:00:00,"250mg qds",28
+336,"coamoxiclav",12/9/2009 00:00:00,"250/125mg tds",21
+339,"Co-amoxiclav",11/11/2010 00:00:00,"500/125 tds",1
+339,"Flucloxicillin",8/11/2010 00:00:00,"250mg qds",28
+339,"Amoxicillin",26/6/2010 00:00:00,"500mg tds",21
+339,"amoxicillin",12/6/2010 00:00:00,"500mg tds",15
+339,"amoxicillin",26/3/2009 00:00:00,"500mg tds",30
+317,"Co-amoxiclav",7/7/2009 00:00:00,"375mg tds",21
+317,"Amoxicillin",7/7/2009 00:00:00,"250mg tds",21
+317,"Co-amoxiclav",28/8/2009 00:00:00,"375mg tds",21
+317,"Amoxiclillin",28/8/2009 00:00:00,"250mg tds",21
+317,"Amoxicillin",29/11/2010 00:00:00,"250mg tds",21
+317,"Amoxicillin",27/8/2010 00:00:00,"500mg tds",21
+317,"Co-amoxiclav",27/8/2009 00:00:00,"500/125mg tds",21
+317,"Flucloxicillin",19/11/2009 00:00:00,"250mg qds",28
+317,"Amoxicillin",7/4/2009 00:00:00,"500mg tds",21
+319,"Flucloxicillin",20/10/2009 00:00:00,"500mg qds",28
+319,"Flucloxicillin",28/5/2009 00:00:00,"500mg qds",28
+319,"Doxycycline",28/5/2009 00:00:00,"100mg od",42
+319,"Flucloxicillin",23/4/2009 00:00:00,"500mg qds",28
+326,"Flucloxicillin",3/6/2010 00:00:00,"250mg qds",28
+346,"Trimethoprim",16/2/2010 00:00:00,"200mg bd",6
+1234,"Nitrofurantoin",7/9/2011 00:00:00,"50mg qds",20
+1236,"Penicillin",17/5/2011 00:00:00,"250mg x2 qds",56
+1236,"Amoxicillin",20/12/2010 00:00:00,"250mg tds",21
+1236,"Nitrofurantoin",29/9/2009 00:00:00,"50mg qds",20
+1237,"Amoxicillin",14/12/2010 00:00:00,"500mg tds",21
+1238,"Cefalexin",12/8/2011 00:00:00,"500mg qds",28
+1238,"Nitrofurantoin",29/7/2011 00:00:00,"50mg qds",30
+1238,"Ciprofloxacin",5/1/2011 00:00:00,"500mg bd",10
+1238,"Cefalexin",15/10/2010 00:00:00,"250mg qds",28
+1239,"Cefalexin",29/9/2009 00:00:00,"500mg tds",21
+1241,"amoxicillin",17/3/2011 00:00:00,"250mg tds",21
+1241,"Doxycyline",16/12/2009 00:00:00,"100mg bd",14
+1241,"Amoxicillin",8/12/2009 00:00:00,"500mg tds",21
+1244,"Doxycycline",26/3/2010 00:00:00,"100mg od",8
+1248,"Amoxicillin",13/5/2010 00:00:00,"250mg tds",21
+1249,"Amoxicillin",11/2/2011 00:00:00,"500mg tds",21
+2028,"Erythromycin",17/6/2011 00:00:00,"250mg",20
+2028,"Amoxicillin",15/6/2011 00:00:00,"500mg",21
+2033,"Amoxicillin",15/2/2010 00:00:00,"500mg tds",21
+2040,"Flucloxicillin",10/5/2011 00:00:00,"500mg qds",28
+2043,"Penicillin",20/10/2010 00:00:00,"250mg qds",40
+2043,"Amoxicillin",8/2/2011 00:00:00,"500mg tds",21
+2043,"Flucloxicillin",7/10/2011 00:00:00,"500mg qds",28
+2045,"Amoxicillin",26/11/2010 00:00:00,"500mg",21
+2047,"Amoxicillin",30/11/2010 00:00:00,"500mg",15
+2050,"Amoxicillin",10/2/2011 00:00:00,"500mg",21
+2051,"Amoxicillin",26/11/2009 00:00:00,"250mg tds",15
+2054,"Amoxicillin",24/1/2008 00:00:00,"500mg",15
+2055,"Erythromycin",23/11/2009 00:00:00,"250mg",56
+2055,"flucloxicillin",26/11/2009 00:00:00,"250mg",20
+2056,"Flucloxicillin",26/11/2009 00:00:00,"250mg",20
+2056,"Erythromycin",23/11/2009 00:00:00,"250mg",56
+1084,"Nitrofurantoin",2/9/2011 00:00:00,"50mg qds",20
+1084,"Nitrofurantoin",13/7/2011 00:00:00,"50 mg qds",28
+1084,"Nitrofurantoin",28/2/2011 00:00:00,"50 mg qds",28
+1086,"Amoxicillin",7/3/2011 00:00:00,"500mg tds",21
+1086,"Amoxicillin",12/4/2010 00:00:00,"500mg tds",21
+1086,"Co amoxiclav",20/8/2009 00:00:00,"500/125 tds",21
+1091,"Flucloxicillin",24/8/2009 00:00:00,"500mg bd",84
+1095,"Flucloxicillin",26/4/2011 00:00:00,"500mg qds",28
+2067,"Ciprofloxin",3/11/2010 00:00:00,"500mg bd",60
+2067,"Ciprofloxin",2/2/2010 00:00:00,"500mg bd",60
+2075,"Amoxicillin",2/6/2010 00:00:00,"500mg tds",21
+2081,"Co amoxiclav",19/1/2011 00:00:00,"250/125 tds",21
+2082,"Erythromycin",29/6/2010 00:00:00,"250mg",
+2088,"erythromycin",11/1/2010 00:00:00,"500mg bd",168
+2102,"Amoxicillin",30/11/2010 00:00:00,"500mg tds",21
+2105,"Nitrofurantoin",23/6/2011 00:00:00,"50mg qds",28
+2105,"Nitrofurantoin",19/5/2011 00:00:00,"50mg qds",12
+2105,"Trimethoprim",16/11/2010 00:00:00,"200mg bd",36
+2105,"Nitrofurantoin",12/10/2010 00:00:00,"50mg qds",20
+2105,"Nitrofurantoin",30/9/2010 00:00:00,"50mg qds",20
+2105,"Trimethoprim",21/6/2010 00:00:00,"200mg bd",6
+2105,"Nitrofurantoin",15/9/2010 00:00:00,"50mg x2 qds",28
+2109,"Lymecycline",20/10/2011 00:00:00,"408mg od",84
+2109,"Lymecycline",11/10/2011 00:00:00,"408mg od",28
+2109,"Nitrofurantoin",18/3/2011 00:00:00,"100mg qds",28
+2109,"Coamoxicillin",8/3/2011 00:00:00,"500/125 tds",21
+2109,"Cefalexin",1/3/2011 00:00:00,"250mg qds",20
+2109,"Nitrofurantoin",26/11/2010 00:00:00,"50mg qds",28
+1041,"coamoxiclav",28/7/2010 00:00:00,"500/125 tds",42
+1052,"nitrafurantoin",16/3/2010 00:00:00,"500mg qds",28
+1052,"amoxicillin",10/2/2010 00:00:00,"500mg tds",21
+1253,"Flucloxicillin",8/4/2010 00:00:00,"500mg qds",28
+1253,"Amoxicillin",9/2/2010 00:00:00,"500mg tds",21
+1253,"Cefalexin",3/2/2010 00:00:00,"500mg od",28
+1253,"Co amoxiclav",21/12/2009 00:00:00,"250/125mg tds",21
+1253,"Co amoxiclav",3/12/2009 00:00:00,"250/125mg tds",21
+1253,"Nitrofurantoin",3/12/2009 00:00:00,"100mg od",30
+1253,"Amoxicillin",19/10/2009 00:00:00,"250mg tds",21
+1253,"Cefalexin",12/10/2009 00:00:00,"250mg qds",20
+1254,"Erythromycin",6/11/2009 00:00:00,"250mg qds",28
+1254,"Flucloxicillin",1/8/2011 00:00:00,"250mg qds",28
+1254,"Trimethoprim",24/10/2011 00:00:00,"200mg bd",14
+1256,"Cefalexin",23/9/2011 00:00:00,"500mg tds",21
+1256,"Cefalexin",21/2/2011 00:00:00,"500mg tds",21
+1256,"Clarithomycin",9/2/2011 00:00:00,"250mg bd",14
+1256,"Clarithromycin",10/11/2010 00:00:00,"250mg bd",14
+1256,"Cefalexin",11/10/2010 00:00:00,"500mg tds",21
+1256,"Cefalexin",21/5/2010 00:00:00,"500mg tds",21
+1256,"Cefalexin",17/3/2010 00:00:00,"500mg tds",21
+1256,"Nitrofurantoin",4/2/2010 00:00:00,"50mg qds",30
+1256,"Trimethoprim",27/1/2010 00:00:00,"200mg bd",14
+1256,"Nitrofurantoin",20/1/2010 00:00:00,"50mg qds",20
+1256,"Cefalexin",31/12/2009 00:00:00,"500mg tds",21
+1256,"Cefalexin",8/10/2009 00:00:00,"250mg qds",28
+1258,"Amoxicillin",11/12/2009 00:00:00,"500mg tds",21
+1259,"Erythromycin",12/4/2011 00:00:00,"250 x2 qds",56
+1259,"Cefalexin",29/3/2011 00:00:00,"250 x 2 bd",28
+1259,"Metronidazole",29/10/2010 00:00:00,"200mg tds",18
+1259,"Doxycycline",24/8/2010 00:00:00,"100mg x2 od",8
+1259,"Nitrofurantoin",12/5/2010 00:00:00,"50mg qds",20
+1259,"Cefalexin",7/4/2010 00:00:00,"500mg tds",21
+1259,"Cefalexin",22/3/2010 00:00:00,"500mg tds",21
+1260,"Ciprofloxin",28/6/2010 00:00:00,"500mg bd",20
+1260,"Trimethoprim",21/10/2010 00:00:00,"200mg bd",14
+1260,"Amoxicillin",11/8/2011 00:00:00,"500mg tds",21
+1260,"Amoxicillin",5/9/2011 00:00:00,"500mg tds",21
+1260,"Doxycycline",14/9/2011 00:00:00,"100mg bd",20
+1064,"flucloxacillin",1/8/2011 00:00:00,"250mg qds",56
+1064,"flucloxacillin",28/3/2011 00:00:00,"250mg qds",28
+1064,"co-amoxiclav",11/1/2011 00:00:00,"500/125 tds",21
+1064,"co-amoxiclav",20/12/2010 00:00:00,"500/125 tds",21
+1064,"flucloxacillin",14/10/2010 00:00:00,"250 mg qds",28
+1066,"erythromycin",18/7/2011 00:00:00,"500mg qds",28
+1066,"erythromycin",23/5/2011 00:00:00,"500mg qds",28
+1066,"trimethoprim",21/4/2010 00:00:00,"200mg bd",14
+1067,"co-amoxiclav",15/11/2010 00:00:00,"500/125 tds",21
+2004,"flucloxacillin",11/10/2011 00:00:00,"500 mg qds",28
+2101,"Coamoxiclav",15/6/2010 00:00:00,"unknown",
+2019,"Ciprofloxin",4/11/2011 00:00:00,"500mg bd",10
+2032,"Lymecyclizine",21/1/2010 00:00:00,"408mg od",84
+2039,"Amoxicillin",18/11/2011 00:00:00,"500mg tds",15
+1262,"Doxycycline",6/10/2009 00:00:00,"100mg BD",50
+1262,"Amoxicillin",16/10/2009 00:00:00,"250mg tds",21
+1262,"Nitrofurantoin",3/10/2011 00:00:00,"50mg qds",30
+1263,"Ciprofloxacin",9/2/2010 00:00:00,"500mg bd",14
+1263,"Amoxicillin",4/11/2010 00:00:00,"250 mg tds",21
+1264,"Trimethoprim",6/10/2009 00:00:00,"200mg bd",14
+1264,"Amoxicillin",31/8/2010 00:00:00,"500mg tds",21
+1265,"Coamoxiclav",17/3/2010 00:00:00,"250/125 tds",21
+1267,"Trimethoprim",18/2/2010 00:00:00,"200mg bd",10
+1267,"Cefalexin",23/2/2010 00:00:00,"500mg x2 bd",12
+1268,"Amoxicillin",21/12/2010 00:00:00,"250mg tds",21
+1269,"Erythromycin",22/3/2011 00:00:00,"250mg x2 bd",28
+1271,"Doxycycline",2/11/2009 00:00:00,"100mg bd",14
+1271,"Cefalexin",13/11/2009 00:00:00,"500mg tds",21
+1271,"Cefalexin",9/12/2009 00:00:00,"250mg qds",28
+1271,"Cefalexin",30/12/2009 00:00:00,"500mg tds",21
+1271,"Cefalexin",20/1/2010 00:00:00,"500mg tds",21
+1271,"Doxycycline",29/1/2010 00:00:00,"100mg bd",14
+1271,"Cefradine",17/2/2010 00:00:00,"250mg qds",28
+1271,"Cefalexin",1/4/2010 00:00:00,"500mg tds",21
+1271,"Cefalexin",21/4/2010 00:00:00,"500mg tds",21
+1271,"Erythromycin",28/4/2010 00:00:00,"250mg qds qds",28
+1271,"Erythromycin",7/5/2010 00:00:00,"250mg qds",28
+1271,"Cefalexin",19/5/2010 00:00:00,"500mg tds",21
+1271,"Doxycycline",3/6/2010 00:00:00,"100mg bd",14
+1271,"Erythromycin",21/6/2010 00:00:00,"250mg qds",56
+1271,"Erythromycin",23/6/2010 00:00:00,"250mg x2 qds",56
+1271,"Erythromycin",21/7/2010 00:00:00,"250mg x2  qds",28
+1271,"Erythromycin",27/8/2010 00:00:00,"250mg x 2 qds",56
+1271,"Doxycycline",8/9/2010 00:00:00,"100mg bd",14
+1271,"Erythromycin",20/9/2010 00:00:00,"250mg x 2 qds",56
+1271,"Oxytetracycline",29/9/2010 00:00:00,"250mg x 2 qds",56
+1271,"Doxycycline",13/10/2010 00:00:00,"100mg bd",14
+1271,"Oxytetracycline",3/11/2010 00:00:00,"250mg x 2 qds",56
+1271,"Trimethoprim",1/12/2010 00:00:00,"200mg bd",14
+1271,"Erythromycin",8/12/2010 00:00:00,"250mg x 2 qds",56
+1271,"Doxycycline",4/1/2011 00:00:00,"100mg bd",14
+1271,"Erythromycin",19/1/2011 00:00:00,"250mg x 2 qds",56
+1271,"Erythomycin",16/2/2011 00:00:00,"250mg x 2 qds",56
+1271,"Oxytetracycline",21/2/2011 00:00:00,"250 x2 qds",56
+1271,"Oxytetracycline",2/3/2011 00:00:00,"250mg x 2 qds",56
+1271,"Cefalexin",31/3/2011 00:00:00,"500mg tds",21
+1271,"Cefalexin",8/4/2011 00:00:00,"500mg tds",21
+1271,"Cefalexin",27/4/2011 00:00:00,"500mg tds",21
+1271,"Cefalexin",5/5/2011 00:00:00,"500mg tds",21
+1271,"Doxycycline",16/5/2011 00:00:00,"100mg od",8
+1271,"Oxytetracycline",8/6/2011 00:00:00,"250mg x 2 qds",56
+1271,"Oxytetracycline",6/7/2011 00:00:00,"250mg x 2 qds",56
+1271,"Oxytetracycline",25/7/2011 00:00:00,"250mg x 2 qds",112
+1271,"Oxytetracycline",1/9/2011 00:00:00,"250mg x 2 qds",56
+1271,"Cefalexin",4/10/2011 00:00:00,"500mg tds",42
+1272,"Erythromycin",2/8/2010 00:00:00,"250mg x2 qds",112
+1272,"Doxycycline",11/11/2010 00:00:00,"100mg x2 od",8
+1272,"Ciprofloxacin",12/11/2010 00:00:00,"250mg bd",14
+1272,"Coamoxiclav",14/2/2011 00:00:00,"500/125mg tds",21
+1272,"Clarithromycin",22/2/2011 00:00:00,"500mg bd",14
+1272,"Ciprofloxacin",20/7/2011 00:00:00,"500mg bd",14
+1272,"Amoxicillin",4/8/2011 00:00:00,"500mg tds",42
+1272,"Erythromycin",19/8/2011 00:00:00,"250mg x 2 qds",112
+1272,"Cotrimoxazole",4/10/2011 00:00:00,"unknown",
+1273,"Amoxicillin",14/7/2011 00:00:00,"250mg tds",21
+1273,"Doxycycline",20/7/2011 00:00:00,"100mg od",8
+1274,"Amoxicillin",6/5/2011 00:00:00,"250mg tds",21
+1276,"Trimethoprim",31/12/2009 00:00:00,"200mg bd",6
+1276,"Flucloxicillin",19/8/2010 00:00:00,"250mg qds",28
+1276,"Nitrofurantoin",30/11/2010 00:00:00,"50mg qds",20
+1276,"Cefalexin",25/2/2011 00:00:00,"250mg qds",28
+1277,"Amoxicillin",24/11/2010 00:00:00,"250mg tds",21
+1279,"Cefalexin",30/3/2010 00:00:00,"500mg x 2 bd",12
+1279,"Ciprofloxacin",1/4/2010 00:00:00,"250mg bd",10
+1279,"Nitrofurantoin",23/7/2010 00:00:00,"50mg qds",12
+1279,"Erythromycin",30/7/2010 00:00:00,"250mg qds",28
+1279,"Trimethoprim",27/8/2010 00:00:00,"200mg bd",10
+1279,"Trimethoprim",21/9/2010 00:00:00,"200mg bd",14
+1279,"Nitrofurantoin",14/10/2010 00:00:00,"50mg qds",20
+1279,"Nitrofurantoin",10/1/2011 00:00:00,"50mg qds",20
+1279,"Nitrofurantoin",5/4/2011 00:00:00,"50mg qds",20
+1279,"Nitrofurantoin",28/6/2011 00:00:00,"50mg qds",20
+1279,"Metronidazole",3/8/2011 00:00:00,"400mg bd",14
+1279,"Ciprofloxacin",3/8/2011 00:00:00,"250mg bd",14
+1280,"Amoxicillin",14/5/2010 00:00:00,"250mg tds",21
+1280,"Cefalexin",11/6/2010 00:00:00,"500mg tds",21
+1283,"Nitrofurantoin",21/4/2011 00:00:00,"50mg qds",30
+1283,"Nitrofurantoin",9/5/2011 00:00:00,"50mg qds",20
+1283,"Nitrofurantoin",7/6/2011 00:00:00,"50mg qds",30
+1284,"Doxycycline",13/1/2011 00:00:00,"100mg bd",14
+1284,"Doxycycline",3/2/2011 00:00:00,"100mg bd",8
+1284,"Clarithromycin",14/2/2011 00:00:00,"500mg bd",14
+1284,"Clarithromycin",20/10/2011 00:00:00,"500mg bd",10
+1286,"Clarithromycin",4/12/2009 00:00:00,"500mg bd",14
+1286,"Cefalexin",18/2/2010 00:00:00,"500mg tds",15
+1286,"Amoxicillin",2/8/2010 00:00:00,"250mg tds",21
+1286,"Trimethoprim",13/8/2010 00:00:00,"200mg bd",14
+1286,"Nitrofurantoin",1/6/2011 00:00:00,"50mg qds",12
+1287,"Coamoxiclav",12/5/2011 00:00:00,"250/125 tds",21
+1288,"Coamoxiclav",10/5/2010 00:00:00,"250/125 tds",21
+1290,"Flucloxicillin",1/1/2010 00:00:00,"250mg qds",28
+1290,"Flucloxicillin",9/5/2011 00:00:00,"250mg qds",28
+1290,"Flucloxicillin",20/5/2011 00:00:00,"250mg qds",28
+1290,"Erythromycin",3/6/2011 00:00:00,"250mg qds",56
+1290,"Pencillin V",14/9/2011 00:00:00,"250mg qds",28
+1290,"Clarithromycin",19/9/2011 00:00:00,"250mg bd",14
+1293,"Ciprofloxicin",30/11/2009 00:00:00,"250mg bd",10
+1293,"Nitrofurantoin",8/1/2010 00:00:00,"50mg qds",30
+1293,"Nitrofurantoin",28/4/2010 00:00:00,"50mg qds",30
+1293,"Trimethoprim",17/5/2010 00:00:00,"200mg bd",14
+1293,"Amoxicillin",17/5/2010 00:00:00,"500mg tds",21
+1293,"Trimethprim",30/6/2010 00:00:00,"200mg bd",14
+1293,"Cefalexin",6/8/2010 00:00:00,"250mg tds",15
+1293,"Nitrofurantoin",27/9/2010 00:00:00,"50mg qds",30
+1293,"Nitrofurantoin",13/12/2010 00:00:00,"50mg qds",30
+1293,"Amoxicillin",31/1/2011 00:00:00,"250mg tds",21
+1293,"Doxycycline",7/2/2011 00:00:00,"100mg bd",14
+1293,"Cefalexin",14/2/2011 00:00:00,"500mg tds",21
+1293,"Coamoxiclav",21/2/2011 00:00:00,"500/125 tds",21
+1293,"Trimethoprim",11/10/2011 00:00:00,"200mg bd",14
+1294,"Amoxicillin",29/3/2011 00:00:00,"500mg tds",21
+1295,"Flucloxicillin",23/2/2010 00:00:00,"500mg qds",28
+1295,"Lymecycline",29/9/2011 00:00:00,"408mg od",28
+1298,"Cefalexin",15/3/2011 00:00:00,"250mg x2 bd",28
+1298,"Penicillin V",12/9/2011 00:00:00,"250mg qds",28
+1299,"Ciprofloxacin",2/6/2010 00:00:00,"500mg bd",14
+1299,"Nitrofurantoin",13/10/2010 00:00:00,"50mg qds",30
+1299,"Ciprofloxacin",30/9/2011 00:00:00,"500mg bd",14
+1299,"Ciprofloxacin",26/10/2011 00:00:00,"500mg bd",20
+1303,"Amoxicillin",4/10/2010 00:00:00,"250mg bd",21
+1303,"Clarithromycin",8/11/2010 00:00:00,"250mg bd",14
+1303,"Ciprofloxacin",27/5/2011 00:00:00,"250mg bd",14
+1306,"Lymecycline",21/12/2009 00:00:00,"408mg od",56
+1306,"Lymecycline",5/5/2010 00:00:00,"408mg od",56
+1306,"Amoxicillin",7/10/2010 00:00:00,"250mg tds",21
+1306,"Amoxicillin",26/4/2011 00:00:00,"250mg tds",21
+1306,"Amoxicillin",28/9/2011 00:00:00,"250mg tds",21
+1308,"Metronidazole",10/2/2010 00:00:00,"400mg bd",14
+1309,"Doxycycline",21/12/2009 00:00:00,"100mg od",8
+1309,"Metronidazole",21/9/2010 00:00:00,"400mg tds",21
+1309,"Cefalexin",21/9/2010 00:00:00,"500mg tds",21
+1309,"Cefalexin",11/10/2010 00:00:00,"500mg tds",21
+1309,"Doxycycline",27/1/2011 00:00:00,"100mg od",8
+1309,"Erythromycin",14/2/2011 00:00:00,"250mg x 2 od",28
+1310,"Flucloxicillin",15/1/2010 00:00:00,"250mg qds",28
+1310,"Coamoxiclav",15/6/2010 00:00:00,"250/125 tds",21
+1310,"Coamoxiclav",8/11/2011 00:00:00,"250/125 tds",21
+1312,"Amoxicillin",19/8/2010 00:00:00,"250mg tds",21
+1312,"Ciprofloxacin",3/11/2010 00:00:00,"500mg bd",28
+1312,"Metronidazole",17/12/2010 00:00:00,"400mg tds",6
+1312,"Ciprofloxacin",17/12/2010 00:00:00,"500mg bd",4
+1312,"Metronidazole",4/2/2011 00:00:00,"400mg tds",6
+1312,"Ciprofloxacin",4/2/2011 00:00:00,"500mg bd",4
+1314,"Ciprofloxacin",10/11/2009 00:00:00,"500mg bd",14
+1314,"Ciprofloxacin",11/2/2010 00:00:00,"500mg bd",14
+1314,"Metronidazole",23/2/2010 00:00:00,"400mg tds",21
+1314,"Cefalexin",23/2/2010 00:00:00,"500mg tds",21
+1314,"Ciprofloxacin",2/3/2010 00:00:00,"500mg bd",14
+1314,"Erythromycin",19/5/2010 00:00:00,"250mg qds",28
+1314,"Ciprofloxacin",16/9/2010 00:00:00,"500mg bd",14
+1314,"Metronidazole",28/9/2010 00:00:00,"400mg tds",21
+1314,"Cefalexin",28/9/2010 00:00:00,"500mg tds",21
+1314,"Erythromycin",7/10/2010 00:00:00,"250mg x 2 bd",28
+1314,"Metronidazole",19/10/2010 00:00:00,"400mg tds",21
+1314,"Ciprofloxacin",19/10/2010 00:00:00,"500mg bd",14
+1314,"Erythromycin",31/1/2011 00:00:00,"250mg x 2 bd",28
+1314,"Metronidazole",4/2/2011 00:00:00,"400mg tds",21
+1314,"Ciprofloxacin",14/11/2011 00:00:00,"500mg bd",14
+1316,"Amoxicillin",16/2/2010 00:00:00,"250mg tds",21
+1317,"Flucloxicillin",10/9/2011 00:00:00,"500mg qds",12
+1322,"Teicoplanin",14/4/2010 00:00:00,"600mg IV od",42
+1322,"Doxycycline",26/5/2010 00:00:00,"100mg bd",84
+1322,"Rifampicin",26/5/2010 00:00:00,"300mg bd",84
+1323,"Trimethoprim",15/3/2010 00:00:00,"200mg bd",10
+1323,"Amoxicillin",8/2/2011 00:00:00,"500mg tds",21
+1325,"Lymecycline",23/4/2010 00:00:00,"408mg od",28
+1325,"Lymecycline",23/5/2010 00:00:00,"408mg od",28
+1325,"Lymecycline",23/6/2010 00:00:00,"408mg od",28
+1325,"Erythromycin",5/4/2011 00:00:00,"250mg bd",28
+1326,"Flucloxicillin",26/4/2010 00:00:00,"500mg qds",28
+1326,"Flucloxicillin",4/5/2010 00:00:00,"500mg qds",28
+1326,"Flucloxicillin",25/5/2010 00:00:00,"500mg qds",28
+1327,"Trimethoprim",8/2/2011 00:00:00,"20mg bd",10
+1327,"Nitrofurantoin",11/2/2011 00:00:00,"50mg qds",20
+1327,"Ciprofloxacin",21/2/2011 00:00:00,"500mg bd",30
+1328,"Amoxicillin",8/3/2010 00:00:00,"250mg tds",21
+1328,"Amoxicillin",17/3/2010 00:00:00,"250mg tds",21
+1332,"Amoxicillin",28/10/2010 00:00:00,"250mg tds",21
+1333,"Nitrofurantoin",5/8/2010 00:00:00,"50mg qds",30
+1333,"Coamoxiclav",13/6/2011 00:00:00,"250/125 tds",21
+1337,"Cefalexin",20/1/2010 00:00:00,"500mg qds",28
+1337,"Cefalexin",30/12/2010 00:00:00,"500mg qds",28
+1337,"Doxycycline",2/3/2011 00:00:00,"100mg bd",20
+1337,"Nitrofurantoin",4/4/2011 00:00:00,"50mg qds",20
+1339,"Metronidazole",7/1/2010 00:00:00,"400mg tds",15
+1339,"Amoxicillin",1/12/2010 00:00:00,"500mg tds",15
+1339,"Amoxicillin",19/9/2011 00:00:00,"250mg tds",15
+1340,"Amoxicillin",25/5/2010 00:00:00,"500mg tds",21
+1340,"Flucloxicillin",6/10/2011 00:00:00,"250mg qds",20
+1341,"Amoxicillin",22/2/2011 00:00:00,"500mg tds",21
+1342,"Coamoxiclav",24/11/2009 00:00:00,"250/125 tds",21
+1342,"Metronidazole",2/7/2010 00:00:00,"400mg tds",60
+1342,"Ciprofloxacin",2/3/2011 00:00:00,"500mg bd",20
+1342,"Ciprofloxacin",6/6/2011 00:00:00,"500mg bd",20
+1343,"Amoxicillin",10/11/2010 00:00:00,"500mg tds",21
+1343,"Amoxicillin",17/12/2010 00:00:00,"500mg tds",21
+1343,"Amoxicillin",3/8/2011 00:00:00,"500mg tds",21
+1344,"Amoxicillin",27/10/2010 00:00:00,"250mg tds",21
+1344,"Trimethoprim",25/11/2010 00:00:00,"200mg bd",6
+1345,"Lymecycline",4/1/2011 00:00:00,"408mg od",84
+1345,"Flucloxicillin",4/1/2011 00:00:00,"500mg qds",56
+1345,"Lymecycline",2/6/2011 00:00:00,"408mg od",84
+1347,"Erythromycin",5/11/2010 00:00:00,"250mg qds",28
+1347,"Doxycycline",18/11/2010 00:00:00,"100mg od",8
+1347,"Metronidazole",3/6/2011 00:00:00,"400mg tds",21
+1347,"Ciprofloxacin",6/6/2011 00:00:00,"500mg bd",20
+1348,"Amoxicillin",22/1/2010 00:00:00,"250mg tds",21
+1349,"Amoxicillin",2/12/2009 00:00:00,"250mg tds",21
+1350,"Amoxicillin",14/2/2011 00:00:00,"500mg tds",15
+1350,"Amoxicillin",16/5/2011 00:00:00,"500mg tds",15
+1351,"Amoxicillin",17/6/2011 00:00:00,"250mg tds",21
+1351,"Coamoxiclav",1/7/2011 00:00:00,"500/125 tds",21
+1346,"Amoxil",8/3/2010 00:00:00,"3000mg",1
+1346,"Flucloxicillin",16/7/2010 00:00:00,"250mg qds",28
+1346,"Flucloxicillin",30/7/2010 00:00:00,"250mg qds",28
+1336,"Erythromycin",18/12/2009 00:00:00,"250mg qds",28
+1336,"Erythromycin",6/9/2010 00:00:00,"250mg qds",28
+1336,"Erythromycin",5/11/2010 00:00:00,"250mg qds",28
+1336,"Erythromycin",3/12/2010 00:00:00,"250mg qds",28
+1336,"Clarithromycin",13/12/2010 00:00:00,"500mg bd",14
+1320,"Trimethoprim",31/12/2009 00:00:00,"200mg bd",6
+1319,"Flucloxicillin",21/1/2010 00:00:00,"250mg qds",40
+1315,"Amoxicillin",10/3/2010 00:00:00,"500mg tds",21
+1315,"Flucloxicillin",29/3/2010 00:00:00,"500mg qds",28
+1315,"Flucloxicillin",6/4/2010 00:00:00,"500mg qds",28
+1315,"Amoxicillin",8/11/2010 00:00:00,"500mg tds",21
+1315,"Amoxicillin",17/1/2011 00:00:00,"500mg tds",21
+1242,"Flucloxicillin",14/12/2009 00:00:00,"250mg qds",28
+1242,"Erythromycin",12/2/2010 00:00:00,"250mg x 2 bd",28
+1355,"Amoxicillin",20/10/2010 00:00:00,"500mg tds",21
+1355,"Clarithromycin",1/11/2010 00:00:00,"500mg bd",14
+1355,"clarithromycin",10/11/2010 00:00:00,"500mg bd",14
+1356,"Amoxicillin",5/1/2011 00:00:00,"250mg tds",21
+1356,"Cefalexin",13/1/2011 00:00:00,"500mg tds",21
+1356,"Erythromycin",19/7/2011 00:00:00,"250mg x 2 bd",28
+1358,"Amoxicillin",17/12/2010 00:00:00,"500mg tds",21
+1358,"Erythromycin",29/11/2011 00:00:00,"250mg x2 bd",28
+1358,"Amoxicillin",9/12/2011 00:00:00,"500mg tds",21
+1359,"Penicillin V",14/7/2011 00:00:00,"250mg qds",28
+1360,"Ciprofloxacin",5/7/2010 00:00:00,"500mg od",14
+1360,"Amoxicillin",9/7/2010 00:00:00,"250mg tds",21
+1360,"Amoxicillin",16/9/2010 00:00:00,"250mg tds",21
+1360,"Amoxicillin",30/11/2010 00:00:00,"250mg tds",21
+1360,"Metronidazole",20/1/2011 00:00:00,"400mg bd",14
+1360,"Amoxicillin",20/1/2011 00:00:00,"500mg tds",21
+1360,"Metronidazole",22/2/2011 00:00:00,"400mg tds",21
+1360,"Amoxicillin",22/2/2011 00:00:00,"500mg tds",21
+1360,"Coamoxiclav",28/2/2011 00:00:00,"500/125 tds",21
+1360,"Amoxicillin",14/4/2011 00:00:00,"500mg tds",21
+1360,"Coamoxiclav",5/8/2011 00:00:00,"500/125  tds",21
+1360,"Nitrofurantoin",8/8/2011 00:00:00,"50mg qds",30
+1360,"Ciprofloxacin",11/8/2011 00:00:00,"500mg bd",14
+1360,"Nitrofurantoin",30/8/2011 00:00:00,"50mg od",30
+1362,"Erythromycin",24/5/2010 00:00:00,"250 x 2 qds",56
+1362,"Cefalexin",19/7/2010 00:00:00,"250mg qds",28
+1363,"Erythromycin",21/6/2010 00:00:00,"250mg qds",28
+1363,"Nitrofurantoin",14/12/2011 00:00:00,"50mg qds",28
+1365,"Lymecycline",20/1/2010 00:00:00,"408mg od",28
+1366,"Flucloxicillin",7/12/2011 00:00:00,"500mg qds",28
+1367,"Coamoxiclav",10/11/2010 00:00:00,"625mg tds",21
+1368,"Trimethoprim",25/3/2011 00:00:00,"200mg bd",6
+1368,"Nitrofurantoin",31/3/2011 00:00:00,"50mg qds",20
+1368,"Nitrofurantoin",22/6/2011 00:00:00,"50mg qds",20
+1368,"Cefalexin",8/7/2011 00:00:00,"250mg  x2 bd",28
+1368,"amoxicillin",16/12/2011 00:00:00,"500mg tds",21
+1369,"Amoxicillin",29/12/2009 00:00:00,"500mg tds",21
+1369,"Flucloxicillin",14/4/2011 00:00:00,"250mg qds",28
+1369,"Amoxicillin",10/10/2011 00:00:00,"500mg tds",21
+1370,"Amoxicillin",22/7/2010 00:00:00,"250mg tds",21
+1370,"Metronidazole",15/3/2011 00:00:00,"400mg bd",14
+1370,"Clarithromycin",15/3/2011 00:00:00,"500mg bd",14
+1371,"Amoxicillin",15/3/2010 00:00:00,"250mg tds",21
+1371,"Coamoxiclav",6/8/2010 00:00:00,"250/125 tds",21
+1371,"Amoxicillin",31/1/2011 00:00:00,"250mg tds",21
+1371,"amoxicillin",10/3/2011 00:00:00,"250mg tds",21
+1371,"amoxicillin",18/5/2011 00:00:00,"250mg tds",21
+1371,"Erythromycin",10/11/2011 00:00:00,"250 x 2 bd",28
+1372,"Flucloxicillin",2/12/2009 00:00:00,"500mg qds",20
+1372,"Flucloxicillin",28/6/2010 00:00:00,"500mg qds",20
+1372,"Flucloxicillin",18/8/2010 00:00:00,"500mg qds",20
+1372,"Coamoxiclav",1/9/2010 00:00:00,"500/125 tds",21
+1373,"Erythromycin",16/3/2010 00:00:00,"250mg qds",28
+1373,"Erythromycin",26/7/2011 00:00:00,"250mg qds",28
+1375,"Clarithromycin",5/5/2010 00:00:00,"500mg bd",14
+1375,"Amoxicillin",5/5/2010 00:00:00,"500mg x2 bd",28
+1375,"Amoxicillin",10/1/2011 00:00:00,"250mg tds",21
+1379,"Nitrofurantoin",27/11/2009 00:00:00,"50mg qds",30
+1379,"Nitrofurantoin",9/12/2010 00:00:00,"50mg qds",30
+1385,"Amoxicillin",27/5/2010 00:00:00,"250mg tds",21
+1386,"Amoxicillin",18/1/2010 00:00:00,"500mg tds",21
+1386,"Erythromycin",11/6/2010 00:00:00,"250mg x2 bd",28
+1386,"Cefalexin",18/6/2010 00:00:00,"250mg x2 bd",28
+1388,"Amoxicillin",29/12/2009 00:00:00,"500mg tds",21
+1388,"Cefalexin",1/4/2010 00:00:00,"500mg x2 bd",12
+1388,"Trimethoprim",10/5/2010 00:00:00,"200mg bd",14
+1388,"Amoxicillin",14/3/2011 00:00:00,"500mg tds",21
+1388,"Trimethoprim",24/5/2011 00:00:00,"200mg bd",6
+1389,"Amoxicillin",12/3/2010 00:00:00,"250mg tds",21
+1389,"Amoxicillin",25/3/2010 00:00:00,"250mg tds",21
+1389,"Nitrofurantoin",31/3/2010 00:00:00,"50mg qds",30
+1389,"Ciprofloxacin",9/4/2010 00:00:00,"250mg bd",20
+1389,"amoxicillin",24/5/2010 00:00:00,"500mg tds",21
+1389,"Ciprofloxacin",6/10/2010 00:00:00,"500mg bd",10
+1389,"Erythromycin",14/10/2010 00:00:00,"250mg qds",28
+1391,"Penicillin",25/5/2010 00:00:00,"250mg qds",28
+1393,"Erythromycin",5/1/2010 00:00:00,"250mg qds",28
+1394,"Penicillin V",3/12/2010 00:00:00,"250 x2 qds",56
+1394,"Penicillin",17/1/2011 00:00:00,"250mg qds",28
+1394,"Flucloxicillin",8/11/2011 00:00:00,"500mg qds",28
+1394,"IV antibiotics in JR",24/5/2011 00:00:00,,
+1394,"coamoxiclav",25/5/2011 00:00:00,"625mg tds",21
+1396,"Flucloxicillin",30/8/2011 00:00:00,"500mg qds",28
+1397,"Amoxicillin",4/1/2010 00:00:00,"500mg tds",21
+1399,"Amoxicillin",18/3/2010 00:00:00,"250mg tds",21
+1399,"Doxycycline",22/3/2010 00:00:00,"100mg bd",14
+1399,"Amoxicillin",11/5/2010 00:00:00,"500mg tds",42
+1399,"Doxycyline",21/6/2010 00:00:00,"100mg bd",14
+1399,"Amoxicillin",19/4/2011 00:00:00,"500mg tds",21
+1399,"Flucloxicillin",3/10/2011 00:00:00,"500mg qds",28
+1400,"Ciprofloxacin",19/10/2010 00:00:00,"500mg bd",10
+1400,"Erythromycin",7/4/2010 00:00:00,"250mg x2 qds",56
+1400,"Erythromycin",3/8/2010 00:00:00,"250mg qds",28
+1400,"Erythromycin",18/5/2011 00:00:00,"250mg qds",28
+1400,"Erythromycin",27/5/2011 00:00:00,"250mg qds",28
+1400,"Doxycycline",21/12/2011 00:00:00,"100mg od",8
+693,"Clarithromycin",15/4/2011 00:00:00,"500mg bd",14
+693,"Flucloxicilllin",26/7/2010 00:00:00,"500mg qds",28
+693,"Flucloxicilllin",12/7/2010 00:00:00,"500mg qds",28
+693,"Flucloxicillin",28/9/2009 00:00:00,"500mg qds",28
+693,"Flucloxcillin",6/7/2009 00:00:00,"500mg qds",28
+53,"Doxycycline",14/1/2010 00:00:00,"100mg od",8
+53,"Cefradine",21/10/2009 00:00:00,"500mg od",20
+53,"Cefradine",19/10/2009 00:00:00,"500mg bd",14
+53,"Amoxicillin",23/9/2009 00:00:00,"250mg od",42
+53,"Amoxicillin",9/9/2009 00:00:00,"250mg x 2 tds",63
+53,"Amoxicillin",20/8/2009 00:00:00,"500mg tds",30
+53,"Amoxicillin",4/8/2009 00:00:00,"500mg tds",21
+53,"Cefalexin",30/7/2009 00:00:00,"200mg qds",28
+53,"Amoxicillin",27/4/2009 00:00:00,"250mg tds",15
+53,"Doxycycline",5/2/2009 00:00:00,"100mg od",8
+3008,"Flucloxicillin",15/12/2009 00:00:00,"1000mg qds",224
+3008,"Rifampicin",15/12/2009 00:00:00,"300mg bd",56
+1234,"Nitrofurantoin",5/11/2010 00:00:00,"50mg qds",20
+1234,"Nitrofurantoin",26/7/2010 00:00:00,"50mg qds",20
+1234,"Nitrofurantoin",15/4/2010 00:00:00,"50mg qds",20
+1234,"Nitrofurantoin",16/10/2009 00:00:00,"50mg qds",20
+1234,"Nitrofurantoin",8/6/2011 00:00:00,"50mg qds",20
+1238,"Nitrofurantoin",19/4/2010 00:00:00,"50mg qds",20
+1238,"Nitrofurantoin",1/10/2010 00:00:00,"50mg qds",20
+1240,"Lymecycline",29/9/2009 00:00:00,"408mg od",28
+1240,"Lymecycline",13/4/2010 00:00:00,"408mg od",28
+1240,"Lymecycline",8/3/2010 00:00:00,"408mg od",28
+1240,"Lymecycline",27/1/2010 00:00:00,"408mg od",28
+1240,"Lymecycline",14/1/2010 00:00:00,"408mg od",28
+1240,"Lymecycline",11/12/2009 00:00:00,"408mg od",28
+1240,"Lymecycline",23/11/2009 00:00:00,"408mg od",28
+1241,"Amoxicillin",29/9/2009 00:00:00,"500mg tds",21
+1207,"Penicillin V",9/4/2010 00:00:00,"250mg x2 qds",56
+1207,"Mupirocin ointment",15/10/2009 00:00:00,"tds",
+1207,"Cefalexin",10/9/2010 00:00:00,"500mg tds",21
+1207,"Cefalexin",13/1/2011 00:00:00,"500mg tds",21
+1207,"Cefalexin",27/10/2011 00:00:00,"500mg tds",21
+1215,"Coamoxicillin",15/4/2011 00:00:00,"?",
+1215,"Amoxicillin",18/1/2010 00:00:00,"500mg tds",21
+2032,"Lymecyclizine",16/11/2009 00:00:00,"408mg od",84
+2040,"topical clindamycin",3/11/2009 00:00:00,,
+2060,"Flucloxicillin",26/5/2011 00:00:00,"500mg qds",28
+2075,"Flucloxicillin",31/1/2011 00:00:00,"250mg qds",28
+2105,"Trimethoprim",26/10/2010 00:00:00,"200mg bd",10
+2105,"Trimethoprim",14/8/2011 00:00:00,"200mg bd",6
+2088,"Erythromycin",11/12/2009 00:00:00,"500mg bd",180
+2014,"chloramphenicol drops",22/10/2009 00:00:00,"x2 drops",
+1218,"Augmentin",11/6/2010 00:00:00,"unknown given in Spain",
+1219,"Co amoxiclav",11/5/2011 00:00:00,"500/125mg tds",21
+1222,"Amoxicillin",3/10/2011 00:00:00,"250mg tds",21
+1222,"Lymecycline",17/3/2011 00:00:00,"408mg od",28
+1223,"Naseptin",14/3/2011 00:00:00,"for inflamed littles area",
+1244,"Doxycycline",12/2/2010 00:00:00,"100mg od",8
+1244,"Lymecycline",19/11/2009 00:00:00,"408mg od",28
+1248,"Amoxicillin",13/1/2010 00:00:00,"250mg tds",21
+1254,"Neomycin and chlorhexidine cream - nasal",1/8/2011 00:00:00,"tds 15 grams",
+1260,"Amoxicillin",30/4/2010 00:00:00,"250mg tds",84
+1260,"Coamoxiclav",30/4/2010 00:00:00,"375mg tds",84
+1260,"Amoxicillin",11/7/2011 00:00:00,"500mg tds",21
+1260,"Amoxicillin",23/4/2011 00:00:00,"500mg tds",21
+1260,"Amoxicillin",12/4/2011 00:00:00,"500mg tds",21
+1260,"Amoxicillin",16/2/2011 00:00:00,"500mg tds",21
+1260,"Amoxicillin",16/12/2010 00:00:00,"500mg tds",21
+1260,"Amoxicillin",1/10/2010 00:00:00,"500mg tds",21
+1260,"Amoxicillin",28/6/2010 00:00:00,"500mg tds",21
+1260,"Amoxicillin",24/6/2010 00:00:00,"500mg tds",21
+1260,"Amoxicillin",1/4/2010 00:00:00,"500mg tds",21
+1260,"Amoxicillin",5/2/2010 00:00:00,"500mg tds",21
+1260,"Amoxicillin",11/1/2010 00:00:00,"500mg tds",21
+1260,"Amoxicillin",20/11/2009 00:00:00,"500mg tds",21
+1307,"Naseptin",7/6/2010 00:00:00,"tds",
+1299,"Naseptin topical",1/8/2011 00:00:00,"tds for nose bleeds",
+1295,"Lymecycline",14/9/2011 00:00:00,"408mg od",28
+1295,"Lymecycline",11/8/2011 00:00:00,"408mg od",28
+1295,"Lymecycline",21/7/2011 00:00:00,"408mg od",28
+1295,"Lymecycline",23/6/2011 00:00:00,"408mg od",28
+1295,"Lymecycline",26/5/2011 00:00:00,"408mg od",28
+1295,"Lymecycline",31/3/2011 00:00:00,"408mg od",28
+1295,"Lymecycline",3/3/2011 00:00:00,"408mg od",28
+1295,"Lymecycline",19/11/2010 00:00:00,"408mg od",28
+1295,"Lymecycline",18/11/2010 00:00:00,"408mg od",28
+1295,"Lymecycline",22/10/2010 00:00:00,"408mg od",28
+1295,"Lymecycline",1/10/2010 00:00:00,"408mg od",28
+1295,"Lymecycline",6/9/2010 00:00:00,"408mg od",28
+1295,"Lymecycline",18/8/2010 00:00:00,"408mg od",28
+1295,"Lymecycline",20/7/2010 00:00:00,"408mg od",28
+1295,"Lymecycline",12/5/2010 00:00:00,"408mg od",28
+1295,"Lymecycline",23/3/2010 00:00:00,"408mg od",28
+1295,"Lymecycline",13/10/2009 00:00:00,"408mg od",28
+1291,"Amoxiclav",7/12/2010 00:00:00,"625mg tds",12
+1291,"Coamoxiclav",11/12/2010 00:00:00,"625mg tds",4
+1318,"Mupriocin ointment",22/9/2011 00:00:00,"BD for 7 days",
+1323,"Naseptin cream",16/12/2010 00:00:00,"BD 15g",
+1356,"Erythromycin",13/7/2011 00:00:00,"250mg x 2 BD",28
+3078,"Cefalexin",13/6/2011 00:00:00,"250mg qds",20
+3019,"Co-amoxiclav",2/3/2012 00:00:00,"250+125mg tds",21
+3019,"Co-amoxiclav",5/12/2011 00:00:00,"250+125mg tds",21
+3019,"Co-amoxiclav",1/12/2011 00:00:00,"250+125mg tds",21
+3019,"Co-amoxiclav",29/7/2011 00:00:00,"250+125mg tds",21
+3019,"Flucloxicillin",25/3/2010 00:00:00,"500mg qds",56
+3001,"Co-amoxiclav",16/6/2011 00:00:00,"250/125mg tds",21
+3001,"Ciprofloxacin",3/6/2011 00:00:00,"500mg bd",30
+3001,"Co-amoxiclav",5/10/2010 00:00:00,"250/125mg tds",42
+3001,"Co-amoxiclav",17/9/2010 00:00:00,"250/125mg tds",21
+3001,"Co-amoxiclav",23/7/2010 00:00:00,"250/125mg tds",21
+3001,"Co-amoxiclav",1/7/2010 00:00:00,"250/125mg tds",21
+3001,"Ciprofloxacin",24/5/2010 00:00:00,"500mg bd",20
+3001,"Ciprofloxacin",22/4/2010 00:00:00,"500mg bd",20
+3001,"Lymecycline",22/4/2010 00:00:00,"408mg od",28
+3001,"Ciprofloxacin",14/1/2010 00:00:00,"500mg bd",10
+3001,"Ciprofloxacin",30/11/2009 00:00:00,"500mg bd",10
+5009,"Amoxicillin",11/10/2011 00:00:00,"250mgs tds",21
+25,"Flucloxicillin",21/2/2011 00:00:00,"250mg qds",28
+3061,"Clindamycin",5/12/2010 00:00:00,"150mg x3 qds",168
+3061,"Clindamycin",21/12/2010 00:00:00,"150mg x3 qds",168
+5021,"Nitrofurantoin",31/10/2011 00:00:00,"100mg bd",14
+925,"Lymecycline",22/2/2011 00:00:00,"408mg od",28
+925,"Lymecycline",16/12/2010 00:00:00,"408mg od",28
+925,"Lymecycline",22/9/2010 00:00:00,"408mg od",28
+925,"Lymecycline",24/8/2010 00:00:00,"408mg od",28
+925,"Lymecycline",23/7/2010 00:00:00,"408mg od",28
+925,"Lymecycline",29/6/2010 00:00:00,"408mg od",28
+5067,"Ciprofloxcacin",25/11/2011 00:00:00,"500mg bd",10
+5067,"Nitrofuratoin",2/11/2011 00:00:00,"50mg qds",20
+5027,"Amoxicillin",20/12/2010 00:00:00,"250mg tds",21
+3018,"Amoxicillin",12/3/2010 00:00:00,"250mg tds",21
+3018,"Co-amoxiclav",12/3/2010 00:00:00,"375mg tds",21
+3006,"Co-amoxiclav",28/9/2010 00:00:00,"625mg tds",15
+3006,"Co-amoxiclav",24/9/2009 00:00:00,"250+125mg tds",21
+3006,"Erythromycin",24/9/2009 00:00:00,"500mg tds",28
+3006,"Erythromycin",2/2/2010 00:00:00,"500mg tds",28
+3006,"Co-amoxiclav",25/3/2010 00:00:00,"500+125mg tds",21
+3006,"Co-amoxiclav",26/4/2010 00:00:00,"500+125mg tds",21
+3006,"Erythromycin",19/5/2010 00:00:00,"250mg tds x2",56
+3006,"Co-amoxiclav",14/6/2010 00:00:00,"500+125mg tds",21
+3006,"Co-amoxcilav",15/7/2010 00:00:00,"500+125mg tds",21
+3006,"Naseptin",26/7/2010 00:00:00,"tds for 2 weeks 15g",1
+3006,"Co-amoxiclav",10/8/2010 00:00:00,"500+125mg tds",42
+3006,"Co-amoxiclav",23/8/2010 00:00:00,"500+125mg tds",21
+3006,"Co-amoxiclav",14/9/2010 00:00:00,"500+125mg tds",21
+3006,"Co-amoxiclav",14/10/2010 00:00:00,"500+125mg tds",21
+3006,"Erythromycin",25/11/2010 00:00:00,"250mg qds",112
+3006,"Erythromycin",9/12/2010 00:00:00,"250mg qds",112
+3006,"Amoxicillin",10/1/2011 00:00:00,"500mg tds",21
+3006,"Amoxicillin",24/1/2011 00:00:00,"500mg tds",21
+3009,"Erythromycin",6/4/2010 00:00:00,"500mg qds",28
+3016,"Metronidazole",7/10/2010 00:00:00,"400mg tds",21
+3016,"Amoxicillin",18/5/2011 00:00:00,"500mg tds",21
+3016,"Co-amoxiclav",7/6/2011 00:00:00,"500+125mg tds",21
+3025,"Co-amoxiclav",24/7/2010 00:00:00,"375mg tds",21
+3025,"Amoxicillin",24/7/2010 00:00:00,"250mg tds",21
+3025,"Flucloxicillin",29/12/2010 00:00:00,"500mg qds",28
+3025,"Flucloxiciilin",12/11/2010 00:00:00,"500mg qds",28
+3025,"Amoxicillin",20/8/2010 00:00:00,"250mg qds",28
+3025,"Flucloxicillin",19/7/2010 00:00:00,"250mg qds",28
+1336,"Amoxilcillin",26/10/2011 00:00:00,"500mg tds",21
+3014,"Clarithromycin",1/3/2010 00:00:00,"500mg bd",14
+3014,"Doxycycline",24/11/2010 00:00:00,"100mg od",8
+3014,"Erythromycin",18/11/2011 00:00:00,"250mg qds",56
+3004,"Amoxicillin",23/10/2010 00:00:00,"500mg tds",126
+3004,"Clindamycin",23/10/2010 00:00:00,"300mg qds",168
+3004,"Clindamycin",14/5/2010 00:00:00,"300mg qds",168
+3004,"Amoxicillin",14/5/2010 00:00:00,"500mg tds",126
+3004,"Amoxicillin",12/1/2010 00:00:00,"500mg tds",84
+3004,"Amoxicillin",2/2/2010 00:00:00,"500mg tds",84
+3004,"Amoxicillin",23/2/2010 00:00:00,"500mg tds",84
+3004,"Amoxicillin",6/4/2010 00:00:00,"500mg tds",84
+3004,"Doxycycline",12/1/2010 00:00:00,"100mg bd",56
+3004,"Doxycyline",2/2/2010 00:00:00,"100mg bd",56
+3004,"Doxycycline",23/2/2010 00:00:00,"100mg bd",56
+3004,"Doxycycline",6/4/2010 00:00:00,"100mg bd",56
+1398,"""Antibiotics - 1 week""",13/5/2011 00:00:00,"Details not recorded in discharge letter from hospital",
+5048,"Penicillin V",29/11/2011 00:00:00,"250mg qds",40
+3005,"Co-amoxiclav",4/12/2009 00:00:00,"375mg tds po",15
+3005,"Amoxicillin",4/12/2009 00:00:00,"250mg tds po",15
+3005,"Flucloxicillin",4/8/2010 00:00:00,"500mg qds",28
+3115,"Ceftriaxone",18/11/2011 00:00:00,"2g od iv",17
+5055,"coamoxiclav",7/12/2011 00:00:00,"625mg tds",21
+3022,"Fucidin H",17/5/2010 00:00:00,"BD topical",1
+3022,"Fluconazole",15/6/2010 00:00:00,"150mg od",7
+3022,"Flucoxicillin",31/8/2010 00:00:00,"500mg qds",28
+3022,"Fluconazole",28/7/2010 00:00:00,"50mg od",7
+5086,"Flucloxacillin",8/12/2011 00:00:00,"500mg qds",28
+3040,"Ceftriaxon",19/7/2010 00:00:00,"2g od IV",15
+1083,"Cefalexin",26/8/2010 00:00:00,"500mg TDS",15
+1083,"Flucloxicillin",25/10/2010 00:00:00,"500mg QDS",20
+3002,"Nitrofurantoin",23/9/2009 00:00:00,"50mg qds",12
+3002,"Metronidazole",21/6/2010 00:00:00,"200mg tds",21
+3002,"Co-amoxiclav",6/4/2010 00:00:00,"500/125mg qds",21
+3041,"Teicoplanin",11/8/2010 00:00:00,"600mg od IV",28
+3041,"Teicoplanin",22/9/2010 00:00:00,"600mg od IV",35
+3026,"Teicoplanin",22/4/2010 00:00:00,"600mg OD IV",35
+3026,"Rifampicin",23/6/2010 00:00:00,"300mg BD",84
+3026,"Doxycycline",23/6/2010 00:00:00,"100mg OD",42
+3035,"Flucloxicillin",8/11/2010 00:00:00,"500mg qds",40
+3035,"Amoxicillin",6/12/2010 00:00:00,"500mg tds",30
+3063,"Clindamycin",25/11/2010 00:00:00,"450mg qds",28
+3049,"Nitrofuantoin",1/2/2011 00:00:00,"50mg qds",20
+3049,"Penicillin V",24/2/2011 00:00:00,"250mg x2 bd",20
+3049,"Trimethoprim",19/4/2011 00:00:00,"200mg bd",14
+3049,"Nitrofuantoin",13/9/2011 00:00:00,"500mg qds",20
+3049,"Co-amoxiclav",8/11/2011 00:00:00,"500/125mg tds",30
+3049,"Trimethoprim",14/2/2012 00:00:00,"200mg bd",14
+3049,"Penicillin V",2/4/2012 00:00:00,"250mg bd",28
+3049,"Trimethoprim",2/8/2012 00:00:00,"200mg bd",28
+3049,"Ciprofloxacin",4/9/2012 00:00:00,"250mg od",28
+3049,"Co-amoxiclav",25/10/2011 00:00:00,"625mg tds",9
+3049,"Co-amoxiclav",11/5/2011 00:00:00,"625mg tds",42
+3049,"Co-amoxiclav",17/5/2011 00:00:00,"625mg tds",15
+3049,"Co-amoxiclav",13/6/2011 00:00:00,"620mg tds",48
+3049,"Fluconazole",29/6/2011 00:00:00,"50mg od",7
+3049,"Co-amoxiclav",27/9/2011 00:00:00,"625mg tds",3
+3049,"Co-amoxiclav",20/10/2011 00:00:00,"625mg tds",12
+3049,"Co-amoxiclav",17/11/2011 00:00:00,"625mg tds",7
+3049,"Ciprofloxacin",25/1/2012 00:00:00,"500mg bd",14
+3049,"Nitrofuantoin",12/4/2012 00:00:00,"50mg qds",20
+3049,"Nitrofuantoin",9/5/2012 00:00:00,"50mg qds",36
+3049,"Co-amoxiclav",20/7/2012 00:00:00,"625mg tds",6
+3049,"Trimethoprim",31/7/2012 00:00:00,"200mg od",28
+3049,"Co-amoxiclav",31/8/2012 00:00:00,"625mg tds",12
+3059,"Flucloxacillin",22/11/2010 00:00:00,"1g iv qds",56
+3059,"Flucloxicillin",22/11/2010 00:00:00,"2g iv qds",56
+3059,"Ceftriaxone",30/11/2010 00:00:00,"2g od iv",25
+3059,"Amoxicillin",3/3/2011 00:00:00,"500mg tds",21
+3059,"Ciproflxacin",18/3/2011 00:00:00,"500mg bd",14
+3059,"Doxycyxline",25/3/2011 00:00:00,"100mg bd",100
+3059,"Rifampicin",14/4/2011 00:00:00,"300mg bd",100
+3071,"Ciprofloxacin",20/3/2012 00:00:00,"500mg BD",20
+3071,"Ciprofloxacin",30/8/2012 00:00:00,"500mg BD",20
+3071,"Clindamycin",21/1/2011 00:00:00,"450mg TDS",42
+3073,"Amoxicillin",8/7/2011 00:00:00,"500mg tds",21
+3073,"Flucloxicillin",21/4/2011 00:00:00,"250mg qds",28
+3011,"Erythromycin",5/5/2010 00:00:00,"250mgs qds",28
+3076,"Mupirocin",25/5/2011 00:00:00,"2% tds",1
+3076,"Ceftriaxone",21/2/2011 00:00:00,"1g od iv",26
+3076,"Ciproflxacin",16/2/2011 00:00:00,"500mg bd",84
+3076,"Rifampicin",16/2/2011 00:00:00,"300mg bd",84
+3046,"Clarithromycin",6/3/2012 00:00:00,"250mg bd",14
+3046,"Cefalexin",4/4/2012 00:00:00,"500mg tds",21
+3046,"C;arithromycin",21/12/2010 00:00:00,"500mg bd",14
+3046,"Nitrofurantoin",30/11/2010 00:00:00,"500mg qds",28
+3046,"Trimethoprim",26/11/2010 00:00:00,"200mg bd",14
+3046,"Cefalexin",21/10/2010 00:00:00,"500mg tds",21
+3046,"Teicoplanin",2/9/2010 00:00:00,"200mg od iv",28
+3046,"Teicoplanin",2/9/2010 00:00:00,"400mg od iv",28
+3046,"Vancomycin",13/8/2010 00:00:00,"? Iv",28
+3046,"Trimethoprim",14/9/2010 00:00:00,"200mg bd",14
+3032,"Ceftriaxone",27/5/2010 00:00:00,"1g od iv",41
+3057,"Ceftriaxone",26/10/2010 00:00:00,"2g IV od",12
+3057,"Trimethoprim",7/4/2012 00:00:00,"200mg bd",14
+3057,"Erythromycin Liquid",21/7/2011 00:00:00,"250mg/5mls qds",140
+3057,"Erythromycin",21/7/2011 00:00:00,"250mg qds",28
+3057,"Amoxicillin",21/7/2011 00:00:00,"500mg tds",21
+3057,"Phenoxymethy penicillin",10/11/2011 00:00:00,"250mg bd",56
+3057,"Phenoxymethy penicillin",8/12/2011 00:00:00,"250mg bd",56
+3057,"Erythromycin",14/12/2011 00:00:00,"250mg qds",28
+3057,"Amoxicillin",19/12/2011 00:00:00,"500mg tds",21
+3057,"Phenoxymethy penicillin",3/1/2012 00:00:00,"250mg bd",168
+3057,"Phenoxymethy penicillin",5/3/2012 00:00:00,"250mg bd",56
+3057,"Doxycycline",5/3/2012 00:00:00,"100mg bd x1, then od",8
+3057,"Trimethoprim",3/4/2012 00:00:00,"200mg bd",6
+3057,"Cefalexin",10/5/2012 00:00:00,"250mg qds",20
+3057,"Phenoxymethy penicillin",20/6/2012 00:00:00,"250mg bd",168
+3057,"Erythromycin",24/8/2012 00:00:00,"250mg qds",28
+3057,"Phenoxymethy penicillin",26/9/2012 00:00:00,"250mg bd",168
+3057,"Amoxicillin",11/10/2012 00:00:00,"500mg tds",21
+3021,"Ciproflixacin",26/5/2010 00:00:00,"500mg bd",14
+3021,"Rifampicin",2/6/2010 00:00:00,"300mg bd",14
+3021,"Ciprofloxacin",2/6/2010 00:00:00,"500mg bd",14
+3021,"Co-amoxiclav",12/11/2010 00:00:00,"375mg tds",21
+3021,"Naseptin",25/11/2010 00:00:00,"tds",1
+3021,"Nitrofurantoin",10/1/2011 00:00:00,"50mg qds",28
+3021,"Nitrofurantoin",20/5/2011 00:00:00,"50mg qds",28
+3021,"Amoxicillin",25/5/2011 00:00:00,"500mg tds",21
+3021,"Nitrofurantoin",14/6/2011 00:00:00,"50mg qds",28
+3021,"Nitrofurantoin",15/9/2011 00:00:00,"50mg qds",28
+3021,"Ciprofloxacin",16/9/2011 00:00:00,"250mg bd",10
+3021,"Trimethoprim",23/9/2011 00:00:00,"200mg od",28
+3021,"Co-amoxiclav",26/9/2011 00:00:00,"375mg tds",21
+3021,"Co-amoxiclav",21/9/2010 00:00:00,"1.2g tds IV",9
+3021,"Amoxicillin",21/12/2011 00:00:00,"500mg tds",21
+3021,"Trimethoprim",3/1/2012 00:00:00,"200mg od",7
+3021,"Trimethoprim",10/1/2012 00:00:00,"200mg od",7
+3021,"Trimethoprim",17/1/2012 00:00:00,"200mg od",7
+3021,"Trimethoprim",24/1/2012 00:00:00,"200mg od",7
+3021,"Trimethoprim",31/1/2012 00:00:00,"200mg od",7
+3021,"Trimethoprim",7/2/2012 00:00:00,"200mg od",7
+3021,"Trimethoprim",14/2/2012 00:00:00,"200mg od",7
+3021,"Trimethoprim",17/2/2012 00:00:00,"200mg od",7
+3021,"Trimethoprim",24/2/2012 00:00:00,"200mg od",7
+3021,"Trimethoprim",2/3/2012 00:00:00,"200mg od",7
+3021,"Trimethoprim",9/3/2012 00:00:00,"200mg od",7
+3021,"Trimethoprim",20/3/2012 00:00:00,"200mg od",7
+3021,"Trimethoprim",27/3/2012 00:00:00,"200mg od",7
+3057,"Amoxicillin",20/12/2010 00:00:00,"500mg bd",21
+3021,"Trimethoprim",3/4/2012 00:00:00,"200mg od",7
+3021,"Trimethoprim",10/4/2012 00:00:00,"200mg od",7
+3021,"Trimethoprim",16/4/2012 00:00:00,"200mg od",7
+3021,"Trimethoprim",23/4/2012 00:00:00,"200mg od",7
+25,"Amoxcillin",5/12/2012 00:00:00,"500mg tds",28
+3021,"Demeclocycline",19/5/2011 00:00:00,"150mg x2 bd",28
+3021,"Demeclocycline",12/5/2011 00:00:00,"150mg x2 bd",28
+3021,"Demeclocycline",5/5/2011 00:00:00,"150mg x2 bd",28
+3021,"Demeclocycline",28/4/2011 00:00:00,"150mg x2 bd",28
+3021,"Demeclocycline",21/4/2011 00:00:00,"150mg x2 bd",28
+3021,"Demeclocycline",14/4/2011 00:00:00,"150mg x2 bd",28
+3021,"Demeclocycline",7/4/2011 00:00:00,"150mg x2 bd",28
+3021,"Demeclocycline",4/1/2011 00:00:00,"150mg x2 bd",28
+3021,"Demeclocycline",28/3/2011 00:00:00,"150mg x2 bd",28
+3021,"Demeclocycline",21/3/2011 00:00:00,"150mg x2 bd",28
+3021,"Demeclocycline",14/3/2011 00:00:00,"150mg x2 bd",28
+3021,"Demeclocycline",7/3/2011 00:00:00,"150mg x2 bd",28
+3021,"Demeclocycline",28/2/2011 00:00:00,"150mg x2 bd",28
+3021,"Demeclocycline",21/2/2011 00:00:00,"150mg x2 bd",28
+3021,"Demeclocycline",14/2/2011 00:00:00,"150mg x2 bd",28
+3021,"Demeclocycline",4/2/2011 00:00:00,"150mg x2 bd",28
+3021,"Demeclocycline",28/1/2011 00:00:00,"150mg x2 bd",28
+3021,"Demeclocycline",21/1/2011 00:00:00,"150mg x2 bd",28
+3021,"Demeclocycline",14/1/2011 00:00:00,"150mg x2 bd",28
+3021,"Demeclocycline",10/1/2011 00:00:00,"150mg x2 bd",28
+3021,"Demeclocycline",3/1/2010 00:00:00,"150mg x2 bd",28
+3021,"Demeclocycline",27/12/2010 00:00:00,"150mg x2 bd",28
+3021,"Demeclocycline",20/12/2010 00:00:00,"150mg x2 bd",28
+3021,"Demeclocycline",12/12/2010 00:00:00,"150mg x2 bd",28
+3021,"Demeclocycline",6/12/2010 00:00:00,"150mg x2 bd",28
+3021,"Demeclocycline",29/11/2010 00:00:00,"150mg x2 bd",28
+3021,"Demeclocycline",22/11/2010 00:00:00,"150mg x2 bd",28
+3021,"Demeclocycline",18/11/2010 00:00:00,"150mg x2 bd",28
+3021,"Demeclocycline",11/11/2010 00:00:00,"150mg x2 bd",28
+3021,"Demeclocycline",4/11/2010 00:00:00,"150mg x2 bd",28
+3021,"Demeclocycline",28/10/2010 00:00:00,"150mg x2 bd",28
+3021,"Demeclocycline",19/10/2010 00:00:00,"150mg x2 bd",28
+3021,"Demeclocycline",12/10/2010 00:00:00,"150mg x2 bd",28
+3021,"Demeclocycline",5/10/2010 00:00:00,"150mg x2 bd",28
+3021,"Demeclocycline",28/9/2010 00:00:00,"150mg x2 bd",28
+3021,"Demeclocycline",21/9/2010 00:00:00,"150mg x2 bd",28
+3021,"Demeclocycline",14/9/2010 00:00:00,"150mg x2 bd",28
+3021,"Demeclocycline",7/9/2010 00:00:00,"150mg x2 bd",28
+3021,"Demeclocycline",31/8/2010 00:00:00,"150mg x2 bd",28
+3021,"Demeclocycline",23/8/2010 00:00:00,"150mg x2 bd",28
+3021,"Demeclocycline",16/8/2010 00:00:00,"150mg x2 bd",28
+3021,"Demeclocycline",9/8/2010 00:00:00,"150mg x2 bd",28
+3021,"Demeclocycline",2/8/2010 00:00:00,"150mg x2 bd",28
+3021,"Demeclocycline",21/7/2010 00:00:00,"150mg x2 bd",28
+3021,"Demeclocycline",14/7/2010 00:00:00,"150mg x2 bd",28
+3021,"Demeclocycline",7/7/2010 00:00:00,"150mg x2 bd",28
+3021,"Demeclocycline",6/7/2010 00:00:00,"150mg x2 bd",28
+3021,"Demeclocycline",29/6/2010 00:00:00,"150mg x2 bd",28
+3021,"Demeclocycline",22/6/2010 00:00:00,"150mg x2 bd",28
+3021,"Demeclocycline",15/6/2010 00:00:00,"150mg x2 bd",28
+3021,"Demeclocycline",8/6/2010 00:00:00,"150mg x2 bd",28
+3021,"Demeclocycline",2/6/2010 00:00:00,"150mg x2 bd",28
+3021,"Demeclocycline",26/5/2010 00:00:00,"150mg x2 bd",28
+3021,"Demeclocycline",26/5/2011 00:00:00,"150mg x2 bd",28
+3021,"Demeclocycline",6/6/2011 00:00:00,"150mg x2 bd",28
+3021,"Demeclocycline",13/6/2011 00:00:00,"150mg x2 bd",28
+3021,"Demeclocycline",20/6/2011 00:00:00,"150mg x2 bd",28
+3021,"Demeclocycline",27/6/2011 00:00:00,"150mg x2 bd",28
+3021,"Demeclocycline",30/6/2011 00:00:00,"150mg x2 bd",28
+3021,"Demeclocycline",7/7/2011 00:00:00,"150mg x2 bd",28
+3021,"Demeclocycline",14/7/2011 00:00:00,"150mg x2 bd",28
+3021,"Demeclocycline",21/7/2011 00:00:00,"150mg x2 bd",28
+3021,"Demeclocycline",8/9/2011 00:00:00,"150mg x2 bd",28
+3021,"Demeclocycline",15/9/2011 00:00:00,"150mg x2 bd",28
+3021,"Demeclocycline",29/9/2011 00:00:00,"150mg x2 bd",28
+3021,"Demeclocycline",10/10/2011 00:00:00,"150mg x2 bd",28
+3021,"Demeclocycline",18/10/2011 00:00:00,"150mg x2 bd",28
+3021,"Demeclocycline",25/10/2011 00:00:00,"150mg x2 bd",28
+3021,"Demeclocycline",1/11/2011 00:00:00,"150mg x2 bd",28
+3074,"Ceftriaxone",24/1/2011 00:00:00,"1g od IV",42
+3074,"Rifampicin",24/1/2011 00:00:00,"300mg bd",420
+3074,"Doxycycline",3/3/2011 00:00:00,"100mg bd",344
+3074,"Clindamycin",22/8/2011 00:00:00,"600mg tds",270
+3074,"Clindamycin",22/11/2011 00:00:00,"450mg tds",477
+3074,"Ceftriaxone",23/1/2013 00:00:00,"2g od IV",42
+3074,"Rifampicin",23/1/2013 00:00:00,"300mg bd",84
+3074,"Amoxicillin",6/11/2012 00:00:00,"500mg tds",21
+53,"Amoxicillin",6/9/2011 00:00:00,"250mg tds",21
+53,"Amoxicillin",22/12/2011 00:00:00,"250mg tds",21
+53,"Nitrofurantoin",10/4/2012 00:00:00,"50mg qds",30
+53,"Nitrofurantoin",17/7/2012 00:00:00,"50mg qds",30
+53,"Amoxicillin",13/2/2013 00:00:00,"250mg tds",21
+3084,"Clindamycin",15/3/2011 00:00:00,"150mg x2 qds",56
+3084,"Flucloxicillin",26/9/2011 00:00:00,"250mg qds",28
+3100,"Flucloxicillin",18/7/2011 00:00:00,"500mg qds",28
+3100,"Flucloxicillin",20/7/2011 00:00:00,"500mg qds",28
+3100,"Flucloxicillin",16/12/2011 00:00:00,"500mg qds",28
+3100,"Phenoxymethlpenicillin",29/12/2011 00:00:00,"250mg x2 qds",80
+3100,"Co-amoxiclav",20/5/2011 00:00:00,"625mg tds",21
+3099,"Co-amoxiclav",13/11/2012 00:00:00,"625mg tds",18
+3099,"Flucloxacillin",10/6/2011 00:00:00,"500mg qds",28
+3099,"Amoxicillin",17/9/2012 00:00:00,"250mg tds",21
+3099,"Amxoicillin",29/5/2013 00:00:00,"500mg tds",21
+3105,"Tazocin IV",12/6/2013 00:00:00,"unknown",
+3105,"Meropenem IV",20/6/2013 00:00:00,"unknown",
+3105,"Clarithromycin",19/11/2012 00:00:00,"250mg BD",14
+3105,"Clarithromycin",10/5/2013 00:00:00,"500mg BD",14
+3105,"Ciprofloxacin",1/7/2013 00:00:00,"500mg BD",20
+3105,"Cefalexin",23/5/2013 00:00:00,"250mg TDS",21
+3105,"Co-Triamozole",11/7/2011 00:00:00,"480mg TDS",28
+3105,"Aciclovir",9/7/2011 00:00:00,"800mg QDS",28
+3105,"Phenoxymethypenicillin",24/2/2013 00:00:00,"250mg BD",112
+3105,"Phenoxymethypenicillin",25/4/2013 00:00:00,"250mg BD",112
+3105,"Phenoxymethypenicillin",3/7/2013 00:00:00,"250mg BD",112
+3105,"Phenoxymethypenicillin",30/8/2013 00:00:00,"250mg BD",112
+3105,"Phenoxymethypenicillin",30/10/2013 00:00:00,"250mg BD",112
+3105,"Phenoxymethypenicillin",12/12/2012 00:00:00,"250mg BD",112
+3105,"Phenoxymethypenicillin",28/1/2013 00:00:00,"250mg BD",112
+3105,"Phenoxymethypenicillin",9/4/2013 00:00:00,"250mg BD",112
+3105,"Phenoxymethypenicillin",10/6/2013 00:00:00,"250mg BD",112
+3098,"Aciclovir",10/4/2013 00:00:00,"200mg tds",75
+3098,"Penicillin V",18/6/2013 00:00:00,"250mg bd",112
+3098,"Penicillin V",2/5/2013 00:00:00,"250mg qds",56
+3098,"Phenoxymethypenicillin",4/2/2013 00:00:00,"250mg bd",112
+3098,"Phenoxymethypenicillin",16/11/2013 00:00:00,"250mg bd",112
+3098,"Phenoxymethypenicillin",1/5/2012 00:00:00,"250mg bd",28
+3098,"Doxycycline",2/4/2013 00:00:00,"100mg (2 now then) BD",8
+3098,"Doxycycline",24/2/2013 00:00:00,"100mg (2 now then) BD",8
+3098,"Co-trimoxazole",13/5/2011 00:00:00,"482mg 3xwk",28
+3098,"Aciclovir",13/5/2011 00:00:00,"800mg qds",112
+3098,"Co-amoxiclav",24/5/2011 00:00:00,"625mg tds",15
+3098,"Vancomycin IV",1/7/2011 00:00:00,"unknown",7
+3098,"Flucloxicillin IV",7/7/2011 00:00:00,"500mg qds",28
+3098,"Aciclovir",1/5/2013 00:00:00,"200mg tds",28
+3098,"Clarithromycin",1/5/2012 00:00:00,"500mg bd",14
+3098,"Clarithromycin",5/7/2013 00:00:00,"500mg bd",14
+3075,"Doxycycline",7/9/2010 00:00:00,"100mg qds (as mouth rince)",12
+3075,"Flucloxacillin",20/1/2011 00:00:00,"500mg qds",28
+3075,"Amoxicillin",14/6/2011 00:00:00,"500mg tds",21
+3075,"Amoxicillin",20/5/2013 00:00:00,"500mg tds",21
+3086,"Teicoplanin",20/3/2011 00:00:00,"unknown IV",46
+3086,"Clarithromycin",16/7/2012 00:00:00,"500mg BD",14
+3086,"Amoxicillin",31/7/2012 00:00:00,"500mg tds",21
+3086,"Amoxicillin",11/1/2013 00:00:00,"500mg tds",21
+3072,"Ceftriaxone IV",24/1/2011 00:00:00,"2g od",37
+3072,"Doxycycline",16/3/2011 00:00:00,"100mg bd",60
+3072,"Rifampicin",14/4/2011 00:00:00,"300mg bd",60
+3072,"Doxycycline",5/5/2011 00:00:00,"100mg bd",40
+3072,"Rifampicin",23/1/2011 00:00:00,"300mg bd",84
+3072,"Doxycycline",23/1/2011 00:00:00,"100mg bd",84
+3065,"Azithromycin",31/12/2010 00:00:00,"500mg od",7
+3056,"Flucloxacillin",22/6/2012 00:00:00,"500mg qds",28
+3056,"Co-amoxiclav",24/4/2012 00:00:00,"500/125mg tds",21
+3056,"Clindamycin",28/10/2011 00:00:00,"150mg qds",24
+3056,"Flucloxacillin",3/10/2011 00:00:00,"500mg qds",28
+3056,"Co-amoxiclav",27/5/2011 00:00:00,"250/125mg tds",21
+3094,"Fucidin 2% (15gs)",27/6/2011 00:00:00,"BD",1
+3094,"Flucloxacillin",5/7/2011 00:00:00,"500mg qds",28
+3070,"Co-amoxiclav",14/7/2013 00:00:00,"500/125mg tds",21
+3070,"Trimethoprim",13/12/2012 00:00:00,"200mg bd",14
+3070,"Erythromycin",12/1/2011 00:00:00,"250mg x 2 qds",56
+3056,"Clindamycin",11/10/2011 00:00:00,"300mg qds",112
+3056,"Rifampicin",10/10/2011 00:00:00,"300mg bd",56
+3056,"Flucloxacillin IV",3/10/2011 00:00:00,"1g qds",16
+3056,"Metronidazole",3/10/2011 00:00:00,"?500mg ?qds",16
+3056,"Benzylpenicillin",3/10/2011 00:00:00,"?1.2g",
+671,"Amoxicillin",19/5/2011 00:00:00,"500mg tds",21
+671,"Amoxicillin",9/5/2012 00:00:00,"500mg tds",21
+3080,"Flucloxacillin",31/10/2011 00:00:00,"500mg qds",28
+3080,"Amoxicillin",13/3/2012 00:00:00,"250mg tds",21
+3080,"Flucloxacillin",17/5/2012 00:00:00,"500mg qds",28
+3080,"Flucloxacillin",14/6/2012 00:00:00,"500mg qds",28
+3080,"Flucloxacillin",16/12/2012 00:00:00,"500mg qds",28
+801,"Erythromycin",16/4/2012 00:00:00,"250mg qds",28
+3106,"Clindamycin",30/9/2011 00:00:00,"1500mgx3 qds",84
+3106,"Clindamycin",7/10/2011 00:00:00,"1500mgx3 qds",84
+3106,"Clindamycin",14/10/2011 00:00:00,"1500mgx3 qds",84
+3106,"Clindamycin",21/10/2011 00:00:00,"1500mgx3 qds",84
+3106,"Clindamycin",28/10/2011 00:00:00,"1500mgx3 qds",84
+3106,"Flucloxacillin",2/9/2011 00:00:00,"2g qds",11
+3106,"Clindamycin",19/9/2011 00:00:00,"450mg qds",504
+3106,"Ceftriaxone",19/8/2011 00:00:00,"2g od",4
+3106,"Teicoplanin",23/8/2011 00:00:00,"400mg od",6
+3106,"Clindamycin",13/9/2011 00:00:00,"450mg qds",28
