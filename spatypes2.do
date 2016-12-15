@@ -4,7 +4,7 @@
 * creats clonal colonies and BURP distances info for every spatype/ spatype pair in the dataset
 
 * INPUTS:    clean_data, (from clean_maindata.do)
-* CC, BURP (from Inputs.do)
+* CC, BURP (from RIDOM_inputs.do)
 
 *OUTPUTS : CC_names (clonal colony info) , Spa_BURP (burp distances)
 
@@ -49,7 +49,14 @@ drop _merge
 * save matching of spatypes to CC
 preserve
 keep spatype CC CCname
+replace CCname = CC if CCname==""
+replace CCname = CC +CCname if strpos(CCname,"founder")
+replace CCname = subinstr(CCname, "#", "singleton ") if strpos(CCname, "#")
+drop CC
 duplicates drop
+label variable CC "clonal colony of spatype"
+label variable CCname "sex at baseline"
+reshape wide spatype CC CCname, i(patid timepoint) j(spanum)
 save "E:\users\amy.mason\staph_carriage\Datasets\CCnames", replace
 restore
 

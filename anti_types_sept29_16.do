@@ -1,3 +1,14 @@
+************************************************
+*anti_types_sept.DO
+************************************************
+* adds carriage so far,
+* makes lots of messy carriage to date graphs, ignore these/ move to a new file.
+* creates single record per spatype per patid per timepoint (for analysing loss of new spatype)
+* INPUTS:   clean_data3 (from add_anti), antistaph_antibiotics_nooverlap (from antibiotics)
+*OUTPUTS : clean_data4 (main set for analysis) , record_per_spa (single record per spatype dataset)
+* written by Amy Mason
+
+
 * creates graph of carriage so far
 * creates "record per spatype" dataset
 
