@@ -1,4 +1,14 @@
-* Answers Tim's big continuity questions
+************************************************
+*continue.DO
+************************************************
+* Answers Tim's big continuity questions; how much more info can we get from the study
+* makes lots of messy carriage to date graphs, ignore these/ move to a new file.
+* 
+* INPUTS:   clean_data4 (from anti_types* ) 
+*OUTPUTS :  makes some graphs/ outputs a log
+* written by Amy Mason
+
+
 
 set li 130
 
@@ -95,4 +105,4 @@ drop if inlist(patid, 1218, 1219, 1359)
 keep patid timepoint spatype Result newspa_prev carriage
 noi list, sepby(patid)
 noi save "E:\users\amy.mason\staph_carriage\Datasets\people_to_stop.dta", replace
-export excel using "E:\users\amy.mason\staph_carriage\Outpits\People to stop.xls", replace
+export excel using "E:\users\amy.mason\staph_carriage\outputs\People to stop.xls", replace

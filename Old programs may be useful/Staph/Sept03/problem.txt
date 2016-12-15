@@ -1,0 +1,13 @@
+CURRENT PROBLEM
+
+
+1) SOmething weird with the recuirtment neg but secretly carrying from time 1 people
+
+2) suspect this is coz I cocked up carriage as a marker
+
+so action
+
+1) check that these people are marked as "carrying" from time zero to time 2.
+
+2) check definition of carriage  - what is t0/t for each record and are they carrying in that period?
+

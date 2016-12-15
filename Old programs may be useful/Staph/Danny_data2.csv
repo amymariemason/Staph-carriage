@@ -1,0 +1,643 @@
+patid,timepoint,marker2,date,AmountTakenPerDay,MSSA,MRSA,SwabID,State,spatypeid1,spatypeid2,spatypeid3,spatypeid4,spatypeid5,info,Start,day_no,swobno,lastswobno
+9,10,"swob data",07nov2009,"","","",,1,"t136","","","","","swob returned",07jan2009,304,7,7
+9,12,"patient form",23dec2009,"500mg","A","A",2764,1,"t136","","","","","Ciproxin",07jan2009,350,,7
+9,12,"swob data",30dec2009,"500mg","A","A",2764,1,"t136","","","","","swob returned",07jan2009,357,8,8
+9,14,"swob data",26feb2010,"","","",,1,"t136","","","","","swob returned",07jan2009,415,9,9
+9,28,"swob data",07may2011,"","","",,1,"t136","","","","","swob returned",07jan2009,850,16,16
+9,30,"patient form",16may2011,"500mg Four times daily","A","R",8037,1,"t136","","","","","Flucloxacillin",07jan2009,859,,16
+9,30,"swob data",02jul2011,"500mg Four times daily","A","R",8037,1,"t136","","","","","swob returned",07jan2009,906,17,17
+9,32,"swob data",06sep2011,"","","",,1,"t136","","","","","swob returned",07jan2009,972,18,18
+16,2,"swob data",08mar2009,"","","",,1,"t6703","","","","","swob returned",12jan2009,55,3,3
+16,,"Gp-2yr",09apr2009,"","","",,,"","","","","","Metronidazole",12jan2009,87,,3
+16,4,"swob data",02may2009,"","","",,1,"t6703","","","","","swob returned",12jan2009,110,4,4
+16,6,"swob data",13jul2009,"","","",,1,"t6703","","","","","swob returned",12jan2009,182,5,5
+22,10,"swob data",14nov2009,"","","",,1,"t012","","","","","swob returned",12jan2009,306,7,7
+22,12,"patient form",21dec2009,"Eye drops taken once daily; taken for approximately 4 days","Top A","Top A",2769,1,"t012","","","","","Chloramphenicol",12jan2009,343,,7
+22,12,"swob data",29dec2009,"Eye drops taken once daily; taken for approximately 4 days","Top A","Top A",2769,1,"t012","","","","","swob returned",12jan2009,351,8,8
+22,14,"swob data",04mar2010,"","","",,1,"t012","","","","","swob returned",12jan2009,416,9,9
+22,42,"swob data",06jul2012,"250mg x4","R","R",11642,1,"t012","","","","","swob returned",12jan2009,1271,23,23
+22,44,"patient form",15aug2012,"50mg 1 capsule","","",11942,1,"t012","","","","","Fluconazole",12jan2009,1311,,23
+22,44,"swob data",10sep2012,"50mg 1 capsule","","",11942,1,"t012","","","","","swob returned",12jan2009,1337,24,24
+22,46,"swob data",02nov2012,"","","",,1,"t012","","","","","swob returned",12jan2009,1390,25,25
+25,16,"swob data",11may2010,"","","",,1,"t2365","","","","","swob returned",12jan2009,484,10,10
+25,18,"patient form",08jun2010,"50mg Twice daily","N","N",4528,1,"t2365","","","","","Nitrofurantoin",12jan2009,512,,10
+25,18,"swob data",13jul2010,"50mg Twice daily","N","N",4528,1,"t2365","","","","","swob returned",12jan2009,547,11,11
+25,20,"swob data",07sep2010,"","","",,1,"t2365","","","","","swob returned",12jan2009,603,12,12
+25,24,"swob data",08jan2011,"","","",,1,"t2365","","","","","swob returned",12jan2009,726,14,14
+25,,"Gp-2yr",21feb2011,"","","",,,"","","","","","Flucloxicillin",12jan2009,770,,14
+25,26,"swob data",20mar2011,"","","",,1,"t2365","","","","","swob returned",12jan2009,797,15,15
+25,28,"swob data",07may2011,"","","",,1,"t2365","","","","","swob returned",12jan2009,845,16,16
+45,1,"swob data",18feb2009,"250mg 3xdaily","R","R",104,1,"t505","","","","","swob returned",21jan2009,28,2,2
+45,2,"patient form",24feb2009,"250mg 3xdaily","R","R",253,1,"t505","","","","","Amoxicillin",21jan2009,34,,2
+45,2,"swob data",14mar2009,"250mg 3xdaily","R","R",253,1,"t505","","","","","swob returned",21jan2009,52,3,3
+45,4,"swob data",16may2009,"","","",,1,"t505","","","","","swob returned",21jan2009,115,4,4
+50,20,"swob data",19sep2010,"","","",,1,"t136","","","","","swob returned",21jan2009,606,11,11
+50,,"Gp-2yr",08nov2010,"","","",,,"","","","","","amoxicillin",21jan2009,656,,11
+50,22,"swob data",23nov2010,"","","",,1,"t136","","","","","swob returned",21jan2009,671,12,12
+50,24,"swob data",19jan2011,"","","",,1,"t136","","","","","swob returned",21jan2009,728,13,13
+51,16,"swob data",19may2010,"250mg Three times daily","R","R",4004,1,"t078","","","","","swob returned",21jan2009,483,10,10
+51,,"Gp-2yr",12jul2010,"","","",,,"","","","","","Amoxicillin",21jan2009,537,,10
+51,18,"swob data",19jul2010,"250mg; Still taking","R","R",4606,1,"t078","","","","","swob returned",21jan2009,544,11,11
+51,20,"swob data",25sep2010,"250mg Once daily; Still taking","R","R",5206,1,"t078","","","","","swob returned",21jan2009,612,12,12
+51,,"Gp-2yr",05oct2010,"","","",,,"","","","","","Amoxicillin",21jan2009,622,,12
+51,,"Gp-2yr",12nov2010,"","","",,,"","","","","","Amoxicillin",21jan2009,660,,12
+51,22,"swob data",22nov2010,"250mg daily; Still taking","R","R",5922,1,"t078","","","","","swob returned",21jan2009,670,13,13
+51,24,"patient form",,"Unknown","R","R",6376,1,"t078","t349","","","","Amoxicillin",21jan2009,729,,13
+51,22,"patient form",,"250mg daily; Still taking","R","R",5922,1,"t078","","","","","Amoxicillin",21jan2009,670,,13
+51,24,"swob data",25jan2011,"Unknown","R","R",6376,1,"t078","t349","","","","swob returned",21jan2009,734,14,14
+51,26,"swob data",22mar2011,"250mg Once daily; Still taking","R","R",7099,1,"t078","t258","","","","swob returned",21jan2009,790,15,15
+51,32,"swob data",20sep2011,"Still taking 250mg per day","R","R",8659,1,"t078","","","","","swob returned",21jan2009,972,18,18
+51,34,"patient form",03nov2011,"Still taking 250mg","R","R",9507,1,"t078","","","","","Amoxacillin",21jan2009,1016,,18
+51,34,"swob data",22nov2011,"Still taking 250mg","R","R",9507,1,"t078","","","","","swob returned",21jan2009,1035,19,19
+51,36,"swob data",16jan2012,"","","",,1,"t078","","","","","swob returned",21jan2009,1090,20,20
+59,36,"swob data",24jan2012,"","","",,1,"t6811","","","","","swob returned",27jan2009,1092,20,20
+59,38,"patient form",22feb2012,"500mg x4","A","R",11051,1,"t6811","","","","","Flucloxacillin",27jan2009,1121,,20
+59,38,"swob data",27mar2012,"500mg x4","A","R",11051,1,"t6811","","","","","swob returned",27jan2009,1155,21,21
+59,40,"swob data",17may2012,"","","",,1,"t6811","","","","","swob returned",27jan2009,1206,22,22
+60,6,"swob data",03aug2009,"","","",,1,"t127","","","","","swob returned",27jan2009,188,4,4
+60,,"Gp-2yr",28aug2009,"","","",,,"","","","","","Amoxicillin",27jan2009,213,,4
+60,8,"swob data",23sep2009,"","","",,1,"t127","","","","","swob returned",27jan2009,239,5,5
+60,10,"swob data",22nov2009,"","","",,1,"t127","","","","","swob returned",27jan2009,299,6,6
+60,16,"swob data",23may2010,"Unknown dose, taken four times daily; Still taking","R","R",4059,1,"t127","","","","","swob returned",27jan2009,481,9,9
+60,18,"patient form",17jul2010,"500mg Four times daily","A","R",4679,1,"t127","","","","","Flucloxacillin",27jan2009,536,,9
+60,18,"swob data",25jul2010,"500mg Four times daily","A","R",4679,1,"t127","","","","","swob returned",27jan2009,544,10,10
+60,20,"swob data",28sep2010,"","","",,1,"t127","","","","","swob returned",27jan2009,609,11,11
+60,,"Gp-2yr",11oct2010,"","","",,,"","","","","","Flucloxicillin",27jan2009,622,,11
+60,22,"swob data",13dec2010,"","","",,1,"t127","","","","","swob returned",27jan2009,685,12,12
+60,24,"swob data",25jan2011,"","","",,1,"t127","","","","","swob returned",27jan2009,728,13,13
+60,26,"patient form",12mar2011,"250mg Four times daily","A","R",7102,1,"t127","","","","","Flucloxacillin",27jan2009,774,,13
+60,26,"swob data",24mar2011,"250mg Four times daily","A","R",7102,1,"t127","","","","","swob returned",27jan2009,786,14,14
+60,28,"swob data",24may2011,"","","",,1,"t127","","","","","swob returned",27jan2009,847,15,15
+108,1,"swob data",08mar2009,"","","",,1,"t026","","","","","swob returned",16feb2009,20,2,2
+108,,"Gp-2yr",07may2009,"","","",,,"","","","","","Erythromycin",16feb2009,80,,2
+108,4,"swob data",17jul2009,"","","",,1,"t026","","","","","swob returned",16feb2009,151,3,3
+108,2,"swob data",27jul2009,"","","",,1,"t026","","","","","swob returned",16feb2009,161,4,4
+124,0,"swob data",18feb2009,"","","",,1,"t6803","","","","","swob returned",18feb2009,0,1,1
+124,,"Gp-2yr",20feb2009,"","","",,,"","","","","","Amoxicillin",18feb2009,2,,1
+124,1,"swob data",18mar2009,"","","",,1,"t6803","","","","","swob returned",18feb2009,28,2,2
+124,2,"swob data",11apr2009,"","","",,1,"t6803","","","","","swob returned",18feb2009,52,3,3
+126,26,"swob data",29apr2011,"","","",,1,"t192","","","","","swob returned",18feb2009,800,15,15
+126,28,"patient form",31may2011,"100mg Twice daily","N","N",7878,1,"t192","","","","","Nitrofurantoin",18feb2009,832,,15
+126,28,"swob data",20jun2011,"100mg Twice daily","N","N",7878,1,"t192","","","","","swob returned",18feb2009,852,16,16
+126,30,"swob data",21aug2011,"","","",,1,"t192","","","","","swob returned",18feb2009,914,17,17
+127,12,"swob data",28feb2010,"","","",,1,"t6796","","","","","swob returned",18feb2009,375,8,8
+127,14,"patient form",29mar2010,"250mg Twice daily","A","R",3795,1,"t6796","","","","","Erythromycin",18feb2009,404,,8
+127,14,"swob data",21apr2010,"250mg Twice daily","A","R",3795,1,"t6796","","","","","swob returned",18feb2009,427,9,9
+127,16,"swob data",20jun2010,"","","",,1,"t6796","","","","","swob returned",18feb2009,487,10,10
+128,12,"swob data",21feb2010,"","","",,1,"t002","","","","","swob returned",18feb2009,368,8,8
+128,,"Gp-2yr",29mar2010,"","","",,,"","","","","","Amoxicillin",18feb2009,404,,8
+128,14,"swob data",02may2010,"","","",,1,"t002","","","","","swob returned",18feb2009,438,9,9
+128,16,"swob data",14jun2010,"","","",,1,"t002","","","","","swob returned",18feb2009,481,10,10
+128,44,"swob data",26oct2012,"","","",,1,"t002","","","","","swob returned",18feb2009,1346,24,24
+128,46,"patient form",09dec2012,"X3","R","R",12448,1,"t002","","","","","AMOXYCILLIN",18feb2009,1390,,24
+128,46,"swob data",26dec2012,"X3","R","R",12448,1,"t002","","","","","swob returned",18feb2009,1407,25,25
+128,48,"swob data",17feb2013,"","","",,1,"t002","","","","","swob returned",18feb2009,1460,26,26
+133,4,"swob data",19jun2009,"","","",,1,"t084","","","","","swob returned",23feb2009,116,4,4
+133,,"Gp-2yr",13jul2009,"","","",,,"","","","","","Trimethoprim",23feb2009,140,,4
+133,6,"swob data",19aug2009,"","","",,1,"t084","","","","","swob returned",23feb2009,177,5,5
+133,8,"swob data",18oct2009,"","","",,1,"t084","","","","","swob returned",23feb2009,237,6,6
+160,38,"swob data",23apr2012,"","","",,1,"t9794","","","","","swob returned",25feb2009,1153,21,21
+160,40,"patient form",09jun2012,"50mg x4","N","N",11574,1,"t9794","","","","","Nitrofurantoin",25feb2009,1200,,21
+160,40,"swob data",20jun2012,"50mg x4","N","N",11574,1,"t9794","","","","","swob returned",25feb2009,1211,22,22
+160,42,"swob data",21aug2012,"","","",,1,"t9794","","","","","swob returned",25feb2009,1273,23,23
+162,6,"swob data",24aug2009,"","","",,1,"t209","","","","","swob returned",25feb2009,180,5,5
+162,10,"patient form",15oct2009,"400mg tds","N","N",2673,1,"t209","","","","","Metronidazole",25feb2009,232,,5
+162,8,"patient form",28sep2009,"500mg Three times daily","R","R",1686,1,"t209","","","","","Amoxicillin",25feb2009,215,,5
+162,8,"swob data",19oct2009,"500mg Three times daily","R","R",1686,1,"t209","","","","","swob returned",25feb2009,236,6,6
+162,10,"swob data",18dec2009,"400mg tds","N","N",2673,1,"t209","","","","","swob returned",25feb2009,296,7,7
+162,22,"swob data",21dec2010,"","","",,1,"t209","","","","","swob returned",25feb2009,664,13,13
+162,24,"patient form",27jan2011,"250mg Three times daily","R","R",6808,1,"t209","","","","","Amoxycillin",25feb2009,701,,13
+162,24,"swob data",22feb2011,"250mg Three times daily","R","R",6808,1,"t209","","","","","swob returned",25feb2009,727,14,14
+162,26,"swob data",26apr2011,"","","",,1,"t209","","","","","swob returned",25feb2009,790,15,15
+164,14,"swob data",19apr2010,"","","",,1,"t996","","","","","swob returned",25feb2009,418,9,9
+164,,"Gp-2yr",27apr2010,"","","",,,"","","","","","Co-amoxiclav",25feb2009,426,,9
+164,16,"swob data",19jun2010,"","","",,1,"t996","","","","","swob returned",25feb2009,479,10,10
+164,18,"swob data",26aug2010,"","","",,1,"t996","","","","","swob returned",25feb2009,547,11,11
+164,30,"swob data",21aug2011,"","","",,1,"t996","","","","","swob returned",25feb2009,907,17,17
+164,32,"patient form",03oct2011,"50mg x3","R","R",8995,1,"t996","","","","","Amoxicillin",25feb2009,950,,17
+164,32,"swob data",20oct2011,"50mg x3","R","R",8995,1,"t996","","","","","swob returned",25feb2009,967,18,18
+164,34,"swob data",05jan2012,"","","",,1,"t996","","","","","swob returned",25feb2009,1044,19,19
+177,36,"swob data",27feb2012,"","","",,1,"t316","","","","","swob returned",03mar2009,1091,17,17
+177,38,"patient form",16apr2012,"50mg X4","N","N",11282,1,"t316","","","","","Nitrofurantoin",03mar2009,1140,,17
+177,38,"swob data",02may2012,"50mg X4","N","N",11282,1,"t316","","","","","swob returned",03mar2009,1156,18,18
+177,40,"swob data",04jul2012,"","","",,1,"t316","","","","","swob returned",03mar2009,1219,19,19
+189,20,"swob data",30oct2010,"","","",,1,"t018","","","","","swob returned",09mar2009,600,12,12
+189,,"Gp-2yr",06jan2011,"","","",,,"","","","","","Naseptin cream",09mar2009,668,,12
+189,,"Gp-2yr",05jan2011,"","","",,,"","","","","","Amoxillin",09mar2009,667,,12
+189,22,"swob data",08jan2011,"","","",,1,"t018","","","","","swob returned",09mar2009,670,13,13
+189,24,"swob data",27feb2011,"","","",,1,"t018","","","","","swob returned",09mar2009,720,14,14
+189,32,"swob data",30oct2011,"Small quantity each night","Top A","Top A",9151,1,"t018","","","","","swob returned",09mar2009,965,18,18
+189,32,"patient form",,"Small quantity each night","Top A","Top A",9151,1,"t018","","","","","Naseptin nasal cream",09mar2009,965,,18
+189,34,"swob data",25feb2012,"","","",,1,"t018","","","","","swob returned",09mar2009,1083,19,19
+189,36,"swob data",03apr2012,"","","",,1,"t018","","","","","swob returned",09mar2009,1121,20,20
+302,10,"swob data",04jan2010,"","","",,1,"t620","","","","","swob returned",02mar2009,308,7,7
+302,,"Gp-2yr",07jan2010,"","","",,,"","","","","","Amoxicillin",02mar2009,311,,7
+302,12,"swob data",22feb2010,"","","",,1,"t620","","","","","swob returned",02mar2009,357,8,8
+302,14,"swob data",30apr2010,"","","",,1,"t620","","","","","swob returned",02mar2009,424,9,9
+304,12,"swob data",26feb2010,"","","",,1,"t888","","","","","swob returned",02mar2009,361,8,8
+304,,"Gp-2yr",30apr2010,"","","",,,"","","","","","Nitrofuatoin",02mar2009,424,,8
+304,14,"swob data",04may2010,"","","",,1,"t888","","","","","swob returned",02mar2009,428,9,9
+304,16,"swob data",28jun2010,"","","",,1,"t888","","","","","swob returned",02mar2009,483,10,10
+304,32,"swob data",23oct2011,"","","",,1,"t888","","","","","swob returned",02mar2009,965,18,18
+304,34,"patient form",14dec2011,"250mg x3","R","R",10304,1,"t888","","","","","Amoxicillin",02mar2009,1017,,18
+304,34,"swob data",23dec2011,"250mg x3","R","R",10304,1,"t888","","","","","swob returned",02mar2009,1026,19,19
+304,36,"swob data",28feb2012,"","","",,1,"t888","","","","","swob returned",02mar2009,1093,20,20
+317,20,"swob data",10nov2010,"","","",,1,"t659","","","","","swob returned",10mar2009,610,9,9
+317,,"Gp-2yr",29nov2010,"","","",,,"","","","","","Amoxicillin",10mar2009,629,,9
+317,22,"swob data",01feb2011,"","","",,1,"t659","","","","","swob returned",10mar2009,693,10,10
+317,24,"swob data",04mar2011,"","","",,1,"t659","","","","","swob returned",10mar2009,724,11,11
+319,6,"swob data",15sep2009,"","","",,1,"t127","","","","","swob returned",10mar2009,189,5,5
+319,,"Gp-2yr",20oct2009,"","","",,,"","","","","","Flucloxicillin",10mar2009,224,,5
+319,8,"swob data",28nov2009,"","","",,1,"t127","","","","","swob returned",10mar2009,263,6,6
+319,10,"swob data",25jan2010,"","","",,1,"t127","","","","","swob returned",10mar2009,321,7,7
+333,0,"swob data",11mar2009,"","","",,1,"t012","","","","","swob returned",11mar2009,0,1,1
+333,1,"patient form",30mar2009,"2 tablets a day (for date actually put ""week ago""","N","N",364,1,"t012","","","","","Metronidazole",11mar2009,19,,1
+333,1,"swob data",04apr2009,"2 tablets a day (for date actually put ""week ago""","N","N",364,1,"t012","","","","","swob returned",11mar2009,24,2,2
+333,2,"swob data",17may2009,"","","",,1,"t012","","","","","swob returned",11mar2009,67,3,3
+333,20,"swob data",05nov2010,"","","",,1,"t012","","","","","swob returned",11mar2009,604,12,12
+333,,"Gp-2yr",09dec2010,"","","",,,"","","","","","Amoxicillin",11mar2009,638,,12
+333,22,"swob data",10jan2011,"","","",,1,"t012","","","","","swob returned",11mar2009,670,13,13
+333,24,"swob data",08mar2011,"","","",,1,"t012","","","","","swob returned",11mar2009,727,14,14
+363,18,"swob data",24sep2010,"","","",,1,"t337","","","","","swob returned",30mar2009,543,11,11
+363,,"Gp-2yr",05oct2010,"","","",,,"","","","","","Flucloxicillin",30mar2009,554,,11
+363,20,"swob data",26nov2010,"","","",,1,"t337","","","","","swob returned",30mar2009,606,12,12
+363,22,"swob data",27jan2011,"","","",,1,"t337","","","","","swob returned",30mar2009,668,13,13
+366,6,"swob data",28sep2009,"250mg pd Taken since 2007 and still taking","A","A",1527,1,"t6797","","","","","swob returned",30mar2009,182,5,5
+366,6,"patient form",,"250mg pd Taken since 2007 and still taking","A","A",1527,1,"t6797","","","","","Ciprofloxacin",30mar2009,182,,5
+366,8,"patient form",,"250mg pd; Started taking in 2006, and still taking","A","A",2300,1,"t6797","","","","","Ciprofloxacin",30mar2009,255,,5
+366,,"Gp-2yr",29oct2009,"","","",,,"","","","","","Ciprofloxacin",30mar2009,213,,5
+366,8,"swob data",10dec2009,"250mg pd; Started taking in 2006, and still taking","A","A",2300,1,"t6797","","","","","swob returned",30mar2009,255,6,6
+366,10,"swob data",28jan2010,"","","",,1,"t6797","","","","","swob returned",30mar2009,304,7,7
+366,,"Gp-2yr",24mar2010,"","","",,,"","","","","","Ciprofloxacin",30mar2009,359,,7
+366,20,"swob data",06dec2010,"","","",,1,"t6797","","","","","swob returned",30mar2009,616,12,12
+366,,"Gp-2yr",14jan2011,"","","",,,"","","","","","Ciprofloxacin",30mar2009,655,,12
+366,22,"swob data",01feb2011,"250mg Twice daily; Still taking","A","A",6556,1,"t6797","","","","","swob returned",30mar2009,673,13,13
+366,24,"swob data",28mar2011,"250mg pd; Still taking","A","A",7106,1,"t6797","","","","","swob returned",30mar2009,728,14,14
+366,26,"swob data",06jun2011,"","","",,1,"t6797","","","","","swob returned",30mar2009,798,15,15
+366,28,"patient form",15jun2011,"250mg pd; Still taking","A","A",8617,1,"t6797","","","","","Ciprofloxacin",30mar2009,807,,15
+366,28,"swob data",26jul2011,"250mg pd; Still taking","A","A",8617,1,"t6797","","","","","swob returned",30mar2009,848,16,16
+366,30,"swob data",22sep2011,"still taking 250mg x2 daily","A","A",8717,1,"t6797","","","","","swob returned",30mar2009,906,17,17
+366,36,"swob data",02apr2012,"Still taking 250mg","A","A",11055,1,"t6797","","","","","swob returned",30mar2009,1099,20,20
+366,38,"patient form",,"Still taking 250mg since 2007","A","A",11418,1,"t6797","","","","","Ciprofloxacin",30mar2009,1151,,20
+366,36,"patient form",,"Still taking 250mg","A","A",11055,1,"t6797","","","","","Ciprofloxacin",30mar2009,1099,,20
+366,38,"swob data",24may2012,"Still taking 250mg since 2007","A","A",11418,1,"t6797","","","","","swob returned",30mar2009,1151,21,21
+366,40,"patient form",,"Still taking 250mg","A","A",11765,1,"t6797","","","","","Ciprofloxacin",30mar2009,1219,,21
+366,40,"swob data",31jul2012,"Still taking 250mg","A","A",11765,1,"t6797","","","","","swob returned",30mar2009,1219,22,22
+366,42,"swob data",28sep2012,"","","",,1,"t6797","","","","","swob returned",30mar2009,1278,23,23
+366,44,"swob data",27nov2012,"250mg","A","A",12328,1,"t6797","","","","","swob returned",30mar2009,1338,24,24
+369,10,"swob data",26jan2010,"","","",,1,"t012","","","","","swob returned",30mar2009,302,7,7
+369,,"Gp-2yr",12mar2010,"","","",,,"","","","","","Trimethoprim",30mar2009,347,,7
+369,12,"swob data",29mar2010,"","","",,1,"t012","","","","","swob returned",30mar2009,364,8,8
+369,14,"swob data",28may2010,"","","",,1,"t012","","","","","swob returned",30mar2009,424,9,9
+370,10,"swob data",13feb2010,"","","",,1,"t031","","","","","swob returned",06apr2009,313,7,7
+370,12,"patient form",06apr2010,"625mg Three times daily","A","R",3602,1,"t031","","","","","Augmentin",06apr2009,365,,7
+370,12,"swob data",14apr2010,"625mg Three times daily","A","R",3602,1,"t031","","","","","swob returned",06apr2009,373,8,8
+370,14,"swob data",02jun2010,"","","",,1,"t031","","","","","swob returned",06apr2009,422,9,9
+374,14,"swob data",30may2010,"","","",,1,"t037","","","","","swob returned",06apr2009,419,9,9
+374,16,"patient form",04jun2010,"200mg Three times daily","N","N",4766,1,"t037","","","","","Metronidazole",06apr2009,424,,9
+374,16,"swob data",06aug2010,"200mg Three times daily","N","N",4766,1,"t037","","","","","swob returned",06apr2009,487,10,10
+374,18,"swob data",24sep2010,"","","",,1,"t037","","","","","swob returned",06apr2009,536,11,11
+374,,"Gp-2yr",21oct2010,"","","",,,"","","","","","Cefalexin",06apr2009,563,,11
+374,,"Gp-2yr",26oct2010,"","","",,,"","","","","","Doxycycline",06apr2009,568,,11
+374,20,"swob data",28nov2010,"","","",,1,"t037","","","","","swob returned",06apr2009,601,12,12
+374,,"Gp-2yr",29dec2010,"","","",,,"","","","","","Cefalexin",06apr2009,632,,12
+374,22,"swob data",27jan2011,"","","",,1,"t037","","","","","swob returned",06apr2009,661,13,13
+374,24,"swob data",27mar2011,"","","",,1,"t037","","","","","swob returned",06apr2009,720,14,14
+386,20,"swob data",26nov2010,"","","",,1,"t6584","","","","","swob returned",06apr2009,599,12,12
+386,,"Gp-2yr",04feb2011,"","","",,,"","","","","","Erythromycin",06apr2009,669,,12
+386,22,"swob data",19mar2011,"","","",,1,"t6584","","","","","swob returned",06apr2009,712,13,13
+386,24,"swob data",31mar2011,"","","",,1,"t6584","","","","","swob returned",06apr2009,724,14,14
+396,4,"swob data",17aug2009,"250mg Three times daily","R","R",1083,1,"t6417","t659","","","","swob returned",06apr2009,133,4,4
+396,4,"patient form",30aug2009,"375mg Three times daily","A","R",1083,1,"t6417","t659","","","","Co-amoxiclav",06apr2009,146,,4
+396,6,"swob data",10oct2009,"","","",,1,"t6417","","","","","swob returned",06apr2009,187,5,5
+396,8,"swob data",08dec2009,"","","",,1,"t6417","","","","","swob returned",06apr2009,246,6,6
+412,10,"swob data",17feb2010,"","","",,1,"t209","","","","","swob returned",20apr2009,303,7,7
+412,,"Gp-2yr",04mar2010,"","","",,,"","","","","","Erthromycin",20apr2009,318,,7
+412,12,"swob data",19apr2010,"","","",,1,"t209","","","","","swob returned",20apr2009,364,8,8
+412,14,"swob data",18jun2010,"","","",,1,"t209","","","","","swob returned",20apr2009,424,9,9
+418,6,"swob data",28oct2009,"","","",,1,"t127","","","","","swob returned",21apr2009,190,5,5
+418,,"Gp-2yr",02nov2009,"","","",,,"","","","","","Flucloxacillin",21apr2009,195,,5
+418,8,"swob data",20dec2009,"Taken for one week; dates and amount unknown","","",2677,1,"t127","","","","","swob returned",21apr2009,243,6,6
+418,10,"swob data",25feb2010,"","","",,1,"t127","","","","","swob returned",21apr2009,310,7,7
+418,,"Gp-2yr",29mar2010,"","","",,,"","","","","","Flucloxacillin",21apr2009,342,,7
+418,12,"swob data",27apr2010,"","","",,1,"t127","","","","","swob returned",21apr2009,371,8,8
+418,,"Gp-2yr",10may2010,"","","",,,"","","","","","Flucloxacillin",21apr2009,384,,8
+418,14,"swob data",23jun2010,"","","",,1,"t127","","","","","swob returned",21apr2009,428,9,9
+418,16,"swob data",13aug2010,"","","",,1,"t127","","","","","swob returned",21apr2009,479,10,10
+418,26,"swob data",22jun2011,"","","",,1,"t127","","","","","swob returned",21apr2009,792,14,14
+418,28,"patient form",04aug2011,"500mg Four times daily","A","R",8518,1,"t127","","","","","Fluxlocillin",21apr2009,835,,14
+418,28,"swob data",19aug2011,"500mg Four times daily","A","R",8518,1,"t127","","","","","swob returned",21apr2009,850,15,15
+418,30,"swob data",13oct2011,"","","",,1,"t127","","","","","swob returned",21apr2009,905,16,16
+420,14,"swob data",21jun2010,"","","",,1,"t379","","","","","swob returned",21apr2009,426,9,9
+420,,"Gp-2yr",13aug2010,"","","",,,"","","","","","Penicillin V",21apr2009,479,,9
+420,16,"swob data",17aug2010,"","","",,1,"t379","","","","","swob returned",21apr2009,483,10,10
+420,18,"swob data",18oct2010,"","","",,1,"t379","","","","","swob returned",21apr2009,545,11,11
+420,,"Gp-2yr",19nov2010,"","","",,,"","","","","","PenicillinV",21apr2009,577,,11
+420,20,"swob data",20dec2010,"","","",,1,"t379","","","","","swob returned",21apr2009,608,12,12
+420,22,"swob data",23feb2011,"","","",,1,"t379","","","","","swob returned",21apr2009,673,13,13
+424,30,"swob data",20oct2011,"","","",,1,"t3304","","","","","swob returned",27apr2009,906,17,17
+424,32,"patient form",19dec2011,"Still taking 250mg x3","R","R",10307,1,"t3304","","","","","Amoxicillin",27apr2009,966,,17
+424,32,"swob data",22dec2011,"Still taking 250mg x3","R","R",10307,1,"t3304","","","","","swob returned",27apr2009,969,18,18
+424,34,"swob data",22feb2012,"","","",,1,"t3304","","","","","swob returned",27apr2009,1031,19,19
+426,14,"swob data",27jun2010,"","","",,1,"t575","","","","","swob returned",30apr2009,423,9,9
+426,16,"patient form",16aug2010,"200mg Three times daily","N","N",5052,1,"t575","","","","","Metronidazole",30apr2009,473,,9
+426,16,"swob data",30aug2010,"200mg Three times daily","N","N",5052,1,"t575","","","","","swob returned",30apr2009,487,10,10
+426,18,"swob data",24oct2010,"","","",,1,"t575","","","","","swob returned",30apr2009,542,11,11
+426,24,"swob data",22apr2011,"","","",,1,"t575","","","","","swob returned",30apr2009,722,14,14
+426,26,"patient form",17may2011,"25mg Three times daily","R","R",7998,1,"t575","","","","","Penicillin",30apr2009,747,,14
+426,26,"swob data",27jun2011,"25mg Three times daily","R","R",7998,1,"t575","","","","","swob returned",30apr2009,788,15,15
+426,28,"swob data",26aug2011,"","","",,1,"t575","","","","","swob returned",30apr2009,848,16,16
+450,2,"swob data",06jul2009,"","","",,1,"t382","","","","","swob returned",11may2009,56,3,3
+450,,"Gp-2yr",28jul2009,"","","",,,"","","","","","Amoxicillin",11may2009,78,,3
+450,,"Gp-2yr",04aug2009,"","","",,,"","","","","","clarithromycin",11may2009,85,,3
+450,4,"swob data",08sep2009,"","","",,1,"t382","","","","","swob returned",11may2009,120,4,4
+450,6,"swob data",09nov2009,"","","",,1,"t382","","","","","swob returned",11may2009,182,5,5
+450,18,"swob data",15nov2010,"","","",,1,"t382","","","","","swob returned",11may2009,553,11,11
+450,,"Gp-2yr",16nov2010,"","","",,,"","","","","","Amoxicillin",11may2009,554,,11
+450,20,"swob data",10jan2011,"","","",,1,"t382","","","","","swob returned",11may2009,609,12,12
+450,22,"swob data",07mar2011,"","","",,1,"t382","","","","","swob returned",11may2009,665,13,13
+450,32,"swob data",09jan2012,"","","",,1,"t382","","","","","swob returned",11may2009,973,18,18
+450,34,"patient form",14feb2012,"50mg x4","N","N",11007,1,"t382","","","","","Macrodantin",11may2009,1009,,18
+450,34,"swob data",09mar2012,"50mg x4","N","N",11007,1,"t382","","","","","swob returned",11may2009,1033,19,19
+450,36,"swob data",05may2012,"","","",,1,"t382","","","","","swob returned",11may2009,1090,20,20
+479,12,"swob data",01jun2010,"","","",,1,"t710","","","","","swob returned",08jun2009,358,8,8
+479,,"Gp-2yr",10jun2010,"","","",,,"","","","","","Flucloxicillin",08jun2009,367,,8
+479,16,"swob data",11oct2010,"","","",,1,"t710","","","","","swob returned",08jun2009,490,9,9
+479,18,"swob data",06jan2011,"","","",,1,"t710","","","","","swob returned",08jun2009,577,10,10
+493,2,"swob data",19aug2009,"","","",,1,"t213","","","","","swob returned",16jun2009,64,3,3
+493,,"Gp-2yr",19oct2009,"","","",,,"","","","","","Trimethoprim",16jun2009,125,,3
+493,4,"swob data",06nov2009,"","","",,1,"t213","","","","","swob returned",16jun2009,143,4,4
+493,6,"swob data",12dec2009,"","","",,1,"t213","","","","","swob returned",16jun2009,179,5,5
+616,10,"swob data",15feb2010,"","","",,1,"t342","","","","","swob returned",20apr2009,301,7,7
+616,12,"patient form",23mar2010,"500mg Three times daily","R","R",3661,1,"t342","","","","","Amoxicillin",20apr2009,337,,7
+616,12,"swob data",21apr2010,"500mg Three times daily","R","R",3661,1,"t342","","","","","swob returned",20apr2009,366,8,8
+616,14,"swob data",14jun2010,"","","",,1,"t342","","","","","swob returned",20apr2009,420,9,9
+626,1,"swob data",18may2009,"","","",,1,"t975","","","","","swob returned",23apr2009,25,2,2
+626,,"Gp-2yr",04jun2009,"","","",,,"","","","","","Ciprofloxicin",23apr2009,42,,2
+626,2,"swob data",24jun2009,"","","",,1,"t975","","","","","swob returned",23apr2009,62,3,3
+626,4,"swob data",19aug2009,"","","",,1,"t975","","","","","swob returned",23apr2009,118,4,4
+626,12,"swob data",22apr2010,"","","",,1,"t975","","","","","swob returned",23apr2009,364,8,8
+626,,"Gp-2yr",23apr2010,"","","",,,"","","","","","Nitrofurantoin",23apr2009,365,,8
+626,,"Gp-2yr",04may2010,"","","",,,"","","","","","Nitrofurantoin",23apr2009,376,,8
+626,14,"swob data",24jun2010,"","","",,1,"t975","","","","","swob returned",23apr2009,427,9,9
+626,16,"swob data",26aug2010,"","","",,1,"t975","","","","","swob returned",23apr2009,490,10,10
+626,,"Gp-2yr",13sep2010,"","","",,,"","","","","","Nitrofurantoin",23apr2009,508,,10
+626,18,"swob data",18oct2010,"","","",,1,"t975","","","","","swob returned",23apr2009,543,11,11
+626,,"Gp-2yr",16dec2010,"","","",,,"","","","","","Amoxicillin",23apr2009,602,,11
+626,20,"swob data",04jan2011,"","","",,1,"t975","","","","","swob returned",23apr2009,621,12,12
+626,22,"swob data",23feb2011,"","","",,1,"t975","","","","","swob returned",23apr2009,671,13,13
+628,2,"swob data",24jun2009,"","","",,1,"t2883","","","","","swob returned",23apr2009,62,3,3
+628,4,"patient form",27jul2009,"2 doses per day","","",1242,1,"t2883","","","","","Tamiflu",23apr2009,95,,3
+628,4,"swob data",20aug2009,"2 doses per day","","",1242,1,"t2883","","","","","swob returned",23apr2009,119,4,4
+628,6,"swob data",18oct2009,"","","",,1,"t2883","","","","","swob returned",23apr2009,178,5,5
+631,10,"swob data",19feb2010,"","","",,1,"t737","","","","","swob returned",27apr2009,298,7,7
+631,12,"patient form",12apr2010,"250mg/125mg","A","R",3818,1,"t737","","","","","Co-amoxical",27apr2009,350,,7
+631,12,"swob data",19apr2010,"250mg","R","R",3818,1,"t737","","","","","swob returned",27apr2009,357,8,8
+631,14,"swob data",21jun2010,"","","",,1,"t737","","","","","swob returned",27apr2009,420,9,9
+637,18,"swob data",22oct2010,"","","",,1,"t7050","t870","","","","swob returned",30apr2009,540,11,11
+637,20,"patient form",20dec2010,"Unknown dose","R","R",6291,1,"t7050","","","","","Amoxicillin",30apr2009,599,,11
+637,20,"swob data",03jan2011,"Unknown dose","R","R",6291,1,"t7050","","","","","swob returned",30apr2009,613,12,12
+637,22,"swob data",26feb2011,"","","",,1,"t7050","t870","","","","swob returned",30apr2009,667,13,13
+638,8,"swob data",18jan2010,"","","",,1,"t065","","","","","swob returned",30apr2009,263,6,6
+638,10,"patient form",04mar2010,"250mg Four times daily; Still taking","A","R",3314,1,"t065","","","","","Erythromycin",30apr2009,308,,6
+638,10,"swob data",05mar2010,"250mg Four times daily; Still taking","A","R",3314,1,"t065","","","","","swob returned",30apr2009,309,7,7
+638,12,"swob data",24apr2010,"","","",,1,"t065","t171","","","","swob returned",30apr2009,359,8,8
+639,0,"swob data",30apr2009,"","","",,1,"t5855","","","","","swob returned",30apr2009,0,1,1
+639,1,"swob data",01jun2009,"300mg 3 times a day","A","R",624,1,"t5855","","","","","swob returned",30apr2009,32,2,2
+639,2,"swob data",29jun2009,"","","",,1,"t5855","","","","","swob returned",30apr2009,60,3,3
+670,0,"swob data",18may2009,"","","",,1,"t2271","","","","","swob returned",18may2009,0,1,1
+670,,"Gp-2yr",09jun2009,"","","",,,"","","","","","Amoxicillin",18may2009,22,,1
+670,1,"swob data",13jun2009,"","","",,1,"t2271","","","","","swob returned",18may2009,26,2,2
+670,2,"swob data",13jul2009,"","","",,1,"t2271","","","","","swob returned",18may2009,56,3,3
+671,6,"swob data",20nov2009,"","","",,1,"t032","","","","","swob returned",18may2009,186,5,5
+671,,"Gp-2yr",07dec2009,"","","",,,"","","","","","Amoxicillin",18may2009,203,,5
+671,8,"swob data",22jan2010,"","","",,1,"t032","","","","","swob returned",18may2009,249,6,6
+671,10,"swob data",15mar2010,"","","",,1,"t032","","","","","swob returned",18may2009,301,7,7
+671,24,"swob data",18may2011,"","","",,1,"t032","","","","","swob returned",18may2009,730,14,14
+671,,"Gp-2yr",19may2011,"","","",,,"","","","","","Amoxicillin",18may2009,731,,14
+671,26,"swob data",08jul2011,"","","",,1,"t032","","","","","swob returned",18may2009,781,15,15
+671,28,"swob data",09sep2011,"","","",,1,"t032","","","","","swob returned",18may2009,844,16,16
+678,2,"swob data",29jul2009,"","","",,1,"t085","","","","","swob returned",01jun2009,58,3,3
+678,,"Gp-2yr",18aug2009,"","","",,,"","","","","","Co-amoxiclav",01jun2009,78,,3
+678,4,"swob data",04oct2009,"","","",,1,"t085","","","","","swob returned",01jun2009,125,4,4
+678,6,"swob data",19nov2009,"","","",,1,"t085","t643","","","","swob returned",01jun2009,171,5,5
+678,16,"swob data",24sep2010,"","","",,1,"t085","","","","","swob returned",01jun2009,480,10,10
+678,18,"patient form",11oct2010,"500mg Four times daily","A","R",5927,1,"t085","","","","","Flucloxacillin",01jun2009,497,,10
+678,18,"swob data",23nov2010,"500mg Four times daily","A","R",5927,1,"t085","","","","","swob returned",01jun2009,540,11,11
+678,20,"swob data",24jan2011,"","","",,1,"t085","","","","","swob returned",01jun2009,602,12,12
+688,0,"swob data",22jun2009,"","","",,1,"t002","","","","","swob returned",22jun2009,0,1,1
+688,,"GP- recruit",26jun2009,"","","",,,"","","","","","Metronidazole",22jun2009,4,,1
+688,1,"swob data",05aug2009,"500mg qds","A","R",906,1,"t002","","","","","swob returned",22jun2009,44,2,2
+688,2,"swob data",21aug2009,"","","",,1,"t002","","","","","swob returned",22jun2009,60,3,3
+688,,"Gp-2yr",19oct2009,"","","",,,"","","","","","Co-amoxiclav",22jun2009,119,,3
+693,6,"swob data",28dec2009,"Thin smear applied twice daily; Date started taking is unknown and is still taking","A","A",2609,1,"t171","","","","","swob returned",22jun2009,189,5,5
+693,8,"swob data",15feb2010,"","","",,1,"t171","","","","","swob returned",22jun2009,238,6,6
+693,10,"swob data",24apr2010,"","","",,1,"t171","","","","","swob returned",22jun2009,306,7,7
+693,,"Gp-2yr",12jul2010,"","","",,,"","","","","","Flucloxicillin",22jun2009,385,,7
+693,,"Gp-2yr",26jul2010,"","","",,,"","","","","","Flucloxicilllin",22jun2009,399,,7
+693,12,"swob data",28jul2010,"","","",,1,"t171","","","","","swob returned",22jun2009,401,8,8
+693,14,"swob data",30aug2010,"","","",,1,"t171","","","","","swob returned",22jun2009,434,9,9
+716,1,"swob data",01aug2009,"","","",,1,"t012","","","","","swob returned",30jun2009,32,2,2
+716,,"Gp-2yr",07aug2009,"","","",,,"","","","","","Flucloxicillin",30jun2009,38,,2
+716,2,"swob data",25aug2009,"","","",,1,"t012","","","","","swob returned",30jun2009,56,3,3
+716,4,"swob data",28oct2009,"","","",,1,"t012","","","","","swob returned",30jun2009,120,4,4
+754,6,"swob data",12jan2010,"","","",,1,"t089","","","","","swob returned",13jul2009,183,5,5
+754,,"Gp-2yr",13jan2010,"","","",,,"","","","","","Amoxicillin",13jul2009,184,,5
+754,8,"swob data",06mar2010,"","","",,1,"t089","","","","","swob returned",13jul2009,236,6,6
+754,10,"swob data",26may2010,"","","",,1,"t089","","","","","swob returned",13jul2009,317,7,7
+761,4,"swob data",07nov2009,"","","",,1,"t6791","","","","","swob returned",13jul2009,117,4,4
+761,,"Gp-2yr",19nov2009,"","","",,,"","","","","","Amoxicillin",13jul2009,129,,4
+761,,"Gp-2yr",21dec2009,"","","",,,"","","","","","Doxycycline",13jul2009,161,,4
+761,6,"swob data",06jan2010,"","","",,1,"t6791","","","","","swob returned",13jul2009,177,5,5
+761,8,"swob data",06mar2010,"","","",,1,"t6791","","","","","swob returned",13jul2009,236,6,6
+761,14,"swob data",13sep2010,"","","",,1,"t6791","","","","","swob returned",13jul2009,427,9,9
+761,,"Gp-2yr",06oct2010,"","","",,,"","","","","","Amoxicillin",13jul2009,450,,9
+761,16,"swob data",04nov2010,"","","",,1,"t6791","","","","","swob returned",13jul2009,479,10,10
+761,18,"swob data",05jan2011,"","","",,1,"t6791","","","","","swob returned",13jul2009,541,11,11
+761,,"Gp-2yr",25feb2011,"","","",,,"","","","","","Doxyxcycline",13jul2009,592,,11
+761,,"Gp-2yr",02mar2011,"","","",,,"","","","","","Amoxicillin",13jul2009,597,,11
+761,20,"swob data",07mar2011,"","","",,1,"t6791","","","","","swob returned",13jul2009,602,12,12
+761,22,"swob data",07may2011,"","","",,1,"t6791","","","","","swob returned",13jul2009,663,13,13
+764,14,"swob data",03sep2010,"","","",,1,"t005","","","","","swob returned",14jul2009,416,9,9
+764,,"Gp-2yr",07sep2010,"","","",,,"","","","","","Flucloxicillin",14jul2009,420,,9
+764,16,"swob data",04nov2010,"","","",,1,"t005","","","","","swob returned",14jul2009,478,10,10
+764,18,"swob data",10jan2011,"","","",,1,"t005","","","","","swob returned",14jul2009,545,11,11
+901,12,"swob data",10jul2010,"","","",,1,"t219","","","","","swob returned",14jul2009,361,8,8
+901,,"Gp-2yr",03sep2010,"","","",,,"","","","","","Ciprofloxin",14jul2009,416,,8
+901,14,"swob data",10sep2010,"","","",,1,"t219","","","","","swob returned",14jul2009,423,9,9
+901,16,"swob data",05nov2010,"","","",,1,"t219","","","","","swob returned",14jul2009,479,10,10
+906,2,"swob data",23sep2009,"","","",,1,"t140","","","","","swob returned",14jul2009,71,3,3
+906,,"Gp-2yr",09nov2009,"","","",,,"","","","","","Doxycycline",14jul2009,118,,3
+906,,"Gp-2yr",24sep2009,"","","",,,"","","","","","Coamoxiclav",14jul2009,72,,3
+906,4,"swob data",16nov2009,"","","",,1,"t140","","","","","swob returned",14jul2009,125,4,4
+906,6,"swob data",21jan2010,"","","",,1,"t140","","","","","swob returned",14jul2009,191,5,5
+906,8,"patient form",24feb2010,"1 tablet; Three times daily","A","R",3363,1,"t140","","","","","Augmentin",14jul2009,225,,5
+906,8,"patient form",18mar2010,"1 tablet; Three times daily","A","R",3363,1,"t140","","","","","Augmentin",14jul2009,247,,5
+906,,"Gp-2yr",18mar2010,"","","",,,"","","","","","Coamoxiclav",14jul2009,247,,5
+907,0,"swob data",14jul2009,"","","",,1,"t091","","","","","swob returned",14jul2009,0,1,1
+907,,"Gp-2yr",16jul2009,"","","",,,"","","","","","Trimethoprim",14jul2009,2,,1
+907,1,"swob data",12aug2009,"","","",,1,"t091","","","","","swob returned",14jul2009,29,2,2
+907,2,"swob data",28sep2009,"","","",,1,"t091","","","","","swob returned",14jul2009,76,3,3
+907,8,"swob data",08mar2010,"","","",,1,"t091","","","","","swob returned",14jul2009,237,6,6
+907,,"Gp-2yr",28apr2010,"","","",,,"","","","","","Trimethoprim",14jul2009,288,,6
+907,10,"swob data",02jun2010,"","","",,1,"t091","","","","","swob returned",14jul2009,323,7,7
+907,12,"swob data",13jul2010,"","","",,1,"t091","","","","","swob returned",14jul2009,364,8,8
+922,6,"swob data",14jan2010,"","","",,1,"t012","","","","","swob returned",14jul2009,184,5,5
+922,,"Gp-2yr",05mar2010,"","","",,,"","","","","","Amoxicillin",14jul2009,234,,5
+922,8,"swob data",16mar2010,"","","",,1,"t012","","","","","swob returned",14jul2009,245,6,6
+922,10,"swob data",11may2010,"","","",,1,"t012","","","","","swob returned",14jul2009,301,7,7
+922,12,"patient form",04jul2010,"250mg Three times daily","R","R",4563,1,"t012","","","","","Amoxicillin",14jul2009,355,,7
+922,12,"swob data",13jul2010,"250mg Three times daily","R","R",4563,1,"t012","","","","","swob returned",14jul2009,364,8,8
+922,14,"swob data",14sep2010,"","","",,1,"t012","","","","","swob returned",14jul2009,427,9,9
+936,8,"swob data",19mar2010,"","","",,1,"t1306","","","","","swob returned",16jul2009,246,6,6
+936,,"Gp-2yr",06apr2010,"","","",,,"","","","","","Erythromycin",16jul2009,264,,6
+936,10,"swob data",21may2010,"","","",,1,"t1306","","","","","swob returned",16jul2009,309,7,7
+936,12,"swob data",14jul2010,"","","",,1,"t1306","","","","","swob returned",16jul2009,363,8,8
+951,6,"swob data",20jan2010,"","","",,1,"t1036","","","","","swob returned",20jul2009,184,5,5
+951,,"Gp-2yr",26feb2010,"","","",,,"","","","","","Flucloxicillin",20jul2009,221,,5
+951,8,"swob data",15mar2010,"","","",,1,"t1036","","","","","swob returned",20jul2009,238,6,6
+951,10,"swob data",14may2010,"","","",,1,"t1036","","","","","swob returned",20jul2009,298,7,7
+951,20,"swob data",20mar2011,"","","",,1,"t1036","","","","","swob returned",20jul2009,608,12,12
+951,,"Gp-2yr",21mar2011,"","","",,,"","","","","","Flucloxicillin",20jul2009,609,,12
+951,22,"swob data",18may2011,"","","",,1,"t1036","","","","","swob returned",20jul2009,667,13,13
+951,24,"swob data",21jul2011,"","","",,1,"t1036","","","","","swob returned",20jul2009,731,14,14
+952,14,"swob data",17sep2010,"","","",,1,"t084","","","","","swob returned",20jul2009,424,9,9
+952,,"Gp-2yr",25oct2010,"","","",,,"","","","","","Amoxicillin",20jul2009,462,,9
+952,16,"swob data",24nov2010,"","","",,1,"t084","","","","","swob returned",20jul2009,492,10,10
+952,18,"swob data",20jan2011,"","","",,1,"t084","","","","","swob returned",20jul2009,549,11,11
+954,1,"swob data",24aug2009,"","","",,1,"t4451","","","","","swob returned",22jul2009,33,2,2
+954,,"Gp-2yr",21sep2009,"","","",,,"","","","","","Trimethoprim",22jul2009,61,,2
+954,2,"swob data",24sep2009,"","","",,1,"t4451","","","","","swob returned",22jul2009,64,3,3
+954,4,"swob data",17nov2009,"","","",,1,"t4451","","","","","swob returned",22jul2009,118,4,4
+954,6,"patient form",19jan2010,"500mg Three times daily; Still taking","R","R",2883,1,"t4451","","","","","Amoxicillin",22jul2009,181,,4
+954,,"Gp-2yr",19jan2010,"","","",,,"","","","","","Amoxicillin",22jul2009,181,,4
+967,8,"swob data",22mar2010,"","","",,1,"t171","","","","","swob returned",27jul2009,238,6,6
+967,12,"patient form",26mar2010,"500mg","A","R",4620,1,"t171","","","","","Flucloxacillin",27jul2009,242,,6
+967,10,"swob data",14may2010,"500mg Four times daily","R","R",4024,1,"t171","","","","","swob returned",27jul2009,291,7,7
+967,12,"swob data",20jul2010,"500mg","A","R",4620,1,"t171","","","","","swob returned",27jul2009,358,8,8
+987,10,"swob data",25may2010,"","","",,1,"t089","","","","","swob returned",28jul2009,301,7,7
+987,12,"patient form",13jul2010,"200mg Three times daily","N","N",4626,1,"t089","","","","","Metronidazole",28jul2009,350,,7
+987,12,"swob data",20jul2010,"200mg Three times daily","N","N",4626,1,"t089","","","","","swob returned",28jul2009,357,8,8
+987,14,"swob data",21sep2010,"","","",,1,"t089","","","","","swob returned",28jul2009,420,9,9
+987,16,"swob data",22nov2010,"","","",,1,"t089","","","","","swob returned",28jul2009,482,10,10
+987,18,"patient form",31dec2010,"250mg Three times daily","R","R",6453,1,"t089","","","","","Amoxicillin",28jul2009,521,,10
+987,18,"swob data",21jan2011,"250mg Three times daily","R","R",6453,1,"t089","","","","","swob returned",28jul2009,542,11,11
+987,20,"swob data",23mar2011,"","","",,1,"t089","","","","","swob returned",28jul2009,603,12,12
+988,4,"swob data",22nov2009,"","","",,1,"t1720","","","","","swob returned",28jul2009,117,4,4
+988,6,"patient form",03dec2009,"200mg Three times daily","N","N",2938,1,"t1720","","","","","Metronidazole",28jul2009,128,,4
+988,6,"swob data",24jan2010,"200mg Three times daily","N","N",2938,1,"t1720","","","","","swob returned",28jul2009,180,5,5
+988,8,"swob data",22mar2010,"","","",,1,"t1720","","","","","swob returned",28jul2009,237,6,6
+988,16,"swob data",27nov2010,"","","",,1,"t1720","","","","","swob returned",28jul2009,487,10,10
+988,,"Gp-2yr",14jan2011,"","","",,,"","","","","","Nitrofurantoin",28jul2009,535,,10
+988,18,"swob data",22jan2011,"","","",,1,"t1720","","","","","swob returned",28jul2009,543,11,11
+988,20,"swob data",21mar2011,"","","",,1,"t1720","","","","","swob returned",28jul2009,601,12,12
+989,2,"swob data",02oct2009,"","","",,1,"t164","","","","","swob returned",28jul2009,66,3,3
+989,4,"swob data",24nov2009,"Occassionally taken; Not taken for 8 days","A","A",2223,1,"t164","","","","","swob returned",28jul2009,119,4,4
+989,4,"patient form",,"Occassionally taken; Not taken for 8 days","A","A",2223,1,"t164","","","","","Oxytetracycline",28jul2009,119,,4
+989,6,"swob data",26jan2010,"","","",,1,"t164","","","","","swob returned",28jul2009,182,5,5
+989,8,"patient form",10feb2010,"250mg Once daily","A","A",3481,1,"t164","","","","","Tetracycline",28jul2009,197,,5
+989,8,"swob data",22mar2010,"250mg Once daily","A","A",3481,1,"t164","","","","","swob returned",28jul2009,237,6,6
+989,10,"swob data",24may2010,"","","",,1,"t164","","","","","swob returned",28jul2009,300,7,7
+989,12,"swob data",26jul2010,"","","",,1,"t164","","","","","swob returned",28jul2009,363,8,8
+989,,"Gp-2yr",18aug2010,"","","",,,"","","","","","Flucloxicillin",28jul2009,386,,8
+989,,"Gp-2yr",02sep2010,"","","",,,"","","","","","Oxytetracycline",28jul2009,401,,8
+989,14,"swob data",27sep2010,"","","",,1,"t164","","","","","swob returned",28jul2009,426,9,9
+989,16,"swob data",25nov2010,"","","",,1,"t164","","","","","swob returned",28jul2009,485,10,10
+992,1,"swob data",22aug2009,"","","",,1,"t6806","","","","","swob returned",28jul2009,25,2,2
+992,,"Gp-2yr",24sep2009,"","","",,,"","","","","","Amoxicillin",28jul2009,58,,2
+992,2,"swob data",20oct2009,"","","",,1,"t6806","","","","","swob returned",28jul2009,84,3,3
+992,4,"swob data",19nov2009,"","","",,1,"t6806","","","","","swob returned",28jul2009,114,4,4
+992,,"Gp-2yr",18jan2010,"","","",,,"","","","","","Oxytetracycline",28jul2009,174,,4
+992,6,"swob data",16feb2010,"","","",,1,"t6806","","","","","swob returned",28jul2009,203,5,5
+992,8,"swob data",14apr2010,"","","",,1,"t6806","","","","","swob returned",28jul2009,260,6,6
+993,36,"swob data",23jul2012,"","","",,1,"t10514","","","","","swob returned",28jul2009,1091,20,20
+993,1,"patient form",12aug2012,"200mg twice","N","N",1307,1,"t012","","","","","Metronidazole",28jul2009,1111,,20
+993,38,"swob data",27sep2012,"","","",,1,"t10514","","","","","swob returned",28jul2009,1157,21,21
+993,40,"swob data",04dec2012,"","","",,1,"t10514","","","","","swob returned",28jul2009,1225,22,22
+1003,6,"swob data",24jan2010,"","","",,1,"t012","","","","","swob returned",03aug2009,174,5,5
+1003,,"Gp-2yr",03mar2010,"","","",,,"","","","","","Nitrofurantoin",03aug2009,212,,5
+1003,8,"swob data",27mar2010,"","","",,1,"t012","","","","","swob returned",03aug2009,236,6,6
+1003,10,"swob data",23may2010,"","","",,1,"t012","","","","","swob returned",03aug2009,293,7,7
+1005,1,"swob data",11sep2009,"400mg Four times daily","N","N",1311,1,"t3092","","","","","swob returned",03aug2009,39,2,2
+1005,,"Gp-2yr",18sep2009,"","","",,,"","","","","","Flucloxicillin",03aug2009,46,,2
+1005,2,"swob data",02oct2009,"","","",,1,"t3092","","","","","swob returned",03aug2009,60,3,3
+1005,4,"swob data",04dec2009,"","","",,1,"t3092","","","","","swob returned",03aug2009,123,4,4
+1030,16,"swob data",07dec2010,"500mg Three times daily","R","R",6106,1,"t408","","","","","swob returned",10aug2009,484,10,10
+1030,,"Gp-2yr",16dec2010,"","","",,,"","","","","","oxytetracycline",10aug2009,493,,10
+1030,18,"swob data",05feb2011,"","","",,1,"t408","","","","","swob returned",10aug2009,544,11,11
+1030,22,"swob data",06jun2011,"","","",,1,"t408","","","","","swob returned",10aug2009,665,12,12
+1030,,"Gp-2yr",29jul2011,"","","",,,"","","","","","cefalexin",10aug2009,718,,12
+1037,4,"swob data",08dec2009,"","","",,1,"t375","","","","","swob returned",10aug2009,120,4,4
+1037,,"Gp-2yr",22apr2010,"","","",,,"","","","","","Doxycycline",10aug2009,255,,4
+1037,10,"swob data",07jun2010,"","","",,1,"t375","","","","","swob returned",10aug2009,301,5,5
+1037,12,"swob data",20aug2010,"","","",,1,"t375","","","","","swob returned",10aug2009,375,6,6
+1052,8,"swob data",26apr2010,"50mg Four times daily","N","N",3665,1,"t012","","","","","swob returned",12aug2009,257,6,6
+1052,10,"patient form",13may2010,"375mg tds","A","R",4220,1,"t012","","","","","Co- amoxiclav",12aug2009,274,,6
+1052,10,"patient form",11may2010,"1.2g Four doses","A","R",4220,1,"t012","","","","","Co-amoxiclav",12aug2009,272,,6
+1052,10,"swob data",09jun2010,"250mg tds","R","R",4220,1,"t012","","","","","swob returned",12aug2009,301,7,7
+1052,12,"swob data",27aug2010,"","","",,1,"t012","","","","","swob returned",12aug2009,380,8,8
+1066,6,"swob data",15feb2010,"","","",,1,"t166","","","","","swob returned",17aug2009,182,5,5
+1066,,"Gp-2yr",21apr2010,"","","",,,"","","","","","trimethoprim",17aug2009,247,,5
+1066,8,"swob data",22apr2010,"","","",,1,"t166","","","","","swob returned",17aug2009,248,6,6
+1066,10,"swob data",14jun2010,"","","",,1,"t166","","","","","swob returned",17aug2009,301,7,7
+1067,2,"swob data",20oct2009,"","","",,1,"t084","","","","","swob returned",17aug2009,64,3,3
+1067,4,"patient form",28nov2009,"50mg Three times daily","R","R",2606,1,"t084","","","","","Penicillin",17aug2009,103,,3
+1067,8,"patient form",12dec2009,"Still taking","R","R",3670,0,"","","","","","Penicillin",17aug2009,117,,3
+1067,4,"swob data",29dec2009,"50mg Three times daily","R","R",2606,1,"t084","","","","","swob returned",17aug2009,134,4,4
+1067,6,"swob data",15feb2010,"","","",,1,"t084","","","","","swob returned",17aug2009,182,5,5
+1079,2,"swob data",02nov2009,"","","",,1,"t021","","","","","swob returned",19aug2009,75,3,3
+1079,4,"patient form",16nov2009,"200mg Three times daily","N","N",2626,1,"t021","","","","","Metronidazole",19aug2009,89,,3
+1079,4,"patient form",14dec2009,"400mg Three times daily","N","N",2626,1,"t021","","","","","Metronidazole",19aug2009,117,,3
+1079,4,"swob data",02jan2010,"400mg Three times daily","N","N",2626,1,"t021","","","","","swob returned",19aug2009,136,4,4
+1079,6,"swob data",16feb2010,"","","",,1,"t021","","","","","swob returned",19aug2009,181,5,5
+1083,14,"swob data",22oct2010,"","","",,1,"t216","","","","","swob returned",19aug2009,429,9,9
+1083,,"Gp-2yr",25oct2010,"","","",,,"","","","","","Flucloxicillin",19aug2009,432,,9
+1083,16,"swob data",18jan2011,"","","",,1,"t216","","","","","swob returned",19aug2009,517,10,10
+1083,18,"swob data",10feb2011,"","","",,1,"t216","","","","","swob returned",19aug2009,540,11,11
+1084,18,"swob data",15feb2011,"","","",,1,"t012","","","","","swob returned",19aug2009,545,11,11
+1084,,"Gp-2yr",28feb2011,"","","",,,"","","","","","Nitrofurantoin",19aug2009,558,,11
+1084,20,"swob data",15apr2011,"","","",,1,"t012","","","","","swob returned",19aug2009,604,12,12
+1084,22,"swob data",20jun2011,"","","",,1,"t012","","","","","swob returned",19aug2009,670,13,13
+1084,,"Gp-2yr",13jul2011,"","","",,,"","","","","","Nitrofurantoin",19aug2009,693,,13
+1095,18,"swob data",18feb2011,"","","",,1,"t471","","","","","swob returned",25aug2009,542,10,10
+1095,,"Gp-2yr",26apr2011,"","","",,,"","","","","","Flucloxicillin",25aug2009,609,,10
+1095,20,"swob data",03jun2011,"","","",,1,"t471","","","","","swob returned",25aug2009,647,11,11
+1095,22,"swob data",17aug2011,"","","",,1,"t471","","","","","swob returned",25aug2009,722,12,12
+1207,6,"swob data",20mar2010,"","","",,1,"t012","","","","","swob returned",23sep2009,178,5,5
+1207,,"Gp-2yr",09apr2010,"","","",,,"","","","","","Penicillin V",23sep2009,198,,5
+1207,8,"swob data",15may2010,"","","",,1,"t012","","","","","swob returned",23sep2009,234,6,6
+1207,10,"swob data",19jul2010,"","","",,1,"t012","","","","","swob returned",23sep2009,299,7,7
+1207,,"Gp-2yr",10sep2010,"","","",,,"","","","","","Cefalexin",23sep2009,352,,7
+1207,14,"swob data",25nov2010,"","","",,1,"t012","","","","","swob returned",23sep2009,428,9,9
+1207,,"Gp-2yr",21dec2010,"","","",,,"","","","","","Cefalexin",23sep2009,454,,9
+1207,,"Gp-2yr",13jan2011,"","","",,,"","","","","","Cefalexin",23sep2009,477,,9
+1207,16,"swob data",17jan2011,"","","",,1,"t012","","","","","swob returned",23sep2009,481,10,10
+1207,28,"swob data",20jan2011,"","","",,1,"t012","","","","","swob returned",23sep2009,484,11,11
+1207,24,"swob data",17sep2011,"","","",,1,"t012","","","","","swob returned",23sep2009,724,15,15
+1207,,"Gp-2yr",27oct2011,"","","",,,"","","","","","Cefalexin",23sep2009,764,,15
+1207,26,"swob data",21nov2011,"","","",,1,"t012","","","","","swob returned",23sep2009,789,16,16
+1207,30,"swob data",02apr2012,"","","",,1,"t012","","","","","swob returned",23sep2009,922,17,17
+1215,14,"swob data",22nov2010,"","","",,1,"t630","","","","","swob returned",24sep2009,424,9,9
+1215,,"Gp-2yr",29nov2010,"","","",,,"","","","","","Nitrofurantoin",24sep2009,431,,9
+1215,16,"swob data",21jan2011,"","","",,1,"t630","","","","","swob returned",24sep2009,484,10,10
+1215,18,"swob data",18mar2011,"","","",,1,"t630","","","","","swob returned",24sep2009,540,11,11
+1215,,"Gp-2yr",15apr2011,"","","",,,"","","","","","Coamoxicillin",24sep2009,568,,11
+1215,20,"swob data",21may2011,"","","",,1,"t630","","","","","swob returned",24sep2009,604,12,12
+1215,22,"swob data",22jul2011,"","","",,1,"t630","","","","","swob returned",24sep2009,666,13,13
+1221,12,"swob data",28sep2010,"","","",,1,"t071","","","","","swob returned",29sep2009,364,8,8
+1221,,"Gp-2yr",22nov2010,"","","",,,"","","","","","Co amoxiclav",29sep2009,419,,8
+1221,14,"swob data",25nov2010,"","","",,1,"t071","","","","","swob returned",29sep2009,422,9,9
+1221,16,"swob data",28jan2011,"","","",,1,"t071","","","","","swob returned",29sep2009,486,10,10
+1230,1,"swob data",22oct2009,"","","",,1,"t213","","","","","swob returned",29sep2009,23,2,2
+1230,,"Gp-2yr",26oct2009,"","","",,,"","","","","","Trimethoprim",29sep2009,27,,2
+1230,2,"swob data",20nov2009,"","","",,1,"t213","","","","","swob returned",29sep2009,52,3,3
+1230,4,"swob data",25jan2010,"","","",,1,"t213","","","","","swob returned",29sep2009,118,4,4
+1233,18,"swob data",25mar2011,"","","",,1,"t2271","","","","","swob returned",29sep2009,542,11,11
+1233,,"Gp-2yr",30mar2011,"","","",,,"","","","","","Doxycycline",29sep2009,547,,11
+1233,20,"swob data",27may2011,"","","",,1,"t2271","","","","","swob returned",29sep2009,605,12,12
+1233,22,"swob data",27jul2011,"","","",,1,"t2271","","","","","swob returned",29sep2009,666,13,13
+1236,38,"swob data",27nov2012,"","","",,1,"t021","","","","","swob returned",30sep2009,1154,21,21
+1236,40,"patient form",20jan2013,"","R","R",12631,1,"t021","","","","","amoxicillin",30sep2009,1208,,21
+1236,40,"swob data",15feb2013,"","R","R",12631,1,"t021","","","","","swob returned",30sep2009,1234,22,22
+1236,42,"swob data",04apr2013,"","","",,1,"t021","","","","","swob returned",30sep2009,1282,23,23
+1241,16,"swob data",21jan2011,"","","",,1,"t360","","","","","swob returned",30sep2009,478,9,9
+1241,,"Gp-2yr",17mar2011,"","","",,,"","","","","","amoxicillin",30sep2009,533,,9
+1241,18,"swob data",03apr2011,"","","",,1,"t360","","","","","swob returned",30sep2009,550,10,10
+1241,20,"swob data",30may2011,"","","",,1,"t360","","","","","swob returned",30sep2009,607,11,11
+1241,38,"swob data",27nov2012,"","","",,1,"t360","","","","","swob returned",30sep2009,1154,20,20
+1241,40,"patient form",24jan2013,"","","",12634,1,"t360","","","","","Chlorhexidine",30sep2009,1212,,20
+1241,40,"swob data",16feb2013,"","","",12634,1,"t360","","","","","swob returned",30sep2009,1235,21,21
+1241,42,"swob data",02apr2013,"","","",,1,"t360","","","","","swob returned",30sep2009,1280,22,22
+1283,18,"swob data",15apr2011,"","","",,1,"t342","","","","","swob returned",20oct2009,542,11,11
+1283,,"Gp-2yr",09may2011,"","","",,,"","","","","","Nitrofurantoin",20oct2009,566,,11
+1283,,"Gp-2yr",21apr2011,"","","",,,"","","","","","Nitrofurantoin",20oct2009,548,,11
+1283,,"Gp-2yr",07jun2011,"","","",,,"","","","","","Nitrofurantoin",20oct2009,595,,11
+1283,20,"swob data",21jun2011,"","","",,1,"t342","","","","","swob returned",20oct2009,609,12,12
+1283,22,"swob data",13aug2011,"","","",,1,"t342","","","","","swob returned",20oct2009,662,13,13
+1283,24,"patient form",28sep2011,"100mg x4","N","N",8972,1,"t342","","","","","Nitrofurantoin",20oct2009,708,,13
+1287,1,"swob data",17nov2009,"","","",,1,"t189","","","","","swob returned",21oct2009,27,2,2
+1287,2,"patient form",14dec2009,"375mg Three times daily","A","R",2724,1,"t189","","","","","Co-amoxiclav",21oct2009,54,,2
+1287,2,"swob data",02jan2010,"375mg Three times daily","A","R",2724,1,"t189","","","","","swob returned",21oct2009,73,3,3
+1287,4,"swob data",23feb2010,"","","",,1,"t189","","","","","swob returned",21oct2009,125,4,4
+1288,6,"swob data",19apr2010,"","","",,1,"t018","","","","","swob returned",21oct2009,180,5,5
+1288,,"Gp-2yr",10may2010,"","","",,,"","","","","","Coamoxiclav",21oct2009,201,,5
+1288,8,"swob data",18jun2010,"","","",,1,"t018","","","","","swob returned",21oct2009,240,6,6
+1288,10,"swob data",15aug2010,"","","",,1,"t018","","","","","swob returned",21oct2009,298,7,7
+1290,1,"swob data",30nov2009,"","","",,1,"t012","","","","","swob returned",27oct2009,34,2,2
+1290,,"Gp-2yr",01jan2010,"","","",,,"","","","","","Flucloxicillin",27oct2009,66,,2
+1290,2,"swob data",13jan2010,"","","",,1,"t012","","","","","swob returned",27oct2009,78,3,3
+1290,4,"swob data",01mar2010,"","","",,1,"t012","","","","","swob returned",27oct2009,125,4,4
+1290,22,"swob data",25aug2011,"","","",,1,"t012","","","","","swob returned",27oct2009,667,13,13
+1290,,"Gp-2yr",19sep2011,"","","",,,"","","","","","Clarithromycin",27oct2009,692,,13
+1290,,"Gp-2yr",14sep2011,"","","",,,"","","","","","Pencillin V",27oct2009,687,,13
+1290,24,"swob data",11nov2011,"","","",,1,"t012","","","","","swob returned",27oct2009,745,14,14
+1290,26,"swob data",13jan2012,"","","",,1,"t012","","","","","swob returned",27oct2009,808,15,15
+1307,0,"swob data",03nov2009,"","","",,1,"t408","","","","","swob returned",03nov2009,0,1,1
+1307,1,"patient form",22nov2009,"Unknown","Top A","Top A",2345,1,"t408","","","","","Naseptin",03nov2009,19,,1
+1307,1,"swob data",03dec2009,"Unknown","Top A","Top A",2345,1,"t408","","","","","swob returned",03nov2009,30,2,2
+1307,6,"swob data",01may2010,"","","",,1,"t408","","","","","swob returned",03nov2009,179,3,3
+1307,,"Gp-2yr",07jun2010,"","","",,,"","","","","","Naseptin",03nov2009,216,,3
+1307,8,"swob data",29jun2010,"","","",,1,"t408","","","","","swob returned",03nov2009,238,4,4
+1307,10,"swob data",01sep2010,"","","",,1,"t408","","","","","swob returned",03nov2009,302,5,5
+1307,22,"swob data",30aug2011,"","","",,1,"t408","","","","","swob returned",03nov2009,665,11,11
+1307,24,"patient form",27sep2011,"500mg","A","R",9161,1,"t408","","","","","Azithromycin",03nov2009,693,,11
+1307,24,"swob data",27oct2011,"500mg","A","R",9161,1,"t408","","","","","swob returned",03nov2009,723,12,12
+1307,26,"swob data",02jan2012,"","","",,1,"t408","","","","","swob returned",03nov2009,790,13,13
+1307,32,"swob data",06jul2012,"","","",,1,"t408","","","","","swob returned",03nov2009,976,16,16
+1307,34,"patient form",12aug2012,"200mg x3","N","N",11922,1,"t408","","","","","Metronidozole",03nov2009,1013,,16
+1307,34,"swob data",10sep2012,"200mg x3","N","N",11922,1,"t408","","","","","swob returned",03nov2009,1042,17,17
+1307,36,"swob data",26oct2012,"","","",,1,"t408","","","","","swob returned",03nov2009,1088,18,18
+1315,4,"swob data",24mar2010,"","","",,1,"t045","","","","","swob returned",11nov2009,133,4,4
+1315,,"Gp-2yr",29mar2010,"","","",,,"","","","","","Flucloxicillin",11nov2009,138,,4
+1315,,"Gp-2yr",06apr2010,"","","",,,"","","","","","Flucloxicillin",11nov2009,146,,4
+1315,6,"swob data",11may2010,"","","",,1,"t045","","","","","swob returned",11nov2009,181,5,5
+1315,8,"swob data",13jul2010,"","","",,1,"t045","","","","","swob returned",11nov2009,244,6,6
+1315,14,"swob data",13jan2011,"","","",,1,"t045","","","","","swob returned",11nov2009,428,9,9
+1315,,"Gp-2yr",17jan2011,"","","",,,"","","","","","Amoxicillin",11nov2009,432,,9
+1315,16,"swob data",15mar2011,"","","",,1,"t045","","","","","swob returned",11nov2009,489,10,10
+1315,18,"swob data",12may2011,"","","",,1,"t045","","","","","swob returned",11nov2009,547,11,11
+1315,20,"swob data",11jul2011,"","","",,1,"t045","","","","","swob returned",11nov2009,607,12,12
+1315,22,"patient form",24aug2011,"250mg x2 daily","R","R",8582,1,"t045","","","","","Amoxicillin",11nov2009,651,,12
+1315,22,"swob data",12sep2011,"250mg x2 daily","R","R",8582,1,"t045","","","","","swob returned",11nov2009,670,13,13
+1315,24,"swob data",07nov2011,"","","",,1,"t045","","","","","swob returned",11nov2009,726,14,14
+1339,12,"swob data",17dec2010,"250mg Three times daily","R","R",5804,1,"t089","","","","","swob returned",18nov2009,394,7,7
+1339,14,"patient form",05jan2011,"500mg Three times daily","R","R",6405,1,"t089","","","","","Amoxicillin",18nov2009,413,,7
+1339,14,"swob data",20jan2011,"500mg Three times daily","R","R",6405,1,"t089","","","","","swob returned",18nov2009,428,8,8
+1339,16,"swob data",24mar2011,"","","",,1,"t089","","","","","swob returned",18nov2009,491,9,9
+1339,20,"swob data",26jul2011,"","","",,1,"t089","t5753","","","","swob returned",18nov2009,615,11,11
+1339,,"Gp-2yr",19sep2011,"","","",,,"","","","","","Amoxicillin",18nov2009,670,,11
+1339,22,"swob data",15oct2011,"","","",,1,"t089","","","","","swob returned",18nov2009,696,12,12
+1339,24,"swob data",14nov2011,"","","",,1,"t089","","","","","swob returned",18nov2009,726,13,13
+1343,20,"swob data",18jul2011,"","","",,1,"t160","","","","","swob returned",24nov2009,601,12,12
+1343,,"Gp-2yr",03aug2011,"","","",,,"","","","","","Amoxicillin",24nov2009,617,,12
+1343,22,"swob data",15sep2011,"","","",,1,"t160","","","","","swob returned",24nov2009,660,13,13
+1343,24,"swob data",10nov2011,"","","",,1,"t160","","","","","swob returned",24nov2009,716,14,14
+1350,16,"swob data",18mar2011,"","","",,1,"t6134","","","","","swob returned",24nov2009,479,10,10
+1350,,"Gp-2yr",16may2011,"","","",,,"","","","","","Amoxicillin",24nov2009,538,,10
+1350,18,"swob data",25jun2011,"","","",,1,"t6134","","","","","swob returned",24nov2009,578,11,11
+1350,20,"swob data",20jul2011,"","","",,1,"t6134","","","","","swob returned",24nov2009,603,12,12
+1367,12,"swob data",22nov2010,"50mg Four times daily","N","N",5973,1,"t6390","","","","","swob returned",26nov2009,361,8,8
+1367,,"Gp-2yr",01dec2010,"","","",,,"","","","","","Flucloxacillin",26nov2009,370,,8
+1367,14,"swob data",21jan2011,"","","",,1,"t6390","","","","","swob returned",26nov2009,421,9,9
+1367,16,"swob data",20mar2011,"","","",,1,"t6390","","","","","swob returned",26nov2009,479,10,10
+1375,12,"swob data",22nov2010,"","","",,1,"t091","","","","","swob returned",26nov2009,361,8,8
+1375,,"Gp-2yr",10jan2011,"","","",,,"","","","","","Amoxicillin",26nov2009,410,,8
+1375,14,"swob data",21jan2011,"","","",,1,"t091","","","","","swob returned",26nov2009,421,9,9
+1375,16,"swob data",18mar2011,"","","",,1,"t091","","","","","swob returned",26nov2009,477,10,10
+1397,0,"swob data",03dec2009,"","","",,1,"t084","","","","","swob returned",03dec2009,0,1,1
+1397,,"Gp-2yr",04jan2010,"","","",,,"","","","","","Amoxicillin",03dec2009,32,,1
+1397,4,"swob data",16may2010,"","","",,1,"t084","","","","","swob returned",03dec2009,164,2,2
+1397,6,"swob data",25jun2010,"","","",,1,"t084","","","","","swob returned",03dec2009,204,3,3
+2001,18,"swob data",10apr2011,"250mg Four times daily","A","R",7200,1,"t024","","","","","swob returned",08oct2009,549,11,11
+2001,,"Gp-2yr",19apr2011,"","","",,,"","","","","","Nitrafurantoin",08oct2009,558,,11
+2001,20,"swob data",04jun2011,"","","",,1,"t024","","","","","swob returned",08oct2009,604,12,12
+2001,22,"swob data",19aug2011,"","","",,1,"t024","","","","","swob returned",08oct2009,680,13,13
+2005,2,"swob data",08dec2009,"","","",,1,"t002","","","","","swob returned",08oct2009,61,2,2
+2005,4,"patient form",25dec2009,"2 pills every 4 hours (probably 500mg four times daily)","A","R",3073,1,"t002","","","","","Erythromycin",08oct2009,78,,2
+2005,4,"swob data",07feb2010,"2 pills every 4 hours (probably 500mg four times daily)","A","R",3073,1,"t002","","","","","swob returned",08oct2009,122,3,3
+2005,6,"swob data",21apr2010,"","","",,1,"t002","","","","","swob returned",08oct2009,195,4,4
+2034,2,"swob data",01dec2009,"","","",,1,"t136","","","","","swob returned",12oct2009,50,3,3
+2034,4,"patient form",16jan2010,"50mg Four times daily","R","R",3110,1,"t136","","","","","Penicillin",12oct2009,96,,3
+2034,4,"patient form",21dec2009,"50mg Four times daily","R","R",3110,1,"t136","","","","","Penicillin",12oct2009,70,,3
+2034,4,"swob data",08feb2010,"50mg Four times daily","R","R",3110,1,"t136","","","","","swob returned",12oct2009,119,4,4
+2034,6,"swob data",20apr2010,"","","",,1,"t136","","","","","swob returned",12oct2009,190,5,5

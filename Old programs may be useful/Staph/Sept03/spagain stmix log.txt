@@ -1,0 +1,30 @@
+won't run: removing anti6mon from lambda1
+
+significant: baseline_nomembers, degrade, lambda2(age55)
+not significant: 
+anti6mon - pmix, AIC=  2168.91 
+ age55 - pmix, AIC=  2166.873 
+base2- pmix, AIC = 2165.289
+age55- lambda1 : AIC = 2166.566 
+anti6mon - lambda1 :  2166.812 
+base2 -lambda1:  2166.874  
+base2 - lambda2: 2167.292 
+
+remove pmix base2
+
+
+Note: full model: AIC =  2168.525   
+
+NEXT STEP: comparing to AIC =   2165.289
+sign: baseline_nomembers, degrade, lambda2(age55)
+not sig:
+
+base2-lambda2 = 2164.961 
+base2 - lambda1 =  2165.156 
+anti6mon - lambda 1 =  2164.939  
+age55 lambda1  =  2165.044  
+age55 = 2165.311 
+anti6mon =  2166.921 
+
+remove anti6mon - lambda1
+

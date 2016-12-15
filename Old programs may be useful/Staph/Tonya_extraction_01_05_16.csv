@@ -1,0 +1,27 @@
+patid,date,dose,length,timepoint,SwabID,Antimicrobial,DateStarted,DateEnded,type
+930,2/12/2009,250mg qds,28,,,Oxytetracycline,,,gp reported
+1366,6/1/2009,500mg tds,21,,,Amoxicillin,,,gp reported
+1366,1/29/2009,500mg qds,28,,,Flucloxacillin,,,gp reported
+1367,9/18/2009,50mg qds,30,,,Nitrofurantoin,,,gp reported
+1366,,250mg Three times daily,,10,5263,Amoxicillin,9/2/2010,9/9/2010,patient reported
+1366,,500mg Four times daily,,12,5972,Flucloxacillin,11/9/2010,11/16/2010,patient reported
+1366,,375mg Three times daily; Still taking,,12,5972,Co-amoxiclav,11/20/2010,,patient reported
+1367,,50mg Four times daily,,12,5973,Nitrofurantoin,11/10/2010,11/17/2010,patient reported
+2018,,100mg Twice daily,,14,6019,Doxycycline,11/1/2010,11/7/2010,patient reported
+1366,,250mg Twice daily,,18,7668,Clarithromycin,3/28/2011,4/5/2011,patient reported
+1366,,500mg Three times daily,,18,7668,Amoxicillin,3/21/2011,3/28/2011,patient reported
+2060,,50mg Three times daily,,22,8391,Flucloxacillin,6/26/2011,7/9/2011,patient reported
+1367,12/1/2010,500mg qds then bd ford 2/52,56,,,Flucloxacillin,,,gp reported
+1367,11/26/2009,50mg qds,30,,,Nitrofurantoin,,,gp reported
+1366,3/28/2011,250 mg bd,14,,,Clarythromycin,,,gp reported
+1366,3/21/2011,500 mg tds,21,,,Amoxicillin,,,gp reported
+1366,12/30/2010,250/125 tds,21,,,Augmentin,,,gp reported
+1366,12/2/2010,250/125 tds,21,,,Augmentin,,,gp reported
+1366,11/9/2010,500 mg qds,28,,,Flucloxacillin,,,gp reported
+1366,9/2/2010,250 MG TDS,21,,,AMOXICILLIN,,,gp reported
+930,11/23/2009,500mg tds,21,,,Amoxicillin,,,gp reported
+930,8/11/2009,200mg bd,6,,,Trimethoprim,,,gp reported
+930,7/20/2009,250mg qds,28,,,Oxytetracycline,,,gp reported
+1366,12/7/2011,500mg qds,28,,,Flucloxicillin,,,gp reported
+1367,11/10/2010,625mg tds,21,,,Coamoxiclav,,,gp reported
+2060,5/26/2011,500mg qds,28,,,Flucloxicillin,,,gp reported

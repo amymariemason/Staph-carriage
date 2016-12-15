@@ -1,0 +1,620 @@
+library(msm)
+library(foreign)
+library(ggplot2)
+
+StateData<-read.dta("C:\\Users\\amason\\Documents\\DataSets\\Staph\\DataWithCovariates.dta")
+
+BURP<-read.dta("C:\\Users\\amason\\Documents\\DataSets\\Staph\\burp_distances.dta")
+BURP2<-read.csv("C:\\Users\\amason\\Documents\\DataSets\\Staph\\burp_dist3_14.csv", header = TRUE,sep = ",")
+names(BURP2)<-c("spatypeid1","spatypeid2","burp")
+
+##### add BURP distance based on recruitment= first two samples, new spatype after confirmed absence = 1000
+ StateData$BurpMax2time2<-rep(NA,nrow(StateData))
+ StateData$Missing<-rep(NA,nrow(StateData))
+ StateData$Missing2<-rep(NA,nrow(StateData))
+
+#setdiff(StateData$patid,c(1:21)) to do a subset
+#unique(StateData$patid)setdiff(StateData$patid,c(1:2050))
+for (i in unique(StateData$patid)){Dummy<-StateData[StateData$patid==i,c("timepoint","State","spatypeid1","spatypeid2","spatypeid3","spatypeid4","spatypeid5")]
+                                   Dummy<-Dummy[order(Dummy$timepoint),]
+                                   StartInf<-Dummy[Dummy$timepoint==Dummy$timepoint[1],c("spatypeid1","spatypeid2","spatypeid3","spatypeid4","spatypeid5")]
+                                   Dummy$StartInf1<-rep(StartInf[1,1],nrow(Dummy))
+                                    Dummy[is.na(Dummy$StartInf1),]$StartInf1<-rep("",nrow(Dummy[is.na(Dummy$StartInf1),]))
+                                   Dummy$StartInf2<-rep(StartInf[1,2],nrow(Dummy))
+                                   Dummy$StartInf3<-rep(StartInf[1,3],nrow(Dummy))
+                                   Dummy$StartInf4<-rep(StartInf[1,4],nrow(Dummy))
+                                   Dummy$StartInf5<-rep(StartInf[1,5],nrow(Dummy))
+
+                                   StartInf<-Dummy[Dummy$timepoint==Dummy$timepoint[2],c("spatypeid1","spatypeid2","spatypeid3","spatypeid4","spatypeid5")]
+                                   Dummy$StartInf6<-rep(StartInf[1,1],nrow(Dummy))
+                                    Dummy[is.na(Dummy$StartInf6),]$StartInf6<-rep("",nrow(Dummy[is.na(Dummy$StartInf6),]))
+                                   Dummy$StartInf7<-rep(StartInf[1,2],nrow(Dummy))
+                                   Dummy$StartInf8<-rep(StartInf[1,3],nrow(Dummy))
+                                   Dummy$StartInf9<-rep(StartInf[1,4],nrow(Dummy))
+                                   Dummy$StartInf10<-rep(StartInf[1,5],nrow(Dummy))
+                                    Dummy$Missing<-rep(NA,nrow(Dummy))
+#first spatype checks
+                            for(k in (1:10)){Compare<-paste("StartInf", k, sep = "")
+                                            Dummy$WriteMin<-rep(NA,nrow(Dummy))
+
+
+                                      Dummy<-merge(Dummy,BURP,by.x=c("spatypeid1",Compare),by.y=c("spatypeid1","spatypeid2"),all.x=TRUE)
+                                      Dummy<-merge(Dummy,BURP,by.x=c(Compare,"spatypeid1"),by.y=c("spatypeid1","spatypeid2"),all.x=TRUE)
+                                     Dummy$Missing<-ifelse(Dummy$spatypeid1!=""&Dummy[names(Dummy)==Compare]!=""&Dummy$spatypeid1!=Dummy[names(Dummy)==Compare]&is.na(Dummy$burp.x)&is.na(Dummy$burp.y),"PROBLEM",Dummy$Missing)
+
+#want to add section that checks BURP2 iff Dummy$missing = PROBLEM
+
+                                    Temp<-merge(Dummy[Dummy$Missing=="PROBLEM"&!is.na(Dummy$Missing),c("timepoint","spatypeid1",Compare)],BURP2,by.x=c("spatypeid1",Compare),by.y=c("spatypeid1","spatypeid2"),all.x=TRUE)
+                                    Temp<-merge(Temp,BURP2,by.x=c(Compare,"spatypeid1"),by.y=c("spatypeid1","spatypeid2"),all.x=TRUE)
+
+ if(length(Dummy[Dummy$Missing=="PROBLEM"&!is.na(Dummy$Missing)])>0){
+                                    Dummy[Dummy$Missing=="PROBLEM"&!is.na(Dummy$Missing)&order(Dummy$timepoint),]$burp.x<-Temp[order(Temp$timepoint),]$burp.x
+                                    Dummy[Dummy$Missing=="PROBLEM"&!is.na(Dummy$Missing)&order(Dummy$timepoint),]$burp.y<-Temp[order(Temp$timepoint),]$burp.y}
+
+                                    ### compare all values
+                                    Dummy$WriteMin<-pmin(Dummy$burp.x,Dummy$burp.y,na.rm=TRUE)
+                                    Dummy$WriteMin<-ifelse(Dummy$spatypeid1==Dummy[names(Dummy)==Compare]&!Dummy$spatypeid1=="",0,Dummy$WriteMin)
+
+                                    drops <- c("burp.x","burp.y","BurpCost.x","BurpCost.y")
+                                    Dummy<-Dummy[,!(names(Dummy) %in% drops)]
+                                    names(Dummy)[names(Dummy) == 'WriteMin'] <- paste("Min", k, sep = "")
+                                   }
+                            Dummy$AllMin1<-pmin(Dummy$Min1,Dummy$Min2,Dummy$Min3,Dummy$Min4,Dummy$Min5,Dummy$Min6,Dummy$Min7,Dummy$Min8,Dummy$Min9,Dummy$Min10,na.rm=TRUE)
+                            Dummy$AllMin1<-ifelse(Dummy$spatypeid1=="",0,Dummy$AllMin1)
+                            drops2 <- c("Min1","Min2","Min3","Min4","Min5","Min6","Min7","Min8","Min9","Min10")
+                             Dummy<-Dummy[,!(names(Dummy) %in% drops2)]
+#check 2nd spatype
+                            for(k in (1:10)){Compare<-paste("StartInf", k, sep = "")
+                                            Dummy$WriteMin<-rep(NA,nrow(Dummy))
+
+
+                                      Dummy<-merge(Dummy,BURP,by.x=c("spatypeid2",Compare),by.y=c("spatypeid1","spatypeid2"),all.x=TRUE)
+                                      Dummy<-merge(Dummy,BURP,by.x=c(Compare,"spatypeid2"),by.y=c("spatypeid1","spatypeid2"),all.x=TRUE)
+                                      Dummy$Missing<-ifelse(Dummy$spatypeid2!=""&Dummy[names(Dummy)==Compare]!=""&Dummy$spatypeid2!=Dummy[names(Dummy)==Compare]&is.na(Dummy$burp.x)&is.na(Dummy$burp.y),"PROBLEM",Dummy$Missing)
+
+#want to add section that checks BURP2 iff Dummy$missing = PROBLEM
+
+                                    Temp<-merge(Dummy[Dummy$Missing=="PROBLEM"&!is.na(Dummy$Missing),c("timepoint","spatypeid2",Compare)],BURP2,by.x=c("spatypeid2",Compare),by.y=c("spatypeid1","spatypeid2"),all.x=TRUE)
+                                    Temp<-merge(Temp,BURP2,by.x=c(Compare,"spatypeid2"),by.y=c("spatypeid1","spatypeid2"),all.x=TRUE)
+
+ if(length(Dummy[Dummy$Missing=="PROBLEM"&!is.na(Dummy$Missing)])>0){Dummy[Dummy$Missing=="PROBLEM"&!is.na(Dummy$Missing)&order(Dummy$timepoint),]$burp.x<-Temp[order(Temp$timepoint),]$burp.x
+                                    Dummy[Dummy$Missing=="PROBLEM"&!is.na(Dummy$Missing)&order(Dummy$timepoint),]$burp.y<-Temp[order(Temp$timepoint),]$burp.y}
+
+
+                                    Dummy$WriteMin<-pmin(Dummy$burp.x,Dummy$burp.y,na.rm=TRUE)
+                                    Dummy$WriteMin<-ifelse(Dummy$spatypeid2==Dummy[names(Dummy)==Compare]&!Dummy$spatypeid2=="",0,Dummy$WriteMin)
+
+
+                                   Dummy<-Dummy[,!(names(Dummy) %in% drops)]
+                                    names(Dummy)[names(Dummy) == 'WriteMin'] <- paste("Min", k, sep = "")
+                                   }
+                            Dummy$AllMin2<-pmin(Dummy$Min1,Dummy$Min2,Dummy$Min3,Dummy$Min4,Dummy$Min5,Dummy$Min6,Dummy$Min7,Dummy$Min8,Dummy$Min9,Dummy$Min10,na.rm=TRUE)
+                            Dummy$AllMin2<-ifelse(Dummy$spatypeid2=="",0,Dummy$AllMin2)
+                             Dummy<-Dummy[,!(names(Dummy) %in% drops2)]
+#check 3rd spatype
+                            for(k in (1:10)){Compare<-paste("StartInf", k, sep = "")
+                                            Dummy$WriteMin<-rep(NA,nrow(Dummy))
+
+
+                                      Dummy<-merge(Dummy,BURP,by.x=c("spatypeid3",Compare),by.y=c("spatypeid1","spatypeid2"),all.x=TRUE)
+                                      Dummy<-merge(Dummy,BURP,by.x=c(Compare,"spatypeid3"),by.y=c("spatypeid1","spatypeid2"),all.x=TRUE)
+                                    Dummy$Missing<-ifelse(Dummy$spatypeid3!=""&Dummy[names(Dummy)==Compare]!=""&Dummy$spatypeid3!=Dummy[names(Dummy)==Compare]&is.na(Dummy$burp.x)&is.na(Dummy$burp.y),"PROBLEM",Dummy$Missing)
+
+#want to add section that checks BURP2 iff Dummy$missing = PROBLEM
+
+                                    Temp<-merge(Dummy[Dummy$Missing=="PROBLEM"&!is.na(Dummy$Missing),c("timepoint","spatypeid3",Compare)],BURP2,by.x=c("spatypeid3",Compare),by.y=c("spatypeid1","spatypeid2"),all.x=TRUE)
+                                    Temp<-merge(Temp,BURP2,by.x=c(Compare,"spatypeid3"),by.y=c("spatypeid1","spatypeid2"),all.x=TRUE)
+
+ if(length(Dummy[Dummy$Missing=="PROBLEM"&!is.na(Dummy$Missing)])>0){Dummy[Dummy$Missing=="PROBLEM"&!is.na(Dummy$Missing)&order(Dummy$timepoint),]$burp.x<-Temp[order(Temp$timepoint),]$burp.x
+                                    Dummy[Dummy$Missing=="PROBLEM"&!is.na(Dummy$Missing)&order(Dummy$timepoint),]$burp.y<-Temp[order(Temp$timepoint),]$burp.y}
+
+
+                                    Dummy$WriteMin<-pmin(Dummy$burp.x,Dummy$burp.y,na.rm=TRUE)
+                                    Dummy$WriteMin<-ifelse(Dummy$spatypeid3==Dummy[names(Dummy)==Compare]&!Dummy$spatypeid3=="",0,Dummy$WriteMin)
+
+
+                                   Dummy<-Dummy[,!(names(Dummy) %in% drops)]
+                                    names(Dummy)[names(Dummy) == 'WriteMin'] <- paste("Min", k, sep = "")
+                                   }
+                            Dummy$AllMin3<-pmin(Dummy$Min1,Dummy$Min2,Dummy$Min3,Dummy$Min4,Dummy$Min5,Dummy$Min6,Dummy$Min7,Dummy$Min8,Dummy$Min9,Dummy$Min10,na.rm=TRUE)
+                            Dummy$AllMin3<-ifelse(Dummy$spatypeid3=="",0,Dummy$AllMin3)
+                             Dummy<-Dummy[,!(names(Dummy) %in% drops2)]
+#check 4th spatype
+                            for(k in (1:10)){Compare<-paste("StartInf", k, sep = "")
+                                            Dummy$WriteMin<-rep(NA,nrow(Dummy))
+
+
+                                      Dummy<-merge(Dummy,BURP,by.x=c("spatypeid4",Compare),by.y=c("spatypeid1","spatypeid2"),all.x=TRUE)
+                                      Dummy<-merge(Dummy,BURP,by.x=c(Compare,"spatypeid4"),by.y=c("spatypeid1","spatypeid2"),all.x=TRUE)
+                                      Dummy$Missing<-ifelse(Dummy$spatypeid4!=""&Dummy[names(Dummy)==Compare]!=""&Dummy$spatypeid4!=Dummy[names(Dummy)==Compare]&is.na(Dummy$burp.x)&is.na(Dummy$burp.y),"PROBLEM",Dummy$Missing)
+
+#want to add section that checks BURP2 iff Dummy$missing = PROBLEM
+
+                                    Temp<-merge(Dummy[Dummy$Missing=="PROBLEM"&!is.na(Dummy$Missing),c("timepoint","spatypeid4",Compare)],BURP2,by.x=c("spatypeid4",Compare),by.y=c("spatypeid1","spatypeid2"),all.x=TRUE)
+                                    Temp<-merge(Temp,BURP2,by.x=c(Compare,"spatypeid4"),by.y=c("spatypeid1","spatypeid2"),all.x=TRUE)
+
+ if(length(Dummy[Dummy$Missing=="PROBLEM"&!is.na(Dummy$Missing)])>0){Dummy[Dummy$Missing=="PROBLEM"&!is.na(Dummy$Missing)&order(Dummy$timepoint),]$burp.x<-Temp[order(Temp$timepoint),]$burp.x
+                                    Dummy[Dummy$Missing=="PROBLEM"&!is.na(Dummy$Missing)&order(Dummy$timepoint),]$burp.y<-Temp[order(Temp$timepoint),]$burp.y}
+
+
+                                    Dummy$WriteMin<-pmin(Dummy$burp.x,Dummy$burp.y,na.rm=TRUE)
+                                    Dummy$WriteMin<-ifelse(Dummy$spatypeid4==Dummy[names(Dummy)==Compare]&!Dummy$spatypeid4=="",0,Dummy$WriteMin)
+
+                                   Dummy<-Dummy[,!(names(Dummy) %in% drops)]
+                                    names(Dummy)[names(Dummy) == 'WriteMin'] <- paste("Min", k, sep = "")
+                                   }
+                            Dummy$AllMin4<-pmin(Dummy$Min1,Dummy$Min2,Dummy$Min3,Dummy$Min4,Dummy$Min5,Dummy$Min6,Dummy$Min7,Dummy$Min8,Dummy$Min9,Dummy$Min10,na.rm=TRUE)
+                            Dummy$AllMin4<-ifelse(Dummy$spatypeid4=="",0,Dummy$AllMin4)
+                             Dummy<-Dummy[,!(names(Dummy) %in% drops2)]
+#check 5th spatype
+                            for(k in (1:10)){Compare<-paste("StartInf", k, sep = "")
+                                            Dummy$WriteMin<-rep(NA,nrow(Dummy))
+
+
+                                      Dummy<-merge(Dummy,BURP,by.x=c("spatypeid5",Compare),by.y=c("spatypeid1","spatypeid2"),all.x=TRUE)
+                                      Dummy<-merge(Dummy,BURP,by.x=c(Compare,"spatypeid5"),by.y=c("spatypeid1","spatypeid2"),all.x=TRUE)
+                                    Dummy$Missing<-ifelse(Dummy$spatypeid5!=""&Dummy[names(Dummy)==Compare]!=""&Dummy$spatypeid5!=Dummy[names(Dummy)==Compare]&is.na(Dummy$burp.x)&is.na(Dummy$burp.y),"PROBLEM",Dummy$Missing)
+
+#want to add section that checks BURP2 iff Dummy$missing = PROBLEM
+
+                                    Temp<-merge(Dummy[Dummy$Missing=="PROBLEM"&!is.na(Dummy$Missing),c("timepoint","spatypeid5",Compare)],BURP2,by.x=c("spatypeid5",Compare),by.y=c("spatypeid1","spatypeid2"),all.x=TRUE)
+                                    Temp<-merge(Temp,BURP2,by.x=c(Compare,"spatypeid5"),by.y=c("spatypeid1","spatypeid2"),all.x=TRUE)
+
+ if(length(Dummy[Dummy$Missing=="PROBLEM"&!is.na(Dummy$Missing)])>0){Dummy[Dummy$Missing=="PROBLEM"&!is.na(Dummy$Missing)&order(Dummy$timepoint),]$burp.x<-Temp[order(Temp$timepoint),]$burp.x
+                                   Dummy[Dummy$Missing=="PROBLEM"&!is.na(Dummy$Missing)&order(Dummy$timepoint),]$burp.y<-Temp[order(Temp$timepoint),]$burp.y}
+
+
+
+                                    Dummy$WriteMin<-pmin(Dummy$burp.x,Dummy$burp.y,na.rm=TRUE)
+                                    Dummy$WriteMin<-ifelse(Dummy$spatypeid5==Dummy[names(Dummy)==Compare]&!Dummy$spatypeid5=="",0,Dummy$WriteMin)
+
+
+                                   Dummy<-Dummy[,!(names(Dummy) %in% drops)]
+                                    names(Dummy)[names(Dummy) == 'WriteMin'] <- paste("Min", k, sep = "")
+                                   }
+                            Dummy$AllMin5<-pmin(Dummy$Min1,Dummy$Min2,Dummy$Min3,Dummy$Min4,Dummy$Min5,Dummy$Min6,Dummy$Min7,Dummy$Min8,Dummy$Min9,Dummy$Min10,na.rm=TRUE)
+                                Dummy$AllMin5<-ifelse(Dummy$spatypeid5=="",0,Dummy$AllMin5)
+                             Dummy<-Dummy[,!(names(Dummy) %in% drops2)]
+
+                                Dummy$BurpMax2time<-pmax(Dummy$AllMin1,Dummy$AllMin2,Dummy$AllMin3,Dummy$AllMin4,Dummy$AllMin5, na.rm=TRUE)
+                             if(nrow( Dummy[Dummy$timepoint>0 & Dummy$StartInf1==""& Dummy$StartInf6==""&Dummy$State==1,])>0){Dummy[Dummy$timepoint>0 & Dummy$StartInf1==""& Dummy$StartInf6==""&Dummy$State==1,]$BurpMax2time<-rep(1000,nrow(Dummy[Dummy$timepoint>0 & Dummy$StartInf1==""& Dummy$StartInf6==""&Dummy$State==1,]))}
+
+
+                            StateData[StateData$patid==i&order(StateData$timepoint),]$BurpMax2time2<-Dummy[order(Dummy$timepoint),]$BurpMax2time
+                            StateData[StateData$patid==i&order(StateData$timepoint),]$Missing2<-Dummy[order(Dummy$timepoint),]$Missing
+
+                                   }
+
+
+
+##### add max BURP distance based on previous two samples, new spatype after confirmed absence = 1000
+ StateData$BurpPrev2<-rep(NA,nrow(StateData))
+ StateData$MissingPrev<-rep(NA,nrow(StateData))
+ StateData$MissingPrev2<-rep(NA,nrow(StateData))
+
+#setdiff(StateData$patid,c(1:21)) to do a subset
+#unique(StateData$patid)
+for (i in unique(StateData$patid)){Dummy<-StateData[StateData$patid==i,c("timepoint","State","spatypeid1","spatypeid2","spatypeid3","spatypeid4","spatypeid5")]
+
+                                   samples<-length(Dummy$timepoint)
+
+                                    Dummy$PrevInf1<-rep("",nrow(Dummy))
+
+                                    Dummy$PrevInf6<-rep("",nrow(Dummy))
+                                    Dummy$PrevInf2<-rep("",nrow(Dummy))
+                                    Dummy$PrevInf7<-rep("",nrow(Dummy))
+                                    Dummy$PrevInf3<-rep("",nrow(Dummy))
+                                    Dummy$PrevInf8<-rep("",nrow(Dummy))
+                                    Dummy$PrevInf4<-rep("",nrow(Dummy))
+                                    Dummy$PrevInf9<-rep("",nrow(Dummy))
+                                    Dummy$PrevInf5<-rep("",nrow(Dummy))
+                                    Dummy$PrevInf10<-rep("",nrow(Dummy))
+
+                                    Dummy<-Dummy[order(Dummy$timepoint),]
+
+                                    if(samples>1){Dummy[2:samples,c("PrevInf1","PrevInf2","PrevInf3","PrevInf4","PrevInf5")]<-Dummy[1:samples-1,c("spatypeid1","spatypeid2","spatypeid3","spatypeid4","spatypeid5")]}
+                                    if (samples>2){Dummy[3:samples,c("PrevInf6","PrevInf7","PrevInf8","PrevInf9","PrevInf10")]<-Dummy[1:(samples-2),c("spatypeid1","spatypeid2","spatypeid3","spatypeid4","spatypeid5")]}
+                                     Dummy[is.na(Dummy$PrevInf1),]$PrevInf1<-rep("",nrow(Dummy[is.na(Dummy$PrevInf1),]))
+                                     Dummy[is.na(Dummy$PrevInf6),]$PrevInf6<-rep("",nrow(Dummy[is.na(Dummy$PrevInf6),]))
+
+                                    Dummy$MissingPrev<-rep(NA,nrow(Dummy))
+#first spatype checks
+                            for(k in (1:10)){Compare<-paste("PrevInf", k, sep = "")
+                                            Dummy$WriteMin<-rep(NA,nrow(Dummy))
+
+
+                                      Dummy<-merge(Dummy,BURP,by.x=c("spatypeid1",Compare),by.y=c("spatypeid1","spatypeid2"),all.x=TRUE)
+                                      Dummy<-merge(Dummy,BURP,by.x=c(Compare,"spatypeid1"),by.y=c("spatypeid1","spatypeid2"),all.x=TRUE)
+                                     Dummy$MissingPrev<-ifelse(Dummy$spatypeid1!=""&Dummy[names(Dummy)==Compare]!=""&Dummy$spatypeid1!=Dummy[names(Dummy)==Compare]&is.na(Dummy$burp.x)&is.na(Dummy$burp.y),"PROBLEM",Dummy$MissingPrev)
+
+#want to add section that checks BURP2 iff Dummy$MissingPrev = PROBLEM
+
+                                    Temp<-merge(Dummy[Dummy$MissingPrev=="PROBLEM"&!is.na(Dummy$MissingPrev),c("timepoint","spatypeid1",Compare)],BURP2,by.x=c("spatypeid1",Compare),by.y=c("spatypeid1","spatypeid2"),all.x=TRUE)
+                                    Temp<-merge(Temp,BURP2,by.x=c(Compare,"spatypeid1"),by.y=c("spatypeid1","spatypeid2"),all.x=TRUE)
+
+ if(length(Dummy[Dummy$MissingPrev=="PROBLEM"&!is.na(Dummy$MissingPrev)])>0){
+                                    Dummy[Dummy$MissingPrev=="PROBLEM"&!is.na(Dummy$MissingPrev)&order(Dummy$timepoint),]$burp.x<-Temp[order(Temp$timepoint),]$burp.x
+                                    Dummy[Dummy$MissingPrev=="PROBLEM"&!is.na(Dummy$MissingPrev)&order(Dummy$timepoint),]$burp.y<-Temp[order(Temp$timepoint),]$burp.y}
+
+                                    ### compare all values
+                                    Dummy$WriteMin<-pmin(Dummy$burp.x,Dummy$burp.y,na.rm=TRUE)
+                                    Dummy$WriteMin<-ifelse(Dummy$spatypeid1==Dummy[names(Dummy)==Compare]&!Dummy$spatypeid1=="",0,Dummy$WriteMin)
+
+                                    drops <- c("burp.x","burp.y","BurpCost.x","BurpCost.y")
+                                    Dummy<-Dummy[,!(names(Dummy) %in% drops)]
+                                    names(Dummy)[names(Dummy) == 'WriteMin'] <- paste("Min", k, sep = "")
+                                   }
+                            Dummy$AllMin1<-pmin(Dummy$Min1,Dummy$Min2,Dummy$Min3,Dummy$Min4,Dummy$Min5,Dummy$Min6,Dummy$Min7,Dummy$Min8,Dummy$Min9,Dummy$Min10,na.rm=TRUE)
+                            Dummy$AllMin1<-ifelse(Dummy$spatypeid1=="",0,Dummy$AllMin1)
+                            drops2 <- c("Min1","Min2","Min3","Min4","Min5","Min6","Min7","Min8","Min9","Min10")
+                             Dummy<-Dummy[,!(names(Dummy) %in% drops2)]
+#check 2nd spatype
+                            for(k in (1:10)){Compare<-paste("PrevInf", k, sep = "")
+                                            Dummy$WriteMin<-rep(NA,nrow(Dummy))
+
+
+                                      Dummy<-merge(Dummy,BURP,by.x=c("spatypeid2",Compare),by.y=c("spatypeid1","spatypeid2"),all.x=TRUE)
+                                      Dummy<-merge(Dummy,BURP,by.x=c(Compare,"spatypeid2"),by.y=c("spatypeid1","spatypeid2"),all.x=TRUE)
+                                      Dummy$MissingPrev<-ifelse(Dummy$spatypeid2!=""&Dummy[names(Dummy)==Compare]!=""&Dummy$spatypeid2!=Dummy[names(Dummy)==Compare]&is.na(Dummy$burp.x)&is.na(Dummy$burp.y),"PROBLEM",Dummy$MissingPrev)
+
+#want to add section that checks BURP2 iff Dummy$MissingPrev = PROBLEM
+
+                                    Temp<-merge(Dummy[Dummy$MissingPrev=="PROBLEM"&!is.na(Dummy$MissingPrev),c("timepoint","spatypeid2",Compare)],BURP2,by.x=c("spatypeid2",Compare),by.y=c("spatypeid1","spatypeid2"),all.x=TRUE)
+                                    Temp<-merge(Temp,BURP2,by.x=c(Compare,"spatypeid2"),by.y=c("spatypeid1","spatypeid2"),all.x=TRUE)
+
+ if(length(Dummy[Dummy$MissingPrev=="PROBLEM"&!is.na(Dummy$MissingPrev)])>0){Dummy[Dummy$MissingPrev=="PROBLEM"&!is.na(Dummy$MissingPrev)&order(Dummy$timepoint),]$burp.x<-Temp[order(Temp$timepoint),]$burp.x
+                                    Dummy[Dummy$MissingPrev=="PROBLEM"&!is.na(Dummy$MissingPrev)&order(Dummy$timepoint),]$burp.y<-Temp[order(Temp$timepoint),]$burp.y}
+
+
+                                    Dummy$WriteMin<-pmin(Dummy$burp.x,Dummy$burp.y,na.rm=TRUE)
+                                    Dummy$WriteMin<-ifelse(Dummy$spatypeid2==Dummy[names(Dummy)==Compare]&!Dummy$spatypeid2=="",0,Dummy$WriteMin)
+
+
+                                   Dummy<-Dummy[,!(names(Dummy) %in% drops)]
+                                    names(Dummy)[names(Dummy) == 'WriteMin'] <- paste("Min", k, sep = "")
+                                   }
+                            Dummy$AllMin2<-pmin(Dummy$Min1,Dummy$Min2,Dummy$Min3,Dummy$Min4,Dummy$Min5,Dummy$Min6,Dummy$Min7,Dummy$Min8,Dummy$Min9,Dummy$Min10,na.rm=TRUE)
+                            Dummy$AllMin2<-ifelse(Dummy$spatypeid2=="",0,Dummy$AllMin2)
+                             Dummy<-Dummy[,!(names(Dummy) %in% drops2)]
+#check 3rd spatype
+                            for(k in (1:10)){Compare<-paste("PrevInf", k, sep = "")
+                                            Dummy$WriteMin<-rep(NA,nrow(Dummy))
+
+
+                                      Dummy<-merge(Dummy,BURP,by.x=c("spatypeid3",Compare),by.y=c("spatypeid1","spatypeid2"),all.x=TRUE)
+                                      Dummy<-merge(Dummy,BURP,by.x=c(Compare,"spatypeid3"),by.y=c("spatypeid1","spatypeid2"),all.x=TRUE)
+                                    Dummy$MissingPrev<-ifelse(Dummy$spatypeid3!=""&Dummy[names(Dummy)==Compare]!=""&Dummy$spatypeid3!=Dummy[names(Dummy)==Compare]&is.na(Dummy$burp.x)&is.na(Dummy$burp.y),"PROBLEM",Dummy$MissingPrev)
+
+#want to add section that checks BURP2 iff Dummy$MissingPrev = PROBLEM
+
+                                    Temp<-merge(Dummy[Dummy$MissingPrev=="PROBLEM"&!is.na(Dummy$MissingPrev),c("timepoint","spatypeid3",Compare)],BURP2,by.x=c("spatypeid3",Compare),by.y=c("spatypeid1","spatypeid2"),all.x=TRUE)
+                                    Temp<-merge(Temp,BURP2,by.x=c(Compare,"spatypeid3"),by.y=c("spatypeid1","spatypeid2"),all.x=TRUE)
+
+ if(length(Dummy[Dummy$MissingPrev=="PROBLEM"&!is.na(Dummy$MissingPrev)])>0){Dummy[Dummy$MissingPrev=="PROBLEM"&!is.na(Dummy$MissingPrev)&order(Dummy$timepoint),]$burp.x<-Temp[order(Temp$timepoint),]$burp.x
+                                    Dummy[Dummy$MissingPrev=="PROBLEM"&!is.na(Dummy$MissingPrev)&order(Dummy$timepoint),]$burp.y<-Temp[order(Temp$timepoint),]$burp.y}
+
+
+                                    Dummy$WriteMin<-pmin(Dummy$burp.x,Dummy$burp.y,na.rm=TRUE)
+                                    Dummy$WriteMin<-ifelse(Dummy$spatypeid3==Dummy[names(Dummy)==Compare]&!Dummy$spatypeid3=="",0,Dummy$WriteMin)
+
+
+                                   Dummy<-Dummy[,!(names(Dummy) %in% drops)]
+                                    names(Dummy)[names(Dummy) == 'WriteMin'] <- paste("Min", k, sep = "")
+                                   }
+                            Dummy$AllMin3<-pmin(Dummy$Min1,Dummy$Min2,Dummy$Min3,Dummy$Min4,Dummy$Min5,Dummy$Min6,Dummy$Min7,Dummy$Min8,Dummy$Min9,Dummy$Min10,na.rm=TRUE)
+                            Dummy$AllMin3<-ifelse(Dummy$spatypeid3=="",0,Dummy$AllMin3)
+                             Dummy<-Dummy[,!(names(Dummy) %in% drops2)]
+#check 4th spatype
+                            for(k in (1:10)){Compare<-paste("PrevInf", k, sep = "")
+                                            Dummy$WriteMin<-rep(NA,nrow(Dummy))
+
+
+                                      Dummy<-merge(Dummy,BURP,by.x=c("spatypeid4",Compare),by.y=c("spatypeid1","spatypeid2"),all.x=TRUE)
+                                      Dummy<-merge(Dummy,BURP,by.x=c(Compare,"spatypeid4"),by.y=c("spatypeid1","spatypeid2"),all.x=TRUE)
+                                      Dummy$MissingPrev<-ifelse(Dummy$spatypeid4!=""&Dummy[names(Dummy)==Compare]!=""&Dummy$spatypeid4!=Dummy[names(Dummy)==Compare]&is.na(Dummy$burp.x)&is.na(Dummy$burp.y),"PROBLEM",Dummy$MissingPrev)
+
+#want to add section that checks BURP2 iff Dummy$MissingPrev = PROBLEM
+
+                                    Temp<-merge(Dummy[Dummy$MissingPrev=="PROBLEM"&!is.na(Dummy$MissingPrev),c("timepoint","spatypeid4",Compare)],BURP2,by.x=c("spatypeid4",Compare),by.y=c("spatypeid1","spatypeid2"),all.x=TRUE)
+                                    Temp<-merge(Temp,BURP2,by.x=c(Compare,"spatypeid4"),by.y=c("spatypeid1","spatypeid2"),all.x=TRUE)
+
+ if(length(Dummy[Dummy$MissingPrev=="PROBLEM"&!is.na(Dummy$MissingPrev)])>0){Dummy[Dummy$MissingPrev=="PROBLEM"&!is.na(Dummy$MissingPrev)&order(Dummy$timepoint),]$burp.x<-Temp[order(Temp$timepoint),]$burp.x
+                                    Dummy[Dummy$MissingPrev=="PROBLEM"&!is.na(Dummy$MissingPrev)&order(Dummy$timepoint),]$burp.y<-Temp[order(Temp$timepoint),]$burp.y}
+
+
+                                    Dummy$WriteMin<-pmin(Dummy$burp.x,Dummy$burp.y,na.rm=TRUE)
+                                    Dummy$WriteMin<-ifelse(Dummy$spatypeid4==Dummy[names(Dummy)==Compare]&!Dummy$spatypeid4=="",0,Dummy$WriteMin)
+
+                                   Dummy<-Dummy[,!(names(Dummy) %in% drops)]
+                                    names(Dummy)[names(Dummy) == 'WriteMin'] <- paste("Min", k, sep = "")
+                                   }
+                            Dummy$AllMin4<-pmin(Dummy$Min1,Dummy$Min2,Dummy$Min3,Dummy$Min4,Dummy$Min5,Dummy$Min6,Dummy$Min7,Dummy$Min8,Dummy$Min9,Dummy$Min10,na.rm=TRUE)
+                            Dummy$AllMin4<-ifelse(Dummy$spatypeid4=="",0,Dummy$AllMin4)
+                             Dummy<-Dummy[,!(names(Dummy) %in% drops2)]
+#check 5th spatype
+                            for(k in (1:10)){Compare<-paste("PrevInf", k, sep = "")
+                                            Dummy$WriteMin<-rep(NA,nrow(Dummy))
+
+
+                                      Dummy<-merge(Dummy,BURP,by.x=c("spatypeid5",Compare),by.y=c("spatypeid1","spatypeid2"),all.x=TRUE)
+                                      Dummy<-merge(Dummy,BURP,by.x=c(Compare,"spatypeid5"),by.y=c("spatypeid1","spatypeid2"),all.x=TRUE)
+                                    Dummy$MissingPrev<-ifelse(Dummy$spatypeid5!=""&Dummy[names(Dummy)==Compare]!=""&Dummy$spatypeid5!=Dummy[names(Dummy)==Compare]&is.na(Dummy$burp.x)&is.na(Dummy$burp.y),"PROBLEM",Dummy$MissingPrev)
+
+#want to add section that checks BURP2 iff Dummy$MissingPrev = PROBLEM
+
+                                    Temp<-merge(Dummy[Dummy$MissingPrev=="PROBLEM"&!is.na(Dummy$MissingPrev),c("timepoint","spatypeid5",Compare)],BURP2,by.x=c("spatypeid5",Compare),by.y=c("spatypeid1","spatypeid2"),all.x=TRUE)
+                                    Temp<-merge(Temp,BURP2,by.x=c(Compare,"spatypeid5"),by.y=c("spatypeid1","spatypeid2"),all.x=TRUE)
+
+ if(length(Dummy[Dummy$MissingPrev=="PROBLEM"&!is.na(Dummy$MissingPrev)])>0){Dummy[Dummy$MissingPrev=="PROBLEM"&!is.na(Dummy$MissingPrev)&order(Dummy$timepoint),]$burp.x<-Temp[order(Temp$timepoint),]$burp.x
+                                   Dummy[Dummy$MissingPrev=="PROBLEM"&!is.na(Dummy$MissingPrev)&order(Dummy$timepoint),]$burp.y<-Temp[order(Temp$timepoint),]$burp.y}
+
+
+
+                                    Dummy$WriteMin<-pmin(Dummy$burp.x,Dummy$burp.y,na.rm=TRUE)
+                                    Dummy$WriteMin<-ifelse(Dummy$spatypeid5==Dummy[names(Dummy)==Compare]&!Dummy$spatypeid5=="",0,Dummy$WriteMin)
+
+
+                                   Dummy<-Dummy[,!(names(Dummy) %in% drops)]
+                                    names(Dummy)[names(Dummy) == 'WriteMin'] <- paste("Min", k, sep = "")
+                                   }
+                            Dummy$AllMin5<-pmin(Dummy$Min1,Dummy$Min2,Dummy$Min3,Dummy$Min4,Dummy$Min5,Dummy$Min6,Dummy$Min7,Dummy$Min8,Dummy$Min9,Dummy$Min10,na.rm=TRUE)
+                                Dummy$AllMin5<-ifelse(Dummy$spatypeid5=="",0,Dummy$AllMin5)
+                             Dummy<-Dummy[,!(names(Dummy) %in% drops2)]
+
+                                Dummy$BurpMax2time<-pmax(Dummy$AllMin1,Dummy$AllMin2,Dummy$AllMin3,Dummy$AllMin4,Dummy$AllMin5, na.rm=TRUE)
+                             if(nrow( Dummy[Dummy$timepoint>0 & Dummy$PrevInf1==""& Dummy$PrevInf6==""&Dummy$State==1,])>0){Dummy[Dummy$timepoint>0 & Dummy$PrevInf1==""& Dummy$PrevInf6==""&Dummy$State==1,]$BurpMax2time<-rep(1000,nrow(Dummy[Dummy$timepoint>0 & Dummy$PrevInf1==""& Dummy$PrevInf6==""&Dummy$State==1,]))}
+
+
+                            StateData[StateData$patid==i&order(StateData$timepoint),]$BurpPrev2<-Dummy[order(Dummy$timepoint),]$BurpMax2time
+                            StateData[StateData$patid==i&order(StateData$timepoint),]$MissingPrev2<-Dummy[order(Dummy$timepoint),]$MissingPrev
+                            StateData[order(StateData$patid,StateData$timepoint),]
+                            StateData[StateData$patid==i&StateData$timepoint==StateData[StateData$patid==i&order(StateData$timepoint),]$timepoint[1],]$BurpPrev2<-0
+
+                            StateData[StateData$patid==i&StateData$timepoint==StateData[StateData$patid==i&order(StateData$timepoint),]$timepoint[2],]$BurpPrev2<-0
+
+                                   }
+
+
+
+Care<-StateData[,c("patid","timepoint","BurpMax2time2","BurpPrev2")]
+write.dta(Care,file="C:\\Users\\amason\\Documents\\DataSets\\Staph\\NewBurpOnly.dta")
+
+
+#### add marker as to whether persistance is happening
+
+####  calculates the minimum Burp distance from original spa set (i.e. however similar is the closest spa type to inital set)
+library(msm)
+library(foreign)
+library(ggplot2)
+
+StateData<-read.dta("C:\\Users\\amason\\Documents\\DataSets\\Staph\\DataWithCovariates.dta")
+
+BURP<-read.dta("C:\\Users\\amason\\Documents\\DataSets\\Staph\\burp_distances.dta")
+BURP2<-read.csv("C:\\Users\\amason\\Documents\\DataSets\\Staph\\burp_dist3_14.csv", header = TRUE,sep = ",")
+names(BURP2)<-c("spatypeid1","spatypeid2","burp")
+
+##### add BURP distance based on recruitment= first two samples, new spatype after confirmed absence = 1000
+ StateData$PersistBurp<-rep(NA,nrow(StateData))
+ StateData$Missing3<-rep(NA,nrow(StateData))
+
+#setdiff(StateData$patid,c(1:21)) to do a subset
+#setdiff(unique(StateData$patid),c(1:2079))
+for (i in unique(StateData$patid)){Dummy<-StateData[StateData$patid==i,c("timepoint","State","spatypeid1","spatypeid2","spatypeid3","spatypeid4","spatypeid5")]
+                                   Dummy<-Dummy[order(Dummy$timepoint),]
+                                   StartInf<-Dummy[Dummy$timepoint==Dummy$timepoint[1],c("spatypeid1","spatypeid2","spatypeid3","spatypeid4","spatypeid5")]
+                                   Dummy$StartInf1<-rep(StartInf[1,1],nrow(Dummy))
+                                    Dummy[is.na(Dummy$StartInf1),]$StartInf1<-rep("",nrow(Dummy[is.na(Dummy$StartInf1),]))
+                                   Dummy$StartInf2<-rep(StartInf[1,2],nrow(Dummy))
+                                   Dummy$StartInf3<-rep(StartInf[1,3],nrow(Dummy))
+                                   Dummy$StartInf4<-rep(StartInf[1,4],nrow(Dummy))
+                                   Dummy$StartInf5<-rep(StartInf[1,5],nrow(Dummy))
+
+                                   StartInf<-Dummy[Dummy$timepoint==Dummy$timepoint[2],c("spatypeid1","spatypeid2","spatypeid3","spatypeid4","spatypeid5")]
+                                   Dummy$StartInf6<-rep(StartInf[1,1],nrow(Dummy))
+                                    Dummy[is.na(Dummy$StartInf6),]$StartInf6<-rep("",nrow(Dummy[is.na(Dummy$StartInf6),]))
+                                   Dummy$StartInf7<-rep(StartInf[1,2],nrow(Dummy))
+                                   Dummy$StartInf8<-rep(StartInf[1,3],nrow(Dummy))
+                                   Dummy$StartInf9<-rep(StartInf[1,4],nrow(Dummy))
+                                   Dummy$StartInf10<-rep(StartInf[1,5],nrow(Dummy))
+                                    Dummy$Missing<-rep(NA,nrow(Dummy))
+#first spatype checks
+   for(k in (1:10)){Compare<-paste("StartInf", k, sep = "")
+                                            Dummy$WriteMin<-rep(NA,nrow(Dummy))
+
+
+                                      Dummy<-merge(Dummy,BURP,by.x=c("spatypeid1",Compare),by.y=c("spatypeid1","spatypeid2"),all.x=TRUE)
+                                      Dummy<-merge(Dummy,BURP,by.x=c(Compare,"spatypeid1"),by.y=c("spatypeid1","spatypeid2"),all.x=TRUE)
+                                     Dummy$Missing<-ifelse(Dummy$spatypeid1!=""&Dummy[names(Dummy)==Compare]!=""&Dummy$spatypeid1!=Dummy[names(Dummy)==Compare]&is.na(Dummy$burp.x)&is.na(Dummy$burp.y),"PROBLEM",Dummy$Missing)
+
+#want to add section that checks BURP2 iff Dummy$missing = PROBLEM
+
+                                    Temp<-merge(Dummy[Dummy$Missing=="PROBLEM"&!is.na(Dummy$Missing),c("timepoint","spatypeid1",Compare)],BURP2,by.x=c("spatypeid1",Compare),by.y=c("spatypeid1","spatypeid2"),all.x=TRUE)
+                                    Temp<-merge(Temp,BURP2,by.x=c(Compare,"spatypeid1"),by.y=c("spatypeid1","spatypeid2"),all.x=TRUE)
+
+ if(length(Dummy[Dummy$Missing=="PROBLEM"&!is.na(Dummy$Missing)])>0){
+                                    Dummy[Dummy$Missing=="PROBLEM"&!is.na(Dummy$Missing)&order(Dummy$timepoint),]$burp.x<-Temp[order(Temp$timepoint),]$burp.x
+                                    Dummy[Dummy$Missing=="PROBLEM"&!is.na(Dummy$Missing)&order(Dummy$timepoint),]$burp.y<-Temp[order(Temp$timepoint),]$burp.y}
+
+                                    ### compare all values
+                                    Dummy$WriteMin<-pmin(Dummy$burp.x,Dummy$burp.y,na.rm=TRUE)
+                                    Dummy$WriteMin<-ifelse(Dummy$spatypeid1==Dummy[names(Dummy)==Compare]&!Dummy$spatypeid1=="",0,Dummy$WriteMin)
+
+                                    drops <- c("burp.x","burp.y","BurpCost.x","BurpCost.y")
+                                    Dummy<-Dummy[,!(names(Dummy) %in% drops)]
+                                    names(Dummy)[names(Dummy) == 'WriteMin'] <- paste("Min", k, sep = "")
+                                   }
+                            Dummy$AllMin1<-pmin(Dummy$Min1,Dummy$Min2,Dummy$Min3,Dummy$Min4,Dummy$Min5,Dummy$Min6,Dummy$Min7,Dummy$Min8,Dummy$Min9,Dummy$Min10,na.rm=TRUE)
+                            Dummy$AllMin1<-ifelse(Dummy$spatypeid1=="",1000,Dummy$AllMin1)
+                            drops2 <- c("Min1","Min2","Min3","Min4","Min5","Min6","Min7","Min8","Min9","Min10")
+                             Dummy<-Dummy[,!(names(Dummy) %in% drops2)]
+#check 2nd spatype
+                            for(k in (1:10)){Compare<-paste("StartInf", k, sep = "")
+                                            Dummy$WriteMin<-rep(NA,nrow(Dummy))
+
+
+                                      Dummy<-merge(Dummy,BURP,by.x=c("spatypeid2",Compare),by.y=c("spatypeid1","spatypeid2"),all.x=TRUE)
+                                      Dummy<-merge(Dummy,BURP,by.x=c(Compare,"spatypeid2"),by.y=c("spatypeid1","spatypeid2"),all.x=TRUE)
+                                      Dummy$Missing<-ifelse(Dummy$spatypeid2!=""&Dummy[names(Dummy)==Compare]!=""&Dummy$spatypeid2!=Dummy[names(Dummy)==Compare]&is.na(Dummy$burp.x)&is.na(Dummy$burp.y),"PROBLEM",Dummy$Missing)
+
+#want to add section that checks BURP2 iff Dummy$missing = PROBLEM
+
+                                    Temp<-merge(Dummy[Dummy$Missing=="PROBLEM"&!is.na(Dummy$Missing),c("timepoint","spatypeid2",Compare)],BURP2,by.x=c("spatypeid2",Compare),by.y=c("spatypeid1","spatypeid2"),all.x=TRUE)
+                                    Temp<-merge(Temp,BURP2,by.x=c(Compare,"spatypeid2"),by.y=c("spatypeid1","spatypeid2"),all.x=TRUE)
+
+ if(length(Dummy[Dummy$Missing=="PROBLEM"&!is.na(Dummy$Missing)])>0){Dummy[Dummy$Missing=="PROBLEM"&!is.na(Dummy$Missing)&order(Dummy$timepoint),]$burp.x<-Temp[order(Temp$timepoint),]$burp.x
+                                    Dummy[Dummy$Missing=="PROBLEM"&!is.na(Dummy$Missing)&order(Dummy$timepoint),]$burp.y<-Temp[order(Temp$timepoint),]$burp.y}
+
+
+                                    Dummy$WriteMin<-pmin(Dummy$burp.x,Dummy$burp.y,na.rm=TRUE)
+                                    Dummy$WriteMin<-ifelse(Dummy$spatypeid2==Dummy[names(Dummy)==Compare]&!Dummy$spatypeid2=="",0,Dummy$WriteMin)
+
+
+                                   Dummy<-Dummy[,!(names(Dummy) %in% drops)]
+                                    names(Dummy)[names(Dummy) == 'WriteMin'] <- paste("Min", k, sep = "")
+                                   }
+                            Dummy$AllMin2<-pmin(Dummy$Min1,Dummy$Min2,Dummy$Min3,Dummy$Min4,Dummy$Min5,Dummy$Min6,Dummy$Min7,Dummy$Min8,Dummy$Min9,Dummy$Min10,na.rm=TRUE)
+                            Dummy$AllMin2<-ifelse(Dummy$spatypeid2=="",1000,Dummy$AllMin2)
+                             Dummy<-Dummy[,!(names(Dummy) %in% drops2)]
+#check 3rd spatype
+                            for(k in (1:10)){Compare<-paste("StartInf", k, sep = "")
+                                            Dummy$WriteMin<-rep(NA,nrow(Dummy))
+
+
+                                      Dummy<-merge(Dummy,BURP,by.x=c("spatypeid3",Compare),by.y=c("spatypeid1","spatypeid2"),all.x=TRUE)
+                                      Dummy<-merge(Dummy,BURP,by.x=c(Compare,"spatypeid3"),by.y=c("spatypeid1","spatypeid2"),all.x=TRUE)
+                                    Dummy$Missing<-ifelse(Dummy$spatypeid3!=""&Dummy[names(Dummy)==Compare]!=""&Dummy$spatypeid3!=Dummy[names(Dummy)==Compare]&is.na(Dummy$burp.x)&is.na(Dummy$burp.y),"PROBLEM",Dummy$Missing)
+
+#want to add section that checks BURP2 iff Dummy$missing = PROBLEM
+
+                                    Temp<-merge(Dummy[Dummy$Missing=="PROBLEM"&!is.na(Dummy$Missing),c("timepoint","spatypeid3",Compare)],BURP2,by.x=c("spatypeid3",Compare),by.y=c("spatypeid1","spatypeid2"),all.x=TRUE)
+                                    Temp<-merge(Temp,BURP2,by.x=c(Compare,"spatypeid3"),by.y=c("spatypeid1","spatypeid2"),all.x=TRUE)
+
+ if(length(Dummy[Dummy$Missing=="PROBLEM"&!is.na(Dummy$Missing)])>0){Dummy[Dummy$Missing=="PROBLEM"&!is.na(Dummy$Missing)&order(Dummy$timepoint),]$burp.x<-Temp[order(Temp$timepoint),]$burp.x
+                                    Dummy[Dummy$Missing=="PROBLEM"&!is.na(Dummy$Missing)&order(Dummy$timepoint),]$burp.y<-Temp[order(Temp$timepoint),]$burp.y}
+
+
+                                    Dummy$WriteMin<-pmin(Dummy$burp.x,Dummy$burp.y,na.rm=TRUE)
+                                    Dummy$WriteMin<-ifelse(Dummy$spatypeid3==Dummy[names(Dummy)==Compare]&!Dummy$spatypeid3=="",0,Dummy$WriteMin)
+
+
+                                   Dummy<-Dummy[,!(names(Dummy) %in% drops)]
+                                    names(Dummy)[names(Dummy) == 'WriteMin'] <- paste("Min", k, sep = "")
+                                   }
+                            Dummy$AllMin3<-pmin(Dummy$Min1,Dummy$Min2,Dummy$Min3,Dummy$Min4,Dummy$Min5,Dummy$Min6,Dummy$Min7,Dummy$Min8,Dummy$Min9,Dummy$Min10,na.rm=TRUE)
+                            Dummy$AllMin3<-ifelse(Dummy$spatypeid3=="",1000,Dummy$AllMin3)
+                             Dummy<-Dummy[,!(names(Dummy) %in% drops2)]
+#check 4th spatype
+                            for(k in (1:10)){Compare<-paste("StartInf", k, sep = "")
+                                            Dummy$WriteMin<-rep(NA,nrow(Dummy))
+
+
+                                      Dummy<-merge(Dummy,BURP,by.x=c("spatypeid4",Compare),by.y=c("spatypeid1","spatypeid2"),all.x=TRUE)
+                                      Dummy<-merge(Dummy,BURP,by.x=c(Compare,"spatypeid4"),by.y=c("spatypeid1","spatypeid2"),all.x=TRUE)
+                                      Dummy$Missing<-ifelse(Dummy$spatypeid4!=""&Dummy[names(Dummy)==Compare]!=""&Dummy$spatypeid4!=Dummy[names(Dummy)==Compare]&is.na(Dummy$burp.x)&is.na(Dummy$burp.y),"PROBLEM",Dummy$Missing)
+
+#want to add section that checks BURP2 iff Dummy$missing = PROBLEM
+
+                                    Temp<-merge(Dummy[Dummy$Missing=="PROBLEM"&!is.na(Dummy$Missing),c("timepoint","spatypeid4",Compare)],BURP2,by.x=c("spatypeid4",Compare),by.y=c("spatypeid1","spatypeid2"),all.x=TRUE)
+                                    Temp<-merge(Temp,BURP2,by.x=c(Compare,"spatypeid4"),by.y=c("spatypeid1","spatypeid2"),all.x=TRUE)
+
+ if(length(Dummy[Dummy$Missing=="PROBLEM"&!is.na(Dummy$Missing)])>0){Dummy[Dummy$Missing=="PROBLEM"&!is.na(Dummy$Missing)&order(Dummy$timepoint),]$burp.x<-Temp[order(Temp$timepoint),]$burp.x
+                                    Dummy[Dummy$Missing=="PROBLEM"&!is.na(Dummy$Missing)&order(Dummy$timepoint),]$burp.y<-Temp[order(Temp$timepoint),]$burp.y}
+
+
+                                    Dummy$WriteMin<-pmin(Dummy$burp.x,Dummy$burp.y,na.rm=TRUE)
+                                    Dummy$WriteMin<-ifelse(Dummy$spatypeid4==Dummy[names(Dummy)==Compare]&!Dummy$spatypeid4=="",0,Dummy$WriteMin)
+
+                                   Dummy<-Dummy[,!(names(Dummy) %in% drops)]
+                                    names(Dummy)[names(Dummy) == 'WriteMin'] <- paste("Min", k, sep = "")
+                                   }
+                            Dummy$AllMin4<-pmin(Dummy$Min1,Dummy$Min2,Dummy$Min3,Dummy$Min4,Dummy$Min5,Dummy$Min6,Dummy$Min7,Dummy$Min8,Dummy$Min9,Dummy$Min10,na.rm=TRUE)
+                            Dummy$AllMin4<-ifelse(Dummy$spatypeid4=="",1000,Dummy$AllMin4)
+                             Dummy<-Dummy[,!(names(Dummy) %in% drops2)]
+#check 5th spatype
+                            for(k in (1:10)){Compare<-paste("StartInf", k, sep = "")
+                                            Dummy$WriteMin<-rep(NA,nrow(Dummy))
+
+
+                                      Dummy<-merge(Dummy,BURP,by.x=c("spatypeid5",Compare),by.y=c("spatypeid1","spatypeid2"),all.x=TRUE)
+                                      Dummy<-merge(Dummy,BURP,by.x=c(Compare,"spatypeid5"),by.y=c("spatypeid1","spatypeid2"),all.x=TRUE)
+                                    Dummy$Missing<-ifelse(Dummy$spatypeid5!=""&Dummy[names(Dummy)==Compare]!=""&Dummy$spatypeid5!=Dummy[names(Dummy)==Compare]&is.na(Dummy$burp.x)&is.na(Dummy$burp.y),"PROBLEM",Dummy$Missing)
+
+#want to add section that checks BURP2 iff Dummy$missing = PROBLEM
+
+                                    Temp<-merge(Dummy[Dummy$Missing=="PROBLEM"&!is.na(Dummy$Missing),c("timepoint","spatypeid5",Compare)],BURP2,by.x=c("spatypeid5",Compare),by.y=c("spatypeid1","spatypeid2"),all.x=TRUE)
+                                    Temp<-merge(Temp,BURP2,by.x=c(Compare,"spatypeid5"),by.y=c("spatypeid1","spatypeid2"),all.x=TRUE)
+
+ if(length(Dummy[Dummy$Missing=="PROBLEM"&!is.na(Dummy$Missing)])>0){Dummy[Dummy$Missing=="PROBLEM"&!is.na(Dummy$Missing)&order(Dummy$timepoint),]$burp.x<-Temp[order(Temp$timepoint),]$burp.x
+                                   Dummy[Dummy$Missing=="PROBLEM"&!is.na(Dummy$Missing)&order(Dummy$timepoint),]$burp.y<-Temp[order(Temp$timepoint),]$burp.y}
+
+
+
+                                    Dummy$WriteMin<-pmin(Dummy$burp.x,Dummy$burp.y,na.rm=TRUE)
+                                    Dummy$WriteMin<-ifelse(Dummy$spatypeid5==Dummy[names(Dummy)==Compare]&!Dummy$spatypeid5=="",0,Dummy$WriteMin)
+
+
+                                   Dummy<-Dummy[,!(names(Dummy) %in% drops)]
+                                    names(Dummy)[names(Dummy) == 'WriteMin'] <- paste("Min", k, sep = "")
+                                   }
+                            Dummy$AllMin5<-pmin(Dummy$Min1,Dummy$Min2,Dummy$Min3,Dummy$Min4,Dummy$Min5,Dummy$Min6,Dummy$Min7,Dummy$Min8,Dummy$Min9,Dummy$Min10,na.rm=TRUE)
+                                Dummy$AllMin5<-ifelse(Dummy$spatypeid5=="",1000,Dummy$AllMin5)
+                             Dummy<-Dummy[,!(names(Dummy) %in% drops2)]
+
+                                Dummy$PersistBurp<-pmin(Dummy$AllMin1,Dummy$AllMin2,Dummy$AllMin3,Dummy$AllMin4,Dummy$AllMin5, na.rm=TRUE)
+                             if(nrow( Dummy[Dummy$timepoint>0 & Dummy$StartInf1==""& Dummy$StartInf6==""&Dummy$State==1,])>0){Dummy[Dummy$timepoint>0 & Dummy$StartInf1==""& Dummy$StartInf6==""&Dummy$State==1,]$PersistBurp<-rep(2000,nrow(Dummy[Dummy$timepoint>0 & Dummy$StartInf1==""& Dummy$StartInf6==""&Dummy$State==1,]))}
+
+
+                            StateData[StateData$patid==i&order(StateData$timepoint),]$PersistBurp<-Dummy[order(Dummy$timepoint),]$PersistBurp
+                            StateData[StateData$patid==i&order(StateData$timepoint),]$Missing3<-Dummy[order(Dummy$timepoint),]$Missing
+
+                                   }
+
+#### need to check people who start with disperate spatypes and are persistant####
+
+Care<-StateData[,c("patid","timepoint","PersistBurp")]
+write.dta(Care,file="C:\\Users\\amason\\Documents\\DataSets\\Staph\\PersistBurpOnly.dta")
+
+View(StateData)
+
+#######################################################################################################################
+##### add BURP distance in initial spaset
+
+library(msm)
+library(foreign)
+library(ggplot2)
+library(reshape2)
+
+StateData<-read.dta("C:\\Users\\amason\\Documents\\DataSets\\Staph\\DataWithCovariates.dta")
+
+BURP<-read.dta("C:\\Users\\amason\\Documents\\DataSets\\Staph\\burp_distances.dta")
+BURP2<-read.csv("C:\\Users\\amason\\Documents\\DataSets\\Staph\\burp_dist3_14.csv", header = TRUE,sep = ",")
+names(BURP2)<-c("spatypeid1","spatypeid2","burp")
+
+ StateData$InitialBurp<-rep(NA,nrow(StateData))
+
+
+#setdiff(StateData$patid,c(1:21)) to do a subset
+#unique(StateData$patid)
+for (i in setdiff(unique(StateData$patid),c(100000:1000001))){
+                                    MaxInitBurp=0
+                                    Dummy<-StateData[StateData$patid==i,c("patid","timepoint","State","spatypeid1","spatypeid2","spatypeid3","spatypeid4","spatypeid5")]
+                                   Dummy<-Dummy[order(Dummy$timepoint),]
+                                   Dummy<-Dummy[1:2,c("patid","spatypeid1","spatypeid2","spatypeid3","spatypeid4","spatypeid5") ]
+                                   Dummy<-melt(Dummy, id.vars="patid")
+                                   Spas<-unique(Dummy[Dummy$value!="",]$value)
+                                   if(length(Spas)>1){AllSpas<-as.data.frame(t(combn(Spas,2)))
+                                   AllSpas<-merge(AllSpas,BURP,by.x=c("V1","V2"),by.y=c("spatypeid1","spatypeid2"),all.x=TRUE)
+                                   AllSpas<-merge(AllSpas,BURP,by.x=c("V2","V1"),by.y=c("spatypeid1","spatypeid2"),all.x=TRUE)
+                                   AllSpas$Missing<-rep(NA,nrow(AllSpas))
+
+                                    MaxInitBurp<-max(AllSpas$burp.x,AllSpas$burp.y,na.rm=TRUE)}
+
+                            StateData[StateData$patid==i,]$InitialBurp<-rep(MaxInitBurp,nrow( StateData[StateData$patid==i,]))
+
+
+                                    }
+
+Care<-StateData[,c("patid","timepoint","InitialBurp")]
+write.dta(Care,file="C:\\Users\\amason\\Documents\\DataSets\\Staph\\InitialBurpOnly.dta")
+
+View(StateData)
